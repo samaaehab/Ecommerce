@@ -18,6 +18,7 @@ import { MainhomeComponent } from './mainhome/mainhome.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
 import { FavouritesComponent } from './favourites/favourites.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { FavouritesComponent } from './favourites/favourites.component';
     MainhomeComponent,
     CheckoutComponent,
     CartComponent,
-    FavouritesComponent
+    FavouritesComponent,
+    ConfirmComponent
+
   ],
   imports: [
     BrowserModule,
