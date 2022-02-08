@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "css/bootstrap.custom.min.css";
+@import "css/style.css";
+@import "css/home_1.css";
+@import "css/custom.css";
+@import "css/listing.css";
+@import "css/about.css";
+@import "css/contact.css";
+@import "css/account.css";
+@import "css/checkout.css";
+/* @import "css/bootstrap.css"; */
+
+
