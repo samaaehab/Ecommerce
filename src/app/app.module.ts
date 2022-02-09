@@ -21,6 +21,8 @@ import { FavouritesComponent } from './favourites/favourites.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { ProfileComponent } from './profile/profile.component';
 
+import { Admin2Component } from './admin2/admin2.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,9 @@ import { ProfileComponent } from './profile/profile.component';
     CartComponent,
     FavouritesComponent,
     ConfirmComponent,
-    ProfileComponent
+    ProfileComponent,
+   
+    Admin2Component,
 
   ],
   imports: [

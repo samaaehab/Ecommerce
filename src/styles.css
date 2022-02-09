@@ -22,5 +22,17 @@
 @import "plugins2/nouislider/nouislider.min.css"; 
 @import "css2/pace.min.css"; 
 @import "css2/bootstrap.min.css";
- @import "css2/app.css"; 
+@import "css2/app.css"; 
 @import "css2/icons.css";
+
+
+/* admin */
+@import "bootstrap/css/bootstrap.min.css";
+@import"css3/plugins.css";
+@import"css3/ecommerce-dashboard/timeline.css";
+@import"css3/ecommerce-dashboard/style.css";
+
+/* admin2 */
+@import "css4/sb-admin-2.min.css";
+@import "./vendor/fontawesome-free/css/all.min.css";
+
