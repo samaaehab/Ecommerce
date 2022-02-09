@@ -19,6 +19,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { ConfirmComponent } from './confirm/confirm.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ConfirmComponent } from './confirm/confirm.component';
     CheckoutComponent,
     CartComponent,
     FavouritesComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    ProfileComponent
 
   ],
   imports: [

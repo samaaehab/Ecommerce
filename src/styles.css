@@ -14,4 +14,13 @@
 
 /* @import "css/bootstrap.css"; */
 
-
+/* templet 2 */
+@import "plugins2/OwlCarousel/css/owl.carousel.min.css";
+@import "plugins2/simplebar/css/simplebar.css";
+ @import "plugins2/perfect-scrollbar/css/perfect-scrollbar.css";
+@import "plugins2/metismenu/css/metisMenu.min.css";
+@import "plugins2/nouislider/nouislider.min.css"; 
+@import "css2/pace.min.css"; 
+@import "css2/bootstrap.min.css";
+ @import "css2/app.css"; 
+@import "css2/icons.css";
