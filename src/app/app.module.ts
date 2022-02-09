@@ -20,6 +20,9 @@ import { CartComponent } from './cart/cart.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { OrdersComponent } from './orders/orders.component';
+import { AddressComponent } from './address/address.component';
 
 @NgModule({
   declarations: [
@@ -37,8 +40,10 @@ import { ProfileComponent } from './profile/profile.component';
     CartComponent,
     FavouritesComponent,
     ConfirmComponent,
-    ProfileComponent
-
+    ProfileComponent,
+    UserDetailsComponent,
+    OrdersComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,
