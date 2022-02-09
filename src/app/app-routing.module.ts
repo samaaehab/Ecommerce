@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { AcountComponent } from './acount/acount.component';
+import { AddressComponent } from './address/address.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ConfirmComponent } from './confirm/confirm.component';
@@ -11,6 +12,9 @@ import { FavouritesComponent } from './favourites/favourites.component';
 import { HomeComponent } from './home/home.component';
 import { KidsComponent } from './kids/kids.component';
 import { MainhomeComponent } from './mainhome/mainhome.component';
+import { OrdersComponent } from './orders/orders.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 import { WomenComponent } from './women/women.component';
 // import { HeaderComponent } from './header/header.component';
 
@@ -21,12 +25,22 @@ const routes: Routes = [
       {path: 'kids', component: KidsComponent},
       {path: 'aboutus', component: AboutComponent},
       {path: 'contactus', component: ContactsUsComponent},
+      {path:'acount/profile',component:ProfileComponent},
       {path: 'acount', component: AcountComponent},
       {path: 'cart/checkout/confirm', component: ConfirmComponent},
       {path: 'cart/checkout', component: CheckoutComponent},
       {path: 'cart', component: CartComponent},
       {path: '', component:MainhomeComponent},
-      {path:'favourites',component:FavouritesComponent}
+      {path:'favourites',component:FavouritesComponent},
+      {path:'profile/userDetailes',component:UserDetailsComponent},
+      {path:'profile/dashboard',component:ProfileComponent},
+      {path:'profile/order',component:OrdersComponent},
+      {path:'profile/address',component:AddressComponent}
+
+
+
+
+
   
 ];
 

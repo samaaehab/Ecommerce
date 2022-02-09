@@ -20,6 +20,9 @@ import { CartComponent } from './cart/cart.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { OrdersComponent } from './orders/orders.component';
+import { AddressComponent } from './address/address.component';
 
 import { Admin2Component } from './admin2/admin2.component';
 
@@ -40,8 +43,14 @@ import { Admin2Component } from './admin2/admin2.component';
     FavouritesComponent,
     ConfirmComponent,
     ProfileComponent,
+
    
     Admin2Component,
+
+
+    UserDetailsComponent,
+    OrdersComponent,
+    AddressComponent,
 
   ],
   imports: [
