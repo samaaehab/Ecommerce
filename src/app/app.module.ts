@@ -23,13 +23,14 @@ import { ProfileComponent } from './profile/profile.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AddressComponent } from './address/address.component';
-
+import { HttpClientModule } from '@angular/common/http';
 import { Admin2Component } from './admin2/admin2.component';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 import { AdminproductsComponent } from './adminproducts/adminproducts.component';
 import { AdminusersComponent } from './adminusers/adminusers.component';
 import { AdmincategoryComponent } from './admincategory/admincategory.component';
 import { AdminordersComponent } from './adminorders/adminorders.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,7 @@ import { AdminordersComponent } from './adminorders/adminorders.component';
     ConfirmComponent,
     ProfileComponent,
 
-   
+
     Admin2Component,
 
 
@@ -64,7 +65,9 @@ import { AdminordersComponent } from './adminorders/adminorders.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
