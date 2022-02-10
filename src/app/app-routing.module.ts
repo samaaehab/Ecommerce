@@ -3,6 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { AcountComponent } from './acount/acount.component';
 import { AddressComponent } from './address/address.component';
+import { Admin2Component } from './admin2/admin2.component';
+import { AdmincategoryComponent } from './admincategory/admincategory.component';
+import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
+import { AdminordersComponent } from './adminorders/adminorders.component';
+import { AdminproductsComponent } from './adminproducts/adminproducts.component';
+import { AdminusersComponent } from './adminusers/adminusers.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ConfirmComponent } from './confirm/confirm.component';
@@ -35,7 +41,21 @@ const routes: Routes = [
       {path:'profile/userDetailes',component:UserDetailsComponent},
       {path:'profile/dashboard',component:ProfileComponent},
       {path:'profile/order',component:OrdersComponent},
-      {path:'profile/address',component:AddressComponent}
+      {path:'profile/address',component:AddressComponent},
+      
+      {path:'admin',
+      children:[
+        {path:'dashboard',component:AdmindashboardComponent},
+        {path:'product',component:AdminproductsComponent},
+        {path:'users',component:AdminusersComponent},
+        {path:'category',component:AdmincategoryComponent},
+        {path:'order',component:AdminordersComponent},
+
+
+      ]
+    },
+
+      
 
 
 

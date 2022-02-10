@@ -25,7 +25,11 @@ import { OrdersComponent } from './orders/orders.component';
 import { AddressComponent } from './address/address.component';
 
 import { Admin2Component } from './admin2/admin2.component';
-
+import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
+import { AdminproductsComponent } from './adminproducts/adminproducts.component';
+import { AdminusersComponent } from './adminusers/adminusers.component';
+import { AdmincategoryComponent } from './admincategory/admincategory.component';
+import { AdminordersComponent } from './adminorders/adminorders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +55,11 @@ import { Admin2Component } from './admin2/admin2.component';
     UserDetailsComponent,
     OrdersComponent,
     AddressComponent,
+    AdmindashboardComponent,
+    AdminproductsComponent,
+    AdminusersComponent,
+    AdmincategoryComponent,
+    AdminordersComponent,
 
   ],
   imports: [
