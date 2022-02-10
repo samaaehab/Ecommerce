@@ -51,7 +51,6 @@ const routes: Routes = [
         {path:'category',component:AdmincategoryComponent},
         {path:'order',component:AdminordersComponent},
 
-
       ]
     },
 
