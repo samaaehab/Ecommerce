@@ -7,12 +7,14 @@ import { Category } from './../models/Category';
 })
 export class CategoryServiceService {
   allCategories = new BehaviorSubject<Category[]>([]);
-  constructor(private _httpClient:HttpClient) { }
+  constructor(private _httpClient: HttpClient) { }
 
 private url=`http://127.0.0.1:8000/api/`;
 
-public get() {​​​​​​ return this._httpClient.get(this.url+`categories`); }​​​​​​
-
+public get() { return this._httpClient.get(this.url + `categories`); }
+  public post(category: Category) {
+  return this._httpClient.post(this.url + `categories`, category)
+}
 delete(id:number){
   return this._httpClient.delete(this.url+`categories/${id}`);
 }
