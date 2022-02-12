@@ -25,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 // import { AdminusersComponent } from './components/adminusers/adminusers.component';
 // import { AdmincategoryComponent } from './components/admin/admincategory/admincategory.component';
 // import { AdminordersComponent } from './components/adminorders/adminorders.component';
-import { NgxPaginationModule } from 'ngx-pagination';
+
 
 
 @NgModule({
@@ -50,7 +50,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxPaginationModule
+    // NgxPaginationModule
   ],
   // exports: [CommonModule, NgxPaginationModule],
   providers: [],

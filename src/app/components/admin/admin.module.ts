@@ -7,7 +7,7 @@ import { AdminordersComponent } from './adminorders/adminorders.component';
 import { AdminproductsComponent } from './adminproducts/adminproducts.component';
 import { AdminusersComponent } from './adminusers/adminusers.component';
 import { Admin2Component } from './admin2/admin2.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
 
@@ -32,7 +32,7 @@ const routes: Routes = [
     AdminordersComponent
   ],
   imports: [
-    CommonModule,RouterModule.forChild(routes)
+    CommonModule,RouterModule.forChild(routes) ,NgxPaginationModule
   ]
 })
 export class AdminModule { }
