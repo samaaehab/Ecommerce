@@ -25,4 +25,18 @@ export class AdmincategoryComponent implements OnInit {
     )
   }
 
+  delete(index:number):void
+  {
+    let category=this.categories[index];
+    this.categoryService.delete(category.id)
+    .subscribe(
+      (response:any)=>{
+        this.categories.splice(index,1);
+      },
+      (error:any)=>{}
+    );
+    
+
+  }
+
 }

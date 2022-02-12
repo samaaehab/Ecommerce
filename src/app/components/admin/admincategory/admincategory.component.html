@@ -154,10 +154,9 @@
                   
                   <th scope="row">{{ currentIndex + 1 }}</th>
                   <td>{{ category.cat_name }}</td>
-                  <td class="d-flex justify-content-around">
-                    <div class="btn btn-info mr-2">Veiw</div>
-                    <div class="btn btn-dark mr-2">Edit</div>
-                    <button class="btn btn-danger">Delete</button>
+                  <td class="d-flex justify-content-start">
+                    <button class="btn btn-info me-2">Edit</button>
+                    <button class="btn btn-danger" (click)="delete(currentIndex)">Delete</button>
                   </td>
                 </tr>
                 <tr></tr>
