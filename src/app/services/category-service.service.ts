@@ -11,6 +11,5 @@ export class CategoryServiceService {
 
 private url=`http://127.0.0.1:8000/api/`;
 public get() {​​​​​​ return this._httpClient.get(this.url+`categories`); }​​​​​​
-
-
 }
+
