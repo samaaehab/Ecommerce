@@ -11,12 +11,18 @@ export class OrderService {
   constructor(private _httpClient: HttpClient) { }
   private url = `http://127.0.0.1:8000/api/`;
 
-
   public get() { return this._httpClient.get(this.url + `orders`); }
+  
   public post(order: Order) {
     return this._httpClient.post(this.url + `orders`, order)
   }
+
   delete(id:number){
     return this._httpClient.delete(this.url+`orders/${id}`);
   }
+
+  put(id:number,order:Order){
+    return this._httpClient.put(this.url+`orders/${id}`, order);
+  }
+
 }

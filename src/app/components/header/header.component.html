@@ -9,10 +9,18 @@
 						<ul class="top_links">
 							<li>
 								<div class="styled-select lang-selector">
-									<select>
-										<option value="English" selected>English</option>
-										<option value="Arabic">Arabic</option>
-									</select>
+									<span class="form-inline">
+										<select 
+											
+											#selectedLang 
+											(change)="switchLang(selectedLang.value)">
+										  <option *ngFor="let language of translate.getLangs()" 
+											[value]="language"
+											[selected]="language === translate.currentLang">
+											{{language}}
+										  </option>
+										</select>
+									  </span>
 								</div>
 							</li>
 							<!-- <li><div class="styled-select currency-selector">

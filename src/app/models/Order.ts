@@ -12,5 +12,5 @@ export class Order {
     customer_id: number = 0;
     cart_id: number = 0;
     payment_method: string = "";
-
+    status: string = "";
 }
