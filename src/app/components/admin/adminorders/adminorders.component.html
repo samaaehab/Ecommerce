@@ -106,7 +106,7 @@
 
 <!-- Page Wrapper -->
 <!-- Content Wrapper -->
-<div class="container" class="d-flex flex-column col-12">
+<div class="container" class="d-flex flex-column col-10">
   <div class="mt-4">
     <div class="container-fluid col-12">
       <!-- Page Heading -->
@@ -125,6 +125,11 @@
         <!-- Card Header - Dropdown -->
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
           <h6 class="m-0 font-weight-bold text-primary">Table of Orders</h6>
+          <div class="input-group" style="width: 300px;">
+            <div class="form-outline">
+              <input [(ngModel)]='searchText' type="search" id="form1" class="form-control" style="border-radius: 0px;" placeholder="Search"/>
+            </div>
+          </div>
           <div class="dropdown no-arrow">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
@@ -134,38 +139,60 @@
         </div>
         <!-- Card Body -->
         <div class="card-body">
-          <div class="chart-area">
+          <div class="chart-area" style="height: 550px;">
             <table class="table">
               <thead class="thead-info">
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Product Name</th>
-                  <th scope="col">Ctegory</th>
-                  <th scope="col">Sub Category</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Details</th>
+                  <th scope="col">customer Name</th>
+                  <th scope="col">phone</th>
+                  <th scope="col-4">address</th>
+                  <th scope="col">payment</th>
+                  <th scope="col">order_num</th>
+                  <th scope="col">price</th>
+                  <th scope="col">quantity</th>
+                  <th scope="col">discount</th>
+                  <th scope="col">status</th>
                   <th scope="col">Actions</th>
 
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
+                <tr *ngFor="
+                let currentIndex=index;
+                let order of orders 
+                |filter:searchText 
+               | paginate: { itemsPerPage: count, currentPage: p }
+              ">
+              <!-- filter:searchText |
+              paginate: { itemsPerPage: count, currentPage: p } -->
+                  <th scope="row">{{currentIndex+1}}</th>
+                  <td>{{order.name}}</td>
+                  <td>{{order.phone}}</td>
+                  <td>{{order.full_address}}</td>
+                  <td>{{order.payment_method}}</td>
+                  <td>{{order.order_number}}</td>
+                  <td>{{order.price}}</td>
+                  <td>{{order.quantity}}</td>
+                  <td>{{order.discount}}</td>
+                  <td>{{order.status}}</td>
+
                   <td class="d-flex justify-content-around">
-                    <div class="btn btn-info mr-2">Veiw</div>
+                
                     <div class="btn btn-dark mr-2">Edit</div>
-                    <button class="btn btn-danger">Delete</button>
+                    <button class="btn btn-danger" (click)="delete(currentIndex)">Delete</button>
                   </td>
                 </tr>
                 <tr>
               </tbody>
             </table>
+           
           </div>
+        </div>
+        <div class="text-right">
+          <pagination-controls (pageChange)="p = $event">
+          </pagination-controls>
+
         </div>
       </div>
     </div>
