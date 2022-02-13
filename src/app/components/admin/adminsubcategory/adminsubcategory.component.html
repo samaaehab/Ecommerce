@@ -1,0 +1,335 @@
+<div id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <ul
+        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar"
+      >
+        <!-- Sidebar - Brand -->
+        <a
+          class="sidebar-brand d-flex align-items-center justify-content-center"
+          href="index.html"
+        >
+          <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+          </div>
+          <div class="sidebar-brand-text mx-3">Admin</div>
+        </a>
+  
+        <!-- Divider -->
+        <br />
+        <hr class="sidebar-divider my-0" />
+  
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admn/admin/dashboard">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a
+          >
+        </li>
+  
+        <!-- Divider -->
+  
+        <!-- Heading -->
+  
+        <!-- Nav Item - Pages Collapse Menu -->
+  
+        <!-- Nav Item - Utilities Collapse Menu -->
+  
+        <br />
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+  
+        <!-- Heading -->
+        <div class="sidebar-heading">Addons</div>
+  
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            routerLink="/admn/admin/category"
+            data-toggle="collapse"
+            data-target="#collapsePages"
+            aria-expanded="true"
+            aria-controls="collapsePages"
+          >
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Categories</span>
+          </a>
+        </li>
+        <li class="nav-item">
+            <a
+              class="nav-link collapsed"
+              routerLink="/admn/admin/subcategory"
+              data-toggle="collapse"
+              data-target="#collapsePages"
+              aria-expanded="true"
+              aria-controls="collapsePages"
+            >
+              <i class="fas fa-fw fa-folder"></i>
+              <span>SubCategories</span>
+            </a>
+          </li>
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            routerLink="/admn/admin/product"
+            data-toggle="collapse"
+            data-target="#collapsePages"
+            aria-expanded="true"
+            aria-controls="collapsePages"
+          >
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Products</span>
+          </a>
+        </li>
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            routerLink="/admn/admin/users"
+            data-toggle="collapse"
+            data-target="#collapsePages"
+            aria-expanded="true"
+            aria-controls="collapsePages"
+          >
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Users</span>
+          </a>
+        </li>
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            routerLink="/admn/admin/order"
+            data-toggle="collapse"
+            data-target="#collapsePages"
+            aria-expanded="true"
+            aria-controls="collapsePages"
+          >
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Orders</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            routerLink="/home"
+            aria-expanded="true"
+            aria-controls="collapsePages"
+          >
+            <span>Log out</span>
+          </a>
+        </li>
+        <!-- Divider -->
+        <!-- <br>
+            <hr class="sidebar-divider d-none d-md-block">
+  
+             Sidebar Toggler (Sidebar) -->
+        <!-- <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div> -->
+      </ul>
+      <!-- End of Sidebar -->
+  
+      <!-- Content Wrapper -->
+      <!-- <router-outlet></router-outlet> -->
+  
+      <!-- Page Wrapper -->
+      <!-- Content Wrapper -->
+      <div class="container" class="d-flex flex-column col-10">
+        <div class="mt-4">
+          <div class="container-fluid col-12">
+            <!-- Page Heading -->
+            <div
+              class="d-sm-flex align-items-center justify-content-between mb-4"
+            >
+              <h1 class="h3 mb-0 text-gray-800">SubCategory</h1>
+            </div>
+          </div>
+        </div>
+        <br />
+        <!-- Area Chart -->
+        <div class="row">
+          <!-- Area Chart -->
+          <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+              <!-- Card Header - Dropdown -->
+              <div
+                class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+              >
+                <h6 class="m-0 font-weight-bold text-primary">
+                  Table of SubCategories
+                </h6>
+                <div class="input-group" style="width: 300px;">
+                  <div class="form-outline">
+                    <input [(ngModel)]='searchText' type="search" id="form1" class="form-control" style="border-radius: 0px;" placeholder="Search"/>
+                  </div>
+                </div>
+                <div class="dropdown no-arrow">
+                  <a
+                    class="dropdown-toggle"
+                    href="#"
+                    role="button"
+                    id="dropdownMenuLink"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                  </a>
+                </div>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body">
+                <div class="chart-area" style="height: 400px; text-align: center;">
+                  <table class="table ms-5 col-offset-4">
+                    <thead class="thead-info">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">SubCategory</th>
+                        <th scope="col">Category</th>  
+  
+                        <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="
+                      let currentIndex=index;
+                      let subcategory of subcategories |
+                      filter:searchText |
+                      paginate: { itemsPerPage: count, currentPage: p }
+                    "
+                    >
+                    <!-- | paginate: { itemsPerPage: count, currentPage: p } -->
+                    
+                    <th scope="row">{{ currentIndex + 1 }}</th>
+                    <td>{{ subcategory.subcat_name }}</td>
+                    <td>{{ subcategory.cat_id }}</td>
+
+                    <td class="d-flex justify-content-start">
+                      <button class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(subcategory.id)" ><i class="fas fa-edit"></i></button>
+                      <button class="btn btn-danger" (click)="delete(currentIndex)"><i class="fas fa-trash"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!--Including the pagination control.-->
+             
+            </div>
+          </div>
+          <div class="text-right">
+            <pagination-controls (pageChange)="p = $event">
+            </pagination-controls>
+  
+          </div>
+        </div>
+        <br />
+        <!-- Area Chart -->
+        <div class="row">
+          <!-- Area Chart -->
+          <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+              <!-- Card Header - Dropdown -->
+              <div
+                class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+              >
+                <h6 class="m-0 font-weight-bold text-primary">
+                  Add new SubCategory
+                </h6>
+                <div class="dropdown no-arrow">
+                  <a
+                    class="dropdown-toggle"
+                    href="#"
+                    role="button"
+                    id="dropdownMenuLink"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                  </a>
+                </div>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body">
+                <div class="chart-area">
+                  <form>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">SubCategory Name</label>
+                        <input
+                          #inputSubCategoryName
+                          type="text"
+                          class="form-control"
+                          id="inputEmail4"
+                          placeholder="SubCategory Name"
+                        />
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Category ID</label>
+                        <select #inputCategoryId  class="form-select" aria-label="Default select example">
+                          <option 
+                          *ngFor="
+                          let category of categories">
+                            {{category.id}}
+                          </option>
+                        </select>
+                        <!-- <input
+                          #inputCategoryId
+                          (keyup.enter)="add(inputCategoryId.value)"
+                          type="text"
+                          class="form-control"
+                          id="inputEmail4"
+                          placeholder="SubCategory Name"
+                        /> -->
+                      </div>
+                      <!-- <div class="form-group col-md-6">
+                    <label for="inputEmail4">SubCategory Name</label>
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="Email" />
+                  </div> -->
+                    </div>
+                    <button type="submit" class="btn btn-primary" (click)="add(inputSubCategoryName.value,inputCategoryId.value)">Add</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End of Content Wrapper -->
+        <!-- End of Page Wrapper -->
+      </div>
+    </div>
+    <!-- End of Page Wrapper -->
+  
+    <!-- Scroll to Top Button-->
+  </div>
+  
+  
+  <!-- Button trigger modal -->
+  
+  
+  <!-- Modal -->
+  <div style="position: absolute;" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div style="position: relative;top: 200px;left: 150px;" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update SubCategory</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="upcid" #inputId>
+          <div class="input-group mb-3">
+            <label for="upcategory" class="me-3 mt-2">SubCategory</label>
+            <input type="text" id="upcategory" #inputSubCategory class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
+          <button type="button" class="btn btn-primary" (click)="update(inputId.value,inputSubCategory.value)" ><i class="fas fa-edit"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
