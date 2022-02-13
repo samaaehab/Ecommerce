@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
@@ -8,6 +9,7 @@ import { AdminproductsComponent } from './adminproducts/adminproducts.component'
 import { AdminusersComponent } from './adminusers/adminusers.component';
 import { Admin2Component } from './admin2/admin2.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const routes: Routes = [
 
@@ -29,10 +31,10 @@ const routes: Routes = [
     AdminproductsComponent,
     AdminusersComponent,
     AdmincategoryComponent,
-    AdminordersComponent
+    AdminordersComponent,
   ],
   imports: [
-    CommonModule,RouterModule.forChild(routes) ,NgxPaginationModule
+    CommonModule,RouterModule.forChild(routes) ,NgxPaginationModule,FormsModule,Ng2SearchPipeModule,
   ]
 })
 export class AdminModule { }

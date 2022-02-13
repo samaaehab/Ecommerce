@@ -149,6 +149,11 @@
               <h6 class="m-0 font-weight-bold text-primary">
                 Table of Categories
               </h6>
+              <div class="input-group" style="width: 300px;">
+                <div class="form-outline">
+                  <input [(ngModel)]='searchText' type="search" id="form1" class="form-control" style="border-radius: 0px;" placeholder="Search"/>
+                </div>
+              </div>
               <div class="dropdown no-arrow">
                 <a
                   class="dropdown-toggle"
@@ -178,16 +183,17 @@
               <tbody>
                 <tr *ngFor="
                     let currentIndex=index;
-                    let category of categories
-                    | paginate: { itemsPerPage: count, currentPage: p }
+                    let category of categories |
+                    filter:searchText |
+                    paginate: { itemsPerPage: count, currentPage: p }
                   ">
                   <!-- | paginate: { itemsPerPage: count, currentPage: p } -->
                   
                   <th scope="row">{{ currentIndex + 1 }}</th>
                   <td>{{ category.cat_name }}</td>
                   <td class="d-flex justify-content-start">
-                    <button class="btn btn-info me-2">Edit</button>
-                    <button class="btn btn-danger" (click)="delete(currentIndex)">Delete</button>
+                    <button class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(category.id)" ><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-danger" (click)="delete(currentIndex)"><i class="fas fa-trash"></i></button>
                   </td>
                 </tr>
                 <tr></tr>
@@ -250,7 +256,7 @@
                   <input type="text" class="form-control" id="inputEmail4" placeholder="Email" />
                 </div> -->
                   </div>
-                  <button type="submit" class="btn btn-primary" (click)="add(inputCategoryName.value)">Add</button>
+                  <button type="submit" class="btn btn-primary" (click)="add(inputCategoryName.value)"><i class="fas fa-plus"></i></button>
                 </form>
               </div>
             </div>
@@ -264,4 +270,31 @@
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
+</div>
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div style="position: absolute;" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div style="position: relative;top: 200px;left: 150px;" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="upcid" #inputId>
+        <div class="input-group mb-3">
+          <label for="upcategory" class="me-3 mt-2">Category</label>
+          <input type="text" id="upcategory" #inputCategory class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
+        <button type="button" class="btn btn-primary" (click)="update(inputId.value,inputCategory.value)" ><i class="fas fa-edit"></i></button>
+      </div>
+    </div>
+  </div>
 </div>

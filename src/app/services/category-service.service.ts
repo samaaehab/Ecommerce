@@ -18,6 +18,10 @@ public get() { return this._httpClient.get(this.url + `categories`); }
 delete(id:number){
   return this._httpClient.delete(this.url+`categories/${id}`);
 }
+put(id:number,category:Category){
+  return this._httpClient.put(this.url+`categories/${id}`,category);
+}
+
 
 }
 

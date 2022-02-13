@@ -30,6 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +56,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
 
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    
 
   ],
   // exports: [CommonModule, NgxPaginationModule],

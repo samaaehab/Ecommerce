@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/Category';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+declare const $: any;
 @Component({
   selector: 'app-admincategory',
   templateUrl: './admincategory.component.html',
@@ -13,6 +13,7 @@ export class AdmincategoryComponent implements OnInit {
    // Pagination parameters.
    p: any = 1;
    count: any = 3;
+   searchText:any;
   constructor(private _categoryService:CategoryServiceService) { }
 
   ngOnInit(): void {
@@ -53,6 +54,31 @@ export class AdmincategoryComponent implements OnInit {
     );
     
 
+  }
+  edit(id:number){
+    
+    this.categories.forEach(
+      c=>{
+        if(c.id == id){
+          $("#upcid").prop('value',c?.id);
+          $("#upcategory").prop('value',c?.cat_name);
+        }
+      }
+    );
+    
+  }
+  category =new Category();
+  update(id:any,cName:any):void
+  {
+    this.category.cat_name=cName;
+    this._categoryService.put(id,this.category)
+    .subscribe(
+      (response:any)=>{
+        window.location.reload();
+      },
+      (error:any)=>{}
+    );
+    //alert("Done");
   }
 
 }
