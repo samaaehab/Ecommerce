@@ -1,7 +1,7 @@
 import { OrderService } from './../../../services/order.service';
 import { Component, OnInit } from '@angular/core';
 import { Order } from 'src/app/models/Order';
-
+declare const $: any;
 @Component({
   selector: 'app-adminorders',
   templateUrl: './adminorders.component.html',
@@ -44,5 +44,33 @@ export class AdminordersComponent implements OnInit {
     
 
   }
+
+  edit(id:number){
+    
+    this.orders.forEach(
+      o=>{
+        if(o.id == id){
+          $("#orderid").prop('value',o?.id);
+          $("#order_status").prop('value',o?.status);
+        }
+      }
+    );
+    
+  }
+  order =new Order();
+  update(id:any,status:any):void
+  {
+    this.order.status=status;
+    this._orderService.put(id,this.order)
+    .subscribe(
+      (response:any)=>{
+        window.location.reload();
+        alert("Done");
+      },
+      (error:any)=>{}
+    );
+    
+  }
+
 
 }

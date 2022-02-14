@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SubCategory } from 'src/app/models/SubCategory';
+import { SubcategoryService } from 'src/app/services/subcategory.service';
 import { Product } from './../../../models/Product';
 import { ProductService } from './../../../services/product.service';
 
@@ -9,11 +11,12 @@ import { ProductService } from './../../../services/product.service';
 })
 export class AdminproductsComponent implements OnInit {
   products:Product[]=[];
+  subcategories:SubCategory[]=[];
   // Pagination parameters.
   p: any = 1;
   count: any = 3;
   searchText:any;
- constructor(private _productService:ProductService) { }
+ constructor(private _productService:ProductService,private _SubcategoryService:SubcategoryService) { }
 
  ngOnInit(): void {
    this._productService.get().subscribe(
@@ -22,20 +25,29 @@ export class AdminproductsComponent implements OnInit {
        this.products = res.data;
      }
    );
+   this._SubcategoryService.get().subscribe(
+    (res: any) => {
+      console.log(JSON.stringify(res));
+      this.subcategories = res.data;
+    }
+  );
+
  }
- add(product_name:string,description:string,image:any,image_path:string,subcat_id:number):void{
+ add(product_name:string,image:any,description:string,subcat_id:any):void{
    let product = new Product();
+
    product.product_name=product_name;
-   product.description=description;
    product.image=image;
-   product.image_path=image_path;
+   product.description=description;
    product.subcat_id=subcat_id;
    this._productService.post(product).subscribe(
      (response:any)=>{
        this.products.push(product);
+       alert('ok');
      },
      (error:any)=>{}
    );
+
  }
 
  delete(index:number):void
@@ -67,7 +79,6 @@ export class AdminproductsComponent implements OnInit {
          $("#productName").prop('value',c?.product_name);
          $("#description").prop('value',c?.description);
          $("#image").prop('value',c?.image);
-         $("#image_path").prop('value',c?.image_path);
          $("#subcat_id").prop('value',c?.subcat_id);
        }
      }
@@ -75,12 +86,11 @@ export class AdminproductsComponent implements OnInit {
 
  }
  product =new Product();
- update(id:any,pName:any,pDesc:any,pImage:any,pImagePath:any,pSubcatId:any):void
+ update(id:any,pName:any,pDesc:any,pImage:any,pSubcatId:any):void
  {
    this.product.product_name=pName;
    this.product.description=pDesc;
    this.product.image=pImage;
-   this.product.image_path=pImagePath;
    this.product.subcat_id=pSubcatId;
    this._productService.put(id,this.product)
    .subscribe(

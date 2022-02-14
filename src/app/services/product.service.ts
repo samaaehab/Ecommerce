@@ -13,7 +13,8 @@ export class ProductService {
 private url=`http://127.0.0.1:8000/api/`;
 
 public get() { return this._httpClient.get(this.url + `products`); }
-  public post(product: Product) {
+
+public post(product: Product) {
   return this._httpClient.post(this.url + `products`, product)
 }
 delete(id:number){
