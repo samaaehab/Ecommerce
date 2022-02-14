@@ -18,7 +18,7 @@
           <div class="form_container">
             <div class="row no-gutters">
               <div class="col-lg-6 pr-lg-1">
-                <a href="#0" class="social_bt facebook">Login with Facebook</a>
+                <a href="" class="social_bt facebook" (click)="signin()">Login with Facebook</a>
               </div>
               <div class="col-lg-6 pl-lg-1">
                 <a href="#0" class="social_bt google">Login with Google</a>
@@ -208,3 +208,25 @@
   </div>
   <!-- /container -->
 </main>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{your-app-id}',
+      cookie     : true,
+      xfbml      : true,
+      version    : '{api-version}'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>

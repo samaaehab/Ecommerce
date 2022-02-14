@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { FacebookLoginProvider, SocialAuthService, SocialAuthServiceConfig } from 'angularx-social-login';
 
 
 @NgModule({
@@ -59,7 +60,24 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
   ],
   // exports: [CommonModule, NgxPaginationModule],
-  providers: [],
+  providers: [ 
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider:new FacebookLoginProvider("1617656521913206")
+          }
+        ],
+        onError: (err: any) => {
+        console.log(err);
+          
+        },
+      } as SocialAuthServiceConfig,
+    }, SocialAuthService
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

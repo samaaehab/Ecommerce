@@ -152,7 +152,7 @@
         </div>
         <!-- Card Body -->
         <div class="card-body">
-          <div style="height: 300px;">
+          <div class="chart-area" style="height: 550px;">
             <table class="table">
               <thead class="thead-info">
                 <tr>
@@ -172,13 +172,9 @@
               <tbody>
                 <tr *ngFor="
                 let currentIndex=index;
-<<<<<<< HEAD
-                let order of orders
-                |filter:searchText
-=======
                 let order of orders 
                | filter:searchText 
->>>>>>> 6cd00fc0fb825c7ae56c27020678e4cdaade6d60
+
                | paginate: { itemsPerPage: count, currentPage: p }
               ">
               <!-- filter:searchText |
@@ -194,14 +190,11 @@
                   <td>{{order.discount}}</td>
                   <td>{{order.status}}</td>
 
-<<<<<<< HEAD
-                  <td class="d-flex  justify-content-start">
-                    <button class="btn btn-dark mr-2">Edit</button>
-=======
+
                   <td class="d-flex justify-content-around">
                 
                     <div class="btn btn-dark mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(order.id)">Edit</div>
->>>>>>> 6cd00fc0fb825c7ae56c27020678e4cdaade6d60
+
                     <button class="btn btn-danger" (click)="delete(currentIndex)">Delete</button>
                   </td>
                 </tr>
@@ -224,8 +217,7 @@
 <!-- Scroll to Top Button-->
 
 </div>
-<<<<<<< HEAD
-=======
+
 
 <!-- Modal -->
 <div style="position: absolute;" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -249,4 +241,4 @@
     </div>
   </div>
 </div>
->>>>>>> 6cd00fc0fb825c7ae56c27020678e4cdaade6d60
+

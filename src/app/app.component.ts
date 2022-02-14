@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+// const FacebookStrategy = require("passport-facebook").Strategy;
 declare var name: any;
 import * as $ from 'jquery';
 

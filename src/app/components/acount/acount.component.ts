@@ -1,5 +1,8 @@
+import { SocialAuthService, FacebookLoginProvider } from 'angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+declare var FB: any;
+
 @Component({
 selector: 'app-acount',
 templateUrl: './acount.component.html',
@@ -7,12 +10,41 @@ styleUrls: ['./acount.component.css']
 })
 export class AcountComponent implements OnInit {
 formLogin= new FormGroup({});
-formRegister = new FormGroup({});
-constructor(private _formBuilder:FormBuilder) { }
-ngOnInit(): void {
+  formRegister = new FormGroup({});
+  public loggedin!: boolean;
+  public user: any;
+  constructor(private _formBuilder: FormBuilder, private authService: SocialAuthService) { }
+  signin() {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
+  }
+  ngOnInit(): void {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedin = user != null 
+  })
+    // (window as any).fbAsyncInit = function() {
+    //   FB.init({
+    //     appId      : '1617656521913206',
+    //     cookie     : true,
+    //     xfbml      : true,
+    //     version    : 'v3.1'
+    //   });
+    //   FB.AppEvents.logPageView();
+    // };
+  
+    // (function(d, s, id){
+    //    var js, fjs = d.getElementsByTagName(s)[0];
+    //    if (d.getElementById(id)) {return;}
+    //    js = d.createElement(s); js.id = id;
+    //    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    //    fjs.parentNode.insertBefore(js, fjs);
+    //  }(document, 'script', 'facebook-jssdk'));
+
+
 this.formLogin=this._formBuilder.group({
 Email:['',[Validators.required,Validators.email]],
 Password:['',[Validators.required,Validators.minLength(6)]]
+
 });
 this.formRegister=this._formBuilder.group({
   Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],
@@ -24,7 +56,32 @@ this.formRegister=this._formBuilder.group({
   City:['',[Validators.required]],
   Phone:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],
 });
+  
+  
+  // auth
+  
+  
+
 }
+  //facebook fun
+  // submitLogin(){
+  //   console.log("submit login to facebook");
+  //   // FB.login();
+  //   FB.login((response)=>
+  //       {
+  //         console.log('submitLogin',response);
+  //         if (response.authResponse)
+  //         {
+  //           this.toastr.successToastr('login successful', 'Success!');
+  //         }
+  //          else
+  //          {
+  //          console.log('User login failed');
+  //        }
+  //     });
+
+  // }
+
 login():void{
 alert(JSON.stringify(this.formLogin.value));
 //Call API to validate user
