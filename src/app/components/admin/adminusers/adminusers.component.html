@@ -148,49 +148,196 @@
         </div>
         <!-- Card Body -->
         <div class="card-body">
-          <div class="chart-area">
-            <table class="table">
+          <div class="chart-area"  style="height: 550px;">
+            <table class="table" >
               <thead class="thead-info">
                 <tr>
                   <th scope="col">#</th>
+                  <!-- <th scope="col">id</th> -->
+
                   <th scope="col">Name</th>
-                  <th scope="col">Address</th>
-                  <th scope="col">Telphone</th>
+                  <!-- <th scope="col">Address</th>
+                  <th scope="col">Telphone</th> -->
                   <th scope="col">Email</th>
-                  <th scope="col">Details</th>
-                  <th scope="col">Actions</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Full Address</th>
+                  <th scope="col">Housenumber</th>
+
+
+                  <th scope="col">country</th>
+                  <th scope="col">city</th>
+                  
+                  <th scope="col">Delete</th>
+
+
+
+
+
+                  
+                  <!-- <th scope="col">Details</th>
+                  <th scope="col">Actions</th> -->
 
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td class="d-flex justify-content-around">
-                    <div class="btn btn-info mr-2">Veiw</div>
-                    <div class="btn btn-dark mr-2">Edit</div>
-                    <button class="btn btn-danger">Delete</button>
+                <tr *ngFor="
+                    let currentIndex=index;
+                    let customer of customers |
+                    filter:searchText |
+                    paginate: { itemsPerPage: count, currentPage: p }
+                  ">
+                  <!-- | paginate: { itemsPerPage: count, currentPage: p } -->
+                  
+                  <th scope="row">{{currentIndex+1}}</th>
+                  <!-- <td>{{user.id}}</td> -->
+
+
+                  <td>{{customer.customer_name}}</td>
+                  <td>{{customer.customer_email}}</td>
+                  <td>{{customer.phone}}</td>
+                  <td>{{customer.full_address}}</td>
+                  <td>{{customer.house_no}}</td>
+                  <td>{{customer.country}}</td>
+                  <td>{{customer.city}}</td>
+
+
+
+                  <td class="d-flex justify-content-start">
+                    <!-- <button class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(user.id)" ><i class="fas fa-edit"></i></button> -->
+                    <button class="btn btn-danger mt-5" (click)="delete(currentIndex)" ><i class="fas fa-trash"></i></button>
                   </td>
                 </tr>
-                <tr>
+                <tr></tr>
               </tbody>
             </table>
           </div>
         </div>
+        <!-- pagination -->
+        <div class="text-right">
+          <pagination-controls (pageChange)="p = $event">
+          </pagination-controls>
+        </div>
       </div>
-    </div>
-  </div>
-  <br>
+      <br>
+      <div class="row">
+        <!-- Area Chart -->
+        <div class="col-xl-12 col-lg-12">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div
+              class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+            >
+              <h6 class="m-0 font-weight-bold text-primary">
+                Add new Customer
+              </h6>
+              <!-- <div class="dropdown no-arrow">
+                <a
+                  class="dropdown-toggle"
+                  href="#"
+                  role="button"
+                  id="dropdownMenuLink"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+              </div> -->
+            </div>
+            <div class="card-body">
+              <div class="chart-area" style="height: 600px;">
+                <form>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                       <label for="customerName">Customer Name</label>
+                      <input
+                        #inputCustomerName
+                        type="text"
+                        class="form-control"
+                        id="customerName"
+                        placeholder="Customer Name"
+                      />
+                      <label for="customerEmail">Email</label>
+                      <input
+                        #inputEmail
+                        type="text"
+                        class="form-control"
+                        id="customerEmail"
+                        placeholder="Email"
+                      />
+                      <label for="fullAdress">full Adresss</label>
+                      <input
+                        #inputFullAdress
+                        type="text"
+                        class="form-control"
+                        id="fullAdress"
+                        placeholder="Full Address"
+                      />
+                      <label for="phone">Phone</label>
+                      <input
+                        #inputPhone
+                        type="text"
+                        class="form-control"
+                        id="phone"
+                        placeholder="Phone"
+                      />
+                      <label for="country">Country</label>
+                      <input
+                        #inputCountry
+                        type="text"
+                        class="form-control"
+                        id="country"
+                        placeholder="Phone"
+                      />
+                      <label for="city">City</label>
+                      <input
+                        #inputCity
+                        type="text"
+                        class="form-control"
+                        id="city"
+                        placeholder="Phone"
+                      />
+                      <label for="housenumber">house number</label>
+                      <input
+                        #inputhousenumber
+                        type="text"
+                        class="form-control"
+                        id="housenumber"
+                        placeholder="Phone"
+                      />
+                      <label for="password">password</label>
+                      <input
+                        #inputpassword
+                        type="text"
+                        class="form-control"
+                        id="password"
+                        placeholder="Phone"
+                      />
+                      <button type="submit" class="btn btn-primary" (click)="add(inputCustomerName.value,inputEmail.value,inputpassword.value,inputFullAdress.value,inputhousenumber.value,inputCountry.value,inputCity.value,inputPhone.value)"><i class="fas fa-plus"></i></button>
 
-  <!-- End of Content Wrapper -->
+</div>
+</div>
+                    </form>
+                    
+                    <!-- </div>  -->
+                      <!-- <div class="form-group col-md-6">
+                    <label for="inputEmail4">SubCategory Name</label>
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="Email" />
+                  </div> -->
+                    <!-- </div>
+                    <button type="submit" class="btn btn-primary" (click)="add(inputCategoryName.value)"><i class="fas fa-plus"></i></button>
+                  </form>
+                      </div>
+                    
+
+                    </div>
+
+    </div>
+  </div> -->
+  
+ <!-- End of Content Wrapper -->
   <!-- End of Page Wrapper -->
 </div>
 <!-- End of Page Wrapper -->
-
 <!-- Scroll to Top Button-->  
-
 </div>
