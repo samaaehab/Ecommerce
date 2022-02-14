@@ -10,6 +10,7 @@ import { AdminusersComponent } from './adminusers/adminusers.component';
 import { Admin2Component } from './admin2/admin2.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AdminsubcategoryComponent } from './adminsubcategory/adminsubcategory.component';
 
 const routes: Routes = [
 
@@ -21,6 +22,8 @@ const routes: Routes = [
     {path:'users',component:AdminusersComponent},
     {path:'category',component:AdmincategoryComponent},
     {path:'order',component:AdminordersComponent},
+    {path:'subcategory',component:AdminsubcategoryComponent},
+
   ]
 },
 ]
@@ -32,6 +35,7 @@ const routes: Routes = [
     AdminusersComponent,
     AdmincategoryComponent,
     AdminordersComponent,
+    AdminsubcategoryComponent,
   ],
   imports: [
     CommonModule,RouterModule.forChild(routes) ,NgxPaginationModule,FormsModule,Ng2SearchPipeModule,

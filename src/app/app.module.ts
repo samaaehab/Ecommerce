@@ -9,8 +9,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-
-
 import { AcountComponent } from './components/acount/acount.component';
 import { MainhomeComponent } from './components/mainhome/mainhome.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
@@ -18,17 +16,11 @@ import { CartComponent } from './components/cart/cart.component';
 import { FavouritesComponent } from './components/favourites/favourites.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 
-import { HttpClientModule } from '@angular/common/http';
-// import { Admin2Component } from './components/admin2/admin2.component';
-// import { AdmindashboardComponent } from './components/admindashboard/admindashboard.component';
-// import { AdminproductsComponent } from './components/adminproducts/adminproducts.component';
-// import { AdminusersComponent } from './components/adminusers/adminusers.component';
-// import { AdmincategoryComponent } from './components/admin/admincategory/admincategory.component';
-// import { AdminordersComponent } from './components/adminorders/adminorders.component';
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 
@@ -57,7 +49,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
     ReactiveFormsModule,
     FormsModule,
-    
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
 
   ],
   // exports: [CommonModule, NgxPaginationModule],
@@ -65,3 +63,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
