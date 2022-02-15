@@ -174,7 +174,7 @@
                   <tbody>
                     <tr *ngFor="
                     let currentIndex=index;
-                    let customer of customers |
+                    let user of users |
                     filter:searchText |
                     paginate: { itemsPerPage: count, currentPage: p }
                   ">
@@ -184,13 +184,13 @@
                       <!-- <td>{{user.id}}</td> -->
 
 
-                      <td>{{customer.customer_name}}</td>
-                      <td class="text-break">{{customer.customer_email}}</td>
-                      <td>{{customer.phone}}</td>
-                      <td>{{customer.full_address}}</td>
-                      <td>{{customer.house_no}}</td>
-                      <td>{{customer.country}}</td>
-                      <td>{{customer.city}}</td>
+                      <td>{{user.name}}</td>
+                      <td class="text-break">{{user.email}}</td>
+                      <td>{{user.phone}}</td>
+                      <td>{{user.full_address}}</td>
+                      <td>{{user.house_no}}</td>
+                      <td>{{user.country}}</td>
+                      <td>{{user.city}}</td>
 
 
 
@@ -283,7 +283,7 @@
                           <input #inputhousenumber type="text" class="form-control" id="housenumber"
                             placeholder="Phone" />
                           <label for="password">password</label>
-                          <input #inputpassword type="text" class="form-control" id="password" placeholder="Phone" />
+                          <input #inputpassword type="password" class="form-control" id="password" placeholder="Password" />
                           <button type="submit" class="btn btn-primary"
                             (click)="add(inputCustomerName.value,inputEmail.value,inputpassword.value,inputFullAdress.value,inputhousenumber.value,inputCountry.value,inputCity.value,inputPhone.value)"><i
                               class="fas fa-plus"></i></button>

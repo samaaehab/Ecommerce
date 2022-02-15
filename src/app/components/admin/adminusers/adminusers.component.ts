@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from 'src/app/models/User';
+
 import { UserService } from 'src/app/services/user.service';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { User } from 'src/app/models/User';
 declare const $: any;
 
 @Component({
@@ -13,7 +14,7 @@ declare const $: any;
 export class AdminusersComponent implements OnInit {
 
 
-  customers:Customer[]=[];
+  users:User[]=[];
    // Pagination parameters.
    p: any = 1;
    count: any = 3;
@@ -24,7 +25,7 @@ export class AdminusersComponent implements OnInit {
     this._userService.get().subscribe(
       (res: any) => {
         console.log(JSON.stringify(res));
-        this.customers = res.data;
+        this.users = res.data;
       }
     );
 
@@ -46,18 +47,20 @@ export class AdminusersComponent implements OnInit {
   // 
 
   add(name:string,email:string,password:string,full_address:string,house_no:any,country:string,city:string,phone:string):void{
-    let customer = new Customer();
-    customer.customer_name=name;
-    customer.customer_email=email;
-    customer.password=password;
-    customer.full_address=full_address;
-    customer.house_no=house_no;
-    customer.country=country;
-    customer.city=city;
-    customer.phone=phone;
-    this._userService.post(customer).subscribe(
+    let user = new User();
+    user.name=name;
+    user.email=email;
+    user.password=password;
+    user.full_address=full_address;
+    user.house_no=house_no;
+    user.country=country;
+    user.city=city;
+    user.phone=phone;
+    
+    this._userService.post(user).subscribe(
       (response:any)=>{
-        this.customers.push(customer);
+        console.log(this.users);  
+        this.users.push(user);
         alert("okay");
       },
       (error:any)=>{}
@@ -65,13 +68,13 @@ export class AdminusersComponent implements OnInit {
   }
   delete(index:number):void
   {
-    let customer=this.customers[index];
-    this._userService.delete(customer.id)
+    let user=this.users[index];
+    this._userService.delete(user.id)
     .subscribe(
       (response:any)=>{
         const cf=confirm('Are U Sure Delete ?');
         if(cf === true){
-          this.customers.splice(index,1);
+          this.users.splice(index,1);
         }else{
           console.log('opps!');
           
