@@ -30,14 +30,14 @@
             <div [formGroup]="formLogin">
 
               <div class="form-group">
-                <input formControlName="Email" type="email" class="form-control" [class.is-invalid]="isInValidAndTouched('Email')" [class.is-valid]="isValidControl('Email')" name="email" placeholder="User Name*">
+                <input formControlName="Email" type="email" value="{{account.account_email}}" class="form-control" [class.is-invalid]="isInValidAndTouched('Email')" [class.is-valid]="isValidControl('Email')" name="email" placeholder="User Name*">
                 <div *ngIf="isInValidAndTouched('Email')">
 					<small class="form-text text-danger" *ngIf="isControlHasError('Email','required')">required email</small>
 					<small class="form-text text-danger" *ngIf="isControlHasError('Email','email')">is not valid</small>
 				</div>   
 			  </div>
               <div class="form-group">
-                <input formControlName="Password" type="password" class="form-control" [class.is-invalid]="isInValidAndTouched('Password')" [class.is-valid]="isValidControl('Password')" name="password_in" placeholder="Password*">
+                <input formControlName="Password" type="password"  class="form-control" [class.is-invalid]="isInValidAndTouched('Password')" [class.is-valid]="isValidControl('Password')" name="password_in" placeholder="Password*">
 				<div *ngIf="isInValidAndTouched('Password')">
 					<small class="form-text text-danger" *ngIf="isControlHasError('Password','required')">required password</small>
 					<small class="form-text text-danger" *ngIf="isControlHasError('Password','minlength')">min length is 6</small>
@@ -98,12 +98,12 @@
                   <a class="text-decoration-none text-light social_bt facebook" (click)="signin()">Login with Facebook</a>
                 </div>
                 <div class="col-lg-6 pl-lg-1">
-                  <a href="#0" class="text-decoration-none text-light social_bt google" (click)="signInWithGoogle()">Login with Google</a>
+                  <a class="text-decoration-none text-light social_bt google" (click)="signInWithGoogle()">Login with Google</a>
                 </div>
               </div>
               <div class="divider"><span>Or</span></div>
               <div class="form-group">
-                <input formControlName="Email" type="email" class="form-control" 
+                <input formControlName="Email" type="email" class="form-control" value="{{account.account_email}}"
 				[class.is-invalid]="isInValidAndTouched2('Email')" [class.is-valid]="isValidControl2('Email')" name="email" placeholder="Email*">
                 <div *ngIf="isInValidAndTouched2('Email')">
 					<small class="form-text text-danger" *ngIf="isControlHasError2('Email','required')">required email</small>
