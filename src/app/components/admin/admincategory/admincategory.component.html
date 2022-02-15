@@ -250,23 +250,26 @@
               </div>
             </div>
             <!-- Card Body -->
-            <div class="card-body">
+            <div class="card-body" >
               <div class="chart-area">
                 <form>
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="inputEmail4">Category Name</label>
-                      <input
-                        #inputCategoryName
-                        (keyup.enter)="add(inputCategoryName.value)"
-                        type="text"
-                        class="form-control"
-                        id="inputEmail4"
-                        placeholder="Category Name"
-                      />
+                  <div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Category Name</label>
+                        <input
+                          #inputCategoryName
+                          (keyup.enter)="add(inputCategoryName.value)"
+                          type="text"
+                          class="form-control"
+                          id="inputEmail4"
+                          placeholder="Category Name"
+                        />
+                      </div>
                     </div>
+                    <button type="submit" class="btn btn-primary" (click)="add(inputCategoryName.value)"><i class="fas fa-plus"></i></button>
                   </div>
-                  <button type="submit" class="btn btn-primary" (click)="add(inputCategoryName.value)"><i class="fas fa-plus"></i></button>
+        
                 </form>
               </div>
             </div>
