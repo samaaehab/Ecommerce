@@ -206,7 +206,7 @@
                     
                     <th scope="row">{{ currentIndex + 1 }}</th>
                     <td>{{ subcategory.subcat_name }}</td>
-                    <td>{{ subcategory.cat_id }}</td>
+                    <td>{{ subcategory.category.cat_name }}</td>
 
                     <td class="d-flex justify-content-start">
                       <button class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(subcategory.id)" ><i class="fas fa-edit"></i></button>
