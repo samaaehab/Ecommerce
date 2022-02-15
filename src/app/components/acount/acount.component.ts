@@ -17,9 +17,28 @@ formLogin= new FormGroup({});
   public loggedin!: boolean;
   public user: any;
   constructor(private _formBuilder: FormBuilder, private authService: SocialAuthService,private router:Router) { }
+ 
   signin() {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((data) => {
+      alert(JSON.stringify(data));
+     this.router.navigateByUrl('/user/profile');
+    }).catch(data => {
+      alert(JSON.stringify(data));
+      this.authService.signOut();
+     this.router.navigateByUrl('/home');
+
+    })
   }
+  // signInWithGoogle(): void {
+  //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID, this.googleLoginOptions ).then((data) => {
+  //     // console.log(data);
+  //     alert(JSON.stringify(data));
+  //   }).catch(data => {
+  //     // alert(JSON.stringify(data));
+  //     this.authService.signOut();
+  //     this.router.navigateByUrl('/home');
+  //   });
+  // }
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
       this.user = user;

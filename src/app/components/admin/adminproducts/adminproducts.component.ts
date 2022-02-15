@@ -3,7 +3,8 @@ import { SubCategory } from 'src/app/models/SubCategory';
 import { SubcategoryService } from 'src/app/services/subcategory.service';
 import { Product } from './../../../models/Product';
 import { ProductService } from './../../../services/product.service';
-
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Post } from './post.model';
 @Component({
   selector: 'app-adminproducts',
   templateUrl: './adminproducts.component.html',
