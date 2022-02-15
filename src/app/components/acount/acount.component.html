@@ -18,10 +18,11 @@
           <div class="form_container">
             <div class="row no-gutters">
               <div class="col-lg-6 pr-lg-1">
-                <a href="" class="social_bt facebook" (click)="signin()">Login with Facebook</a>
+
+                <a class="text-decoration-none text-light social_bt facebook" (click)="signin()">Login with Facebook</a>
               </div>
               <div class="col-lg-6 pl-lg-1">
-                <a href="#0" class="social_bt google">Login with Google</a>
+                <a class="text-decoration-none text-light social_bt google" (click)="signInWithGoogle()">Login with Google</a>
               </div>
             </div>
             <div class="divider"><span>Or</span></div>
@@ -92,6 +93,15 @@
 
           <div [formGroup]="formRegister">
             <div class="form_container">
+              <div class="row no-gutters">
+                <div class="col-lg-6 pr-lg-1">
+                  <a class="text-decoration-none text-light social_bt facebook" (click)="signin()">Login with Facebook</a>
+                </div>
+                <div class="col-lg-6 pl-lg-1">
+                  <a href="#0" class="text-decoration-none text-light social_bt google" (click)="signInWithGoogle()">Login with Google</a>
+                </div>
+              </div>
+              <div class="divider"><span>Or</span></div>
               <div class="form-group">
                 <input formControlName="Email" type="email" class="form-control" 
 				[class.is-invalid]="isInValidAndTouched2('Email')" [class.is-valid]="isValidControl2('Email')" name="email" placeholder="Email*">
