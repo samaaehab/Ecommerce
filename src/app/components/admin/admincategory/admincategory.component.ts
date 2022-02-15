@@ -56,7 +56,6 @@ export class AdmincategoryComponent implements OnInit {
 
   }
   edit(id:number){
-    
     this.categories.forEach(
       c=>{
         if(c.id == id){
