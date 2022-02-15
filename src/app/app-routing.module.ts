@@ -1,7 +1,7 @@
 import { ProductModule } from './components/product/product.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AcountComponent } from './components/acount/acount.component';
 // import { AddressComponent } from './components/address/address.component';
 // import { Admin2Component } from './components/admin2/admin2.component';

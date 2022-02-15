@@ -255,22 +255,33 @@
               <!-- Card Body -->
               <div class="card-body">
                 <div class="chart-area">
-                  <form>
+                  <div [formGroup]="formSubcat">
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="inputEmail4">SubCategory Name</label>
-                        <input
+                        <input formControlName="Name"
                           #inputSubCategoryName
                           type="text"
                           class="form-control"
+                          [class.is-invalid]="isInValidAndTouched('Name')" [class.is-valid]="isValidControl('Name')"
                           id="inputEmail4"
                           placeholder="SubCategory Name"
                         />
+                        <div *ngIf="isInValidAndTouched('Name')">
+                          <small class="form-text text-danger" *ngIf="isControlHasError('Name','required')">required
+                            Subcategory name</small>
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Name','minlength')">min length is
+                              3</small>
+                              <small class="form-text text-danger" *ngIf="isControlHasError('Name','maxlength')">max length is
+                                25</small>
+                        </div>
                       </div>
                       <div class="form-group col-md-6">
                         <label for="inputEmail4">Category ID</label>
-                        <select #inputCategoryId  class="form-select" aria-label="Default select example">
-                          <option 
+                        <select #inputCategoryId formControlName="CatId" class="form-select" 
+                        [class.is-invalid]="isInValidAndTouched('CatId')" [class.is-valid]="isValidControl('CatId')"
+                        aria-label="Default select example">
+                          <option  
                           *ngFor="
                           let category of categories">
                             {{category.id}}
@@ -291,7 +302,7 @@
                   </div> -->
                     </div>
                     <button type="submit" class="btn btn-primary" (click)="add(inputSubCategoryName.value,inputCategoryId.value)">Add</button>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>

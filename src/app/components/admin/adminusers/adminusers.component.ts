@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UserService } from 'src/app/services/user.service';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { User } from 'src/app/models/User';
 declare const $: any;
@@ -12,6 +12,7 @@ declare const $: any;
   styleUrls: ['./adminusers.component.css']
 })
 export class AdminusersComponent implements OnInit {
+  formUser= new FormGroup({});
 
 
   users:User[]=[];
@@ -19,7 +20,7 @@ export class AdminusersComponent implements OnInit {
    p: any = 1;
    count: any = 3;
    searchText:any;
-   constructor(private _userService:UserService) { }
+   constructor(private _formBuilder: FormBuilder,private _userService:UserService) { }
 
    ngOnInit(): void {
     this._userService.get().subscribe(
@@ -29,8 +30,34 @@ export class AdminusersComponent implements OnInit {
       }
     );
 
+    this.formUser=this._formBuilder.group({
+      Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],
+      Email:['',[Validators.required,Validators.email]],      
+      Password:['',[Validators.required,Validators.minLength(6)]],      
+      Full_address:['',[Validators.required,Validators.maxLength(100)]],      
+      HouseNum:['',[Validators.required]],      
+      Country:['',[Validators.required]],      
+      City:['',[Validators.required]],      
+      Phone:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],      
+      
+      });
+      
+
     }
   
+isValidControl(name:string):boolean
+{
+return this.formUser.controls[name].valid;
+}
+isInValidAndTouched(name:string):boolean
+{
+return this.formUser.controls[name].invalid && (this.formUser.controls[name].dirty || this.formUser.controls[name].touched);
+}
+isControlHasError(name:string,error:string):boolean
+{
+return this.formUser.controls[name].invalid && this.formUser.controls[name].errors?.[error];
+}
+
   
   //   add(name:string):void{
   //     let customer = new Customer();

@@ -253,18 +253,27 @@
             <div class="card-body" >
               <div class="chart-area">
                 <form>
-                  <div>
+                  <div [formGroup]="formCat">
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="inputEmail4">Category Name</label>
-                        <input
+                        <input formControlName="Name"
                           #inputCategoryName
                           (keyup.enter)="add(inputCategoryName.value)"
                           type="text"
                           class="form-control"
+                          [class.is-invalid]="isInValidAndTouched('Name')" [class.is-valid]="isValidControl('Name')"
                           id="inputEmail4"
                           placeholder="Category Name"
                         />
+                        <div *ngIf="isInValidAndTouched('Name')">
+                          <small class="form-text text-danger" *ngIf="isControlHasError('Name','required')">required
+                            category name</small>
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Name','minlength')">min length is
+                              3</small>
+                              <small class="form-text text-danger" *ngIf="isControlHasError('Name','maxlength')">max length is
+                                25</small>
+                        </div>
                       </div>
                     </div>
                     <button type="submit" class="btn btn-primary" (click)="add(inputCategoryName.value)"><i class="fas fa-plus"></i></button>

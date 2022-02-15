@@ -11,6 +11,8 @@ import { Admin2Component } from './admin2/admin2.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AdminsubcategoryComponent } from './adminsubcategory/adminsubcategory.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 const routes: Routes = [
 
@@ -37,7 +39,7 @@ const routes: Routes = [
     AdminsubcategoryComponent,
   ],
   imports: [
-    CommonModule,RouterModule.forChild(routes) ,NgxPaginationModule,FormsModule,Ng2SearchPipeModule,
+    CommonModule,RouterModule.forChild(routes) ,NgxPaginationModule,FormsModule,Ng2SearchPipeModule,ReactiveFormsModule,FormsModule
   ]
 })
 export class AdminModule { }
