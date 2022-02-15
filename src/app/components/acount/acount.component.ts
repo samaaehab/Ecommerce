@@ -1,8 +1,11 @@
 import { SocialAuthService, FacebookLoginProvider } from 'angularx-social-login';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 declare var FB: any;
 
+import { JsonpClientBackend } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { GoogleLoginProvider } from "angularx-social-login";
 @Component({
 selector: 'app-acount',
 templateUrl: './acount.component.html',
@@ -13,7 +16,7 @@ formLogin= new FormGroup({});
   formRegister = new FormGroup({});
   public loggedin!: boolean;
   public user: any;
-  constructor(private _formBuilder: FormBuilder, private authService: SocialAuthService) { }
+  constructor(private _formBuilder: FormBuilder, private authService: SocialAuthService,private router:Router) { }
   signin() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
   }
@@ -57,13 +60,14 @@ this.formRegister=this._formBuilder.group({
   Country:['',[Validators.required]],
   City:['',[Validators.required]],
   Phone:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],
-});
-  
-  
+});  
   // auth
-  
-  
 
+// this.authService.initState.subscribe(value => {
+//   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(user => {
+//     console.log('GoogleContainerComponent.ngOnInit user:', user)
+//   });
+// })
 }
   //facebook fun
   // submitLogin(){
@@ -118,4 +122,34 @@ isControlHasError2(name:string,error:string):boolean
 {
 return this.formRegister.controls[name].invalid && this.formRegister.controls[name].errors?.[error];
 }
+
+
+// signInWithGoogle(): void {
+//   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then( (data)=>{
+//     localStorage.setItem('google_auth',JSON.stringify(data));
+//     this.router.navigateByUrl('/home').then();
+//   });
+  
+// }
+
+googleLoginOptions = {
+  scope: 'profile email'
+}; // https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauth2clientconfig
+
+  
+
+signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID, this.googleLoginOptions ).then((data) => {
+      // console.log(data);
+      alert(JSON.stringify(data));
+    }).catch(data => {
+      // alert(JSON.stringify(data));
+      this.authService.signOut();
+      this.router.navigateByUrl('/home');
+    });
+  }
+signOut(): void {
+  this.authService.signOut();
+}
+
 }

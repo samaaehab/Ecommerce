@@ -31,7 +31,7 @@ export class AdminsubcategoryComponent implements OnInit {
 
     this._categoryService.get().subscribe(
       (res: any) => {
-        console.log(JSON.stringify(res));
+        console.log(JSON.stringify(res.data));
         this.categories = res.data;
       }
     );

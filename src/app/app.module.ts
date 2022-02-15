@@ -23,6 +23,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { FacebookLoginProvider, SocialAuthService, SocialAuthServiceConfig } from 'angularx-social-login';
+import { SocialLoginModule} from 'angularx-social-login';
+import {GoogleLoginProvider} from 'angularx-social-login';
 
 
 @NgModule({
@@ -39,7 +41,6 @@ import { FacebookLoginProvider, SocialAuthService, SocialAuthServiceConfig } fro
     CartComponent,
     FavouritesComponent,
     ConfirmComponent,
-  
     
 
   ],
@@ -47,7 +48,7 @@ import { FacebookLoginProvider, SocialAuthService, SocialAuthServiceConfig } fro
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-
+    SocialLoginModule,
     ReactiveFormsModule,
     FormsModule,
     TranslateModule.forRoot({
@@ -60,7 +61,8 @@ import { FacebookLoginProvider, SocialAuthService, SocialAuthServiceConfig } fro
 
   ],
   // exports: [CommonModule, NgxPaginationModule],
-  providers: [ 
+
+  providers: [
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -69,6 +71,11 @@ import { FacebookLoginProvider, SocialAuthService, SocialAuthServiceConfig } fro
           {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider:new FacebookLoginProvider("1617656521913206")
+          }
+          ,{            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '490654533147-03t3mpss76npl32scc1qb2fsss2qn3q8.apps.googleusercontent.com'
+            )
           }
         ],
         onError: (err: any) => {

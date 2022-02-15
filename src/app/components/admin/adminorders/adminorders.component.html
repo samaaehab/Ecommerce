@@ -153,6 +153,7 @@
         <!-- Card Body -->
         <div class="card-body">
           <div class="chart-area" style="height: 550px;">
+
             <table class="table">
               <thead class="thead-info">
                 <tr>
@@ -174,7 +175,6 @@
                 let currentIndex=index;
                 let order of orders 
                | filter:searchText 
-
                | paginate: { itemsPerPage: count, currentPage: p }
               ">
               <!-- filter:searchText |
