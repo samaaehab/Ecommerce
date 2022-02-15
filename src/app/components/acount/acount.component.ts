@@ -141,7 +141,7 @@ signInWithGoogle(): void {
       // console.log(data);
       alert(JSON.stringify(data));
     }).catch(data => {
-      alert(JSON.stringify(data));
+      // alert(JSON.stringify(data));
       this.authService.signOut();
       this.router.navigateByUrl('/home');
     });
