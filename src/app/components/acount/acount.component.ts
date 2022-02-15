@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GoogleLoginProvider } from "angularx-social-login";
+import { Account } from 'src/app/models/Account';
 @Component({
 selector: 'app-acount',
 templateUrl: './acount.component.html',
@@ -14,6 +15,7 @@ styleUrls: ['./acount.component.css']
 export class AcountComponent implements OnInit {
 formLogin= new FormGroup({});
   formRegister = new FormGroup({});
+  account =new Account;
   public loggedin!: boolean;
   public user: any;
   constructor(private _formBuilder: FormBuilder, private authService: SocialAuthService,private router:Router) { }
@@ -140,6 +142,9 @@ signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID, this.googleLoginOptions ).then((data) => {
       // console.log(data);
       alert(JSON.stringify(data));
+      this.account.id=data.id;
+      this.account.account_name=data.name;
+      this.account.account_email=data.email;
     }).catch(data => {
       // alert(JSON.stringify(data));
       this.authService.signOut();
