@@ -29,7 +29,9 @@
             <div [formGroup]="formLogin">
 
               <div class="form-group">
+               
                 <input formControlName="Email" type="email" class="form-control" [class.is-invalid]="isInValidAndTouched('Email')" [class.is-valid]="isValidControl('Email')" name="email" placeholder="User Name*">
+               <!-- <h5>{{user.name}}</h5> -->
                 <div *ngIf="isInValidAndTouched('Email')">
 					<small class="form-text text-danger" *ngIf="isControlHasError('Email','required')">required email</small>
 					<small class="form-text text-danger" *ngIf="isControlHasError('Email','email')">is not valid</small>

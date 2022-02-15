@@ -21,6 +21,8 @@ formLogin= new FormGroup({});
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedin = user != null 
+      console.log(user);
+      
   })
     // (window as any).fbAsyncInit = function() {
     //   FB.init({
