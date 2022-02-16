@@ -143,7 +143,6 @@
                       <th scope="col">Product Name</th>
                       <th scope="col">Description</th>
                       <th scope="col">Image</th>
-                      <th scope="col">Image Path</th>
                       <th scope="col">Subcategory Name</th>
                       <th scope="col">Actions</th>
                     </tr>
@@ -161,8 +160,7 @@
                       <td scope="col">{{product.description}}</td>
                       <td scope="col">
                         <img src="{{product.image}}" style="width: 40px;height: 40px;"></td>
-                      <td scope="col">0</td>
-                      <td scope="col">{{product.subcat_id}}</td>
+                      <td scope="col">{{product.subcategory.subcat_name}}</td>
                       <td class="d-flex justify-content-around">
                         <div class="btn btn-dark mr-2">Edit</div>
                         <button class="btn btn-danger" (click)="delete(currentIndex)">Delete</button>
@@ -221,8 +219,8 @@
                   <div class="form-group mb-3">
                     <select #inputSubCategoryId class="form-select" aria-label="Default select example">
                       <option *ngFor="
-                      let subcategory of subcategories">
-                        {{subcategory.id}}
+                      let subcategory of subcategories" [value]="subcategory.id">
+                        {{subcategory.subcat_name}}
                       </option>
                     </select>
                   </div>

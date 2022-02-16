@@ -206,7 +206,7 @@
                   <td>{{ category.cat_name }}</td>
                   <td class="d-flex justify-content-start">
                     <button class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(category.id)" ><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-danger" (click)="delete(currentIndex)"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-danger" (click)="delete(category.id)"><i class="fas fa-trash"></i></button>
                   </td>
                 </tr>
                 <tr></tr>
@@ -276,7 +276,8 @@
                         </div>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary" (click)="add(inputCategoryName.value)"><i class="fas fa-plus"></i></button>
+                    <button type="button" class="btn btn-primary" data-bs-target="#exampleModal" (click)="add(inputCategoryName.value)"><i class="fas fa-plus"></i></button>
+
                   </div>
 
 
@@ -321,3 +322,7 @@
     </div>
   </div>
 </div>
+
+
+
+

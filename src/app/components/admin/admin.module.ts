@@ -41,6 +41,7 @@ const routes: Routes = [
     AdmincategoryComponent,
     AdminordersComponent,
     AdminsubcategoryComponent,
+
   ],
   imports: [
 
