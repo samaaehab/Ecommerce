@@ -4,6 +4,7 @@ import { SubcategoryService } from 'src/app/services/subcategory.service';
 import { Category } from 'src/app/models/Category';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   styleUrls: ['./adminsubcategory.component.css']
 })
 export class AdminsubcategoryComponent implements OnInit {
+  formSubcat= new FormGroup({});
   subcategories:SubCategory[]=[];
   categories:Category[]=[];
 
@@ -19,7 +21,7 @@ export class AdminsubcategoryComponent implements OnInit {
    p: any = 1;
    count: any = 3;
    searchText:any;
-   constructor(private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService) { }
+   constructor(private _formBuilder: FormBuilder,private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService) { }
 
   ngOnInit(): void {
     this._SubcategoryService.get().subscribe(
@@ -35,7 +37,26 @@ export class AdminsubcategoryComponent implements OnInit {
         this.categories = res.data;
       }
     );
+
+    this.formSubcat=this._formBuilder.group({
+      Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]], 
+      CatId:['',[Validators.required]],           
+      });
   }
+
+  isValidControl(name:string):boolean
+{
+return this.formSubcat.controls[name].valid;
+}
+isInValidAndTouched(name:string):boolean
+{
+return this.formSubcat.controls[name].invalid && (this.formSubcat.controls[name].dirty || this.formSubcat.controls[name].touched);
+}
+isControlHasError(name:string,error:string):boolean
+{
+return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].errors?.[error];
+}
+
 
   add(sub_name:string,cat_id:any):void{
     let subcategory = new SubCategory();

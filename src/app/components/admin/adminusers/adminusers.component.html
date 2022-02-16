@@ -262,36 +262,136 @@
                 </div>
                 <div class="card-body">
                   <div class="chart-area" style="height: 600px;">
-                    <form>
+                    <div [formGroup]="formUser">
                       <div class="form-row">
-                        <div class="form-group col-md-6">
-                          <label for="customerName">Customer Name</label>
-                          <input #inputCustomerName type="text" class="form-control" id="customerName"
-                            placeholder="Customer Name" />
-                          <label for="customerEmail">Email</label>
-                          <input #inputEmail type="text" class="form-control" id="customerEmail" placeholder="Email" />
-                          <label for="fullAdress">full Adresss</label>
-                          <input #inputFullAdress type="text" class="form-control" id="fullAdress"
-                            placeholder="Full Address" />
-                          <label for="phone">Phone</label>
-                          <input #inputPhone type="text" class="form-control" id="phone" placeholder="Phone" />
+                        <div class="form-group col-md-12">
+                         <div class="row">
+                          <div class="form-group col-6">
+                            <label for="customerName">Customer Name</label>
+                          <input #inputCustomerName formControlName="Name" type="text" class="form-control" id="customerName"
+                          [class.is-invalid]="isInValidAndTouched('Name')" [class.is-valid]="isValidControl('Name')"  
+                          placeholder="Customer Name" />
+                          <div *ngIf="isInValidAndTouched('Name')">
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Name','required')">required
+                              user name</small>
+                              <small class="form-text text-danger" *ngIf="isControlHasError('Name','minlength')">min length is
+                                3</small>
+                                <small class="form-text text-danger" *ngIf="isControlHasError('Name','maxlength')">max length is
+                                  25</small>
+                          </div>
+                          </div>
+
+                          <div class="form-group col-6">
+                            <label for="customerEmail">Email</label>
+                          <input #inputEmail type="text" formControlName="Email" class="form-control"
+                          [class.is-invalid]="isInValidAndTouched('Email')" [class.is-valid]="isValidControl('Email')"
+                          id="customerEmail" placeholder="Email" />
+                          <div *ngIf="isInValidAndTouched('Email')">
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Email','required')">required
+                              email</small>
+                              <small class="form-text text-danger" *ngIf="isControlHasError('Email','email')">is-invalid email
+                                </small>
+                          </div>
+                          </div>
+                         </div>
+
+                         <div class="row">
+                          <div class="form-group col-6"> 
+                            <label for="fullAdress">full Adresss</label>
+                          <input #inputFullAdress type="text" formControlName="Full_address" class="form-control" id="fullAdress"
+                          [class.is-invalid]="isInValidAndTouched('Full_address')" [class.is-valid]="isValidControl('Full_address')"  
+                          placeholder="Full Address" />
+                          <div *ngIf="isInValidAndTouched('Full_address')">
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Full_address','required')">required
+                              full address </small>
+                              <small class="form-text text-danger" *ngIf="isControlHasError('Full_address','maxlength')">max length is
+                                100
+                                </small>
+                          </div>
+                          </div>
+                          <div class="form-group col-6">
+                            <label for="phone">Phone</label>
+                            <input #inputPhone type="text" formControlName="Phone" class="form-control" 
+                            [class.is-invalid]="isInValidAndTouched('Phone')" [class.is-valid]="isValidControl('Phone')"
+                            id="phone" placeholder="Phone" />
+                            <div *ngIf="isInValidAndTouched('Phone')">
+                              <small class="form-text text-danger" *ngIf="isControlHasError('Phone','required')">required
+                                phone number </small>
+                                <small class="form-text text-danger" *ngIf="isControlHasError('Phone','minlength')">min length is
+                                  11
+                                  </small>
+                                  <small class="form-text text-danger" *ngIf="isControlHasError('Phone','maxlength')">max length is
+                                    11
+                                    </small>
+                                    <!-- <small class="form-text text-danger" *ngIf="isControlHasError('Phone','pattern')">start with 010
+                                      </small> -->
+                            </div>
+                          </div>
+                           
+                         </div>
+                          
+                         <div class="row">
+                         <div class="form-group col-6">
                           <label for="country">Country</label>
-                          <input #inputCountry type="text" class="form-control" id="country" placeholder="Phone" />
-                          <label for="city">City</label>
-                          <input #inputCity type="text" class="form-control" id="city" placeholder="Phone" />
-                          <label for="housenumber">house number</label>
-                          <input #inputhousenumber type="text" class="form-control" id="housenumber"
-                            placeholder="Phone" />
-                          <label for="password">password</label>
-                          <input #inputpassword type="password" class="form-control" id="password" placeholder="Password" />
+                          <input #inputCountry type="text" class="form-control" formControlName="Country" 
+                          [class.is-invalid]="isInValidAndTouched('Country')" [class.is-valid]="isValidControl('Country')"
+                          id="country" placeholder="Country" />
+                          <div *ngIf="isInValidAndTouched('Country')">
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Country','required')">required
+                              country</small>
+ 
+                          </div>
+                         </div>
+                          <div class="form-group col-6">
+                            <label for="city">City</label>
+                          <input #inputCity type="text" formControlName="City" class="form-control"  
+                          [class.is-invalid]="isInValidAndTouched('City')" [class.is-valid]="isValidControl('City')"
+                          id="city" placeholder="City" />
+                          <div *ngIf="isInValidAndTouched('City')">
+                            <small class="form-text text-danger" *ngIf="isControlHasError('City','required')">required
+                              city </small>
+                          
+                          </div>
+                          
+                          </div>
+                         </div>
+                         <div class="row">
+                           <div class="form-group col-6">
+                            <label for="housenumber">house number</label>
+                            <input #inputhousenumber type="text" formControlName="HouseNum" class="form-control" 
+                            [class.is-invalid]="isInValidAndTouched('HouseNum')" [class.is-valid]="isValidControl('HouseNum')"
+                            id="housenumber"
+                              placeholder="House Number" />
+                              <div *ngIf="isInValidAndTouched('HouseNum')">
+                                <small class="form-text text-danger" *ngIf="isControlHasError('HouseNum','required')">required
+                                  house number </small>
+                              
+                              </div>
+                           </div>
+                           <div class="form-group col-6">
+                            <label for="password">password</label>
+                            <input #inputpassword type="password" formControlName="Password" class="form-control" 
+                            [class.is-invalid]="isInValidAndTouched('Password')" [class.is-valid]="isValidControl('Password')"
+                            id="password" placeholder="Password" />
+                            <div *ngIf="isInValidAndTouched('Password')">
+                              <small class="form-text text-danger" *ngIf="isControlHasError('Password','required')">required
+                                password </small>
+                                <small class="form-text text-danger" *ngIf="isControlHasError('Phone','minlength')">min length is
+                                  6
+                                  </small>
+                            
+                            </div>
+                           </div>
+
+                         </div>
+                          
                           <button type="submit" class="btn btn-primary"
-                            (click)="add(inputCustomerName.value,inputEmail.value,inputpassword.value,inputFullAdress.value,inputhousenumber.value,inputCountry.value,inputCity.value,inputPhone.value)"><i
-                              class="fas fa-plus"></i></button>
+                            (click)="add(inputCustomerName.value,inputEmail.value,inputpassword.value,inputFullAdress.value,inputhousenumber.value,inputCountry.value,inputCity.value,inputPhone.value)">Add</button>
 
                         </div>
 
                       </div>
-                    </form>
+                    </div>
 
                     <!-- </div>  -->
                     <!-- <div class="form-group col-md-6">

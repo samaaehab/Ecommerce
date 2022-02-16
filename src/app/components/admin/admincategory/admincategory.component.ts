@@ -4,6 +4,8 @@ import { CategoryServiceService } from 'src/app/services/category-service.servic
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from 'src/app/app.component';
+
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 declare const $: any;
 @Component({
   selector: 'app-admincategory',
@@ -11,12 +13,15 @@ declare const $: any;
   styleUrls: ['./admincategory.component.css']
 })
 export class AdmincategoryComponent implements OnInit {
+  formCat= new FormGroup({});
   categories:Category[]=[];
    // Pagination parameters.
+
    p: any = 1;
    count: any = 3;
    searchText:any;
-  constructor(private _categoryService:CategoryServiceService ,public myapp: AppComponent ) { }
+
+  constructor(private _formBuilder: FormBuilder,private _categoryService:CategoryServiceService,public myapp: AppComponent) { }
 
   ngOnInit(): void {
     this._categoryService.get().subscribe(
@@ -25,12 +30,25 @@ export class AdmincategoryComponent implements OnInit {
         this.categories = res.data;
       }
     );
+    this.formCat=this._formBuilder.group({
+      Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],      
+      });
   }
 
-  //toaster
-  
+isValidControl(name:string):boolean
+{
+return this.formCat.controls[name].valid;
+}
+isInValidAndTouched(name:string):boolean
+{
+return this.formCat.controls[name].invalid && (this.formCat.controls[name].dirty || this.formCat.controls[name].touched);
+}
+isControlHasError(name:string,error:string):boolean
+{
+return this.formCat.controls[name].invalid && this.formCat.controls[name].errors?.[error];
+}
 
-  
+
   add(cat_name:string):void{
     let category = new Category();
     category.cat_name=cat_name;
