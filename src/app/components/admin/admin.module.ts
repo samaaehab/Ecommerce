@@ -12,6 +12,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AdminsubcategoryComponent } from './adminsubcategory/adminsubcategory.component';
 
+// toast
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { ToastrModule } from 'ngx-toastr';
+
 const routes: Routes = [
 
   {path:'admin',
@@ -37,7 +41,13 @@ const routes: Routes = [
     AdminsubcategoryComponent,
   ],
   imports: [
-    CommonModule,RouterModule.forChild(routes) ,NgxPaginationModule,FormsModule,Ng2SearchPipeModule,
+    CommonModule,
+    RouterModule.forChild(routes),
+    NgxPaginationModule,
+    FormsModule,
+    Ng2SearchPipeModule,
+    // BrowserAnimationsModule,
+    // ToastrModule
   ]
 })
 export class AdminModule { }

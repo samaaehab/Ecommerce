@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/Category';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ToastrService } from 'ngx-toastr';
+import { AppComponent } from 'src/app/app.component';
 declare const $: any;
 @Component({
   selector: 'app-admincategory',
@@ -14,7 +16,7 @@ export class AdmincategoryComponent implements OnInit {
    p: any = 1;
    count: any = 3;
    searchText:any;
-  constructor(private _categoryService:CategoryServiceService) { }
+  constructor(private _categoryService:CategoryServiceService ,public myapp: AppComponent ) { }
 
   ngOnInit(): void {
     this._categoryService.get().subscribe(
@@ -24,14 +26,38 @@ export class AdmincategoryComponent implements OnInit {
       }
     );
   }
+
+  //toaster
+  
+
+  
   add(cat_name:string):void{
     let category = new Category();
     category.cat_name=cat_name;
     this._categoryService.post(category).subscribe(
-      (response:any)=>{
+      (response: any) => {
+        console.log(response);
+        console.log(response.message);
         this.categories.push(category);
+        // var myAlert = document.getElementById('myAlert')
+        // var bsAlert = new bootstrap.Alert(myAlert)
+        this.myapp.successmessage();
       },
-      (error:any)=>{}
+      (error: any) => {
+        this.myapp.errormessage();
+        // console.log(error);
+        // console.log(error.error.errors);
+        for (const err in error.error.errors) {
+          // console.log(error.error.errors[err]);
+          for (let i = 0; i < error.error.errors[err].length; i++){
+            console.log(error.error.errors[err][i]);
+            
+          }
+          
+        }
+
+        
+      }
     );
   }
 
@@ -80,4 +106,6 @@ export class AdmincategoryComponent implements OnInit {
     //alert("Done");
   }
 
+
+  
 }

@@ -25,6 +25,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FacebookLoginProvider, SocialAuthService, SocialAuthServiceConfig } from 'angularx-social-login';
 import { SocialLoginModule} from 'angularx-social-login';
 import {GoogleLoginProvider} from 'angularx-social-login';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -57,12 +59,15 @@ import {GoogleLoginProvider} from 'angularx-social-login';
         useFactory: httpTranslateLoader,
         deps: [HttpClient]
       }
-    })
+    }),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
 
   ],
   // exports: [CommonModule, NgxPaginationModule],
 
   providers: [
+ 
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -72,9 +77,10 @@ import {GoogleLoginProvider} from 'angularx-social-login';
             id: FacebookLoginProvider.PROVIDER_ID,
             provider:new FacebookLoginProvider("1617656521913206")
           }
-          ,{            id: GoogleLoginProvider.PROVIDER_ID,
+          , {
+            id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '490654533147-03t3mpss76npl32scc1qb2fsss2qn3q8.apps.googleusercontent.com'
+             '490654533147-03t3mpss76npl32scc1qb2fsss2qn3q8.apps.googleusercontent.com'
             )
           }
         ],
@@ -84,10 +90,12 @@ import {GoogleLoginProvider} from 'angularx-social-login';
         },
       } as SocialAuthServiceConfig,
     }, SocialAuthService
+    ,AppComponent
    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
 export function httpTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }

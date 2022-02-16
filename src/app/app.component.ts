@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 // const FacebookStrategy = require("passport-facebook").Strategy;
 declare var name: any;
 import * as $ from 'jquery';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -13,7 +14,7 @@ import * as $ from 'jquery';
 export class AppComponent {
 
   constructor(
-    public translate: TranslateService
+    public translate: TranslateService , private _toastrService:ToastrService
   ) {
     translate.addLangs(['en', 'ar']);
     translate.setDefaultLang('en');
@@ -25,4 +26,12 @@ export class AppComponent {
     new name();
   }
   title = 'final';
+
+  // @Injectable()
+  successmessage() {
+    this._toastrService.success("added successfly", "Success");
+  }
+  errormessage() {
+    this._toastrService.error("error message","Error");
+  }
 }
