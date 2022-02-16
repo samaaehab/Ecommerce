@@ -106,7 +106,8 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
 
           } else if (result.isDismissed) {
             // console.log('Clicked No, File is safe!');
-            this.myapp.showInfo(' item is safe!','Clicked No');
+            this.myapp.errormessage("Item not Deleted");
+
             
           }
         })
@@ -137,8 +138,11 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
     this.category.cat_name=cName;
     this._categoryService.put(id,this.category)
     .subscribe(
-      (response:any)=>{
+      (response: any) => {
+        this.myapp.showInfo(' item updated','success');
         window.location.reload();
+        this.myapp.showInfo(' item updated','success');
+
       },
       (error:any)=>{}
     );
