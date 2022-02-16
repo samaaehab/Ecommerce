@@ -59,7 +59,8 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
         this.categories.push(category);
         // var myAlert = document.getElementById('myAlert')
         // var bsAlert = new bootstrap.Alert(myAlert)
-        this.myapp.successmessage();
+        //this.myapp.successmessage();
+        
       },
       (error: any) => {
         this.myapp.errormessage();

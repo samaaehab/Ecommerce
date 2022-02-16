@@ -1,7 +1,8 @@
+import { AuthService } from './../../services/auth.service';
 import { SocialAuthService, FacebookLoginProvider } from 'angularx-social-login';
 declare var FB: any;
 
-import { JsonpClientBackend } from '@angular/common/http';
+import { JsonpClientBackend, HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,7 +19,7 @@ formLogin= new FormGroup({});
   account =new Account;
   public loggedin!: boolean;
   public user: any;
-  constructor(private _formBuilder: FormBuilder, private authService: SocialAuthService,private router:Router) { }
+  constructor(private _formBuilder: FormBuilder, private authService: SocialAuthService,private router:Router,private _authService:AuthService) { }
  
   signin() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((data) => {
@@ -68,19 +69,19 @@ formLogin= new FormGroup({});
 
 
 this.formLogin=this._formBuilder.group({
-Email:['',[Validators.required,Validators.email]],
-Password:['',[Validators.required,Validators.minLength(6)]]
+email:['',[Validators.required,Validators.email]],
+password:['',[Validators.required,Validators.minLength(6)]]
 
 });
 this.formRegister=this._formBuilder.group({
-  Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],
-  Email:['',[Validators.required,Validators.email]],
-  Password:['',[Validators.required,Validators.minLength(6)]],
-  Address:['',[Validators.required,Validators.maxLength(100)]],
-  HouseNum:['',[Validators.required]],
-  Country:['',[Validators.required]],
-  City:['',[Validators.required]],
-  Phone:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],
+  name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],
+  email:['',[Validators.required,Validators.email]],
+  password:['',[Validators.required,Validators.minLength(6)]],
+  full_address:['',[Validators.required,Validators.maxLength(100)]],
+  house_no:['',[Validators.required]],
+  country:['',[Validators.required]],
+  city:['',[Validators.required]],
+  phone:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],
 });  
   // auth
 
@@ -108,14 +109,29 @@ this.formRegister=this._formBuilder.group({
   //     });
 
   // }
+ login(){
+  this._authService.login(this.formLogin.value).subscribe(
+    (response:any)=>{
+      console.log(response.access_token);
+      
+      
+    },
+    (error:any)=>{
+      console.log(error);
+      
+    }
+  );
 
-login():void{
-alert(JSON.stringify(this.formLogin.value));
-//Call API to validate user
 }
-register():void{
-alert(JSON.stringify(this.formRegister.value));
-//Call API to validate user
+register(){
+  this._authService.signup(this.formRegister.value).subscribe(
+    (response:any)=>{
+      console.log(response);  
+    },
+    (error:any)=>{
+      console.log(error);
+    }
+  );
 }
 isValidControl(name:string):boolean
 {
