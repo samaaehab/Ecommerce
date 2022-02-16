@@ -26,6 +26,9 @@ import { FacebookLoginProvider, SocialAuthService, SocialAuthServiceConfig } fro
 import { SocialLoginModule} from 'angularx-social-login';
 import {GoogleLoginProvider} from 'angularx-social-login';
 
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -43,6 +46,7 @@ import {GoogleLoginProvider} from 'angularx-social-login';
     ConfirmComponent,
     
 
+
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,8 @@ import {GoogleLoginProvider} from 'angularx-social-login';
     SocialLoginModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

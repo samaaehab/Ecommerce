@@ -37,6 +37,7 @@ const routes: Routes = [
     AdmincategoryComponent,
     AdminordersComponent,
     AdminsubcategoryComponent,
+
   ],
   imports: [
     CommonModule,RouterModule.forChild(routes) ,NgxPaginationModule,FormsModule,Ng2SearchPipeModule,ReactiveFormsModule,FormsModule

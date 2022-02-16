@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/Category';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Massege } from 'src/app/models/Massege';
 declare const $: any;
 @Component({
   selector: 'app-admincategory',
@@ -11,6 +12,7 @@ declare const $: any;
 export class AdmincategoryComponent implements OnInit {
   formCat= new FormGroup({});
   categories:Category[]=[];
+  massege=new Massege;
    // Pagination parameters.
 
    p: any = 1;
@@ -43,15 +45,25 @@ isControlHasError(name:string,error:string):boolean
 return this.formCat.controls[name].invalid && this.formCat.controls[name].errors?.[error];
 }
 
-
-  add(cat_name:string):void{
+  add(cat_name:string){
     let category = new Category();
     category.cat_name=cat_name;
     this._categoryService.post(category).subscribe(
       (response:any)=>{
         this.categories.push(category);
+        console.log(response.message);
+        // this.massege.success=response.message;
       },
-      (error:any)=>{}
+      (error:any)=>{
+        for (const err in error.error.errors) {
+          // console.log(error.error.errors[err]);
+          for (let i = 0; i < error.error.errors[err].length; i++){
+            console.log(error.error.errors[err][i]);
+            // this.massege.error=error.error.errors[err][i];
+
+          }
+      }
+    }
     );
   }
 
@@ -99,5 +111,6 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
     );
     //alert("Done");
   }
+
 
 }
