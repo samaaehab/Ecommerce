@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { User } from 'src/app/models/User';
+import Pusher from 'pusher-js';
+
 declare const $: any;
 
 @Component({
@@ -13,6 +16,9 @@ declare const $: any;
 })
 export class AdminusersComponent implements OnInit {
   formUser= new FormGroup({});
+  username='Admin';
+  message='';
+  messages:any= [];
 
 
   users:User[]=[];
@@ -20,9 +26,19 @@ export class AdminusersComponent implements OnInit {
    p: any = 1;
    count: any = 3;
    searchText:any;
-   constructor(private _formBuilder: FormBuilder,private _userService:UserService) { }
+   constructor(private http:HttpClient,private _formBuilder: FormBuilder,private _userService:UserService) { }
 
    ngOnInit(): void {
+    Pusher.logToConsole = true;
+
+    const pusher = new Pusher('950c501a49561d478fcc', {
+      cluster: 'eu'
+    });
+
+    const channel = pusher.subscribe('chat');
+    channel.bind('message', (data: any) => {
+      this.messages.push(data);
+    });
     this._userService.get().subscribe(
       (res: any) => {
         console.log(JSON.stringify(res));
@@ -43,6 +59,14 @@ export class AdminusersComponent implements OnInit {
       });
       
 
+    }
+
+
+    submit():void{
+      this.http.post('http://localhost:8000/api/messages',{
+        username:this.username,
+        message:this.message
+      }).subscribe(()=>this.message='');
     }
   
 isValidControl(name:string):boolean

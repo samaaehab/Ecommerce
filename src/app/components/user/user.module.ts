@@ -5,6 +5,8 @@ import { AddressComponent } from './address/address.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
 
@@ -20,9 +22,11 @@ const routes: Routes = [
     UserDetailsComponent,
     OrdersComponent,
     AddressComponent,
+  
+    
   ],
   imports: [
-    CommonModule,RouterModule.forChild(routes)
+    CommonModule,FormsModule,HttpClientModule,ReactiveFormsModule,RouterModule.forChild(routes)
   ]
 })
 export class UserModule { }
