@@ -1,3 +1,4 @@
+import { TokenService } from './../../services/token.service';
 import { AuthService } from './../../services/auth.service';
 import { SocialAuthService, FacebookLoginProvider } from 'angularx-social-login';
 declare var FB: any;
@@ -19,7 +20,8 @@ formLogin= new FormGroup({});
   account =new Account;
   public loggedin!: boolean;
   public user: any;
-  constructor(private _formBuilder: FormBuilder, private authService: SocialAuthService,private router:Router,private _authService:AuthService) { }
+  public error:any;
+  constructor(private _formBuilder: FormBuilder, private authService: SocialAuthService,private router:Router,private _authService:AuthService,private token:TokenService) { }
  
   signin() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((data) => {
@@ -126,13 +128,23 @@ this.formRegister=this._formBuilder.group({
 register(){
   this._authService.signup(this.formRegister.value).subscribe(
     (response:any)=>{
-      console.log(response);  
+      this.handelResponse(response);  
     },
     (error:any)=>{
-      console.log(error);
+      this.handelError(error);
     }
   );
 }
+handelResponse(response:any){
+  this.token.handel(response.access_token);
+}
+
+handelError(error:any){
+  this.error=error.error.error;
+  
+}
+
+
 isValidControl(name:string):boolean
 {
 return this.formLogin.controls[name].valid;
