@@ -283,8 +283,8 @@
                         aria-label="Default select example">
                           <option  
                           *ngFor="
-                          let category of categories">
-                            {{category.id}}
+                          let category of categories" value="{{category.id}}">
+                            {{category.cat_name}}
                           </option>
                         </select>
                         <!-- <input

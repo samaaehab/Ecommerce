@@ -7,6 +7,8 @@ import { AppComponent } from 'src/app/app.component';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 declare const $: any;
+import  Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-admincategory',
   templateUrl: './admincategory.component.html',
@@ -59,17 +61,17 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
         this.categories.push(category);
         // var myAlert = document.getElementById('myAlert')
         // var bsAlert = new bootstrap.Alert(myAlert)
-        this.myapp.successmessage();
+        this.myapp.successmessage(response.message);
       },
       (error: any) => {
-        this.myapp.errormessage();
+       
         // console.log(error);
         // console.log(error.error.errors);
         for (const err in error.error.errors) {
           // console.log(error.error.errors[err]);
           for (let i = 0; i < error.error.errors[err].length; i++){
             console.log(error.error.errors[err][i]);
-            
+            this.myapp.errormessage(error.error.errors[err][i]);
           }
           
         }
@@ -80,18 +82,37 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
   }
 
   delete(index:number):void
-  {
+  {  
     let category=this.categories[index];
-    this._categoryService.delete(category.id)
+    this._categoryService.delete(index)
     .subscribe(
-      (response:any)=>{
-        const cf=confirm('Are U Sure Delete ?');
-        if(cf === true){
-          this.categories.splice(index,1);
-        }else{
-          console.log('opps!');
-          
-        }
+      (response: any) => {
+        console.log(category);
+        
+        Swal.fire({
+          title: 'Are you sure?',
+          text: 'You will not be able to recover this item',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, delete it!',
+          cancelButtonText: 'No, keep it',
+        }).then((result) => {
+    
+          if (result.isConfirmed) {    
+            // console.log('Clicked Yes, File deleted!');
+            this.categories.splice(index, 1);
+            window.location.reload();
+            this.myapp.successmessage(response.message);
+
+          } else if (result.isDismissed) {
+            // console.log('Clicked No, File is safe!');
+            this.myapp.showInfo(' item is safe!','Clicked No');
+            
+          }
+        })
+         
+      
+        // this.myapp.delete();
         
       },
       (error:any)=>{}

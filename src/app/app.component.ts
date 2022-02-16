@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 declare var name: any;
 import * as $ from 'jquery';
 import { ToastrService } from 'ngx-toastr';
+import  Swal from 'sweetalert2';
 
 
 @Component({
@@ -28,10 +29,41 @@ export class AppComponent {
   title = 'final';
 
   // @Injectable()
-  successmessage() {
-    this._toastrService.success("added successfly", "Success");
+  successmessage(rs:any) {
+    this._toastrService.success(rs, "Success");
   }
-  errormessage() {
-    this._toastrService.error("error message","Error");
+  errormessage(rs:any) {
+    this._toastrService.error(rs,"Error");
   }
+  delete() {
+    // this._toastrService.warning("asd1", "asd2");
+    // this._toastrService.warning('Are you sure?', {onOk: () => { console.log('ok') }, onCancel: () => { console.log('cancel')}})
+    // Swal.fire('This is a simple and sweet alert');
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this imaginary file!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it',
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+
+        console.log('Clicked Yes, File deleted!');
+
+      } else if (result.isDismissed) {
+
+        console.log('Clicked No, File is safe!');
+
+      }
+    })
+  }
+  showInfo(message: any, title:any){
+    this._toastrService.info(message, title)
+}
+ 
+showWarning(message:any, title:any){
+  this._toastrService.warning(message, title)
+}
 }

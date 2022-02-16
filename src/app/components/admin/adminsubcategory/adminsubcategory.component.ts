@@ -76,8 +76,11 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
     let subcategory=this.subcategories[index];
     this._SubcategoryService.delete(subcategory.id)
     .subscribe(
-      (response:any)=>{
-        const cf=confirm('Are U Sure Delete ?');
+      (response: any) => {
+        console.log(subcategory);
+        
+        const cf = confirm('Are U Sure Delete ?');
+        
         if(cf === true){
           this.subcategories.splice(index,1);
         }else{
