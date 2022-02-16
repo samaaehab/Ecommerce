@@ -4,6 +4,9 @@ import { SubcategoryService } from 'src/app/services/subcategory.service';
 import { Product } from './../../../models/Product';
 import { ProductService } from './../../../services/product.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import  Swal from 'sweetalert2';
+import { AppComponent } from 'src/app/app.component';
+
 
 @Component({
   selector: 'app-adminproducts',
@@ -17,7 +20,8 @@ export class AdminproductsComponent implements OnInit {
   p: any = 1;
   count: any = 3;
   searchText:any;
- constructor(private _productService:ProductService,private _SubcategoryService:SubcategoryService) { }
+  constructor(private _productService: ProductService, private _SubcategoryService: SubcategoryService,
+    public myapp: AppComponent) { }
 
  ngOnInit(): void {
    this._productService.get().subscribe(
@@ -44,9 +48,18 @@ export class AdminproductsComponent implements OnInit {
    this._productService.post(product).subscribe(
      (response:any)=>{
        this.products.push(product);
-       alert('ok');
+       this.myapp.successmessage(response.message);
+       
      },
-     (error:any)=>{}
+     (error: any) => {
+      for (const err in error.error.errors) {
+        for (let i = 0; i < error.error.errors[err].length; i++){
+          console.log(error.error.errors[err][i]);
+          this.myapp.errormessage(error.error.errors[err][i]);
+        }
+        
+      }
+     }
    );
 
  }
@@ -56,18 +69,35 @@ export class AdminproductsComponent implements OnInit {
    let product=this.products[index];
    this._productService.delete(product.id)
    .subscribe(
-     (response:any)=>{
-       const cf=confirm('Are U Sure Delete ?');
-       if(cf === true){
-         this.products.splice(index,1);
-       }else{
-         console.log('opps!');
+    (response: any) => {
+      console.log(product);
+      
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You will not be able to recover this item',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, keep it',
+      }).then((result) => {
+  
+        if (result.isConfirmed) {    
+          // console.log('Clicked Yes, File deleted!');
+          this.products.splice(index, 1);
+          // window.location.reload();
+          this.myapp.successmessage(response.message);
 
-       }
+        } else if (result.isDismissed) {
+          // console.log('Clicked No, File is safe!');
+          this.myapp.errormessage("product not Deleted");
 
-     },
-     (error:any)=>{}
-   );
+          
+        }
+      })
+
+    },
+    (error:any)=>{}
+  );
 
 
  }
@@ -95,10 +125,20 @@ export class AdminproductsComponent implements OnInit {
    this.product.subcat_id=pSubcatId;
    this._productService.put(id,this.product)
    .subscribe(
-     (response:any)=>{
+     (response: any) => {
+      this.myapp.showInfo('Category updated successfly','update');
+       
        window.location.reload();
      },
-     (error:any)=>{}
+     (error: any) => {
+      for (const err in error.error.errors) {
+        for (let i = 0; i < error.error.errors[err].length; i++){
+          console.log(error.error.errors[err][i]);
+          this.myapp.errormessage(error.error.errors[err][i]);
+        }
+        
+      }
+     }
    );
    //alert("Done");
  }

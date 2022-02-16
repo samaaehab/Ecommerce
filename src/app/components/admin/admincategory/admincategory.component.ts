@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 declare const $: any;
 import  Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-admincategory',
   templateUrl: './admincategory.component.html',
@@ -23,7 +24,8 @@ export class AdmincategoryComponent implements OnInit {
    count: any = 3;
    searchText:any;
 
-  constructor(private _formBuilder: FormBuilder,private _categoryService:CategoryServiceService,public myapp: AppComponent) { }
+  constructor(private _formBuilder: FormBuilder, private _categoryService: CategoryServiceService,
+    public myapp: AppComponent) { }
 
   ngOnInit(): void {
     this._categoryService.get().subscribe(
@@ -59,16 +61,14 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
         console.log(response);
         console.log(response.message);
         this.categories.push(category);
-        // var myAlert = document.getElementById('myAlert')
-        // var bsAlert = new bootstrap.Alert(myAlert)
         this.myapp.successmessage(response.message);
+        
       },
       (error: any) => {
        
         // console.log(error);
         // console.log(error.error.errors);
         for (const err in error.error.errors) {
-          // console.log(error.error.errors[err]);
           for (let i = 0; i < error.error.errors[err].length; i++){
             console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
@@ -101,7 +101,7 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
           if (result.isConfirmed) {    
             // console.log('Clicked Yes, File deleted!');
             this.categories.splice(index, 1);
-            window.location.reload();
+            // window.location.reload();
             this.myapp.successmessage(response.message);
 
           } else if (result.isDismissed) {
@@ -111,10 +111,7 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
             
           }
         })
-         
-      
-        // this.myapp.delete();
-        
+  
       },
       (error:any)=>{}
     );
@@ -139,12 +136,20 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
     this._categoryService.put(id,this.category)
     .subscribe(
       (response: any) => {
-        this.myapp.showInfo(' item updated','success');
+        this.myapp.showInfo('Category updated successfly','update');
         window.location.reload();
-        this.myapp.showInfo(' item updated','success');
+        // this.myapp.showInfo(' item updated','success');
 
       },
-      (error:any)=>{}
+      (error: any) => {
+        for (const err in error.error.errors) {
+          for (let i = 0; i < error.error.errors[err].length; i++){
+            console.log(error.error.errors[err][i]);
+            this.myapp.errormessage(error.error.errors[err][i]);
+          }
+          
+        }
+      }
     );
     //alert("Done");
   }

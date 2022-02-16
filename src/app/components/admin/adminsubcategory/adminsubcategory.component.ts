@@ -5,6 +5,8 @@ import { Category } from 'src/app/models/Category';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppComponent } from 'src/app/app.component';
+import  Swal from 'sweetalert2';
 
 
 @Component({
@@ -21,7 +23,8 @@ export class AdminsubcategoryComponent implements OnInit {
    p: any = 1;
    count: any = 3;
    searchText:any;
-   constructor(private _formBuilder: FormBuilder,private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService) { }
+  constructor(private _formBuilder: FormBuilder, private _SubcategoryService: SubcategoryService, private _categoryService: CategoryServiceService
+    ,public myapp: AppComponent) { }
 
   ngOnInit(): void {
     this._SubcategoryService.get().subscribe(
@@ -64,10 +67,23 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
     subcategory.cat_id=cat_id;
     
     this._SubcategoryService.post(subcategory).subscribe(
-      (response:any)=>{
+      (response: any) => {
+        // this.myapp.successmessage(response.message);
         this.subcategories.push(subcategory);
+        console.log(response.message);
+        window.location.reload();
+        this.myapp.successmessage(response.message);
+
       },
-      (error:any)=>{}
+      (error: any) => {
+        for (const err in error.error.errors) {
+          for (let i = 0; i < error.error.errors[err].length; i++){
+            console.log(error.error.errors[err][i]);
+            this.myapp.errormessage(error.error.errors[err][i]);
+          }
+          
+        }
+      }
     );
   }
 
@@ -76,17 +92,32 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
     let subcategory=this.subcategories[index];
     this._SubcategoryService.delete(subcategory.id)
     .subscribe(
-      (response: any) => {
-        console.log(subcategory);
-        
-        const cf = confirm('Are U Sure Delete ?');
-        
-        if(cf === true){
-          this.subcategories.splice(index,1);
-        }else{
-          console.log('opps!');
-          
-        }
+      (response: any) => { 
+        Swal.fire({
+          title: 'Are you sure?',
+          text: 'You will not be able to recover this item',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, delete it!',
+          cancelButtonText: 'No, keep it',
+        }).then((result) => {
+    
+          if (result.isConfirmed) {    
+            // console.log('Clicked Yes, File deleted!');
+            this.subcategories.splice(index, 1);
+            // window.location.reload();
+            this.myapp.successmessage(response.message);
+
+          } else if (result.isDismissed) {
+            // console.log('Clicked No, File is safe!');
+            this.myapp.errormessage("Item not Deleted");
+
+            
+          }
+        })
+         
+      
+        // this.myapp.delete();
         
       },
       (error:any)=>{}
@@ -113,9 +144,19 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
     this._SubcategoryService.put(id,this.subcategory)
     .subscribe(
       (response:any)=>{
+        this.myapp.showInfo(' SubCategory updated successfly','update');
         window.location.reload();
+        // this.myapp.showInfo(' item updated successfly','update');
       },
-      (error:any)=>{}
+      (error: any) => {
+        for (const err in error.error.errors) {
+          for (let i = 0; i < error.error.errors[err].length; i++){
+            console.log(error.error.errors[err][i]);
+            this.myapp.errormessage(error.error.errors[err][i]);
+          }
+          
+        }
+      }
     );
     //alert("Done");
   }

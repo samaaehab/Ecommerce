@@ -4,6 +4,8 @@ import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { User } from 'src/app/models/User';
+import { AppComponent } from 'src/app/app.component';
+import  Swal from 'sweetalert2';
 declare const $: any;
 
 @Component({
@@ -20,7 +22,7 @@ export class AdminusersComponent implements OnInit {
    p: any = 1;
    count: any = 3;
    searchText:any;
-   constructor(private _formBuilder: FormBuilder,private _userService:UserService) { }
+   constructor(private _formBuilder: FormBuilder,private _userService:UserService ,public myapp: AppComponent) { }
 
    ngOnInit(): void {
     this._userService.get().subscribe(
@@ -83,33 +85,63 @@ return this.formUser.controls[name].invalid && this.formUser.controls[name].erro
     user.country=country;
     user.city=city;
     user.phone=phone;
-    
     this._userService.post(user).subscribe(
       (response:any)=>{
         console.log(this.users);  
         this.users.push(user);
-        alert("okay");
+        this.myapp.successmessage(response.message);
       },
-      (error:any)=>{}
+      (error: any) => {
+        for (const err in error.error.errors) {
+          for (let i = 0; i < error.error.errors[err].length; i++){
+            console.log(error.error.errors[err][i]);
+            this.myapp.errormessage(error.error.errors[err][i]);
+          }
+          
+        }
+      }
     );
   }
+
   delete(index:number):void
   {
     let user=this.users[index];
     this._userService.delete(user.id)
     .subscribe(
-      (response:any)=>{
-        const cf=confirm('Are U Sure Delete ?');
-        if(cf === true){
-          this.users.splice(index,1);
-        }else{
-          console.log('opps!');
+     (response: any) => {
+        console.log(user);
+        
+        Swal.fire({
+          title: 'Are you sure?',
+          text: 'You will not be able to recover this item',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, delete it!',
+          cancelButtonText: 'No, keep it',
+        }).then((result) => {
+    
+          if (result.isConfirmed) {    
+            // console.log('Clicked Yes, File deleted!');
+            this.users.splice(index, 1);
           
-        }
+            this.myapp.successmessage(response.message);
+
+          } else if (result.isDismissed) {
+            // console.log('Clicked No, File is safe!');
+            this.myapp.errormessage("User not Deleted");
+
+            
+          }
+        })
+         
+      
+        // this.myapp.delete();
         
       },
       (error:any)=>{}
     );
     }
 
+  
+  
   }
