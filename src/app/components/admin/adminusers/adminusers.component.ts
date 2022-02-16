@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from 'src/app/app.component';
 import  Swal from 'sweetalert2';
+
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -28,6 +29,7 @@ export class AdminusersComponent implements OnInit {
    count: any = 3;
    searchText:any;
    constructor(public myapp: AppComponent,private http:HttpClient,private _formBuilder: FormBuilder,private _userService:UserService) { }
+
 
    ngOnInit(): void {
     Pusher.logToConsole = true;
