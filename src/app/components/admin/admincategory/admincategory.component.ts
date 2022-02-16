@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from 'src/app/app.component';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Massege } from 'src/app/models/Massege';
 declare const $: any;
 import  Swal from 'sweetalert2';
 
@@ -18,6 +19,7 @@ import  Swal from 'sweetalert2';
 export class AdmincategoryComponent implements OnInit {
   formCat= new FormGroup({});
   categories:Category[]=[];
+  massege=new Massege;
    // Pagination parameters.
 
    p: any = 1;
@@ -52,8 +54,7 @@ isControlHasError(name:string,error:string):boolean
 return this.formCat.controls[name].invalid && this.formCat.controls[name].errors?.[error];
 }
 
-
-  add(cat_name:string):void{
+  add(cat_name:string){
     let category = new Category();
     category.cat_name=cat_name;
     this._categoryService.post(category).subscribe(
@@ -78,6 +79,7 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
 
         
       }
+
     );
   }
 
@@ -154,6 +156,4 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
     //alert("Done");
   }
 
-
-  
 }

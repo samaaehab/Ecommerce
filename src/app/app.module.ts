@@ -29,6 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ConfirmComponent,
     
 
+
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SocialLoginModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
