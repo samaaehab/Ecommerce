@@ -80,6 +80,7 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
         
       }
 
+
     );
   }
 
@@ -155,5 +156,6 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
     );
     //alert("Done");
   }
+
 
 }
