@@ -144,25 +144,33 @@
                       <th scope="col">Description</th>
                       <th scope="col">Image</th>
                       <th scope="col">Subcategory Name</th>
+                      <th scope="col">Size</th>
+                      <th scope="col">Color</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Discount</th>
                       <th scope="col">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="
                     let currentIndex = index;
-                    let product;
-                    of: products
+                    let store;
+                    of: stores
                       | filter: searchText
                       | paginate: { itemsPerPage: count, currentPage: p }
                   ">
                       <th scope="row">{{currentIndex + 1}}</th>
-                      <td scope="col">{{product.product_name}}</td>
-                      <td scope="col">{{product.description}}</td>
+                      <td scope="col">{{store.product.product_name}}</td>
+                      <td scope="col">{{store.product.description |maxLength}}</td>
                       <td scope="col">
-                        <img src="{{product.image}}" style="width: 40px;height: 40px;"></td>
-                      <td scope="col">{{product.subcategory.subcat_name}}</td>
+                        <img src="{{store.product.image}}" style="width: 40px;height: 40px;"></td>
+                      <td scope="col">{{store.product.subcategory.subcat_name}}</td>
+                      <td scope="col">{{store.size}}</td>
+                      <td scope="col">{{store.color}}</td>
+                      <td scope="col">{{store.price}}</td>
+                      <td scope="col">{{store.discount}}</td>
                       <td class="d-flex justify-content-around">
-                        <div class="btn btn-dark mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(product.id)">Edit</div>
+                        <div class="btn btn-dark mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(store.product.id)">Edit</div>
                         <button class="btn btn-danger" (click)="delete(currentIndex)">Delete</button>
                       </td>
                     </tr>
@@ -207,7 +215,7 @@
                         placeholder="product name" />
                     </div>
                     <div class="custom-file mb-3">
-                      <input #inputImage (change)="uploadImage($event)" type="file" class="custom-file-input" id="image" name="image" />
+                      <input #inputImage  type="file" class="custom-file-input" id="image" name="image" />
                       <label class="custom-file-label" for="image">Product Image</label>
                     </div>
                   </div>
@@ -217,15 +225,44 @@
                       rows="3"></textarea>
                   </div>
                   <div class="form-group mb-3">
-                    <select #inputSubCategoryId class="form-select" aria-label="Default select example">
+                    <label for="inputSubcategoryName">Subcategory Name</label>
+                    <select #inputSubCategoryId class="form-select" aria-label="Default select example" for="inputSubcategoryName">
                       <option *ngFor="
-                      let subcategory of subcategories" [value]="subcategory.id">
+                      let subcategory of subcategories" value="{{subcategory.id}}">
                         {{subcategory.subcat_name}}
                       </option>
                     </select>
                   </div>
+                  <div class="form-group mb-3">
+                    <label for="inputStorePrice">Price</label>
+                    <input type="number" #inputStorePrice class="form-control" id="inputStorePrice"
+                      placeholder="Price" />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="inputStoreDiscount">Discount</label>
+                    <input type="number" #inputStoreDiscount class="form-control" id="inputStoreDiscount"
+                      placeholder="Price" />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="inputStoreColor">Color</label>
+                    <select #inputStoreColor class="form-select" aria-label="Default select example">
+                      <option *ngFor="
+                      let store of stores" [value]="store.color">
+                        {{store.color}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="inputStoreSize">Size</label>
+                    <select #inputStoreSize class="form-select" aria-label="Default select example" for="inputStoreSize">
+                      <option *ngFor="
+                      let store of stores" [value]="store.size">
+                        {{store.size}}
+                      </option>
+                    </select>
+                  </div>
                   <button type="submit" class="btn btn-primary w-25"
-                    (click)="add(inputProductName.value,inputDescription.value,inputSubCategoryId.value)">Add</button>
+                    (click)="add(inputProductName.value,inputDescription.value,inputSubCategoryId.value,inputStorePrice.value,inputStoreDiscount.value,inputStoreColor.value,inputStoreSize.value)">Add</button>
                 </form>
               </div>
             </div>
@@ -246,19 +283,25 @@
     <div style="position: relative;top: 200px;left: 150px;" class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Update SubCategory</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Update Product</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <input type="hidden" id="upcid" #inputId>
-          <div class="input-group mb-3">
-            <label for="upcategory" class="me-3 mt-2">SubCategory</label>
-            <input type="text" id="upcategory" #inputSubCategory class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+          <input type="text" id="uppid" hidden #inputId>
+          <div class="mb-3">
+            <label for="productName" class="form-label">Product Name</label>
+            <input type="text" id="productName" #inputPName class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" value="Abdo">
+          </div>
+          <div class="mb-3">
+            <label for="description"class="form-label">Description</label>
+            <textarea #inputDesc class="form-control mb-3" id="description"
+            rows="3"></textarea>
           </div>
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
-          <button type="button" class="btn btn-primary" ><i class="fas fa-edit"></i></button>
+          <button type="button" class="btn btn-primary" (click)="update(inputId.value,inputPName.value,inputDesc.value)"  ><i class="fas fa-edit"></i></button>
         </div>
       </div>
     </div>

@@ -51,6 +51,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 	<link href="assets/css/app.css" rel="stylesheet">
 	<link href="assets/css/icons.css" rel="stylesheet">
+  
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
@@ -66,7 +67,20 @@
   <script src="assets/js/common_scripts.min.js"></script>
   <script src="assets/js/main.js"></script>
 
-
+<script>
+  function increment() {
+    var increBtn = document.getElementsById('area')
+    for(var i = 0; i < increBtn.length ; i++){
+      increBtn[i].addEventListener('click', function(event) {   
+        var buttonClicked =event.target
+        var input = buttonClicked.parentElement.children[1]
+        inputValue = input.value
+        var newValue = parseInt(inputValue) + 1
+        input.value = newValue
+       })
+    } 
+  }
+</script>
 <!-- SPECIFIC SCRIPTS -->
 <!-- <script src="assets/js/carousel-home.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script> -->

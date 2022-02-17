@@ -6,6 +6,8 @@ import { ProductService } from './../../../services/product.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import  Swal from 'sweetalert2';
 import { AppComponent } from 'src/app/app.component';
+import { Store } from './../../../models/Store';
+import { StoreService } from './../../../services/store.service';
 
 
 @Component({
@@ -16,11 +18,13 @@ import { AppComponent } from 'src/app/app.component';
 export class AdminproductsComponent implements OnInit {
   products:Product[]=[];
   subcategories:SubCategory[]=[];
+  stores:Store[]=[];
   // Pagination parameters.
   p: any = 1;
   count: any = 3;
   searchText:any;
-  constructor(private _productService: ProductService, private _SubcategoryService: SubcategoryService,
+  id:any;
+  constructor(private _productService: ProductService, private _SubcategoryService: SubcategoryService,private _StoreService:StoreService,
     public myapp: AppComponent) { }
 
  ngOnInit(): void {
@@ -36,9 +40,66 @@ export class AdminproductsComponent implements OnInit {
       this.subcategories = res.data;
     }
   );
-
+  this._StoreService.get().subscribe(
+    (res: any) => {
+      console.log(JSON.stringify(res));
+      this.stores = res.data;
+    }
+  );
  }
- files:any;
+
+ add(product_name:string,description:string,subcat_id:any,price:any,discount:any,color:string,size:string):void{
+   let product = new Product();
+   let store =  new Store();
+   product.product_name=product_name;
+  //  product.image=image;
+   product.description=description;
+   product.subcat_id=subcat_id;
+   store.price=price;
+   store.discount=discount;
+   store.color=color;
+   store.size=size;
+
+
+   this._productService.post(product).subscribe(
+    (response:any)=>{
+      this.products.push(product);
+      // console.log(product.id);
+      console.log(response.data.product_name);
+      
+      // window.location.reload();
+      this.myapp.successmessage(response.message);
+    },
+    (error: any) => {
+     for (const err in error.error.errors) {
+       for (let i = 0; i < error.error.errors[err].length; i++){
+         console.log(error.error.errors[err][i]);
+         this.myapp.errormessage(error.error.errors[err][i]);
+       }
+
+     }
+    }
+  );
+  // store.product_id=product.id;
+  // console.log(store.product_id);
+  // this._StoreService.post(store).subscribe(
+  //   (response:any)=>{
+  //     this.stores.push(store);
+  //     window.location.reload();
+  //     this.myapp.successmessage(response.message);
+  //   },
+  //   (error: any) => {
+  //    for (const err in error.error.errors) {
+  //      for (let i = 0; i < error.error.errors[err].length; i++){
+  //        console.log(error.error.errors[err][i]);
+  //        this.myapp.errormessage(error.error.errors[err][i]);
+  //      }
+
+  //    }
+  //   }
+  // );
+
+/* files:any;
  uploadImage(event:any){
   this.files=event.target.files[0];
   console.log(this.files);
@@ -74,6 +135,7 @@ export class AdminproductsComponent implements OnInit {
   //     }
   //    }
   //  );
+  */
 
  }
 
@@ -84,7 +146,7 @@ export class AdminproductsComponent implements OnInit {
    .subscribe(
     (response: any) => {
       console.log(product);
-      
+
       Swal.fire({
         title: 'Are you sure?',
         text: 'You will not be able to recover this item',
@@ -93,8 +155,8 @@ export class AdminproductsComponent implements OnInit {
         confirmButtonText: 'Yes, delete it!',
         cancelButtonText: 'No, keep it',
       }).then((result) => {
-  
-        if (result.isConfirmed) {    
+
+        if (result.isConfirmed) {
           // console.log('Clicked Yes, File deleted!');
           this.products.splice(index, 1);
           // window.location.reload();
@@ -104,7 +166,7 @@ export class AdminproductsComponent implements OnInit {
           // console.log('Clicked No, File is safe!');
           this.myapp.errormessage("product not Deleted");
 
-          
+
         }
       })
 
@@ -122,25 +184,24 @@ export class AdminproductsComponent implements OnInit {
          $("#uppid").prop('value',c?.id);
          $("#productName").prop('value',c?.product_name);
          $("#description").prop('value',c?.description);
-         $("#image").prop('value',c?.image);
-         $("#subcat_id").prop('value',c?.subcat_id);
        }
      }
    );
 
  }
  product =new Product();
- update(id:any,pName:any,pDesc:any,pImage:any,pSubcatId:any):void
+ store =new Store();
+ update(id:any,pName:any,pDesc:any):void
  {
    this.product.product_name=pName;
    this.product.description=pDesc;
-   this.product.image=pImage;
-   this.product.subcat_id=pSubcatId;
    this._productService.put(id,this.product)
    .subscribe(
      (response: any) => {
-      this.myapp.showInfo('Category updated successfly','update');
-       
+       console.log(response);
+
+      this.myapp.showInfo('Category updated successfully','update');
+
        window.location.reload();
      },
      (error: any) => {
@@ -149,7 +210,7 @@ export class AdminproductsComponent implements OnInit {
           console.log(error.error.errors[err][i]);
           this.myapp.errormessage(error.error.errors[err][i]);
         }
-        
+
       }
      }
    );
