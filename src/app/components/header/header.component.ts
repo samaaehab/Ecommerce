@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  allsubcategories:SubCategory[]=[];
+  allsubcategories:any[]=[];
  public subcategories:any[]=[];
   // public logged=false;
   constructor(private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService) { }
@@ -36,20 +36,23 @@ export class HeaderComponent implements OnInit {
             this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
               (res:any)=>{
                 this.subcategories=res.data;
-                this.subcategories=this.subcategories.map(m=>{return m});
                 console.log(this.subcategories);
                 
+                      this.allsubcategories.push(this.subcategories.map(m=>{return m}));
+
                     // for(let i=0;i<res.data.length;i++){
                     //   this.subcategories.push(res.data[i])
+                    //   this.subcategories=this.subcategories.map(m=>{return m});
+
                     // }
-                 }
-                 ,
+                 },
               (err:any)=>{
                 console.log(err);
                 
               }
             )
-          }console.log(this.subcategories);
+          }
+          console.log(this.allsubcategories);
           
           
         }
