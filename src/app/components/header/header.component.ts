@@ -36,11 +36,11 @@ export class HeaderComponent implements OnInit {
             this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
               (res:any)=>{
                 this.subcategories=res.data;
-                this.subcategories=this.subcategories.map(m=>{return m});
-                console.log(this.subcategories);
+                this.subcategories = this.subcategories.map(m => { console.log(m)});
+                // console.log(this.subcategories);
                 
-                    // for(let i=0;i<res.data.length;i++){
-                    //   this.subcategories.push(res.data[i])
+                    // for(let i=0;i<this.subcategories.length;i++){
+                    // console.log(this.subcategories[i]);              
                     // }
                  }
                  ,
