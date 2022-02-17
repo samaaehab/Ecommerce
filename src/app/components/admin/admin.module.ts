@@ -12,6 +12,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AdminsubcategoryComponent } from './adminsubcategory/adminsubcategory.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaxLengthPipe } from '../.././pipes/max-length.pipe';
 
 
 // toast
@@ -41,6 +42,7 @@ const routes: Routes = [
     AdmincategoryComponent,
     AdminordersComponent,
     AdminsubcategoryComponent,
+    MaxLengthPipe,
 
   ],
   imports: [
