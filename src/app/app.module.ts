@@ -1,3 +1,6 @@
+import { AuthenService } from './services/authen.service';
+import { AuthService } from './services/auth.service';
+import { TokenService } from './services/token.service';
 // import { ProductModule } from './components/product/product.module';
 import { AdminModule } from './components/admin/admin.module';
 import { NgModule } from '@angular/core';
@@ -65,13 +68,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       }
     }),
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+   
 
   ],
   // exports: [CommonModule, NgxPaginationModule],
 
   providers: [
- 
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -94,9 +97,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         },
       } as SocialAuthServiceConfig,
     }, SocialAuthService
-    ,AppComponent
+    ,AppComponent,
+    AuthenService,
+    TokenService,
+    AuthService,
    ],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }
 

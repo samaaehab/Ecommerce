@@ -38,29 +38,42 @@ export class AdminproductsComponent implements OnInit {
   );
 
  }
+ files:any;
+ uploadImage(event:any){
+  this.files=event.target.files[0];
+  console.log(this.files);
+  
+ }
  add(product_name:string,description:string,subcat_id:any):void{
    let product = new Product();
 
-   product.product_name=product_name;
-  //  product.image=image;
-   product.description=description;
-   product.subcat_id=subcat_id;
-   this._productService.post(product).subscribe(
-     (response:any)=>{
-       this.products.push(product); 
-       window.location.reload();
-       this.myapp.successmessage(response.message);
-     },
-     (error: any) => {
-      for (const err in error.error.errors) {
-        for (let i = 0; i < error.error.errors[err].length; i++){
-          console.log(error.error.errors[err][i]);
-          this.myapp.errormessage(error.error.errors[err][i]);
-        }
+  //  product.product_name=product_name;
+  //  product.description=description;
+  //  product.subcat_id=subcat_id;
+   const formdata=new FormData();
+  formdata.append('product_name',product_name);
+  formdata.append('description',description);
+  formdata.append('subcat_id',subcat_id);
+  formdata.append('image',this.files,this.files.name);
+   console.log(formdata);
+  //  this._productService.post(product).subscribe(
+  //    (response:any)=>{
+  //      this.products.push(product); 
+  //      //window.location.reload();
+  //      this.myapp.successmessage(response.message);
+  //      console.log(product.image);
+       
+  //    },
+  //    (error: any) => {
+  //     for (const err in error.error.errors) {
+  //       for (let i = 0; i < error.error.errors[err].length; i++){
+  //         console.log(error.error.errors[err][i]);
+  //         this.myapp.errormessage(error.error.errors[err][i]);
+  //       }
         
-      }
-     }
-   );
+  //     }
+  //    }
+  //  );
 
  }
 

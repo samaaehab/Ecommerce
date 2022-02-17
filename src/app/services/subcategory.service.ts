@@ -23,5 +23,8 @@ delete(id:number){
 put(id:number,subcategory:SubCategory){
   return this._httpClient.put(this.url+`subcategories/${id}`,subcategory);
 }
+public getSubCatForEachCategory(id:number){
+  return this._httpClient.get(this.url + `${id}/subcategories`);
+}
 
 }

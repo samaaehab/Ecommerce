@@ -207,7 +207,7 @@
                         placeholder="product name" />
                     </div>
                     <div class="custom-file mb-3">
-                      <input #inputImage type="file" class="custom-file-input" id="image" name="image" />
+                      <input #inputImage (change)="uploadImage($event)" type="file" class="custom-file-input" id="image" name="image" />
                       <label class="custom-file-label" for="image">Product Image</label>
                     </div>
                   </div>
