@@ -1,3 +1,5 @@
+import { AuthenService } from './../../services/authen.service';
+
 import { TokenService } from './../../services/token.service';
 import { AuthService } from './../../services/auth.service';
 import { SocialAuthService, FacebookLoginProvider } from 'angularx-social-login';
@@ -21,7 +23,12 @@ formLogin= new FormGroup({});
   public loggedin!: boolean;
   public user: any;
   public error:any;
-  constructor(private _formBuilder: FormBuilder, private authService: SocialAuthService,private router:Router,private _authService:AuthService,private token:TokenService) { }
+  constructor(private _formBuilder: FormBuilder, 
+    private authService: SocialAuthService,
+    private router:Router,
+    private _authService:AuthService,
+    private token:TokenService,
+   private auth:AuthenService) { } //
  
   signin() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((data) => {
@@ -114,13 +121,10 @@ this.formRegister=this._formBuilder.group({
  login(){
   this._authService.login(this.formLogin.value).subscribe(
     (response:any)=>{
-      console.log(response.access_token);
-      
-      
+      this.handelResponse(response.access_token);
     },
     (error:any)=>{
-      console.log(error);
-      
+      this.handelError(error);   
     }
   );
 
@@ -128,15 +132,17 @@ this.formRegister=this._formBuilder.group({
 register(){
   this._authService.signup(this.formRegister.value).subscribe(
     (response:any)=>{
-      this.handelResponse(response);  
+      this.handelResponse(response.access_token);
     },
     (error:any)=>{
-      this.handelError(error);
+      this.handelError(error);  
     }
   );
 }
 handelResponse(response:any){
   this.token.handel(response.access_token);
+  //this.auth.changeAuthStatus(false);
+  this.router.navigateByUrl('/home');
 }
 
 handelError(error:any){

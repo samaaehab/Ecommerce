@@ -1,3 +1,8 @@
+import { SubCategory } from 'src/app/models/SubCategory';
+import { CategoryServiceService } from 'src/app/services/category-service.service';
+import { SubcategoryService } from 'src/app/services/subcategory.service';
+import { AuthenService } from './../../services/authen.service';
+
 import { Component, OnInit } from '@angular/core';
 // import { TranslateService } from '@ngx-translate/core';
 
@@ -7,6 +12,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  allsubcategories:SubCategory[]=[];
+ public subcategories:any[]=[];
+  // public logged=false;
+  constructor(private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService) { }
   // constructor(
   //   public translate: TranslateService
   // ) {
@@ -19,6 +28,33 @@ export class HeaderComponent implements OnInit {
   
 
   ngOnInit(): void {
+    //this.auth.status.subscribe(value=>this.logged=value);
+      this._categoryService.get().subscribe(
+        (res: any) => {
+          for(const i in res.data){
+            const id= res.data[i].id;
+            this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
+              (res:any)=>{
+                this.subcategories=res.data;
+                this.subcategories=this.subcategories.map(m=>{return m});
+                console.log(this.subcategories);
+                
+                    // for(let i=0;i<res.data.length;i++){
+                    //   this.subcategories.push(res.data[i])
+                    // }
+                 }
+                 ,
+              (err:any)=>{
+                console.log(err);
+                
+              }
+            )
+          }console.log(this.subcategories);
+          
+          
+        }
+      );
+        
+      }
   }
 
-}
