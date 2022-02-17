@@ -37,14 +37,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     // // rebeat
     // AdmincategoryComponent,
-   
+
     AcountComponent,
     MainhomeComponent,
     CheckoutComponent,
     CartComponent,
     FavouritesComponent,
     ConfirmComponent,
-    
+
 
 
   ],
@@ -71,7 +71,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   // exports: [CommonModule, NgxPaginationModule],
 
   providers: [
- 
+
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -90,7 +90,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         ],
         onError: (err: any) => {
         console.log(err);
-          
+
         },
       } as SocialAuthServiceConfig,
     }, SocialAuthService
