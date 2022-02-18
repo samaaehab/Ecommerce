@@ -15,6 +15,9 @@ private url=`http://127.0.0.1:8000/api/`;
 public get() { return this._httpClient.get(this.url + `products`); }
 
 public getForEachCategory(id:number){
+  return this._httpClient.get(this.url + `category/${id}/product`);
+}
+public getAllForEachCategory(id:number){
   return this._httpClient.get(this.url + `category/${id}/products`);
 }
 
