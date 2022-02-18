@@ -144,33 +144,29 @@
                       <th scope="col">Description</th>
                       <th scope="col">Image</th>
                       <th scope="col">Subcategory Name</th>
-                      <th scope="col">Size</th>
+                      <!-- <th scope="col">Size</th>
                       <th scope="col">Color</th>
                       <th scope="col">Price</th>
-                      <th scope="col">Discount</th>
+                      <th scope="col">Discount</th> -->
                       <th scope="col">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="
                     let currentIndex = index;
-                    let store;
-                    of: stores
+                    let product of products
                       | filter: searchText
                       | paginate: { itemsPerPage: count, currentPage: p }
                   ">
                       <th scope="row">{{currentIndex + 1}}</th>
-                      <td scope="col">{{store.product.product_name}}</td>
-                      <td scope="col">{{store.product.description |maxLength}}</td>
+                      <td scope="col">{{product.product_name}}</td>
+                      <td scope="col">{{product.description |maxLength}}</td>
                       <td scope="col">
-                        <img src="{{store.product.image}}" style="width: 40px;height: 40px;"></td>
-                      <td scope="col">{{store.product.subcategory.subcat_name}}</td>
-                      <td scope="col">{{store.size}}</td>
-                      <td scope="col">{{store.color}}</td>
-                      <td scope="col">{{store.price}}</td>
-                      <td scope="col">{{store.discount}}</td>
+                        <img src="{{product.image}}" style="width: 40px;height: 40px;"></td>
+                      <td scope="col">{{product.subcategory.subcat_name}}</td>
                       <td class="d-flex justify-content-around">
-                        <div class="btn btn-dark mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(store.product.id)">Edit</div>
+                        <div class="btn btn-dark mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(product.id)">Edit</div>
+                        <div class="btn btn-info mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal1" (click)="getId(product.id)">Features</div>
                         <button class="btn btn-danger" (click)="delete(currentIndex)">Delete</button>
                       </td>
                     </tr>
@@ -233,17 +229,17 @@
                       </option>
                     </select>
                   </div>
-                  <div class="form-group mb-3">
+                  <!-- <div class="form-group mb-3">
                     <label for="inputStorePrice">Price</label>
                     <input type="number" #inputStorePrice class="form-control" id="inputStorePrice"
                       placeholder="Price" />
-                  </div>
-                  <div class="form-group mb-3">
+                  </div> -->
+                  <!-- <div class="form-group mb-3">
                     <label for="inputStoreDiscount">Discount</label>
                     <input type="number" #inputStoreDiscount class="form-control" id="inputStoreDiscount"
                       placeholder="Price" />
-                  </div>
-                  <div class="form-group mb-3">
+                  </div> -->
+                  <!-- <div class="form-group mb-3">
                     <label for="inputStoreColor">Color</label>
                     <select #inputStoreColor class="form-select" aria-label="Default select example">
                       <option *ngFor="
@@ -251,8 +247,8 @@
                         {{store.color}}
                       </option>
                     </select>
-                  </div>
-                  <div class="form-group mb-3">
+                  </div> -->
+                  <!-- <div class="form-group mb-3">
                     <label for="inputStoreSize">Size</label>
                     <select #inputStoreSize class="form-select" aria-label="Default select example" for="inputStoreSize">
                       <option *ngFor="
@@ -260,9 +256,10 @@
                         {{store.size}}
                       </option>
                     </select>
-                  </div>
+                  </div> -->
                   <button type="submit" class="btn btn-primary w-25"
-                    (click)="add(inputProductName.value,inputDescription.value,inputSubCategoryId.value,inputStorePrice.value,inputStoreDiscount.value,inputStoreColor.value,inputStoreSize.value)">Add</button>
+                    (click)="add(inputProductName.value,inputDescription.value,inputSubCategoryId.value)">Add</button>
+                    <!-- inputProductName.value,inputDescription.value,inputSubCategoryId.value,inputStorePrice.value,inputStoreDiscount.value,inputStoreColor.value,inputStoreSize.value -->
                 </form>
               </div>
             </div>
@@ -303,6 +300,95 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
           <button type="button" class="btn btn-primary" (click)="update(inputId.value,inputPName.value,inputDesc.value)"  ><i class="fas fa-edit"></i></button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!----------------------------->
+
+   <!-- Modal -->
+   <div style="position: absolute;" class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div style="position: relative;top: 200px;left: 150px;" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Features</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="productId" hidden #productid>
+
+            <div class="row">
+              <div class="form-group mb-3 col-3">
+                <label>Color</label>
+                <select #inputStoreColor class="form-select" aria-label="Default select example">
+                  <option value="dark">Dark</option>
+                  <option value="red">Red</option>
+                  <option value="orange">Orange</option>
+                  <option value="white">White</option>
+                </select>
+              </div>
+              <div class="form-group mb-3 col-3">
+                <label>Size</label>
+                <select #inputStoreSize class="form-select" aria-label="Default select example">
+                  <option value="xl">XL</option>
+                  <option value="l">L</option>
+                  <option value="m">M</option>
+                  <option value="s">S</option>
+                </select>
+              </div>
+              <div class="form-group mb-3 col-3">
+                <label for="inputStorePrice">Price</label>
+                <input type="number" #inputStorePrice class="form-control" id="inputStorePrice"
+                      placeholder="Price" />
+              </div>
+
+              <div class="form-group mb-3 col-3">
+                <label for="inputStoreDiscount">Discount</label>
+                <input type="number" #inputStoreDiscount class="form-control" id="inputStoreDiscount"
+                      placeholder="Discount" />
+              </div>
+
+
+            </div>
+            <div>
+                  <button type="button" class="btn btn-primary" (click)="addFeature(productid.value,inputStoreColor.value,inputStoreSize.value,inputStorePrice.value,inputStoreDiscount.value)"><i class="fas fa-plus"></i></button>
+            </div>
+
+        </div>
+        <div class="card-body">
+          <div style="height: 350px">
+            <table class="table">
+              <thead class="thead-info">
+                  <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Color</th>
+                  <th scope="col">Size</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Discount</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="
+                let currentIndex = index;
+                let store of stores
+              ">
+                  <th *ngIf="store.product_id == productid.value" scope="row">{{currentIndex + 1}}</th>
+                  <td *ngIf="store.product_id == productid.value" scope="col">{{store.color}}</td>
+                  <td *ngIf="store.product_id == productid.value" scope="col">{{store.size}}</td>
+                  <td *ngIf="store.product_id == productid.value" scope="col">{{store.price}}</td>
+                  <td *ngIf="store.product_id == productid.value" scope="col">{{store.discount}}</td>
+                  <td *ngIf="store.product_id == productid.value" class="d-flex justify-content-around">
+                    <button class="btn btn-danger" (click)="deleteFeature(currentIndex)">Delete</button>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
       </div>
     </div>
   </div>
