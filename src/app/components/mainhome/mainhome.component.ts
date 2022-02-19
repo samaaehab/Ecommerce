@@ -11,7 +11,9 @@ import { SubCategory } from 'src/app/models/SubCategory';
 })
 export class MainhomeComponent implements OnInit {
   LastProducts:Product[]=[];
-  allProducts:any[]=[];
+  allProducts: any[] = [];
+  imagepath: any = 'http://127.0.0.1:8000/public/image/';
+  
   constructor(private _productService:ProductService,private _SubcategoryService:SubcategoryService) { }
 
   ngOnInit(): void {

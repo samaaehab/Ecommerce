@@ -8,6 +8,7 @@ import  Swal from 'sweetalert2';
 import { AppComponent } from 'src/app/app.component';
 import { Store } from './../../../models/Store';
 import { StoreService } from './../../../services/store.service';
+import { event } from 'jquery';
 
 
 @Component({
@@ -18,7 +19,9 @@ import { StoreService } from './../../../services/store.service';
 export class AdminproductsComponent implements OnInit {
   products:Product[]=[];
   subcategories:SubCategory[]=[];
-  stores:Store[]=[];
+  stores: Store[] = [];
+  files: any;
+  imagepath: any = 'http://127.0.0.1:8000/public/image/';
   // Pagination parameters.
   p: any = 1;
   count: any = 3;
@@ -111,21 +114,32 @@ export class AdminproductsComponent implements OnInit {
 //   console.log(this.files);
   
 //  }
- add(product_name:string,description:string,subcat_id:any):void{
+imageUpload(event:any){
+  this.files = event.target.files[0];
+  console.log(this.files);
+  // console.log(inputImage.value);
 
+}
+  // console.log(inputImage.value);
+ add(product_name:string,image:any,description:string,subcat_id:any):void{
+
+  //  image = this.files.name;
    this.product.product_name=product_name;
    this.product.description=description;
-   this.product.subcat_id=subcat_id;
-  //  const formdata=new FormData();
-  // formdata.append('product_name',product_name);
-  // formdata.append('description',description);
-  // formdata.append('subcat_id',subcat_id);
-  // formdata.append('image',this.files,this.files.name);
+   this.product.subcat_id = subcat_id;
+   this.product.image = image;
+   let formdata=new FormData();
+  formdata.append('product_name',product_name);
+  formdata.append('description',description);
+  formdata.append('subcat_id',subcat_id);
+   formdata.append('image', this.files, this.files.name);
+  // formdata.append('data',JSON.stringify(this.products)); /* or uncomment above */
+   
   //  console.log(formdata);
-   this._productService.post(this.product).subscribe(
+   this._productService.post(formdata).subscribe(
      (response:any)=>{
-       this.products.push(this.product); 
-       window.location.reload();
+       this.products.push(this.product); /*formdata */
+      //  window.location.reload();
        this.myapp.successmessage(response.message);
        
      },
@@ -139,9 +153,11 @@ export class AdminproductsComponent implements OnInit {
       }
      }
    );
+   /*image-----*/
   
 
  }
+
  deleteFeature(index:number):void
  {
    let store=this.stores[index];
