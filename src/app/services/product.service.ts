@@ -20,6 +20,9 @@ public getForEachCategory(id:number){
 public getAllForEachCategory(id:number){
   return this._httpClient.get(this.url + `category/${id}/products`);
 }
+public getProductsCategory(id:number){
+  return this._httpClient.get(this.url + `${id}/products`);
+}
 
 public post(product: any) {
   const headers=new HttpHeaders();

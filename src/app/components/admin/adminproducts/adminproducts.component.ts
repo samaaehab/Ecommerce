@@ -9,8 +9,11 @@ import  Swal from 'sweetalert2';
 import { AppComponent } from 'src/app/app.component';
 import { Store } from './../../../models/Store';
 import { StoreService } from './../../../services/store.service';
+
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Category } from 'src/app/models/Category';
+
+import { event } from 'jquery';
 
 
 @Component({
@@ -21,8 +24,12 @@ import { Category } from 'src/app/models/Category';
 export class AdminproductsComponent implements OnInit {
   products:any[]=[];
   subcategories:SubCategory[]=[];
+
   categories:Category[]=[];
   stores:Store[]=[];
+
+  files: any;
+  imagepath: any = 'http://127.0.0.1:8000/public/image/';
   // Pagination parameters.
   p: any = 1;
   count: any = 3;
@@ -65,109 +72,33 @@ export class AdminproductsComponent implements OnInit {
     }
   );
  }
+imageUpload(event:any){
+  this.files = event.target.files[0];
+  console.log(this.files);
 
-//  add(product_name:string,description:string,subcat_id:any,price:any,discount:any,color:string,size:string):void{
-//    let product = new Product();
-//    let store =  new Store();
-//    product.product_name=product_name;
-//   //  product.image=image;
-//    product.description=description;
-//    product.subcat_id=subcat_id;
-//    store.price=price;
-//    store.discount=discount;
-//    store.color=color;
-//    store.size=size;
+}
+  // console.log(inputImage.value);
+ add(product_name:string,image:any,description:string,subcat_id:any,cat_id:any):void{
 
+  //  this.product.product_name=product_name;
+  //  this.product.description=description;
 
-//    this._productService.post(product).subscribe(
-//     (response:any)=>{
-//       this.products.push(product);
-//       // console.log(product.id);
-//       console.log(response.data.product_name);
-      
-//       // window.location.reload();
-//       this.myapp.successmessage(response.message);
-//     },
-//     (error: any) => {
-//      for (const err in error.error.errors) {
-//        for (let i = 0; i < error.error.errors[err].length; i++){
-//          console.log(error.error.errors[err][i]);
-//          this.myapp.errormessage(error.error.errors[err][i]);
-//        }
+  //  this.product.cat_id=cat_id;
 
-//      }
-//     }
-//   );
-  // store.product_id=product.id;
-  // console.log(store.product_id);
-  // this._StoreService.post(store).subscribe(
-  //   (response:any)=>{
-  //     this.stores.push(store);
-  //     window.location.reload();
-  //     this.myapp.successmessage(response.message);
-  //   },
-  //   (error: any) => {
-  //    for (const err in error.error.errors) {
-  //      for (let i = 0; i < error.error.errors[err].length; i++){
-  //        console.log(error.error.errors[err][i]);
-  //        this.myapp.errormessage(error.error.errors[err][i]);
-  //      }
-
-  //    }
-  //   }
-  // );
-
-//  files:any;
-//  uploadImage(event:any){
-//   this.files=event.target.files[0];
-//   console.log(this.files.name);
-  
-// }
-/* Variabe to store file data */
-//filedata:any;
-/* File onchange event */
-// fileEvent(e:any){
-//     this.filedata = e.target.files[0];
-// }
-// onSubmitform(f: NgForm) {
-    
-       
-//   var myFormData = new FormData();
-//   const headers = new HttpHeaders();
-//   headers.append('Content-Type', 'multipart/form-data');
-//   headers.append('Accept', 'application/json');
-//   myFormData.append('image', this.filedata,this.filedata.name);
-//   myFormData.append('product_name',$("#inputProductName").prop('value'))
-//   myFormData.append('description',$("#inputDesc").prop('value'))
-//   myFormData.append('subcat_id',$("#inputSubCat").prop('value'))
-//   myFormData.append('cat_id',$("#inputCat").prop('value'))
-
-//   /* Image Post Request */
-//   this.http.post('http://127.0.0.1:8000/api/products', myFormData, {
-//   headers: headers
-//   }).subscribe(response => {
-//     this.products.push(myFormData); 
-//            //window.location.reload();
-//            this.myapp.successmessage(response);
-//           console.log(response); 
-
-// })
- add(product_name:string,description:string,subcat_id:any,cat_id:any):void{
-
-   this.product.product_name=product_name;
-   this.product.description=description;
-   this.product.subcat_id=subcat_id;
-   this.product.cat_id=cat_id;
-  // const formdata=new FormData();
-  // formdata.append('product_name',product_name);
-  // formdata.append('description',description);
-  // formdata.append('subcat_id',subcat_id);
-  // formdata.append('image',this.files.name);
-  //  console.log(formdata);
-   this._productService.post(this.product).subscribe(
+  //  this.product.subcat_id = subcat_id;
+  //  this.product.image = image;
+   let formdata=new FormData();
+  formdata.append('product_name',product_name);
+  formdata.append('description',description);
+  formdata.append('subcat_id',subcat_id);
+   formdata.append('image', this.files, this.files.name);
+   formdata.append('cat_id',cat_id);
+   console.log(cat_id);
+   
+   this._productService.post(formdata).subscribe(
      (response:any)=>{
        this.products.push(this.product); 
-        window.location.reload();
+       // window.location.reload();
        this.myapp.successmessage(response.message);
       console.log(response);
       
@@ -183,9 +114,11 @@ export class AdminproductsComponent implements OnInit {
       }
      }
    );
+   /*image-----*/
   
 
  }
+
  deleteFeature(index:number):void
  {
    let store=this.stores[index];
