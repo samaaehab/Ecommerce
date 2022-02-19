@@ -12,9 +12,22 @@ import { SubCategory } from 'src/app/models/SubCategory';
 export class MainhomeComponent implements OnInit {
   LastProducts:Product[]=[];
   allProducts:any[]=[];
+  // products:Product[]=[];
   constructor(private _productService:ProductService,private _SubcategoryService:SubcategoryService) { }
 
+
+
   ngOnInit(): void {
+
+    // this._productService.get().subscribe(
+    //   (res: any) => {
+    //     console.log(JSON.stringify(res));
+    //     this.products = res.data;
+    //   }
+    // );
+
+    
+
     this._SubcategoryService.get().subscribe(
     (res: any) => {
       for(const i in res.data){
@@ -42,7 +55,21 @@ export class MainhomeComponent implements OnInit {
   );
     
   }
+  getid(id:number){
+    this.allProducts.forEach(
+      c=>{
+        if(c.id == id){
+          $("#exampleModalLabel1").html(c?.product_name);
+          $("#exampleModalLabel2").html(c?.description);
 
+
+        }
+      }
+    );
+    
+  }
+  
 
 }
+
 
