@@ -14,8 +14,8 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   allsubcategories:any[]=[];
  public subcategories:any[]=[];
-  // public logged=false;
-  constructor(private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService) { }
+  public logged=false;
+  constructor(private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService,private auth:AuthenService) { }
   // constructor(
   //   public translate: TranslateService
   // ) {

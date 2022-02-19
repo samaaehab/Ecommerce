@@ -4,5 +4,6 @@ export class Product {
   image:any;
   description: string = "";
   subcat_id: any;
+  cat_id: any;
 
 }

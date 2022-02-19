@@ -1,13 +1,16 @@
+import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { Component, OnInit } from '@angular/core';
 import { SubCategory } from 'src/app/models/SubCategory';
 import { SubcategoryService } from 'src/app/services/subcategory.service';
 import { Product } from './../../../models/Product';
 import { ProductService } from './../../../services/product.service';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
 import  Swal from 'sweetalert2';
 import { AppComponent } from 'src/app/app.component';
 import { Store } from './../../../models/Store';
 import { StoreService } from './../../../services/store.service';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Category } from 'src/app/models/Category';
 
 
 @Component({
@@ -16,20 +19,21 @@ import { StoreService } from './../../../services/store.service';
   styleUrls: ['./adminproducts.component.css']
 })
 export class AdminproductsComponent implements OnInit {
-  products:Product[]=[];
+  products:any[]=[];
   subcategories:SubCategory[]=[];
+  categories:Category[]=[];
   stores:Store[]=[];
   // Pagination parameters.
   p: any = 1;
   count: any = 3;
-  p1: any = 1;
-  count1: any = 3;
+  // p1: any = 1;
+  // count1: any = 3;
   searchText:any;
   id:any;
   product =new Product();
   store =new Store();
-  constructor(private _productService: ProductService, private _SubcategoryService: SubcategoryService,private _StoreService:StoreService,
-    public myapp: AppComponent) { }
+  constructor(private _productService: ProductService, private _SubcategoryService: SubcategoryService,private _StoreService:StoreService,private _categoryService:CategoryServiceService,
+    public myapp: AppComponent,private http:HttpClient) { }
 
  ngOnInit(): void {
    this._productService.get().subscribe(
@@ -46,6 +50,14 @@ export class AdminproductsComponent implements OnInit {
       this.subcategories = res.data;
     }
   );
+
+  this._categoryService.get().subscribe(
+    (res: any) => {
+      console.log(JSON.stringify(res));
+      this.categories = res.data;
+    }
+  );
+  
   this._StoreService.get().subscribe(
     (res: any) => {
       this.stores = res.data;
@@ -108,25 +120,57 @@ export class AdminproductsComponent implements OnInit {
 //  files:any;
 //  uploadImage(event:any){
 //   this.files=event.target.files[0];
-//   console.log(this.files);
+//   console.log(this.files.name);
   
-//  }
- add(product_name:string,description:string,subcat_id:any):void{
+// }
+/* Variabe to store file data */
+//filedata:any;
+/* File onchange event */
+// fileEvent(e:any){
+//     this.filedata = e.target.files[0];
+// }
+// onSubmitform(f: NgForm) {
+    
+       
+//   var myFormData = new FormData();
+//   const headers = new HttpHeaders();
+//   headers.append('Content-Type', 'multipart/form-data');
+//   headers.append('Accept', 'application/json');
+//   myFormData.append('image', this.filedata,this.filedata.name);
+//   myFormData.append('product_name',$("#inputProductName").prop('value'))
+//   myFormData.append('description',$("#inputDesc").prop('value'))
+//   myFormData.append('subcat_id',$("#inputSubCat").prop('value'))
+//   myFormData.append('cat_id',$("#inputCat").prop('value'))
+
+//   /* Image Post Request */
+//   this.http.post('http://127.0.0.1:8000/api/products', myFormData, {
+//   headers: headers
+//   }).subscribe(response => {
+//     this.products.push(myFormData); 
+//            //window.location.reload();
+//            this.myapp.successmessage(response);
+//           console.log(response); 
+
+// })
+ add(product_name:string,description:string,subcat_id:any,cat_id:any):void{
 
    this.product.product_name=product_name;
    this.product.description=description;
    this.product.subcat_id=subcat_id;
-  //  const formdata=new FormData();
+   this.product.cat_id=cat_id;
+  // const formdata=new FormData();
   // formdata.append('product_name',product_name);
   // formdata.append('description',description);
   // formdata.append('subcat_id',subcat_id);
-  // formdata.append('image',this.files,this.files.name);
+  // formdata.append('image',this.files.name);
   //  console.log(formdata);
    this._productService.post(this.product).subscribe(
      (response:any)=>{
        this.products.push(this.product); 
-       window.location.reload();
+        window.location.reload();
        this.myapp.successmessage(response.message);
+      console.log(response);
+      
        
      },
      (error: any) => {

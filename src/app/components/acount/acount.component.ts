@@ -11,6 +11,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GoogleLoginProvider } from "angularx-social-login";
 import { Account } from 'src/app/models/Account';
+import  Swal from 'sweetalert2';
+import { AppComponent } from 'src/app/app.component';
 @Component({
 selector: 'app-acount',
 templateUrl: './acount.component.html',
@@ -28,7 +30,7 @@ formLogin= new FormGroup({});
     private router:Router,
     private _authService:AuthService,
     private token:TokenService,
-   private auth:AuthenService) { } //
+   private auth:AuthenService,public myapp: AppComponent) { } //
  
   signin() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((data) => {
@@ -55,7 +57,6 @@ formLogin= new FormGroup({});
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedin = user != null 
-      console.log(user);
       
   })
     // (window as any).fbAsyncInit = function() {
@@ -122,6 +123,8 @@ this.formRegister=this._formBuilder.group({
   this._authService.login(this.formLogin.value).subscribe(
     (response:any)=>{
       this.handelResponse(response.access_token);
+      //this.myapp.successmessage(response.message);
+      console.log(response.access_token);
     },
     (error:any)=>{
       this.handelError(error);   
@@ -133,16 +136,23 @@ register(){
   this._authService.signup(this.formRegister.value).subscribe(
     (response:any)=>{
       this.handelResponse(response.access_token);
+      alert(response);
     },
     (error:any)=>{
-      this.handelError(error);  
+      this.handelError(error);
+      for (const err in error.error.errors) {
+        for (let i = 0; i < error.error.errors[err].length; i++){
+          console.log(error.error.errors[err][i]);
+          this.myapp.errormessage(error.error.errors[err][i]);
+        }
+      }
     }
   );
 }
 handelResponse(response:any){
   this.token.handel(response.access_token);
   //this.auth.changeAuthStatus(false);
-  this.router.navigateByUrl('/home');
+  //this.router.navigateByUrl('/home');
 }
 
 handelError(error:any){
@@ -198,8 +208,8 @@ signInWithGoogle(): void {
       // console.log(data);
       alert(JSON.stringify(data));
       this.account.id=data.id;
-      this.account.account_name=data.name;
-      this.account.account_email=data.email;
+      this.account.name=data.name;
+      this.account.email=data.email;
     }).catch(data => {
       // alert(JSON.stringify(data));
       this.authService.signOut();

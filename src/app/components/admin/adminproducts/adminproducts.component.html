@@ -144,6 +144,7 @@
                       <th scope="col">Description</th>
                       <th scope="col">Image</th>
                       <th scope="col">Subcategory Name</th>
+                      <th scope="col">Category Name</th>
                       <!-- <th scope="col">Size</th>
                       <th scope="col">Color</th>
                       <th scope="col">Price</th>
@@ -164,6 +165,7 @@
                       <td scope="col">
                         <img src="{{product.image}}" style="width: 40px;height: 40px;"></td>
                       <td scope="col">{{product.subcategory.subcat_name}}</td>
+                      <td scope="col">{{product.category.cat_name}}</td>
                       <td class="d-flex justify-content-around">
                         <div class="btn btn-dark mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(product.id)">Edit</div>
                         <div class="btn btn-info mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal1" (click)="getId(product.id)">Features</div>
@@ -202,63 +204,44 @@
             <!-- Card Body -->
             <div class="card-body">
               <div>
+                <!-- #f="ngForm" (ngSubmit)="onSubmitform(f)" -->
                 <form >
                   <!-- (ngSubmit)="onSubmit()" -->
                   <div class="form-row">
                     <div class="form-group col-md-6 mb-3">
                       <label for="inputEmail4">Product Name</label>
-                      <input type="text" #inputProductName class="form-control" id="inputEmail4"
+                      <input type="text" #inputProductName class="form-control" id="inputProductName"
                         placeholder="product name" />
                     </div>
-                    <div class="custom-file mb-3">
-                      <input #inputImage  type="file" class="custom-file-input" id="image" name="image" />
+                     <div class="custom-file mb-3">
+                      <input #inputImage  type="file" class="custom-file-input" id="image" name="image"/>
                       <label class="custom-file-label" for="image">Product Image</label>
                     </div>
                   </div>
                   <div class="form-group mb-3">
                     <label for="exampleFormControlTextarea1">Description</label>
-                    <textarea #inputDescription class="form-control mb-3" id="exampleFormControlTextarea1"
+                    <textarea #inputDescription class="form-control mb-3" id="inputDesc"
                       rows="3"></textarea>
                   </div>
                   <div class="form-group mb-3">
                     <label for="inputSubcategoryName">Subcategory Name</label>
-                    <select #inputSubCategoryId class="form-select" aria-label="Default select example" for="inputSubcategoryName">
+                    <select #inputSubCategoryId class="form-select" aria-label="Default select example" for="inputSubcategoryName" id="inputSubCat">
                       <option *ngFor="
                       let subcategory of subcategories" value="{{subcategory.id}}">
                         {{subcategory.subcat_name}}
                       </option>
                     </select>
                   </div>
-                  <!-- <div class="form-group mb-3">
-                    <label for="inputStorePrice">Price</label>
-                    <input type="number" #inputStorePrice class="form-control" id="inputStorePrice"
-                      placeholder="Price" />
-                  </div> -->
-                  <!-- <div class="form-group mb-3">
-                    <label for="inputStoreDiscount">Discount</label>
-                    <input type="number" #inputStoreDiscount class="form-control" id="inputStoreDiscount"
-                      placeholder="Price" />
-                  </div> -->
-                  <!-- <div class="form-group mb-3">
-                    <label for="inputStoreColor">Color</label>
-                    <select #inputStoreColor class="form-select" aria-label="Default select example">
+                  <div class="form-group mb-3">
+                    <label for="inputSubcategoryName">Category Name</label>
+                    <select #inputCategoryId class="form-select" aria-label="Default select example" for="inputCategoryName" id="inputCat">
                       <option *ngFor="
-                      let store of stores" [value]="store.color">
-                        {{store.color}}
+                      let category of categories" value="{{category.id}}">
+                        {{category.cat_name}}
                       </option>
                     </select>
-                  </div> -->
-                  <!-- <div class="form-group mb-3">
-                    <label for="inputStoreSize">Size</label>
-                    <select #inputStoreSize class="form-select" aria-label="Default select example" for="inputStoreSize">
-                      <option *ngFor="
-                      let store of stores" [value]="store.size">
-                        {{store.size}}
-                      </option>
-                    </select>
-                  </div> -->
-                  <button type="submit" class="btn btn-primary w-25"
-                    (click)="add(inputProductName.value,inputDescription.value,inputSubCategoryId.value)">Add</button>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-25" (click)="add(inputProductName.value,inputDescription.value,inputSubCategoryId.value,inputCategoryId.value)">Add</button>
                     <!-- inputProductName.value,inputDescription.value,inputSubCategoryId.value,inputStorePrice.value,inputStoreDiscount.value,inputStoreColor.value,inputStoreSize.value -->
                 </form>
               </div>
