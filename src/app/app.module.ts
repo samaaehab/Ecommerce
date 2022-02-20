@@ -30,6 +30,7 @@ import { SocialLoginModule} from 'angularx-social-login';
 import {GoogleLoginProvider} from 'angularx-social-login';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -60,6 +61,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule,
+    Ng2SearchPipeModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -97,7 +99,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         },
       } as SocialAuthServiceConfig,
     }, SocialAuthService
-    ,AppComponent,
+    , AppComponent,
+    HeaderComponent,
     AuthenService,
     TokenService,
     AuthService,

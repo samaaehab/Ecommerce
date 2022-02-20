@@ -30,7 +30,8 @@ formLogin= new FormGroup({});
     private router:Router,
     private _authService:AuthService,
     private token:TokenService,
-   private auth:AuthenService,public myapp: AppComponent) { } //
+    private auth: AuthenService,
+    public myapp: AppComponent) { } //
  
   signin() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((data) => {
@@ -123,7 +124,7 @@ this.formRegister=this._formBuilder.group({
   this._authService.login(this.formLogin.value).subscribe(
     (response:any)=>{
       this.handelResponse(response.access_token);
-      //this.myapp.successmessage(response.message);
+      this.myapp.successmessage(response.message);
       console.log(response.access_token);
     },
     (error:any)=>{
@@ -137,6 +138,8 @@ register(){
     (response:any)=>{
       this.handelResponse(response.access_token);
       alert(response);
+      this.myapp.successmessage(response.message);
+
     },
     (error:any)=>{
       this.handelError(error);

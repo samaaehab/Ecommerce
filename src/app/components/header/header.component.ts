@@ -2,7 +2,6 @@ import { SubCategory } from 'src/app/models/SubCategory';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { SubcategoryService } from 'src/app/services/subcategory.service';
 import { AuthenService } from './../../services/authen.service';
-
 import { Component, OnInit } from '@angular/core';
 // import { TranslateService } from '@ngx-translate/core';
 
@@ -14,7 +13,8 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   allsubcategories:any[]=[];
  public subcategories:any[]=[];
-  public logged=false;
+  public logged = false;
+  searchText:any;
   constructor(private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService,private auth:AuthenService) { }
   // constructor(
   //   public translate: TranslateService

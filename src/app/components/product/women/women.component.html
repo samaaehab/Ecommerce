@@ -53,7 +53,8 @@
             <div class="col-lg-9">
                 <div class="row small-gutters">
                     <div class="col-6 col-md-4" *ngFor="let product of productsCategory |
-                    paginate: { itemsPerPage: count, currentPage: p }">
+                    filter:searchText|
+                    paginate: { itemsPerPage: count, currentPage: p } ">
                         <div class="grid_item">
                             <span class="ribbon off">-30%</span>
                             <figure>
@@ -92,7 +93,7 @@
                     <div class="filter_type version_2">
                         <h4><a href="#filter_1" data-bs-toggle="collapse" class="opened">Sub Categories</a></h4>
                         <div class="collapse show" id="filter_1">
-                            <ul>
+                            <!-- <ul>
                                 <li>
                                     <label class="container_check">Blouse <small>12</small>
                                         <input type="checkbox">
@@ -118,12 +119,26 @@
                                     </label>
                                 </li>
                                
+                            </ul> -->
+                            <div class="input-group" style="width: 300px;">
+                                <div class="form-outline">
+                                  <input [(ngModel)]='searchText' type="search" id="form1" class="form-control" style="border-radius: 0px;" placeholder="Search"/>
+                                </div>
+                              </div>
+                              <ul>
+                                <li *ngFor="let sucategory of allsubcategories[1];let currentIndex=index">
+                                    <label ><i class="fa fa-puzzle-piece me-1" style="font-size:16px"></i>{{sucategory.subcat_name}} <small class="ml-5">12</small>
+                                        <!-- <input type="checkbox"> -->
+                                        <!-- <span class="checkmark"></span> -->
+                                    </label>
+                                </li>
+                               
                             </ul>
                         </div>
                         <!-- /filter_type -->
                     </div>
                     <!-- /filter_type -->
-                    <div class="filter_type version_2">
+                    <!-- <div class="filter_type version_2">
                         <h4><a href="#filter_2" data-bs-toggle="collapse" class="opened">Price</a></h4>
                         <div class="collapse show" id="filter_2">
                             <ul>
@@ -153,15 +168,15 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /filter_type -->
                   
                     <!-- /filter_type -->
                   
                     <!-- /filter_type -->
-                    <div class="buttons">
+                    <!-- <div class="buttons">
                         <a href="#0" class="btn_1">Filter</a> <a href="#0" class="btn_1 gray">Reset</a>
-                    </div>
+                    </div> -->
                 </div>
             </aside>
             <!-- /col -->

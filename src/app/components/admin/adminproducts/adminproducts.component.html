@@ -161,7 +161,7 @@
                   ">
                       <th scope="row">{{currentIndex + 1}}</th>
                       <td scope="col">{{product.product_name}}</td>
-                      <td scope="col">{{product.description |maxLength}}</td>
+                      <td scope="col" class="text-break">{{product.description | maxLength }}</td>
                       <td scope="col">
                         <img src="{{imagepath}}{{product.image}}" style="height: 40px;"></td>
                       <td scope="col">{{product.subcategory.subcat_name}}</td>
