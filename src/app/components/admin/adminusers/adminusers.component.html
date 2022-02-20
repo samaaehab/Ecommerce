@@ -216,7 +216,7 @@
           <br>
           <div style="position: absolute;" class="modal fade" id="exampleModal" tabindex="-1"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div style="position: relative;top: 130px;left: 90px;" class="modal-dialog">
+            <div style="position: relative;top: 50px;left:-70px;" class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Chating</h5>
@@ -232,7 +232,9 @@
                         *ngFor="let msg of messages"
                       >
                       <div class="d-flex w-75 align-items-center justfiy-content-between">
-                        <strong class="mb-1" >{{msg.username}}</strong>
+
+
+                        <strong class="mb-1 text-primary">{{msg.username}}</strong>
                       </div>
                       <div class="col-6 mb-1 small" >{{msg.message}}</div>
                       </div>
