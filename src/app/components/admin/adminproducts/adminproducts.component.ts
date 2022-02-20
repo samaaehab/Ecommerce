@@ -73,10 +73,10 @@ export class AdminproductsComponent implements OnInit {
    
   this.formProduct=this._formBuilder.group({
     ProductName:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],      
-    ProductDescription:['',[Validators.required,Validators.maxLength(100),Validators.minLength(10)]],      
-    subCategory:['',[Validators.required]],      
+    ProductDescription:['',[Validators.required,Validators.maxLength(255),Validators.minLength(10)]],      
+    SubCategory:['',[Validators.required]],      
     Category: ['', [Validators.required]],
-    picture: ['', [Validators.required]],
+    Picture: ['', [Validators.required]],
     });
  }
 imageUpload(event:any){
@@ -262,6 +262,21 @@ imageUpload(event:any){
    );
    //alert("Done");
  }
+
+   
+isValidControl(name:string):boolean
+{
+return this.formProduct.controls[name].valid;
+}
+isInValidAndTouched(name:string):boolean
+{
+return this.formProduct.controls[name].invalid && (this.formProduct.controls[name].dirty || this.formProduct.controls[name].touched);
+}
+isControlHasError(name:string,error:string):boolean
+{
+return this.formProduct.controls[name].invalid && this.formProduct.controls[name].errors?.[error];
+}
+
 
 }
 

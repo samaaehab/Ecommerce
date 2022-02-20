@@ -205,45 +205,79 @@
             <div class="card-body">
               <div>
                 <form enctype="multipart/form-data">
-                  <div class="form-row">
-                    <div class="form-group col-md-6 mb-3">
-                      <label for="inputEmail4">Product Name</label>
-                      <input type="text" #inputProductName class="form-control" id="inputProductName"
+                  <div [formGroup]="formProduct">
+                    <div class="form-row">
+                      <div class="form-group col-md-6 mb-3">
+                        <label for="inputEmail4">Product Name</label>
+                        <input type="text" #inputProductName formControlName="ProductName" class="form-control" id="inputProductName"
+                        [class.is-invalid]="isInValidAndTouched('ProductName')" [class.is-valid]="isValidControl('ProductName')"  
                         placeholder="product name" />
+                        <div *ngIf="isInValidAndTouched('ProductName')">
+                          <small class="form-text text-danger" *ngIf="isControlHasError('ProductName','required')">required
+                            product name</small>
+                            <small class="form-text text-danger" *ngIf="isControlHasError('ProductName','minlength')">min length is
+                              3</small>
+                              <small class="form-text text-danger" *ngIf="isControlHasError('ProductName','maxlength')">max length is
+                                25</small>
+                        </div>
+                      </div>
+  
+                      <div class="custom-file mb-3">
+                        <input #inputImage formControlName="Picture" type="file" class="form-control" id="image" name="image" 
+                        [class.is-invalid]="isInValidAndTouched('Picture')" [class.is-valid]="isValidControl('Picture')"  
+                        (change)="imageUpload($event)"/>
+                        <div *ngIf="isInValidAndTouched('Picture')">
+                          <small class="form-text text-danger" *ngIf="isControlHasError('Picture','required')">required
+                            Picture </small>
+                        </div>
+                      </div>
                     </div>
-
-                    <div class="custom-file mb-3">
-                      <input #inputImage  type="file" class="form-control" id="image" name="image" 
-                      (change)="imageUpload($event)"/>
-                    </div>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="exampleFormControlTextarea1">Description</label>
-                    <textarea #inputDescription class="form-control mb-3" id="inputDesc"
+  
+                    <div class="form-group mb-3">
+                      <label for="exampleFormControlTextarea1">Description</label>
+                      <textarea #inputDescription formControlName="ProductDescription" class="form-control mb-3" id="inputDesc"
+                      [class.is-invalid]="isInValidAndTouched('ProductDescription')" [class.is-valid]="isValidControl('ProductDescription')"  
                       rows="3"></textarea>
+                      <div *ngIf="isInValidAndTouched('ProductDescription')">
+                        <small class="form-text text-danger" *ngIf="isControlHasError('ProductDescription','required')">required
+                          product description </small>
+                          <small class="form-text text-danger" *ngIf="isControlHasError('ProductDescription','maxlength')">max length is
+                            255
+                            </small>
+                            <small class="form-text text-danger" *ngIf="isControlHasError('ProductDescription','minlength')">max length is
+                              10
+                              </small>
+                      </div>
+                    </div>
+  
+                    <div class="form-group mb-3">
+                      <label for="inputSubcategoryName">Subcategory Name</label>
+                      <select #inputSubCategoryId class="form-select" formControlName="SubCategory" 
+                      [class.is-invalid]="isInValidAndTouched('SubCategory')" [class.is-valid]="isValidControl('SubCategory')"  
+                      aria-label="Default select example" for="inputSubcategoryName" id="inputSubCat">
+                        <option *ngFor="
+                        let subcategory of subcategories" value="{{subcategory.id}}">
+                          {{subcategory.subcat_name}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group mb-3">
+                      <label for="inputSubcategoryName">Category Name</label>
+                      <select #inputCategoryId formControlName="Category"  class="form-select"
+                      [class.is-invalid]="isInValidAndTouched('Category')" [class.is-valid]="isValidControl('Category')"  
+                      aria-label="Default select example" for="inputCategoryName" id="inputCat">
+                        <option *ngFor="
+                        let category of categories" value="{{category.id}}">
+                          {{category.cat_name}}
+                        </option>
+                      </select>
+  
+                    </div>
+                    <button type="submit" class="btn btn-primary w-25"
+                      (click)="add(inputProductName.value,inputImage.value,inputDescription.value,inputSubCategoryId.value,inputCategoryId.value)">Add</button>
+                      <!-- inputProductName.value,inputDescription.value,inputSubCategoryId.value,inputStorePrice.value,inputStoreDiscount.value,inputStoreColor.value,inputStoreSize.value -->
                   </div>
-                  <div class="form-group mb-3">
-                    <label for="inputSubcategoryName">Subcategory Name</label>
-                    <select #inputSubCategoryId class="form-select" aria-label="Default select example" for="inputSubcategoryName" id="inputSubCat">
-                      <option *ngFor="
-                      let subcategory of subcategories" value="{{subcategory.id}}">
-                        {{subcategory.subcat_name}}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="inputSubcategoryName">Category Name</label>
-                    <select #inputCategoryId class="form-select" aria-label="Default select example" for="inputCategoryName" id="inputCat">
-                      <option *ngFor="
-                      let category of categories" value="{{category.id}}">
-                        {{category.cat_name}}
-                      </option>
-                    </select>
-
-                  </div>
-                  <button type="submit" class="btn btn-primary w-25"
-                    (click)="add(inputProductName.value,inputImage.value,inputDescription.value,inputSubCategoryId.value,inputCategoryId.value)">Add</button>
-                    <!-- inputProductName.value,inputDescription.value,inputSubCategoryId.value,inputStorePrice.value,inputStoreDiscount.value,inputStoreColor.value,inputStoreSize.value -->
+                
                 </form>
               </div>
             </div>
