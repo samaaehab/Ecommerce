@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-
+import 'charts.css';
 import { AcountComponent } from './components/acount/acount.component';
 import { MainhomeComponent } from './components/mainhome/mainhome.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
