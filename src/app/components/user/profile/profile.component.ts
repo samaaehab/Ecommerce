@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import Pusher from 'pusher-js';
@@ -11,7 +12,7 @@ export class ProfileComponent implements OnInit {
   username='';
   message='';
   messages:any= [];
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private userService:UserService) { }
 
   ngOnInit(): void {
     Pusher.logToConsole = true;

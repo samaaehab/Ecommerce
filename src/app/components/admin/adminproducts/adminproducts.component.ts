@@ -9,12 +9,9 @@ import  Swal from 'sweetalert2';
 import { AppComponent } from 'src/app/app.component';
 import { Store } from './../../../models/Store';
 import { StoreService } from './../../../services/store.service';
-
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Category } from 'src/app/models/Category';
-
 import { event } from 'jquery';
-
 
 @Component({
   selector: 'app-adminproducts',
@@ -38,9 +35,11 @@ export class AdminproductsComponent implements OnInit {
   searchText:any;
   id:any;
   product =new Product();
-  store =new Store();
+  store = new Store();
+  formProduct= new FormGroup({});
+  
   constructor(private _productService: ProductService, private _SubcategoryService: SubcategoryService,private _StoreService:StoreService,private _categoryService:CategoryServiceService,
-    public myapp: AppComponent,private http:HttpClient) { }
+    public myapp: AppComponent,private http:HttpClient,private _formBuilder: FormBuilder) { }
 
  ngOnInit(): void {
    this._productService.get().subscribe(
@@ -71,6 +70,14 @@ export class AdminproductsComponent implements OnInit {
       console.log(this.stores);
     }
   );
+   
+  this.formProduct=this._formBuilder.group({
+    ProductName:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],      
+    ProductDescription:['',[Validators.required,Validators.maxLength(100),Validators.minLength(10)]],      
+    subCategory:['',[Validators.required]],      
+    Category: ['', [Validators.required]],
+    picture: ['', [Validators.required]],
+    });
  }
 imageUpload(event:any){
   this.files = event.target.files[0];

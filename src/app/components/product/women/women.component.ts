@@ -12,7 +12,7 @@ export class WomenComponent implements OnInit {
   imagepath: any = 'http://127.0.0.1:8000/public/image/';
   price: any[] = [];
   p: any = 1;
-  count: any = 3;
+  count: any = 9;
   searchText:any;
   constructor(private productService:ProductService,private storeService:StoreService) { }
 

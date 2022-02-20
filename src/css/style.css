@@ -3181,6 +3181,7 @@ nav a.open_close#close_in > i:hover {
 .menu ul li ul li a:hover {
   background-color: #0044c2;
   background-color: rgba(0, 77, 218, 0.04);
+  /* text-decoration: none !important; */
 }
 .menu ul li ul li a.active {
   color: #004dda;
