@@ -1,3 +1,5 @@
+import { BeforeLoginService } from './services/before-login.service';
+import { AfterLoginService } from './services/after-login.service';
 import { AuthenService } from './services/authen.service';
 import { AuthService } from './services/auth.service';
 import { TokenService } from './services/token.service';
@@ -30,9 +32,7 @@ import { SocialLoginModule} from 'angularx-social-login';
 import {GoogleLoginProvider} from 'angularx-social-login';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
-
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CartComponent,
     FavouritesComponent,
     ConfirmComponent,
-
+    ResetPasswordComponent,
 
 
   ],
@@ -69,8 +69,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-   
-
+    
   ],
   // exports: [CommonModule, NgxPaginationModule],
 
@@ -101,6 +100,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AuthenService,
     TokenService,
     AuthService,
+    AfterLoginService,
+    BeforeLoginService,
    ],
   bootstrap: [AppComponent]
   
