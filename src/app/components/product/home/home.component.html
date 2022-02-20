@@ -80,7 +80,7 @@
                     
                 </div>
                 <!-- /row -->
-                    <div class="pagination__wrapper">
+                    <!-- <div class="pagination__wrapper">
                         <ul class="pagination">
                             <li><a href="#0" class="prev" title="previous page">&#10094;</a></li>
                             <li>
@@ -97,7 +97,7 @@
                             </li>
                             <li><a href="#0" class="next" title="next page">&#10095;</a></li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- /col -->
             
@@ -108,26 +108,8 @@
                         <h4><a href="#filter_1" data-bs-toggle="collapse" class="opened">Sub Categories</a></h4>
                         <div class="collapse show" id="filter_1">
                             <ul>
-                                <li>
-                                    <label class="container_check">Shirts <small>12</small>
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="container_check">Bantes <small>24</small>
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="container_check">Jackets <small>23</small>
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="container_check">Accessories <small>23</small>
+                                <li *ngFor="let sucategory of allsubcategories[0];let currentIndex=index">
+                                    <label class="container_check">{{sucategory.subcat_name}} <small>12</small>
                                         <input type="checkbox">
                                         <span class="checkmark"></span>
                                     </label>

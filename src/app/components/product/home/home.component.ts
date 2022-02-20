@@ -1,6 +1,8 @@
 import { StoreService } from './../../../services/store.service';
 import { ProductService } from './../../../services/product.service';
 import { Component, OnInit } from '@angular/core';
+import { SubcategoryService } from 'src/app/services/subcategory.service';
+import { CategoryServiceService } from 'src/app/services/category-service.service';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +10,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+public allsubcategories:any[]=[];
+public subcategories:any[]=[];
 productsCategory:any[]=[];
 imagepath: any = 'http://127.0.0.1:8000/public/image/';
 price:any[]=[];
-  constructor(private productService:ProductService,private storeService:StoreService) { }
+  constructor(private productService:ProductService,private storeService:StoreService ,private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService) { }
 
   ngOnInit(): void {
 
@@ -24,6 +28,34 @@ price:any[]=[];
     );
 
     this.getPrice();
+    this._categoryService.get().subscribe(
+      (res: any) => {
+        for(const i in res.data){
+          const id= res.data[i].id;
+          this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
+            (res:any)=>{
+              this.subcategories=res.data;
+              console.log(this.subcategories);
+              
+                    this.allsubcategories.push(this.subcategories.map(m=>{return m}));
+
+                  // for(let i=0;i<res.data.length;i++){
+                  //   this.subcategories.push(res.data[i])
+                  //   this.subcategories=this.subcategories.map(m=>{return m});
+
+                  // }
+               },
+            (err:any)=>{
+              console.log(err);
+              
+            }
+          )
+        }
+        
+      }
+    ); 
+
+
   }
   
  getPrice(){
