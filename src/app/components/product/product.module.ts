@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { KidsComponent } from './kids/kids.component';
 import { WomenComponent } from './women/women.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
   {path: 'man', component: HomeComponent},
@@ -18,7 +19,7 @@ const routes: Routes = [
     KidsComponent,
   ],
   imports: [
-    CommonModule,RouterModule.forChild(routes)
+    CommonModule,RouterModule.forChild(routes),NgxPaginationModule
   ]
   // ,
   // exports: [RouterModule] 
