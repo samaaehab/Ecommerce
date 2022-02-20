@@ -41,8 +41,7 @@ export class MainhomeComponent implements OnInit {
 
             for(let i=0;i<this.LastProducts.length;i++){
              this.allProducts.push(this.LastProducts[i]) ;
-               
-               
+               console.log(this.allProducts);
             }
             
 
