@@ -9,12 +9,9 @@ import  Swal from 'sweetalert2';
 import { AppComponent } from 'src/app/app.component';
 import { Store } from './../../../models/Store';
 import { StoreService } from './../../../services/store.service';
-
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Category } from 'src/app/models/Category';
-
 import { event } from 'jquery';
-
 
 @Component({
   selector: 'app-adminproducts',
@@ -38,9 +35,11 @@ export class AdminproductsComponent implements OnInit {
   searchText:any;
   id:any;
   product =new Product();
-  store =new Store();
+  store = new Store();
+  formProduct= new FormGroup({});
+  
   constructor(private _productService: ProductService, private _SubcategoryService: SubcategoryService,private _StoreService:StoreService,private _categoryService:CategoryServiceService,
-    public myapp: AppComponent,private http:HttpClient) { }
+    public myapp: AppComponent,private http:HttpClient,private _formBuilder: FormBuilder) { }
 
  ngOnInit(): void {
    this._productService.get().subscribe(
@@ -71,22 +70,22 @@ export class AdminproductsComponent implements OnInit {
       console.log(this.stores);
     }
   );
+   
+  this.formProduct=this._formBuilder.group({
+    ProductName:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],      
+    ProductDescription:['',[Validators.required,Validators.maxLength(255),Validators.minLength(10)]],      
+    SubCategory:['',[Validators.required]],      
+    Category: ['', [Validators.required]],
+    Picture: ['', [Validators.required]],
+    });
  }
 imageUpload(event:any){
   this.files = event.target.files[0];
   console.log(this.files);
 
 }
-  // console.log(inputImage.value);
+ 
  add(product_name:string,image:any,description:string,subcat_id:any,cat_id:any):void{
-
-  //  this.product.product_name=product_name;
-  //  this.product.description=description;
-
-  //  this.product.cat_id=cat_id;
-
-  //  this.product.subcat_id = subcat_id;
-  //  this.product.image = image;
    let formdata=new FormData();
   formdata.append('product_name',product_name);
   formdata.append('description',description);
@@ -114,7 +113,6 @@ imageUpload(event:any){
       }
      }
    );
-   /*image-----*/
   
 
  }
@@ -145,8 +143,6 @@ imageUpload(event:any){
         } else if (result.isDismissed) {
           // console.log('Clicked No, File is safe!');
           this.myapp.errormessage("product not Deleted");
-
-
         }
       })
 
@@ -228,6 +224,15 @@ imageUpload(event:any){
       this.stores.push(this.store);
       window.location.reload();
       this.myapp.successmessage(res.message);
+    },
+    (error: any) => {
+     for (const err in error.error.errors) {
+       for (let i = 0; i < error.error.errors[err].length; i++){
+         console.log(error.error.errors[err][i]);
+         this.myapp.errormessage(error.error.errors[err][i]);
+       }
+
+     }
     }
   );
  }
@@ -241,7 +246,7 @@ imageUpload(event:any){
      (response: any) => {
        console.log(response);
 
-      this.myapp.showInfo('Category updated successfully','update');
+      this.myapp.showInfo('product updated successfully','update');
 
        window.location.reload();
      },
@@ -257,6 +262,21 @@ imageUpload(event:any){
    );
    //alert("Done");
  }
+
+   
+isValidControl(name:string):boolean
+{
+return this.formProduct.controls[name].valid;
+}
+isInValidAndTouched(name:string):boolean
+{
+return this.formProduct.controls[name].invalid && (this.formProduct.controls[name].dirty || this.formProduct.controls[name].touched);
+}
+isControlHasError(name:string,error:string):boolean
+{
+return this.formProduct.controls[name].invalid && this.formProduct.controls[name].errors?.[error];
+}
+
 
 }
 

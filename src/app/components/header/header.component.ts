@@ -5,7 +5,6 @@ import { SubCategory } from 'src/app/models/SubCategory';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { SubcategoryService } from 'src/app/services/subcategory.service';
 import { AuthenService } from './../../services/authen.service';
-
 import { Component, OnInit } from '@angular/core';
 // import { TranslateService } from '@ngx-translate/core';
 
@@ -21,6 +20,7 @@ export class HeaderComponent implements OnInit {
   constructor(private _SubcategoryService:SubcategoryService,
     private _categoryService:CategoryServiceService,
     private auth:AuthenService,private router:Router,private token:TokenService) { }
+    searchText:any;
   // constructor(
   //   public translate: TranslateService
   // ) {
