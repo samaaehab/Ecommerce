@@ -16,11 +16,14 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   allsubcategories:any[]=[];
  public subcategories:any[]=[];
+ 
   public logged=false;
   constructor(private _SubcategoryService:SubcategoryService,
     private _categoryService:CategoryServiceService,
     private auth:AuthenService,private router:Router,private token:TokenService) { }
     searchText:any;
+
+    productCount:any;
   // constructor(
   //   public translate: TranslateService
   // ) {
@@ -63,8 +66,10 @@ export class HeaderComponent implements OnInit {
           
         }
       );
-        
+   
       }
+
+      
 
       logout(event:MouseEvent){
         event.preventDefault();
