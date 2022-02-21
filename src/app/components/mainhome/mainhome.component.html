@@ -1,3 +1,4 @@
+<app-header></app-header>
 <main>
     <div id="demo" class="carousel slide align-items-center" data-ride="carousel">
 
@@ -75,17 +76,20 @@
                     <span class="ribbon new">New</span>
                     <input id="id" type="hidden" value="{{product.id}}" #inputId>
                     <figure>
-                        <a href="product-detail-1.html">
+                        <a href="">
                             <img class="img-fluid lazy" id="inputImage" src="{{imagepath}}{{product.image}}" style="height: 300px !important; width:300px !important" #inputImage>
                         </a>
                     </figure>
-                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                    <a href="product-detail-1.html">
+                    <a href="">
                         <h3 id="inputProdName">{{product.product_name}}</h3>
                         <input id="inputProdName" type="hidden" value="{{product.product_name}}" #inputProdName>
                     </a>
+                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
                     <div class="price_box">
-                        <span class="new_price" id="inputPrice">$110.00</span>
+                      <span class="new_price">${{product.price - product.discount}}</span>
+                      <span class="old_price"id="inputPrice">${{product.price}}</span>
+                    </div>
+                    <div class="price_box">
                         <button class="btn btn-info ms-4" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getid(product.id)">View product</button>
 
                     </div>
@@ -264,5 +268,5 @@ aria-labelledby="exampleModalLabel1" aria-hidden="true"  >
    </div>
  </div>
 </div>
-
+<app-footer></app-footer>
 

@@ -143,12 +143,12 @@
                       <th scope="col">Product Name</th>
                       <th scope="col">Description</th>
                       <th scope="col">Image</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Discount</th> 
                       <th scope="col">Subcategory Name</th>
                       <th scope="col">Category Name</th>
                       <!-- <th scope="col">Size</th>
-                      <th scope="col">Color</th>
-                      <th scope="col">Price</th>
-                      <th scope="col">Discount</th> -->
+                      <th scope="col">Color</th>-->
                       <th scope="col">Actions</th>
                     </tr>
                   </thead>
@@ -164,6 +164,8 @@
                       <td scope="col" class="text-break">{{product.description | maxLength }}</td>
                       <td scope="col">
                         <img src="{{imagepath}}{{product.image}}" style="height: 40px;"></td>
+                      <td scope="col">{{product.price}}</td>
+                      <td scope="col">{{product.discount}}</td>
                       <td scope="col">{{product.subcategory.subcat_name}}</td>
                       <td scope="col">{{product.category.cat_name}}</td>
                       <td class="d-flex justify-content-around">
@@ -249,7 +251,18 @@
                               </small>
                       </div>
                     </div>
-  
+                    <div class="form-group mb-3 row">
+                      <div class="col">
+                        <label for="inputProductPrice">Price</label>
+                        <input type="number" step="any" #inputProductPrice class="form-control" id="inputProductPrice"
+                              placeholder="Price" />
+                      </div>
+                      <div class="col">
+                        <label for="inputProductDiscount">Discount</label>
+                        <input type="number" step="any" #inputProductDiscount class="form-control" id="inputProductDiscount"
+                              placeholder="Discount" />
+                      </div>
+                    </div>
                     <div class="form-group mb-3">
                       <label for="inputSubcategoryName">Subcategory Name</label>
                       <select #inputSubCategoryId class="form-select" formControlName="SubCategory" 
@@ -274,7 +287,7 @@
   
                     </div>
                     <button type="submit" class="btn btn-primary w-25"
-                      (click)="add(inputProductName.value,inputImage.value,inputDescription.value,inputSubCategoryId.value,inputCategoryId.value)">Add</button>
+                      (click)="add(inputProductName.value,inputImage.value,inputDescription.value,inputProductPrice.value,inputProductDiscount.value,inputSubCategoryId.value,inputCategoryId.value)">Add</button>
                       <!-- inputProductName.value,inputDescription.value,inputSubCategoryId.value,inputStorePrice.value,inputStoreDiscount.value,inputStoreColor.value,inputStoreSize.value -->
                   </div>
                 
@@ -312,11 +325,24 @@
             <textarea #inputDesc class="form-control mb-3" id="description"
             rows="3"></textarea>
           </div>
+          <div class="row mb-3">
+            <div class="form-group col">
+              <label for="ProdPrice">Price</label>
+              <input type="number" step=any #inputProdPrice class="form-control" id="ProdPrice"
+                    placeholder="Price" />
+            </div>
+            <div class="form-group col">
+              <label for="ProdDiscount">Discount</label>
+              <input type="number" step=any #inputProdDiscount class="form-control" id="ProdDiscount"
+                    placeholder="Discount" />
+            </div>
+          </div>
+
         </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
-          <button type="button" class="btn btn-primary" (click)="update(inputId.value,inputPName.value,inputDesc.value)"  ><i class="fas fa-edit"></i></button>
+          <button type="button" class="btn btn-primary" (click)="update(inputId.value,inputPName.value,inputDesc.value,inputProdPrice.value,inputProdDiscount.value)"  ><i class="fas fa-edit"></i></button>
         </div>
       </div>
     </div>
@@ -336,16 +362,19 @@
           <input type="text" id="productId" hidden #productid>
 
             <div class="row">
-              <div class="form-group mb-3 col-3">
+              <div class="form-group mb-3 col-5">
                 <label>Color</label>
                 <select #inputStoreColor class="form-select" aria-label="Default select example">
                   <option value="dark">Dark</option>
-                  <option value="red">Red</option>
-                  <option value="orange">Orange</option>
                   <option value="white">White</option>
+                  <option value="red">Red</option>
+                  <option value="orange">Pink</option>
+                  <option value="orange">Green</option>
+                  <option value="orange">Gray</option>
+                  <option value="orange">Yellow</option>
                 </select>
               </div>
-              <div class="form-group mb-3 col-3">
+              <div class="form-group  col-5">
                 <label>Size</label>
                 <select #inputStoreSize class="form-select" aria-label="Default select example">
                   <option value="xl">XL</option>
@@ -354,22 +383,9 @@
                   <option value="s">S</option>
                 </select>
               </div>
-              <div class="form-group mb-3 col-3">
-                <label for="inputStorePrice">Price</label>
-                <input type="number" #inputStorePrice class="form-control" id="inputStorePrice"
-                      placeholder="Price" />
+              <div class="form-group mb-3 col-2 pt-4">
+                    <button type="button" class="btn btn-primary" (click)="addFeature(productid.value,inputStoreColor.value,inputStoreSize.value)"><i class="fas fa-plus"></i></button>
               </div>
-
-              <div class="form-group mb-3 col-3">
-                <label for="inputStoreDiscount">Discount</label>
-                <input type="number" #inputStoreDiscount class="form-control" id="inputStoreDiscount"
-                      placeholder="Discount" />
-              </div>
-
-
-            </div>
-            <div>
-                  <button type="button" class="btn btn-primary" (click)="addFeature(productid.value,inputStoreColor.value,inputStoreSize.value,inputStorePrice.value,inputStoreDiscount.value)"><i class="fas fa-plus"></i></button>
             </div>
 
         </div>
@@ -381,8 +397,6 @@
                   <th scope="col">#</th>
                   <th scope="col">Color</th>
                   <th scope="col">Size</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Discount</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
@@ -394,8 +408,6 @@
                   <th *ngIf="store.product_id == productid.value" scope="row">{{currentIndex + 1}}</th>
                   <td *ngIf="store.product_id == productid.value" scope="col">{{store.color}}</td>
                   <td *ngIf="store.product_id == productid.value" scope="col">{{store.size}}</td>
-                  <td *ngIf="store.product_id == productid.value" scope="col">{{store.price}}</td>
-                  <td *ngIf="store.product_id == productid.value" scope="col">{{store.discount}}</td>
                   <td *ngIf="store.product_id == productid.value" class="d-flex justify-content-around">
                     <button class="btn btn-danger" (click)="deleteFeature(currentIndex)">Delete</button>
                   </td>

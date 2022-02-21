@@ -40,7 +40,7 @@ export class MainhomeComponent implements OnInit {
     (res: any) => {
       for(const i in res.data){
         const id= res.data[i].id;
-        this._productService.getForEachCategory(id).subscribe(
+        this._productService.getForEachSubCategory(id).subscribe(
           (res:any)=>{
             this.LastProducts=res.data;
 
