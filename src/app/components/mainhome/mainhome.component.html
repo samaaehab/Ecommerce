@@ -1,3 +1,4 @@
+
 <main>
     <div id="demo" class="carousel slide align-items-center" data-ride="carousel">
 
@@ -35,7 +36,7 @@
 
     <ul id="banners_grid" class="clearfix">
         <li>
-            <a href="#0" routerLink="/products/man" class="img_container">
+            <a href="" routerLink="/products/man" class="img_container">
                 <img src="../../../assets/images/man.jpeg" data-src="../../assets/img/banner_1.jpg" alt="" class="lazy">
                 <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
                     <h3>Men's Collection</h3>
@@ -44,7 +45,7 @@
             </a>
         </li>
         <li>
-            <a href="#0" routerLink="/products/woman" class="img_container">
+            <a href="" routerLink="/products/woman" class="img_container">
                 <img src="../../../assets/images/woman.jpeg" data-src="../../assets/img/banner_2.jpg" alt="" class="lazy">
                 <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
                     <h3>Womens's Collection</h3>
@@ -75,12 +76,12 @@
                     <span class="ribbon new">New</span>
                     <input id="id" type="hidden" value="{{product.id}}" #inputId>
                     <figure>
-                        <a href="product-detail-1.html">
+                        <a href="">
                             <img class="img-fluid lazy" id="inputImage" src="{{imagepath}}{{product.image}}" style="height: 300px !important; width:300px !important" #inputImage>
                         </a>
                     </figure>
                     <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                    <a href="product-detail-1.html">
+                    <a href="">
                         <h3 id="inputProdName">{{product.product_name}}</h3>
                         <input id="inputProdName" type="hidden" value="{{product.product_name}}" #inputProdName>
                     </a>
@@ -90,8 +91,8 @@
 
                     </div>
                     <ul>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart" (click)="addToCart(inputId.value,inputProdName.value,inputImage.src)"></i><span>Add to cart</span></a></li>
+                        <li><a  class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+                        <li><a  class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart" (click)="addToCart(inputId.value,inputProdName.value,inputImage.src)"></i><span>Add to cart</span></a></li>
                     </ul>
 
 

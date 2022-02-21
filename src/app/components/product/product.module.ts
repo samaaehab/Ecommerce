@@ -7,6 +7,7 @@ import { WomenComponent } from './women/women.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
+
 const routes: Routes = [
   {path: 'man', component: HomeComponent},
   {path: 'woman', component: WomenComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
     HomeComponent,
     WomenComponent,
     KidsComponent,
+    
   ],
   imports: [
     CommonModule,

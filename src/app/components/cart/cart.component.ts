@@ -1,5 +1,6 @@
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -7,28 +8,43 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
- user=localStorage.getItem('email');
-products:any[]=[];
-productsInCart:any[]=[];
-  constructor(private _userService:UserService) { }
+  user = localStorage.getItem('email');
+  products: any[] = [];
+  productsInCart: any[] = [];
+    
+    
+    constructor(private _userService: UserService, private router:Router) { }
 
   ngOnInit(): void {
     for (var i = 0; i < localStorage.length; i++) {
-      let a=localStorage.key(i);
-      if(a?.substring(0,7)=='product'){
-        let products=localStorage.getItem(a);
-        let splitProduct=products?.split('#$');
+      let a = localStorage.key(i);
+      if (a?.substring(0, 7) == 'product') {
+        let products = localStorage.getItem(a);
+      
+        let splitProduct = products?.split('#$');
         this.productsInCart.push(splitProduct);
-        console.log(this.productsInCart[0][0]);
+        console.log(this.productsInCart);
         
         
       }
       
-  }
+    }
    
   
-  function omg() {
-      localStorage.clear();
+ 
   }
+  omg(key:any) {
+    // for (var i = 0; i < localStorage.length; i++) {
+    //   let a = localStorage.key(i);
+    //   if (a?.substring(0, 7) == 'product') {
+    //     let products = localStorage.getItem(a);
+    localStorage.removeItem(key);
+    // this.router.navigate(['/cart']);
+    this.router.navigateByUrl('', { skipLocationChange: false }).then(() => {
+      this.router.navigate(['/cart']);
+   });
+    
+    //   }
+    // }
   }
 }
