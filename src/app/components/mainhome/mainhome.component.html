@@ -7,7 +7,7 @@
           <li data-target="#demo" data-slide-to="1"></li>
           <li data-target="#demo" data-slide-to="2"></li>
         </ul>
-        
+
         <!-- The slideshow -->
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -20,7 +20,7 @@
             <img src="../../../assets/images/kids.jpeg" alt="New York" width="100%" height="350">
           </div>
         </div>
-        
+
         <!-- Left and right controls -->
         <a class="carousel-control-prev" href="#demo" data-slide="prev">
           <span class="carousel-control-prev-icon"></span>
@@ -29,8 +29,8 @@
           <span class="carousel-control-next-icon"></span>
         </a>
       </div>
-      
-        
+
+
     <!--/carousel-->
 
     <ul id="banners_grid" class="clearfix">
@@ -63,7 +63,7 @@
         </li>
     </ul>
     <!--/banners_grid -->
-    
+
     <div class="container margin_60_35">
         <div class="main_title">
             <h2 class="fw-bold">Lastest Products</h2>
@@ -73,39 +73,41 @@
             <div class="col-6 col-md-4 col-xl-3" *ngFor="let product of allProducts">
                 <div class="grid_item">
                     <span class="ribbon new">New</span>
+                    <input id="id" type="hidden" value="{{product.id}}" #inputId>
                     <figure>
                         <a href="product-detail-1.html">
-                            <img class="img-fluid lazy" src="{{imagepath}}{{product.image}}" style="height: 300px !important; width:300px !important" alt="">
+                            <img class="img-fluid lazy" id="inputImage" src="{{imagepath}}{{product.image}}" style="height: 300px !important; width:300px !important" #inputImage>
                         </a>
                     </figure>
                     <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
                     <a href="product-detail-1.html">
-                        <h3>{{product.product_name}}</h3>
+                        <h3 id="inputProdName">{{product.product_name}}</h3>
+                        <input id="inputProdName" type="hidden" value="{{product.product_name}}" #inputProdName>
                     </a>
                     <div class="price_box">
-                        <span class="new_price">$110.00</span>
+                        <span class="new_price" id="inputPrice">$110.00</span>
                         <button class="btn btn-info ms-4" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getid(product.id)">View product</button>
 
                     </div>
                     <ul>
                         <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart" (click)="addToCart(inputId.value,inputProdName.value,inputImage.src)"></i><span>Add to cart</span></a></li>
                     </ul>
 
-                    
+
                 </div>
-                
-                
+
+
                 <!-- /grid_item -->
             </div>
-            
+
             <!-- /col -->
 
         </div>
-        
+
         <!-- /row -->
     </div>
-    
+
     <!-- /container -->
 
     <div class="featured lazy">
@@ -128,7 +130,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="bg_gray">
         <div class="container margin_30">
             <div id="brands" class="owl-carousel owl-theme">
@@ -149,7 +151,7 @@
                 </div><!-- /item -->
                 <div class="item">
                     <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png" data-src="../../assets/img/brands/logo_6.png" alt="" class="owl-lazy"></a>
-                </div><!-- /item --> 
+                </div><!-- /item -->
             </div><!-- /carousel -->
         </div><!-- /container -->
     </div>
@@ -225,15 +227,15 @@
         </div>
         <!-- /row -->
     </div>
-    
+
     <!-- /container -->
 </main>
 
 <div >
 <div style="position: absolute;" class="modal fade mb-3" id="exampleModal" tabindex="-1"
 aria-labelledby="exampleModalLabel1" aria-hidden="true"  >
-   
-   
+
+
    <div style="position: relative;top:750px ;left: 35px;" class="modal-dialog" >
      <div class="modal-content" >
        <div class="modal-header" >
@@ -263,4 +265,4 @@ aria-labelledby="exampleModalLabel1" aria-hidden="true"  >
  </div>
 </div>
 
- 
+

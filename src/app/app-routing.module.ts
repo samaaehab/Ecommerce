@@ -1,3 +1,5 @@
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { AfterLoginService } from './services/after-login.service';
 import { ProductModule } from './components/product/product.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -28,11 +30,12 @@ const routes: Routes = [
       {path: 'home', component:MainhomeComponent},
      
       {path: 'acount', component: AcountComponent},
-      {path: 'cart/checkout/confirm', component: ConfirmComponent},
-      {path: 'cart/checkout', component: CheckoutComponent},
+      {path: 'cart/checkout/confirm', component: ConfirmComponent,canActivate:[AfterLoginService]},
+      {path: 'cart/checkout', component: CheckoutComponent,canActivate:[AfterLoginService]},
       {path: 'cart', component: CartComponent},
       {path: '', component:MainhomeComponent},
       {path:'favourites',component:FavouritesComponent},
+      {path:'reset-password',component:ResetPasswordComponent},
      
       
       {

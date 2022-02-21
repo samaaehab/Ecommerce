@@ -30,8 +30,7 @@ formLogin= new FormGroup({});
     private router:Router,
     private _authService:AuthService,
     private token:TokenService,
-    private auth: AuthenService,
-    public myapp: AppComponent) { } //
+   private auth:AuthenService,public myapp: AppComponent) { } //
  
   signin() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((data) => {
@@ -55,11 +54,11 @@ formLogin= new FormGroup({});
   //   });
   // }
   ngOnInit(): void {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedin = user != null 
+  //   this.authService.authState.subscribe((user) => {
+  //     this.user = user;
+  //     this.loggedin = user != null 
       
-  })
+  // })
     // (window as any).fbAsyncInit = function() {
     //   FB.init({
     //     appId      : '1617656521913206',
@@ -123,12 +122,17 @@ this.formRegister=this._formBuilder.group({
  login(){
   this._authService.login(this.formLogin.value).subscribe(
     (response:any)=>{
-      this.handelResponse(response.access_token);
-      this.myapp.successmessage(response.message);
-      console.log(response.access_token);
+      this.handelResponse(response);
+      
+      localStorage.setItem('email',this.formLogin.value.email);
+//this.token.handel(response.access_token);
+      //this.myapp.successmessage(response.message);
+       //console.log(response);
     },
     (error:any)=>{
-      this.handelError(error);   
+      
+      this.handelError(error);
+          this.myapp.errormessage(error.error.error);
     }
   );
 
@@ -136,10 +140,7 @@ this.formRegister=this._formBuilder.group({
 register(){
   this._authService.signup(this.formRegister.value).subscribe(
     (response:any)=>{
-      this.handelResponse(response.access_token);
-      alert(response);
-      this.myapp.successmessage(response.message);
-
+     this.myapp.successmessage(response.message);
     },
     (error:any)=>{
       this.handelError(error);
@@ -154,8 +155,8 @@ register(){
 }
 handelResponse(response:any){
   this.token.handel(response.access_token);
-  //this.auth.changeAuthStatus(false);
-  //this.router.navigateByUrl('/home');
+  this.auth.changeAuthStatus(false);
+  this.router.navigateByUrl('/home');
 }
 
 handelError(error:any){

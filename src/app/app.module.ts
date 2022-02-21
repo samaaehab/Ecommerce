@@ -1,3 +1,5 @@
+import { BeforeLoginService } from './services/before-login.service';
+import { AfterLoginService } from './services/after-login.service';
 import { AuthenService } from './services/authen.service';
 import { AuthService } from './services/auth.service';
 import { TokenService } from './services/token.service';
@@ -30,8 +32,10 @@ import { SocialLoginModule} from 'angularx-social-login';
 import {GoogleLoginProvider} from 'angularx-social-login';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -48,7 +52,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     CartComponent,
     FavouritesComponent,
     ConfirmComponent,
-
+    ResetPasswordComponent,
 
 
   ],
@@ -71,8 +75,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-   
-
+    
   ],
   // exports: [CommonModule, NgxPaginationModule],
 
@@ -104,6 +107,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AuthenService,
     TokenService,
     AuthService,
+    AfterLoginService,
+    BeforeLoginService,
    ],
   bootstrap: [AppComponent]
   

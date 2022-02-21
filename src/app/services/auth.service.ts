@@ -8,11 +8,15 @@ export class AuthService {
   private auth_url=`http://127.0.0.1:8000/api`;
   constructor(private http:HttpClient) { }
 
-  login(form:{}){
+  login(form:any){
     return this.http.post(`${this.auth_url}/login`,form);
   }
 
-  signup(form:{}){
+  signup(form:any){
     return this.http.post(`${this.auth_url}/signup`,form);
+  }
+
+  resetPassword(form:any){
+    return this.http.post(`${this.auth_url}/resetPassword`,form);
   }
 }

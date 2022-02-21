@@ -12,6 +12,8 @@ export class TokenService {
 
   handel(tok:any){
     this.set(tok);
+    console.log(this.isValide());
+    
   }
   set(tok:any){
     localStorage.setItem('token',tok);
@@ -30,8 +32,11 @@ export class TokenService {
     if(tok){
       const payload=this.payload(tok);
       if(payload){
-        return Object.values(this.iss).indexOf(payload.iss)>-1?true:false;
+        return Object.values(this.iss).indexOf(payload.iss)>-1 ? true:false;
       }
+      // if(payload){
+      //   return (payload.iss === 'http://127.0.0.1:8000/api/login') ? true : false ;
+      // }
     }
     return false;
   }

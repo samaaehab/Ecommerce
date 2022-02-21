@@ -1,3 +1,6 @@
+import { TokenService } from './../../services/token.service';
+import { Router } from '@angular/router';
+import { event } from 'jquery';
 import { SubCategory } from 'src/app/models/SubCategory';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { SubcategoryService } from 'src/app/services/subcategory.service';
@@ -13,9 +16,11 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   allsubcategories:any[]=[];
  public subcategories:any[]=[];
-  public logged = false;
-  searchText:any;
-  constructor(private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService,private auth:AuthenService) { }
+  public logged=false;
+  constructor(private _SubcategoryService:SubcategoryService,
+    private _categoryService:CategoryServiceService,
+    private auth:AuthenService,private router:Router,private token:TokenService) { }
+    searchText:any;
   // constructor(
   //   public translate: TranslateService
   // ) {
@@ -28,7 +33,7 @@ export class HeaderComponent implements OnInit {
   
 
   ngOnInit(): void {
-    //this.auth.status.subscribe(value=>this.logged=value);
+    this.auth.status.subscribe(value=>this.logged=value);
       this._categoryService.get().subscribe(
         (res: any) => {
           for(const i in res.data){
@@ -59,6 +64,13 @@ export class HeaderComponent implements OnInit {
         }
       );
         
+      }
+
+      logout(event:MouseEvent){
+        event.preventDefault();
+        this.token.remove();
+        this.auth.changeAuthStatus(false);
+        this.router.navigateByUrl('/acount');
       }
   }
 
