@@ -12,12 +12,13 @@ import { CategoryServiceService } from 'src/app/services/category-service.servic
 export class HomeComponent implements OnInit {
 public allsubcategories:any[]=[];
 public subcategories:any[]=[];
+subcat:any[]=[];
 productsCategory:any[]=[];
 imagepath: any = 'http://127.0.0.1:8000/public/image/';
 price:any[]=[];
-p: any = 1;
-count: any = 9;
-searchText:any;
+  p: any = 1;
+  count: any = 9;
+  searchText:any;
   constructor(private productService:ProductService,private storeService:StoreService ,private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService) { }
 
   ngOnInit(): void {
