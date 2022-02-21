@@ -3,6 +3,8 @@ import { ProductService } from './../../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { SubcategoryService } from 'src/app/services/subcategory.service';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
+import { Product } from 'src/app/models/Product';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -12,13 +14,19 @@ import { CategoryServiceService } from 'src/app/services/category-service.servic
 export class HomeComponent implements OnInit {
 public allsubcategories:any[]=[];
 public subcategories:any[]=[];
+subcat:any[]=[];
 productsCategory:any[]=[];
+storeId:any[]=[];
+  cart:any[]=[];
+  user=localStorage.getItem('email');
+  LastProducts:Product[]=[];
+  allProducts: any[] = [];
 imagepath: any = 'http://127.0.0.1:8000/public/image/';
 price:any[]=[];
-p: any = 1;
-count: any = 9;
-searchText:any;
-  constructor(private productService:ProductService,private storeService:StoreService ,private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService) { }
+  p: any = 1;
+  count: any = 9;
+  searchText:any;
+  constructor(private productService:ProductService,private storeService:StoreService ,private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService,private _userService:UserService) { }
 
   ngOnInit(): void {
 
@@ -57,7 +65,8 @@ searchText:any;
         
       }
     ); 
-
+    this.getIdByEmail();
+    this.getStoreId();
 
   }
   
@@ -80,7 +89,62 @@ searchText:any;
 
    
     console.log(this.price);
- } 
+ }
+ getid(id:number){
+  this.allProducts.forEach(
+    c=>{
+      if(c.id == id){
+        $("#exampleModalLabel1").html(c?.product_name);
+        $("#exampleModalLabel2").html(c?.description);
+
+
+      }
+    }
+  );
+
+}
+getIdByEmail(){
+this._userService.get().subscribe(
+(res: any) => {
+ let c= res.data.find((user:any)=>user.email==this.user);
+ console.log(c.id);
+ return c.id;
+
+},
+(err:any)=>{
+  console.log(err);
+}
+);
+}
+addToCart(id:any,ProdName:any,Image:any){
+// let id = $("#id").prop('value');
+// localStorage.setItem('product_name' + id,ProdName);
+// localStorage.setItem('image' +id,Image);
+// localStorage.setItem('quantity' +id,'1');
+localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' + 1);
+
+
+}
+getStoreId(){
+this.storeService.get().subscribe(
+     (res:any)=>{
+for(let i in res.data){
+
+   this.storeId.push(res.data[i].id);
+
+}
+console.log(this.storeId);
+
+//  console.log(res.data[0].id);
+
+},
+   (error:any)=>{
+
+   }
+);
+
+  }
+
 
   
 }

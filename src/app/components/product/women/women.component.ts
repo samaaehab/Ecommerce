@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../header/header.component';
 import { SubcategoryService } from 'src/app/services/subcategory.service';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-women',
   templateUrl: './women.component.html',
@@ -17,9 +18,13 @@ export class WomenComponent implements OnInit {
   price: any[] = [];
   p: any = 1;
   count: any = 9;
-  searchText:any;
+  searchText: any;
+  cart:any[]=[];
+  user=localStorage.getItem('email');
+  storeId:any[]=[];
+  
   constructor(private productService: ProductService, private storeService: StoreService, public header: HeaderComponent,
-    private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService) { }
+    private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService,private _userService:UserService) { }
 
 
   ngOnInit(): void {
@@ -81,5 +86,54 @@ export class WomenComponent implements OnInit {
    
     console.log(this.price);
  }
-
+ getIdByEmail(){
+  this._userService.get().subscribe(
+    (res: any) => {
+     let c= res.data.find((user:any)=>user.email==this.user);
+     console.log(c.id);
+     return c.id;
+  
+    },
+    (err:any)=>{
+      console.log(err);
+    }
+  );
+  }
+  addToCart(id:any,ProdName:any,Image:any){
+    // let id = $("#id").prop('value');
+    // localStorage.setItem('product_name' + id,ProdName);
+    // localStorage.setItem('image' +id,Image);
+    // localStorage.setItem('quantity' +id,'1');
+    localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' + 1 + '#$' + id);
+  
+  
+  }
+  getStoreId(){
+    this.storeService.get().subscribe(
+         (res:any)=>{
+   for(let i in res.data){
+  
+       this.storeId.push(res.data[i].id);
+  
+   }
+  console.log(this.storeId);
+  
+  //  console.log(res.data[0].id);
+  
+   },
+       (error:any)=>{
+  
+       }
+    );
+  
+  }
+  addToFav(id:any,ProdName:any,Image:any){
+    // let id = $("#id").prop('value');
+    // localStorage.setItem('product_name' + id,ProdName);
+    // localStorage.setItem('image' +id,Image);
+    // localStorage.setItem('quantity' +id,'1');
+    localStorage.setItem('Fav' + id,ProdName + '#$' + Image );
+  
+  
+  }
 }
