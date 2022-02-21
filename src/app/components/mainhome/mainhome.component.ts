@@ -69,6 +69,8 @@ export class MainhomeComponent implements OnInit {
         if(c.id == id){
           $("#exampleModalLabel1").html(c?.product_name);
           $("#exampleModalLabel2").html(c?.description);
+          // $("#exampleModalLabel3").html(c?.image);
+
 
 
         }
