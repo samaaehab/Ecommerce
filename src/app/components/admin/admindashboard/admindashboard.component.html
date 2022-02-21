@@ -284,20 +284,35 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div class="chart-pie pt-4 pb-2">
-                        <canvas id="myPieChart"></canvas>
+                    <div class="donut-chart-block block"> 
+                        <h2 class="titular">OS AUDIENCE STATS</h2>
+                        <div class="donut-chart">
+     <!-- PORCIONES GRAFICO CIRCULAR
+          ELIMINADO #donut-chart
+          MODIFICADO CSS de .donut-chart -->
+          <div id="porcion1" class="recorte"><div class="quesito ios" data-rel="21"></div></div>
+         <div id="porcion2" class="recorte"><div class="quesito mac" data-rel="39"></div></div>
+         <div id="porcion3" class="recorte"><div class="quesito win" data-rel="31"></div></div>
+         <div id="porcionFin" class="recorte"><div class="quesito linux" data-rel="9"></div></div>
+     <!-- FIN AÑADIDO GRÄFICO -->
+                                <p class="center-date">E-Comerce<br></p>        
+                        </div>
+                        <ul class="os-percentages horizontal-list d-flex justify-content-center">
+                            <li>
+                                <p class="ios os scnd-font-color">Man</p>
+                                <p class="os-percentage">21<sup>%</sup></p>
+                            </li>
+                            <li>
+                                <p class="mac os scnd-font-color">Woman</p>
+                                <p class="os-percentage">39<sup>%</sup></p>
+                            </li>
+                            <li>
+                                <p class="linux os scnd-font-color">Kids</p>
+                                <p class="os-percentage">9<sup>%</sup></p>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="mt-4 text-center small">
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Direct
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Social
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> Referral
-                        </span>
-                    </div>
+                   
                 </div>
             </div>
         </div>

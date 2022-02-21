@@ -59,21 +59,24 @@
                         paginate: { itemsPerPage: count, currentPage: p }">
                             <div class="grid_item">
                                 <span class="ribbon hot">Hot</span>
+                                <input id="id" type="hidden" value="{{product.id}}" #inputId>
+
                                 <figure>
                                     <a href="product-detail-1.html">
-                                        <img class="img-fluid lazy" src="{{imagepath}}{{product.image}}" style="height: 300px !important; width:300px !important" alt="">
+                                        <img class="img-fluid lazy" id="inputImage" src="{{imagepath}}{{product.image}}" style="height: 300px !important; width:300px !important" alt="" #inputImage>
                                     </a>
                                 </figure>
                                 <a href="product-detail-1.html">
-                                    <h3>{{product.product_name}}</h3>
+                                    <h3 id="inputProdName">{{product.product_name}}</h3>
+                                    <input id="inputProdName" type="hidden" value="{{product.product_name}}" #inputProdName>
+
                                 </a>
                                 <div class="price_box" *ngFor="let p of price">
                                     <span class="new_price" *ngIf="p.product_id === product.id" >$ {{p.price}}</span>
                                 </div>
                                 <ul>
-                                    <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                                    <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-                                    <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+                                    <li><a  class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+                                    <li><a  class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart" (click)="addToCart(inputId.value,inputProdName.value,inputImage.src)"></i><span>Add to cart</span></a></li>
                                 </ul>
                             </div>
                             <!-- /grid_item -->
