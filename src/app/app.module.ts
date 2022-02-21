@@ -38,11 +38,13 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
+
     // // rebeat
     // AdmincategoryComponent,
 
@@ -109,6 +111,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AuthService,
     AfterLoginService,
     BeforeLoginService,
+    CartComponent
    ],
   bootstrap: [AppComponent]
   
