@@ -3,6 +3,9 @@ import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
+import { Cart } from 'src/app/models/Cart';
+import { CartService } from 'src/app/services/cart.service';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-cart',
@@ -14,9 +17,13 @@ export class CartComponent implements OnInit {
   products: any[] = [];
   productsInCart: any[] = [];
   cartCount:any;
+  loggedUser: any[] = [];
+  users:User[]=[];
+
 
   totalPrice:number=0; 
-    constructor(private _userService: UserService, private router:Router,public myapp:AppComponent,private route: ActivatedRoute) 
+  constructor(private _userService: UserService, private router: Router, public myapp: AppComponent, private route: ActivatedRoute
+  ,private _cartSeervice:CartService) 
     { this.router.routeReuseStrategy.shouldReuseRoute = () => false;}
 
   ngOnInit(): void {
@@ -39,6 +46,14 @@ export class CartComponent implements OnInit {
      
     }
     
+    this._userService.get().subscribe(
+      (res: any) => {
+        console.log(JSON.stringify(res));
+        this.users = res.data.find((user:any)=>user.email==this.user);
+        this.loggedUser.push(this.users);
+        // console.log(this.loggedUser)
+      }
+    );
     
   }
 
@@ -76,5 +91,35 @@ price:any;
   getTotalPrice(){
     $("#totPrice").prop('value')[0];
   }
+  
+  addtodatabase(total_price: any, products_number: any, status: any, store_id: any, user_id: any) {
+    let addcart = new Cart();
+    addcart.total_price = total_price;
+    addcart.products_number=products_number;
+    addcart.status = status;
+    addcart.store_id = store_id;
+    addcart.user_id = user_id;
+    this._cartSeervice.post(addcart).subscribe(
 
+      (response:any)=>{
+        this.products.push(addcart); 
+        // window.location.reload();
+        this.myapp.successmessage(response.message);
+       console.log(response);
+       
+        
+      },
+      (error: any) => {
+       for (const err in error.error.errors) {
+         for (let i = 0; i < error.error.errors[err].length; i++){
+           console.log(error.error.errors[err][i]);
+           this.myapp.errormessage(error.error.errors[err][i]);
+         }
+         
+       }
+      }
+
+    );
+
+}
 }
