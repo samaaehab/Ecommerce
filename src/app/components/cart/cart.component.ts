@@ -54,6 +54,8 @@ export class CartComponent implements OnInit {
         // console.log(this.loggedUser)
       }
     );
+
+    this.getTotalPrice();
     
   }
 
@@ -89,7 +91,10 @@ price:any;
     this.myapp.showInfo("Updated Successfuly","Updated");
   }
   getTotalPrice(){
-    $("#totPrice").prop('value')[0];
+    for(let prod of this.productsInCart){
+      console.log(prod[5]);
+      
+    }
   }
   
   addtodatabase(total_price: any, products_number: any, status: any, store_id: any, user_id: any) {

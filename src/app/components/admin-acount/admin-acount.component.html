@@ -6,12 +6,12 @@
 
       <div class="form-group">
 
-        <input formControlName="email" type="email" class="form-control" [class.is-invalid]="isInValidAndTouched('email')"
-          [class.is-valid]="isValidControl('email')" name="email" placeholder="User Name*">
-        <div *ngIf="isInValidAndTouched('email')">
-          <small class="form-text text-danger" *ngIf="isControlHasError('email','required')">required
+        <input formControlName="admin_email" type="email" class="form-control" [class.is-invalid]="isInValidAndTouched('admin_email')"
+          [class.is-valid]="isValidControl('admin_email')" name="email" placeholder="User Name*">
+        <div *ngIf="isInValidAndTouched('admin_email')">
+          <small class="form-text text-danger" *ngIf="isControlHasError('admin_email','required')">required
             email</small>
-          <small class="form-text text-danger" *ngIf="isControlHasError('email','email')">is not valid</small>
+          <small class="form-text text-danger" *ngIf="isControlHasError('admin_email','email')">is not valid</small>
         </div>
 
       </div>
@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary btn_1 full-width">Log
+      <button type="submit" class="btn btn-primary btn_1 full-width" (click)="login()">Log
         IN</button>
     </div>
 
