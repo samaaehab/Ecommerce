@@ -40,7 +40,7 @@ export class MainhomeComponent implements OnInit {
     (res: any) => {
       for(const i in res.data){
         const id= res.data[i].id;
-        this._productService.getForEachCategory(id).subscribe(
+        this._productService.getForEachSubCategory(id).subscribe(
           (res:any)=>{
             this.LastProducts=res.data;
 
@@ -91,12 +91,13 @@ this._userService.get().subscribe(
   }
 );
 }
-addToCart(id:any,ProdName:any,Image:any){
+addToCart(id:any,ProdName:any,Image:any,newPrice:any){
   // let id = $("#id").prop('value');
   // localStorage.setItem('product_name' + id,ProdName);
   // localStorage.setItem('image' +id,Image);
   // localStorage.setItem('quantity' +id,'1');
-  localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' + 1);
+
+  localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' + 1+ '#$' + id);
 
 
 }

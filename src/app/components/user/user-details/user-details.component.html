@@ -38,32 +38,32 @@
                     <div class="card-body">
                         <form class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label">First Name</label>
-                                <input type="text" class="form-control" value="Madison">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" value="{{newUser[0].name}}">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Last Name</label>
-                                <input type="text" class="form-control" value="Ruiz">
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Display Name</label>
-                                <input type="text" class="form-control" value="Madison Ruiz">
+                                <label class="form-label">Phone</label>
+                                <input type="text" class="form-control" value="{{newUser[0].phone}}">
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Email address</label>
-                                <input type="text" class="form-control" value="madison.ruiz@gmail.com">
+                                <input type="text" class="form-control" value="{{newUser[0].email}}">
                             </div>
                             <div class="col-12">
-                                <label class="form-label">Current Password</label>
-                                <input type="text" class="form-control" value=".................">
+                                <label class="form-label">Address</label>
+                                <input type="text" class="form-control" value="{{newUser[0].full_address}}">
                             </div>
-                            <div class="col-12">
-                                <label class="form-label">New Password</label>
-                                <input type="text" class="form-control" value=".................">
+                            <div class="col-4">
+                                <label class="form-label">Country</label>
+                                <input type="text" class="form-control" value="{{newUser[0].country}}">
                             </div>
-                            <div class="col-12">
-                                <label class="form-label">Confirm New Password</label>
-                                <input type="text" class="form-control" value=".................">
+                            <div class="col-4">
+                                <label class="form-label">City</label>
+                                <input type="text" class="form-control" value="{{newUser[0].city}}">
+                            </div>
+                            <div class="col-4">
+                                <label class="form-label">House number</label>
+                                <input type="text" class="form-control" value="{{newUser[0].house_no}}">
                             </div>
                             <div class="col-12">
                                 <button type="button" class="btn btn-dark btn-ecomm">Save Changes</button>

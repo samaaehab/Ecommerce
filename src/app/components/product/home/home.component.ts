@@ -121,7 +121,7 @@ addToCart(id:any,ProdName:any,Image:any){
 // localStorage.setItem('product_name' + id,ProdName);
 // localStorage.setItem('image' +id,Image);
 // localStorage.setItem('quantity' +id,'1');
-localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' + 1);
+localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' + 1 + '#$' + id);
 
 
 }

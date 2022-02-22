@@ -85,10 +85,12 @@ imageUpload(event:any){
 
 }
  
- add(product_name:string,image:any,description:string,subcat_id:any,cat_id:any):void{
+ add(product_name:string,image:any,description:string,price:any,discount:any,subcat_id:any,cat_id:any):void{
    let formdata=new FormData();
   formdata.append('product_name',product_name);
   formdata.append('description',description);
+  formdata.append('price',price);
+  formdata.append('discount',discount);
   formdata.append('subcat_id',subcat_id);
    formdata.append('image', this.files, this.files.name);
    formdata.append('cat_id',cat_id);
@@ -197,6 +199,8 @@ imageUpload(event:any){
          $("#uppid").prop('value',c?.id);
          $("#productName").prop('value',c?.product_name);
          $("#description").prop('value',c?.description);
+         $("#ProdPrice").prop('value',c?.price);
+         $("#ProdDiscount").prop('value',c?.discount);
        }
      }
    );
@@ -213,12 +217,10 @@ imageUpload(event:any){
   );
  }
 
- addFeature(id:any,color:string,size:string,price:any,discount:any){
+ addFeature(id:any,color:string,size:string){
   this.store.product_id=id;
   this.store.color=color;
   this.store.size=size;
-  this.store.price=price;
-  this.store.discount=discount;
   this._StoreService.post(this.store).subscribe(
     (res: any) => {
       this.stores.push(this.store);
@@ -237,10 +239,12 @@ imageUpload(event:any){
   );
  }
 
- update(id:any,pName:any,pDesc:any):void
+ update(id:any,pName:any,pDesc:any,price:any,discount:any):void
  {
    this.product.product_name=pName;
    this.product.description=pDesc;
+   this.product.price=price;
+   this.product.discount=discount;
    this._productService.put(id,this.product)
    .subscribe(
      (response: any) => {

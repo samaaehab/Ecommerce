@@ -182,7 +182,6 @@ Author URI: http://themeforest.net/user/Ansonika/
 }
 [class^="ti-"], [class*=" ti-"] {
   font-family: 'themify';
-  speak: none;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -1624,7 +1623,6 @@ Author URI: http://themeforest.net/user/Ansonika/
   font-family: "fontello";
   font-style: normal;
   font-weight: normal;
-  speak: none;
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
@@ -2346,7 +2344,7 @@ header .sticky_element {
   left: 0;
   top: 0;
   z-index: 9999;
-  -webkit-animation: smoothScroll 0.5s none;
+  animation: smoothScroll 0.5s none;
   border-bottom: 1px solid transparent !important;
   -webkit-box-shadow: 0 20px 20px -20px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0 20px 20px -20px rgba(0, 0, 0, 0.25);
@@ -3470,7 +3468,7 @@ header.version_2 .menu ul li ul li ul {
   position: relative;
   -ms-touch-action: pan-Y;
   touch-action: manipulation;
-  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
   /* fix firefox animation glitch */
 }
 
@@ -3487,14 +3485,16 @@ header.version_2 .menu ul li ul li ul {
   position: relative;
   overflow: hidden;
   /* fix for flashing background */
-  -webkit-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
 }
 
 .owl-carousel .owl-wrapper,
 .owl-carousel .owl-item {
+  backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
@@ -3504,6 +3504,7 @@ header.version_2 .menu ul li ul li ul {
   position: relative;
   min-height: 1px;
   float: left;
+  backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
@@ -3615,13 +3616,6 @@ header.version_2 .menu ul li ul li ul {
 /*
  *  Owl Carousel - Lazy Load Plugin
  */
-.owl-carousel .owl-item {
-  /**
-      This is introduced due to a bug in IE11 where lazy loading combined with autoheight plugin causes a wrong
-      calculation of the height of the owl-item that breaks page layouts
-     */
-}
-
 .owl-carousel .owl-item .owl-lazy {
   opacity: 0;
   transition: opacity 400ms ease;
@@ -3692,6 +3686,7 @@ header.version_2 .menu ul li ul li ul {
   margin: 5px 7px;
   background: #D6D6D6;
   display: block;
+  backface-visibility: visible;
   -webkit-backface-visibility: visible;
   transition: opacity 200ms ease;
   border-radius: 30px;
@@ -4782,7 +4777,7 @@ body.modal-open .mm-slideout {
   color: #004dda;
 }
 
-@-webkit-keyframes fadeIn {
+@keyframes fadeIn {
   0% {
     opacity: 0;
     -webkit-transform: translateX(10px);
@@ -4808,6 +4803,7 @@ body.modal-open .mm-slideout {
   font-weight: 500;
   font-size: 16px;
   font-size: 1rem;
+  margin-right: 10px;
 }
 
 .old_price {
@@ -4919,6 +4915,7 @@ body.modal-open .mm-slideout {
   height: 16px !important;
   background: transparent !important;
   display: block;
+  backface-visibility: visible;
   -webkit-backface-visibility: visible;
   transition: all .3s ease;
   border: 2px solid #ccc;
@@ -6467,7 +6464,7 @@ footer .links ul li a:after {
 }
 
 /* Newsletter footer*/
-@-webkit-keyframes rotation {
+@keyframes rotation {
   from {
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
@@ -6737,6 +6734,7 @@ ul.additional_links li:after {
   z-index: 999999;
   position: fixed;
   outline: none !important;
+  backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
@@ -7129,13 +7127,6 @@ img.mfp-img {
 .mfp-gallery .mfp-image-holder .mfp-figure {
   cursor: pointer;
 }
-
-.mfp-zoom-in {
-  /* start state */
-  /* animate in */
-  /* animate out */
-}
-
 .mfp-zoom-in .mfp-with-anim {
   opacity: 0;
   transition: all 0.2s ease-in-out;

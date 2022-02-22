@@ -11,6 +11,7 @@ export class CartComponent implements OnInit {
   user = localStorage.getItem('email');
   products: any[] = [];
   productsInCart: any[] = [];
+  cartCount:any;
     
     
     constructor(private _userService: UserService, private router:Router) { }
@@ -24,15 +25,17 @@ export class CartComponent implements OnInit {
         let splitProduct = products?.split('#$');
         this.productsInCart.push(splitProduct);
         console.log(this.productsInCart);
-        
-        
+        this.cartCount=this.productsInCart.length;
+
       }
       
     }
-   
-  
- 
+    
+    console.log(this.cartCount);
   }
+
+
+  
   omg(key:any) {
     // for (var i = 0; i < localStorage.length; i++) {
     //   let a = localStorage.key(i);
