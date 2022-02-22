@@ -2,6 +2,7 @@ import { UserService } from './../../../services/user.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import Pusher from 'pusher-js';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,10 @@ export class ProfileComponent implements OnInit {
   username='';
   message='';
   messages:any= [];
-  constructor(private http:HttpClient,private userService:UserService) { }
+  users:User[]=[];
+  newUser:any[]=[]
+  user=localStorage.getItem('email')
+  constructor(private http:HttpClient,private userService:UserService,private _userService:UserService) { }
 
   ngOnInit(): void {
     Pusher.logToConsole = true;
@@ -25,6 +29,14 @@ export class ProfileComponent implements OnInit {
     channel.bind('message', (data: any) => {
       this.messages.push(data);
     });
+    this._userService.get().subscribe(
+      (res: any) => {
+        console.log(JSON.stringify(res));
+        this.users = res.data.find((user:any)=>user.email==this.user);
+        this.newUser.push(this.users);
+        console.log(this.newUser[0])
+      }
+    );
   }
   
   setUsername(username:string):void{
