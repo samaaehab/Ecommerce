@@ -63,10 +63,12 @@ export class MainhomeComponent implements OnInit {
     this.allProducts.forEach(
       c=>{
         if(c.id == id){
+          var img=this.imagepath+c.image;
           $("#exampleModalLabel1").html(c?.product_name);
           $("#exampleModalLabel2").html(c?.description);
-          // $("#exampleModalLabel3").html(c?.src);
-          $("#exampleModalLabel3").attr(c?.src);
+          $("#exampleModalLabel3").prop('src',img);
+          // $("#exampleModalLabel3").prop('src')=c?.src;
+          // console.log(this.imagepath+c.image);
 
           // for(let s of this.size){
           //   console.log(s.size) ;
