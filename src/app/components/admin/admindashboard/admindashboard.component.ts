@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { AuthenService } from 'src/app/services/authen.service';
+import { AdminTokenService } from './../../../services/admin-token.service';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { OrderService } from './../../../services/order.service';
 import { ProductService } from './../../../services/product.service';
@@ -14,7 +17,7 @@ export class AdmindashboardComponent implements OnInit {
   productsCount:number=0;
   categoriesCount:number=0;
   ordersCount:number=0;
-  constructor(private userService:UserService,private productService:ProductService,private orderService:OrderService,private categoryService:CategoryServiceService) { }
+  constructor(private userService:UserService,private productService:ProductService,private orderService:OrderService,private categoryService:CategoryServiceService,private token:AdminTokenService,private auth:AuthenService,private router:Router) { }
 
   ngOnInit(): void {
   this.categoryService.get().subscribe(
@@ -42,7 +45,12 @@ export class AdmindashboardComponent implements OnInit {
     )
   }
 
-
+  logout(event:MouseEvent){
+    event.preventDefault();
+    this.token.remove();
+    this.auth.changeAdminAuthStatus(false);
+    this.router.navigateByUrl('/admin-acount');
+  }
     
 
 }

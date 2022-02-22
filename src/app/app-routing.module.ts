@@ -1,6 +1,9 @@
 import { AdminAcountComponent } from './components/admin-acount/admin-acount.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AfterLoginService } from './services/after-login.service';
+import { BeforeLoginService } from './services/before-login.service';
+import { AfterAdminLoginService } from './services/after-admin-login.service';
+import { BeforeAdminLoginService } from './services/before-admin-login.service';
 import { ProductModule } from './components/product/product.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -30,8 +33,8 @@ import { MainhomeComponent } from './components/mainhome/mainhome.component';
 const routes: Routes = [
       {path: 'home', component:MainhomeComponent},
      
-      {path: 'acount', component: AcountComponent},
-      {path: 'admin-acount', component:AdminAcountComponent},
+      {path: 'acount', component: AcountComponent,canActivate:[BeforeLoginService]},
+      {path: 'admin-acount', component:AdminAcountComponent,canActivate:[BeforeAdminLoginService]},
       {path: 'cart/checkout/confirm', component: ConfirmComponent,canActivate:[AfterLoginService]},
       {path: 'cart/checkout', component: CheckoutComponent,canActivate:[AfterLoginService]},
       {path: 'cart', component: CartComponent},
@@ -57,7 +60,7 @@ const routes: Routes = [
       },
 
       {
-        path: 'admn', 
+        path: 'admn', canActivate:[AfterAdminLoginService],
         loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
       },
 

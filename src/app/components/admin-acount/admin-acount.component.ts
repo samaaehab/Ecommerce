@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthenService } from './../../services/authen.service';
 import { AdminTokenService } from './../../services/admin-token.service';
 import { AuthService } from './../../services/auth.service';
@@ -14,7 +15,7 @@ export class AdminAcountComponent implements OnInit {
   formLogin= new FormGroup({});
   formRegister = new FormGroup({});
   error:any;
-  constructor(private _authService:AuthService,private _formBuilder: FormBuilder,public myapp:AppComponent,private token:AdminTokenService,private auth:AuthenService) { }
+  constructor(private _authService:AuthService,private _formBuilder: FormBuilder,public myapp:AppComponent,private token:AdminTokenService,private auth:AuthenService,private router:Router) { }
 
   ngOnInit(): void {
     this.formLogin=this._formBuilder.group({
@@ -26,23 +27,29 @@ export class AdminAcountComponent implements OnInit {
   login(){
     this._authService.adminLogin(this.formLogin.value).subscribe(
       (response:any)=>{
-        this.handelResponse(response);
-        //console.log(this.token.handel(response.token));
+        
+        if(response.adminToken == undefined){
+          localStorage.removeItem('adminToken');
+          this.myapp.errormessage("Email Or Password Dosn`t Exists");
+        }else{
+          this.handelResponse(response);
+        }
         
       },
       (error:any)=>{
         
         this.handelError(error);
           this.myapp.errormessage(error.error.error);
+          
       }
     );
   
   }
 
   handelResponse(response:any){
-    this.token.handel(response.token);
+    this.token.handel(response.adminToken);
     this.auth.changeAdminAuthStatus(false);
-    // this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/admn/admin/dashboard');
   }
   
   handelError(error:any){
