@@ -1,3 +1,5 @@
+import { AuthenService } from './../../services/authen.service';
+import { AdminTokenService } from './../../services/admin-token.service';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,32 +13,40 @@ import { AppComponent } from 'src/app/app.component';
 export class AdminAcountComponent implements OnInit {
   formLogin= new FormGroup({});
   formRegister = new FormGroup({});
-  constructor(private _authService:AuthService,private _formBuilder: FormBuilder,public myapp:AppComponent) { }
+  error:any;
+  constructor(private _authService:AuthService,private _formBuilder: FormBuilder,public myapp:AppComponent,private token:AdminTokenService,private auth:AuthenService) { }
 
   ngOnInit(): void {
     this.formLogin=this._formBuilder.group({
-      email:['',[Validators.required,Validators.email]],
+      admin_email:['',[Validators.required,Validators.email]],
       password:['',[Validators.required,Validators.minLength(6)]]
       
       });
   }
-//  formLogin={
-//     email:null,
-//     password:null
-//   };
   login(){
-    this._authService.adminLogin(this.formLogin).subscribe(
+    this._authService.adminLogin(this.formLogin.value).subscribe(
       (response:any)=>{
-        console.log(response);
-        this.myapp.successmessage(response.message)
+        this.handelResponse(response);
+        //console.log(this.token.handel(response.token));
+        
       },
       (error:any)=>{
         
-        console.log(error);
-        this.myapp.errormessage(error.error.error);
+        this.handelError(error);
+          this.myapp.errormessage(error.error.error);
       }
     );
   
+  }
+
+  handelResponse(response:any){
+    this.token.handel(response.token);
+    this.auth.changeAdminAuthStatus(false);
+    // this.router.navigateByUrl('/home');
+  }
+  
+  handelError(error:any){
+    this.error=error.error.error;  
   }
 isValidControl(name:string):boolean
 {
