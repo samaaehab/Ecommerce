@@ -1,0 +1,35 @@
+<div class="box_account m-auto" style="width: 500px;margin-top: 70px !important;margin-bottom: 70px !important;">
+  <h3 class="client">Admin Account</h3>
+  <div class="form_container">
+
+    <div [formGroup]="formLogin">
+
+      <div class="form-group">
+
+        <input formControlName="email" type="email" class="form-control" [class.is-invalid]="isInValidAndTouched('email')"
+          [class.is-valid]="isValidControl('email')" name="email" placeholder="User Name*">
+        <div *ngIf="isInValidAndTouched('email')">
+          <small class="form-text text-danger" *ngIf="isControlHasError('email','required')">required
+            email</small>
+          <small class="form-text text-danger" *ngIf="isControlHasError('email','email')">is not valid</small>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <input formControlName="password" type="password" class="form-control" [class.is-invalid]="isInValidAndTouched('password')"
+          [class.is-valid]="isValidControl('password')" name="password_in" placeholder="Password*">
+        <div *ngIf="isInValidAndTouched('password')">
+          <small class="form-text text-danger" *ngIf="isControlHasError('password','required')">required
+            password</small>
+          <small class="form-text text-danger" *ngIf="isControlHasError('password','minlength')">min length is
+            6</small>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn_1 full-width">Log
+        IN</button>
+    </div>
+
+    <!-- /form_container -->
+  </div>
+</div>

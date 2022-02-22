@@ -19,7 +19,7 @@ templateUrl: './acount.component.html',
 styleUrls: ['./acount.component.css']
 })
 export class AcountComponent implements OnInit {
-formLogin= new FormGroup({});
+  formLogin= new FormGroup({});
   formRegister = new FormGroup({});
   account =new Account;
   public loggedin!: boolean;
