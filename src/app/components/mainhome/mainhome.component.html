@@ -94,13 +94,14 @@
                     <div class="price_box">
                         <!-- <span class="new_price" id="inputPrice">$110.00</span> -->
                         <br>
-                        <button class="btn btn-info me-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getid(product.id)">View product</button>
+                        <!-- <button class="btn btn-info me-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getid(product.id)">View product</button> -->
                         <!-- <button class="btn btn-info ms-4" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getid(product.id)">View product</button> -->
 
                     </div>
                     <ul>
                         <li><a  class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"(click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add to favorites</span></a></li>
                         <li><a class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart" (click)="addToCart(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add to cart</span></a></li>
+                        <li><a class="tooltip-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-placement="left" title="view product"><i class="fa fa-eye" style="font-size:20px" (click)="getid(product.id)"></i><span>view product</span></a></li>                   
                     </ul>
 
 
@@ -264,14 +265,27 @@ aria-labelledby="exampleModalLabel1" aria-hidden="true"  >
        <div class="modal-body">
 
         <p id="exampleModalLabel2"></p>
+        <p id="exampleModalLabel5"></p>
+        <p id="exampleModalLabel6"></p>
+
+
 
          <!-- <input type="hidden" id="upcid" #inputId> -->
-         <!-- <div class="input-group mb-3">
-           <label for="upcategory" class="me-3 mt-2">Category</label>
-           <input type="text" id="upcategory" #inputCategory class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-         </div> -->
+         <div class=" mb-3">
+            <!-- <p id="exampleModalLabel5"></p> -->
+
+           <!-- <label for="upcategory" class="me-3 mt-2">Category</label> -->
+           <!-- <input type="text" id="upcategory" #inputCategory class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1"> -->
+         </div> 
        </div>
        <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
+ <!-- <div class="price_box" *ngFor="let s of size">
+     <span   >$ {{s.size}}</span>
+    </div>  -->
+
+    <!-- <div class="price_box" *ngFor="let s of size">
+        <span class="new_price" *ngIf="s.product_id === product.id" >$ {{s.size}}</span>
+    </div> -->
 
        <div class="modal-footer">
          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-close"></i></button> -->

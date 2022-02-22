@@ -6,6 +6,7 @@ import { SubCategory } from 'src/app/models/SubCategory';
 import { UserService } from 'src/app/services/user.service';
 import { StoreService } from 'src/app/services/store.service';
 import { AppComponent } from 'src/app/app.component';
+import { Store } from 'src/app/models/Store';
 
 @Component({
   selector: 'app-mainhome',
@@ -14,8 +15,10 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class MainhomeComponent implements OnInit {
   LastProducts:Product[]=[];
+  size:any[]=[];
 
   allProducts: any[] = [];
+  store:Store[]=[];
   storeId:any[]=[];
   cart:any[]=[];
   imagepath: any = 'http://127.0.0.1:8000/public/image/';
@@ -62,15 +65,40 @@ export class MainhomeComponent implements OnInit {
           $("#exampleModalLabel1").html(c?.product_name);
           $("#exampleModalLabel2").html(c?.description);
           // $("#exampleModalLabel3").html(c?.src);
-          $("#exampleModalLabel3").prop(c?.src);
+          $("#exampleModalLabel3").attr(c?.src);
 
-
+          // for(let s of this.size){
+          //   console.log(s.size) ;
+        
+          // }
 
         }
       }
     );
+    
 
   }
+
+
+  
+  // getidS(id:number){
+  //   this.store.forEach(
+  //     c=>{
+  //       if(c.id == id){
+  //         $("#exampleModalLabel5").html(c?.size);
+  //         $("#exampleModalLabel6").html(c?.color);
+  //         // $("#exampleModalLabel3").html(c?.src);
+  //         // $("#exampleModalLabel3").prop(c?.src);
+
+  //         for(let s of this.size){
+  //          console.log(s.size) ;
+       
+  //        }
+  //       }
+  //     }
+  //   );
+
+  // }
 getIdByEmail(){
 this._userService.get().subscribe(
   (res: any) => {
@@ -123,7 +151,28 @@ addToFav(id:any,ProdName:any,Image:any,newPrice:any){
   this.myapp.successmessage("Added To Wish List Successfuly"); 
 
 }
+getSize(){
+  this.storeService.get().subscribe(
+       (res:any)=>{
+ for(let i in res.data){
+   
+     this.size.push(res.data[i]);
+   
+   
+   
+ }
+  
+       
+ },
+     (error:any)=>{
 
+     }
+  );
+
+  
+   console.log(this.size);
 }
 
+       }
 
+      
