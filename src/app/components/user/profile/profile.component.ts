@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import Pusher from 'pusher-js';
 import { User } from 'src/app/models/User';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,7 @@ export class ProfileComponent implements OnInit {
   users:User[]=[];
   newUser:any[]=[]
   user=localStorage.getItem('email')
-  constructor(private http:HttpClient,private userService:UserService,private _userService:UserService) { }
+  constructor(private http:HttpClient,private userService:UserService,private _userService:UserService,public myapp:AppComponent) { }
 
   ngOnInit(): void {
     Pusher.logToConsole = true;
@@ -48,4 +49,5 @@ export class ProfileComponent implements OnInit {
       message:this.message
     }).subscribe(()=>this.message='');
   }
+
 }

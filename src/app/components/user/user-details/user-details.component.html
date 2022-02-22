@@ -37,35 +37,38 @@
                     <div class="card-body">
                         <form class="row g-3">
                             <div class="col-md-6">
+                                <input type="hidden" value="{{newUser[0].id}}"#inputuserid>
                                 <label class="form-label">Name</label>
-                                <input type="text" class="form-control" value="{{newUser[0].name}}">
+                                <input type="text" class="form-control" value="{{newUser[0].name}}" #inputusername>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Phone</label>
-                                <input type="text" class="form-control" value="{{newUser[0].phone}}">
+                                <input type="text" class="form-control" value="{{newUser[0].phone}}" #inputuserphone>
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Email address</label>
-                                <input type="text" class="form-control" value="{{newUser[0].email}}">
+                                <input type="text" class="form-control" value="{{newUser[0].email}}" #inputuseremail>
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Address</label>
-                                <input type="text" class="form-control" value="{{newUser[0].full_address}}">
+                                <input type="text" class="form-control" value="{{newUser[0].full_address}}" #inputuseraddress>
                             </div>
                             <div class="col-4">
                                 <label class="form-label">Country</label>
-                                <input type="text" class="form-control" value="{{newUser[0].country}}">
+                                <input type="text" class="form-control" value="{{newUser[0].country}}" #inputusercountry>
                             </div>
                             <div class="col-4">
                                 <label class="form-label">City</label>
-                                <input type="text" class="form-control" value="{{newUser[0].city}}">
+                                <input type="text" class="form-control" value="{{newUser[0].city}}" #inputusercity> 
                             </div>
                             <div class="col-4">
                                 <label class="form-label">House number</label>
-                                <input type="text" class="form-control" value="{{newUser[0].house_no}}">
+                                <input type="text" class="form-control" value="{{newUser[0].house_no}}" #inputuserhouse>
                             </div>
                             <div class="col-12">
-                                <button type="button" class="btn btn-dark btn-ecomm">Save Changes</button>
+                                <button type="button" class="btn btn-dark btn-ecomm"
+                                (click)="update(inputuserid.value,inputusername.value,inputuseremail.value,inputuserphone.value,inputuseraddress.value,inputusercountry.value,inputusercity.value,inputuserhouse.value)"
+                                >Save Changes</button>
                             </div>
                         </form>
                     </div>
