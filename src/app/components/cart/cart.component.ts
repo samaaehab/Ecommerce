@@ -2,6 +2,7 @@ import { AppComponent } from 'src/app/app.component';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -13,8 +14,10 @@ export class CartComponent implements OnInit {
   products: any[] = [];
   productsInCart: any[] = [];
   cartCount:any;
+
   totalPrice:number=0; 
-    constructor(private _userService: UserService, private router:Router,public myapp:AppComponent) { }
+    constructor(private _userService: UserService, private router:Router,public myapp:AppComponent,private route: ActivatedRoute) 
+    { this.router.routeReuseStrategy.shouldReuseRoute = () => false;}
 
   ngOnInit(): void {
     for (var i = 0; i < localStorage.length; i++) {
@@ -47,13 +50,11 @@ export class CartComponent implements OnInit {
     //   if (a?.substring(0, 7) == 'product') {
     //     let products = localStorage.getItem(a);
     localStorage.removeItem(key);
-    // this.router.navigate(['/cart']);
-    this.router.navigateByUrl('', { skipLocationChange: false }).then(() => {
-      this.router.navigate(['/cart']);
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.router.navigate(['/cart']);
    });
-    
-    //   }
-    // }
+  // this.router.navigate(['/cart'], {relativeTo: this.route, skipLocationChange: true});
+  // this.ngOnInit();
   }
 price:any;
   getQty(qty:any){

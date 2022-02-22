@@ -82,6 +82,7 @@ this._userService.get().subscribe(
 );
 }
 
+
 addToCart(id:any,ProdName:any,Image:any,newPrice:any){
 
   let message="";
