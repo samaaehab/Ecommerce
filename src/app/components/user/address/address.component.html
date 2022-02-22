@@ -28,7 +28,6 @@
                             <a routerLink="/user/profile/order" class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Orders <i class='bx bx-cart-alt fs-5'></i></a>
                             <a routerLink="/user/profile/address" class="list-group-item active d-flex justify-content-between align-items-center">Addresses <i class='bx bx-home-smile fs-5'></i></a>
                             <a routerLink="/user/profile/userDetailes" class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Account Details <i class='bx bx-user-circle fs-5'></i></a>
-                            <a routerLink="" class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Logout <i class='bx bx-log-out fs-5'></i></a>
                         </div>
                     </div>
                 </div>
@@ -41,12 +40,11 @@
                             <div class="col-12 col-lg-6">
                                 <h5 class="mb-3">Billing Addresses</h5>
                                 <address>
-                              Madison Riiz<br>
-                              123 Happy Street<br>
-                              Cape Town<br>
-                              Western Cape<br>
-                              8001<br>
-                              South Africa
+                              <p id="country"></p>{{newUser[0].country}}<br>
+                              <span id="city">{{newUser[0].city}}</span>
+                             <span id="house_no">{{newUser[0].house_no}}</span>
+                             <p id="full_address">{{newUser[0].full_address}}</p>
+                              
                           </address>
                             </div>
                             <div class="col-12 col-lg-6">

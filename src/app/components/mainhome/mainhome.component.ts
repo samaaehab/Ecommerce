@@ -5,6 +5,7 @@ import { Product } from 'src/app/models/Product';
 import { SubCategory } from 'src/app/models/SubCategory';
 import { UserService } from 'src/app/services/user.service';
 import { StoreService } from 'src/app/services/store.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-mainhome',
@@ -21,20 +22,11 @@ export class MainhomeComponent implements OnInit {
   user=localStorage.getItem('email');
 
 
-  constructor(private _productService:ProductService,private _SubcategoryService:SubcategoryService,private _userService:UserService,private storeService:StoreService) { }
+  constructor(public myapp: AppComponent,private _productService:ProductService,private _SubcategoryService:SubcategoryService,private _userService:UserService,private storeService:StoreService) { }
 
 
 
   ngOnInit(): void {
-
-    // this._productService.get().subscribe(
-    //   (res: any) => {
-    //     console.log(JSON.stringify(res));
-    //     this.products = res.data;
-    //   }
-    // );
-
-
 
     this._SubcategoryService.get().subscribe(
     (res: any) => {
@@ -91,15 +83,16 @@ this._userService.get().subscribe(
   }
 );
 }
+
+
 addToCart(id:any,ProdName:any,Image:any,newPrice:any){
-  // let id = $("#id").prop('value');
-  // localStorage.setItem('product_name' + id,ProdName);
-  // localStorage.setItem('image' +id,Image);
-  // localStorage.setItem('quantity' +id,'1');
 
-  localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' + 1+ '#$' + id);
+  let message="";
+ console.log(id);
+ localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
+ this.myapp.successmessage("Added To Cart Successfuly"); 
 
-
+  
 }
 getStoreId(){
   this.storeService.get().subscribe(
@@ -119,7 +112,16 @@ console.log(this.storeId);
      }
   );
 
-    }
+}
+addToFav(id:any,ProdName:any,Image:any,newPrice:any){
+  // let id = $("#id").prop('value');
+  // localStorage.setItem('product_name' + id,ProdName);
+  // localStorage.setItem('image' +id,Image);
+  // localStorage.setItem('quantity' +id,'1');
+  localStorage.setItem('Fav' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
+  this.myapp.successmessage("Added To Wish List Successfuly"); 
+
+}
 
 }
 

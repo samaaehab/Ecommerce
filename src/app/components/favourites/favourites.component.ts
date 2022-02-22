@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class FavouritesComponent implements OnInit {
   user=localStorage.getItem('email');
   products:any[]=[];
   productsInFav:any[]=[];
-  constructor(private _userService:UserService) { }
+  constructor(private _userService:UserService,private router:Router) { }
 
   ngOnInit(): void {
     for (var i = 0; i < localStorage.length; i++) {
@@ -28,5 +29,16 @@ export class FavouritesComponent implements OnInit {
       
   }
   }
-
+  omg(key:any) {
+    // for (var i = 0; i < localStorage.length; i++) {
+    //   let a = localStorage.key(i);
+    //   if (a?.substring(0, 7) == 'product') {
+    //     let products = localStorage.getItem(a);
+    localStorage.removeItem(key);
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.router.navigate(['/favourites']);
+   });
+  // this.router.navigate(['/cart'], {relativeTo: this.route, skipLocationChange: true});
+  // this.ngOnInit();
+  }
 }
