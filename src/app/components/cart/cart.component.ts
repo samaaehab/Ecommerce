@@ -38,7 +38,7 @@ export class CartComponent implements OnInit {
      this.totalPrice+=Number(this.productsInCart[i][5]);
      
     }
-    
+    this.getTotalPrice();
     
   }
 
@@ -74,7 +74,10 @@ price:any;
     this.myapp.showInfo("Updated Successfuly","Updated");
   }
   getTotalPrice(){
-    $("#totPrice").prop('value')[0];
+    for(let prod of this.productsInCart){
+      console.log(prod[5]);
+      
+    }
   }
 
 }
