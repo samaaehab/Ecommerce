@@ -33,7 +33,7 @@ import { AdminSignupComponent } from './components/admin-signup/admin-signup.com
 
 const routes: Routes = [
       {path: 'home', component:MainhomeComponent},
-     
+
       {path: 'acount', component: AcountComponent,canActivate:[BeforeLoginService]},
       {path: 'admin-acount', component:AdminAcountComponent,canActivate:[BeforeAdminLoginService]},
       {path: 'cart/checkout/confirm', component: ConfirmComponent,canActivate:[AfterLoginService]},
@@ -43,20 +43,20 @@ const routes: Routes = [
       {path:'favourites',component:FavouritesComponent},
       {path:'reset-password',component:ResetPasswordComponent},
       {path: 'admin-singup', component:AdminSignupComponent},
-      
+
       {
-        path: 'user', 
+        path: 'user',canActivate:[AfterLoginService],
         loadChildren: () => import('./components/user/user.module').then(m => m.UserModule)
       },
 
 
       {
-        path: 'products', 
+        path: 'products',
         loadChildren: () => import('./components/product/product.module').then(m => m.ProductModule)
       },
 
       {
-        path: 'contact', 
+        path: 'contact',
         loadChildren: () => import('./components/contact/contact.module').then(m => m.ContactModule)
       },
 
@@ -65,7 +65,7 @@ const routes: Routes = [
         loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
       },
 
-       
+
 ];
 
 @NgModule({
@@ -73,4 +73,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
- 
