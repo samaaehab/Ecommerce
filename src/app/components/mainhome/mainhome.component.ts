@@ -58,6 +58,7 @@ export class MainhomeComponent implements OnInit {
   );
   this.getIdByEmail();
   this.getStoreId();
+  this.getSize();
   }
   getid(id:number){
     this.allProducts.forEach(
@@ -161,12 +162,12 @@ getSize(){
        (res:any)=>{
  for(let i in res.data){
    
-     this.size.push(res.data[i]);
+    this.size.push(res.data[i]);
    
    
    
  }
-  
+ console.log(this.size);
        
  },
      (error:any)=>{
