@@ -76,6 +76,8 @@ export class HeaderComponent implements OnInit {
         this.token.remove();
         this.auth.changeAuthStatus(false);
         this.router.navigateByUrl('/acount');
+        localStorage.removeItem('email');
+
       }
   }
 

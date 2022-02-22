@@ -7,17 +7,14 @@ export class AdminTokenService {
 
   private iss={
     login:"http://127.0.0.1:8000/api/admin/login",
-    signup:"http://127.0.0.1:8000/api/signup"
   }
   constructor() { }
 
-  handel(tok:any){
-    this.set(tok);
-    console.log(this.isValide());
-    
+  handel(token1:any){
+    this.set(token1);
   }
-  set(tok:any){
-    localStorage.setItem('adminToken',tok);
+  set(token1:any){
+    localStorage.setItem('adminToken',token1);
   }
   
   get(){
@@ -29,18 +26,18 @@ export class AdminTokenService {
   }
   
   isValide(){
-    const tok=this.get();
-    if(tok){
-      const payload=this.payload(tok);
+    const token1=this.get();
+    if(token1){
+      const payload=this.payload(token1);
       if(payload){
-        return Object.values(this.iss).indexOf(payload.iss)>-1 ? true:false;
+        return Object.values(this.iss).indexOf(payload.iss) > -1 ? true:false;
       }
     }
     return false;
   }
   
-  payload(tok:any){
-    const payload= tok.split('.')[1];
+  payload(token1:any){
+    const payload= token1.split('.')[1];
     return this.decode(payload);
   }
   decode(payload:any){

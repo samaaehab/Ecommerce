@@ -37,6 +37,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AdminAcountComponent } from './components/admin-acount/admin-acount.component';
+import { AdminSignupComponent } from './components/admin-signup/admin-signup.component';
 
 
 
@@ -57,6 +58,7 @@ import { AdminAcountComponent } from './components/admin-acount/admin-acount.com
     ConfirmComponent,
     ResetPasswordComponent,
     AdminAcountComponent,
+    AdminSignupComponent,
 
 
   ],

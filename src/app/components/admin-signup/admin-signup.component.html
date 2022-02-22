@@ -1,0 +1,128 @@
+<div class="box_account m-auto" style="width: 500px;margin-top: 70px !important;margin-bottom: 70px !important;">
+    <h3 class="client">Admin Register</h3>
+    <div class="form_container" [formGroup]="formRegister" >
+        <div class="form-group">
+            <input formControlName="email" type="email" class="form-control" 
+              [class.is-invalid]="isInValidAndTouched2('email')" [class.is-valid]="isValidControl2('email')"
+              name="email" placeholder="email*">
+            <div *ngIf="isInValidAndTouched2('email')">
+              <small class="form-text text-danger" *ngIf="isControlHasError2('email','required')">required
+                email</small>
+              <small class="form-text text-danger" *ngIf="isControlHasError2('email','email')">email is not
+                valid</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <input formControlName="password" type="password" class="form-control"
+              [class.is-invalid]="isInValidAndTouched2('password')" [class.is-valid]="isValidControl2('password')"
+              name="password_in_2" id="password_in_2" value="" placeholder="password*">
+            <div *ngIf="isInValidAndTouched2('password')">
+              <small class="form-text text-danger" *ngIf="isControlHasError2('password','required')">required
+                password</small>
+              <small class="form-text text-danger" *ngIf="isControlHasError2('password','minlength')">min length is
+                6</small>
+            </div>
+          </div>
+          <div class="private box">
+            <div class="row no-gutters">
+              <div class="col-12 pr-1">
+                <div class="form-group">
+                  <input formControlName="name" type="text" class="form-control" 
+                    [class.is-invalid]="isInValidAndTouched2('name')" [class.is-valid]="isValidControl2('name')"
+                    placeholder="name*">
+                  <div *ngIf="isInValidAndTouched2('name')">
+                    <small class="form-text text-danger" *ngIf="isControlHasError2('name','required')">required
+                      name</small>
+                    <small class="form-text text-danger" *ngIf="isControlHasError2('name','minlength')">min length
+                      is 3</small>
+                    <small class="form-text text-danger" *ngIf="isControlHasError2('name','maxlength')">max length
+                      is 25</small>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-12">
+                <div class="form-group">
+                  <input formControlName="full_address" type="text" class="form-control"
+                    [class.is-invalid]="isInValidAndTouched2('full_address')"
+                    [class.is-valid]="isValidControl2('full_address')" placeholder="Full Address*">
+                  <div *ngIf="isInValidAndTouched2('full_address')">
+                    <small class="form-text text-danger" *ngIf="isControlHasError2('full_address','required')">required
+                      address</small>
+                    <small class="form-text text-danger" *ngIf="isControlHasError2('full_address','maxlength')">max
+                      length is 100</small>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            <!-- /row -->
+            <!-- <div class="row no-gutters">
+              <div class="col-6 pr-1">
+                <div class="form-group">
+                  <input formControlName="city" type="text" class="form-control"
+                    [class.is-invalid]="isInValidAndTouched2('city')" [class.is-valid]="isValidControl2('city')"
+                    placeholder="city*">
+                  <div *ngIf="isInValidAndTouched2('city')">
+                    <small class="form-text text-danger" *ngIf="isControlHasError2('city','required')">required
+                      city</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 pl-1">
+                <div class="form-group">
+                  <input formControlName="house_no" type="text" class="form-control"
+                    [class.is-invalid]="isInValidAndTouched2('house_no')"
+                    [class.is-valid]="isValidControl2('house_no')" placeholder="House Number*">
+                  <div *ngIf="isInValidAndTouched2('house_no')">
+                    <small class="form-text text-danger" *ngIf="isControlHasError2('house_no','required')">required
+                      house number</small>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!-- /row -->
+
+            <div class="row no-gutters">
+              <!-- <div class="col-6 pr-1">
+                <div class="form-group">
+                  <div class="custom-select-form">
+
+                    <select formControlName="country" class="form-select"
+                      [class.is-invalid]="isInValidAndTouched2('country')"
+                      [class.is-valid]="isValidControl2('country')" name="country" placeholder="country*">
+                      <option value="">Country*</option>
+                      <option value="Egypt" selected>Egypt</option>
+                      <option value="United states">United states</option>
+                      <option value="Asia">Asia</option>
+                    </select>
+                  </div>
+                  <div *ngIf="isInValidAndTouched2('country')">
+                    <small class="form-text text-danger" *ngIf="isControlHasError2('country','required')">required
+                      house country</small>
+                  </div>
+                </div>
+              </div> -->
+              <div class="col-6 pl-1">
+                <!-- <div class="form-group">
+                  <input formControlName="phone" type="text" class="form-control"
+                    [class.is-invalid]="isInValidAndTouched2('phone')" [class.is-valid]="isValidControl2('phone')"
+                    placeholder="Telephone *">
+                  <div *ngIf="isInValidAndTouched2('phone')">
+                    <small class="form-text text-danger" *ngIf="isControlHasError2('phone','required')">required
+                      house phone number</small>
+                    <small class="form-text text-danger" *ngIf="isControlHasError2('phone','minlength')">max length
+                      is 11</small>
+                    <small class="form-text text-danger" *ngIf="isControlHasError2('phone','maxlength')">max length
+                      is 11</small>
+
+                  </div>
+                </div> -->
+              </div>
+            </div>
+            <!-- /row -->
+
+          </div>
+          <hr>
+          <button [disabled]="formRegister.invalid" type="submit"
+          class="btn btn-primary btn_1  full-width">Register</button>
+    </div>
+</div>

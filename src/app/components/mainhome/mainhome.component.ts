@@ -15,6 +15,7 @@ import { Store } from 'src/app/models/Store';
 })
 export class MainhomeComponent implements OnInit {
   LastProducts:Product[]=[];
+
   size:any[]=[];
 
   allProducts: any[] = [];
@@ -127,12 +128,14 @@ addToCart(id:any,ProdName:any,Image:any,newPrice:any){
 }
 getStoreId(){
   this.storeService.get().subscribe(
-       (res:any)=>{
+    (res: any) => {
+      console.log(res.data)
  for(let i in res.data){
 
-     this.storeId.push(res.data[i].id);
+   this.storeId.push(res.data[i].id);
 
  }
+      
 console.log(this.storeId);
 
 //  console.log(res.data[0].id);
