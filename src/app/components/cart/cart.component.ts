@@ -73,7 +73,7 @@ price:any;
     this.myapp.showInfo("Updated Successfuly","Updated");
   }
   getTotalPrice(){
-    //$("#totPrice").html((this.totalPrice).toString());
+    $("#totPrice").prop('value')[0];
   }
 
 }

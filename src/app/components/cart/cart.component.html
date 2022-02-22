@@ -50,7 +50,7 @@
                                 </td>
                                 <td>
                                     <strong>$ {{cart[2]*getQty(inputQty.value)}}</strong>
-                                    <input #inputSubTotla type="hidden" value="{{cart[2]*getQty(inputQty.value)}}">
+                                    <input id="totPrice" #inputSubTotla type="hidden" value="{{cart[2]*getQty(inputQty.value)}}">
                                 </td>
                                 <td class="options">
                                     <a href="" routerLink="/cart" ><i class="ti-trash" (click)="omg('product'+cart[3])"></i></a>
@@ -76,7 +76,7 @@
             <div class="col-xl-4 col-lg-4 col-md-6">
         <ul class="d-flex">
             <li>
-                <span>Total</span> <span id="totPrice" style="margin-left: 190px !important;">${{totalPrice}}</span>
+                <span>Total</span> <span style="margin-left: 190px !important;">${{totalPrice}}</span>
             </li>
         </ul>
         <a routerLink="/cart/checkout" class="btn_1 full-width cart">Proceed to Checkout</a>

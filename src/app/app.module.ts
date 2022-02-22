@@ -36,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AdminAcountComponent } from './components/admin-acount/admin-acount.component';
 
 
 
@@ -55,6 +56,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FavouritesComponent,
     ConfirmComponent,
     ResetPasswordComponent,
+    AdminAcountComponent,
 
 
   ],

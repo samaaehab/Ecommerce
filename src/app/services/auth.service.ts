@@ -19,4 +19,8 @@ export class AuthService {
   resetPassword(form:any){
     return this.http.post(`${this.auth_url}/resetPassword`,form);
   }
+
+  adminLogin(form:any){
+    return this.http.post(`${this.auth_url}/admin/login`,form);
+  }
 }
