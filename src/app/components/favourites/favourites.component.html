@@ -42,7 +42,7 @@
                                     <span class="item_cart">{{fav[0]}}</span>
                                 </td>
                                 <td>
-                                    <strong>$140.00</strong>
+                                    <strong>{{fav[2]|currency}}</strong>
                                 </td>
                                 <!-- <td>
                                     <div class="numbers-row">
@@ -53,7 +53,7 @@
                                     <strong>$140.00</strong>
                                 </td> -->
                                 <td class="options">
-                                    <a href="#"><i class="ti-trash"></i></a>
+                                    <a href="" routerLink="/cart"><i class="ti-trash"(click)="omg('Fav'+fav[3])"></i></a>
                                 </td>
                             </tr>
                            
