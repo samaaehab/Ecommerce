@@ -21,6 +21,7 @@ import { FavouritesComponent } from './components/favourites/favourites.componen
 // import { FooterComponent } from './components/footer/footer.component';
 
 import { MainhomeComponent } from './components/mainhome/mainhome.component';
+import { AdminSignupComponent } from './components/admin-signup/admin-signup.component';
 // import { OrdersComponent } from './components/orders/orders.component';
 // import { ProfileComponent } from './components/profile/profile.component';
 // import { UserDetailsComponent } from './components/user-details/user-details.component';
@@ -38,7 +39,7 @@ const routes: Routes = [
       {path: '', component:MainhomeComponent},
       {path:'favourites',component:FavouritesComponent},
       {path:'reset-password',component:ResetPasswordComponent},
-     
+      {path: 'admin-singup', component:AdminSignupComponent},
       
       {
         path: 'user', 
