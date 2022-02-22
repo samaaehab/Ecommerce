@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 import { Product } from 'src/app/models/Product';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -28,7 +29,8 @@ export class KidsComponent implements OnInit {
   count: any = 9;
   searchText:any;
   constructor(private productService: ProductService, private storeService: StoreService, public header: HeaderComponent,
-    private _SubcategoryService:SubcategoryService,private _categoryService:CategoryServiceService,private _userService:UserService) { }
+    private _SubcategoryService: SubcategoryService, private _categoryService: CategoryServiceService, private _userService: UserService,
+  public myapp:AppComponent) { }
 
   ngOnInit(): void {
     this.productService.getProductsCategory(3).subscribe(
@@ -119,14 +121,14 @@ this._userService.get().subscribe(
 }
 );
 }
-addToCart(id:any,ProdName:any,Image:any){
-// let id = $("#id").prop('value');
-// localStorage.setItem('product_name' + id,ProdName);
-// localStorage.setItem('image' +id,Image);
-// localStorage.setItem('quantity' +id,'1');
-localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' + 1 +'#$'+id);
+addToCart(id:any,ProdName:any,Image:any,newPrice:any){
 
+  let message="";
+ console.log(id);
+ localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
+ this.myapp.successmessage("Added To Cart Successfuly"); 
 
+  
 }
 getStoreId(){
 this.storeService.get().subscribe(
@@ -148,6 +150,14 @@ console.log(this.storeId);
 
   }
 
-
+  addToFav(id:any,ProdName:any,Image:any,newPrice:any){
+    // let id = $("#id").prop('value');
+    // localStorage.setItem('product_name' + id,ProdName);
+    // localStorage.setItem('image' +id,Image);
+    // localStorage.setItem('quantity' +id,'1');
+    localStorage.setItem('Fav' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
+    this.myapp.successmessage("Added To Wish List Successfuly"); 
+  
+  }
 
 }

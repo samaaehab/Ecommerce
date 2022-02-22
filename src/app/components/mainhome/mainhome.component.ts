@@ -110,7 +110,16 @@ console.log(this.storeId);
      }
   );
 
-    }
+}
+addToFav(id:any,ProdName:any,Image:any,newPrice:any){
+  // let id = $("#id").prop('value');
+  // localStorage.setItem('product_name' + id,ProdName);
+  // localStorage.setItem('image' +id,Image);
+  // localStorage.setItem('quantity' +id,'1');
+  localStorage.setItem('Fav' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
+  this.myapp.successmessage("Added To Wish List Successfuly"); 
+
+}
 
 }
 
