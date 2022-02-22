@@ -95,8 +95,7 @@ addToCart(id:any,ProdName:any,Image:any,newPrice:any){
   // localStorage.setItem('image' +id,Image);
   // localStorage.setItem('quantity' +id,'1');
 
-  localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' + 1+ '#$' + id);
-
+  localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
 
 }
 getStoreId(){
