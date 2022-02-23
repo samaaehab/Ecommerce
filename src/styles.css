@@ -36,3 +36,24 @@
 @import "css4/sb-admin-2.min.css";
 @import "./vendor/fontawesome-free/css/all.min.css";
 
+.search {
+  position: relative;
+  box-shadow: 0 0 40px rgba(51, 51, 51, .1)
+}
+
+.search input {
+  height: 50px;
+  text-indent: 25px;
+  border: 2px solid #d6d4d4
+}
+
+.search input:focus {
+  box-shadow: none;
+  border: 2px solid #3D63D2
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 18px;
+  left: 16px
+}

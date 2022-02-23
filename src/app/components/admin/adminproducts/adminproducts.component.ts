@@ -5,7 +5,7 @@ import { SubcategoryService } from 'src/app/services/subcategory.service';
 import { Product } from './../../../models/Product';
 import { ProductService } from './../../../services/product.service';
 import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
-import  Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import { AppComponent } from 'src/app/app.component';
 import { Store } from './../../../models/Store';
 import { StoreService } from './../../../services/store.service';
@@ -19,11 +19,11 @@ import { event } from 'jquery';
   styleUrls: ['./adminproducts.component.css']
 })
 export class AdminproductsComponent implements OnInit {
-  products:any[]=[];
-  subcategories:SubCategory[]=[];
+  products: any[] = [];
+  subcategories: SubCategory[] = [];
 
-  categories:Category[]=[];
-  stores:Store[]=[];
+  categories: Category[] = [];
+  stores: Store[] = [];
 
   files: any;
   imagepath: any = 'http://127.0.0.1:8000/public/image/';
@@ -32,254 +32,239 @@ export class AdminproductsComponent implements OnInit {
   count: any = 3;
   // p1: any = 1;
   // count1: any = 3;
-  searchText:any;
-  id:any;
-  product =new Product();
+  searchText: any;
+  id: any;
+  product = new Product();
   store = new Store();
-  formProduct= new FormGroup({});
-  
-  constructor(private _productService: ProductService, private _SubcategoryService: SubcategoryService,private _StoreService:StoreService,private _categoryService:CategoryServiceService,
-    public myapp: AppComponent,private http:HttpClient,private _formBuilder: FormBuilder) { }
+  formProduct = new FormGroup({});
 
- ngOnInit(): void {
-   this._productService.get().subscribe(
-     (res: any) => {
-      //  console.log(JSON.stringify(res));
-       this.products = res.data;
-       console.log(this.products);
-       
-     }
-   );
-   this._SubcategoryService.get().subscribe(
-    (res: any) => {
-      console.log(JSON.stringify(res));
-      this.subcategories = res.data;
-    }
-  );
+  constructor(private _productService: ProductService, private _SubcategoryService: SubcategoryService, private _StoreService: StoreService, private _categoryService: CategoryServiceService,
+    public myapp: AppComponent, private http: HttpClient, private _formBuilder: FormBuilder) { }
 
-  this._categoryService.get().subscribe(
-    (res: any) => {
-      console.log(JSON.stringify(res));
-      this.categories = res.data;
-    }
-  );
-  
-  this._StoreService.get().subscribe(
-    (res: any) => {
-      this.stores = res.data;
-      console.log(this.stores);
-    }
-  );
-   
-  this.formProduct=this._formBuilder.group({
-    ProductName:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],      
-    ProductDescription:['',[Validators.required,Validators.maxLength(255),Validators.minLength(10)]],      
-    SubCategory:['',[Validators.required]],      
-    Category: ['', [Validators.required]],
-    Picture: ['', [Validators.required]],
+  ngOnInit(): void {
+    this.formProduct = this._formBuilder.group({
+      ProductName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+      ProductDescription: ['', [Validators.required, Validators.maxLength(255), Validators.minLength(10)]],
+      SubCategory: ['', [Validators.required]],
+      Category: ['', [Validators.required]],
+      Picture: ['', [Validators.required]],
     });
- }
-imageUpload(event:any){
-  this.files = event.target.files[0];
-  console.log(this.files);
-
-}
- 
- add(product_name:string,image:any,description:string,price:any,discount:any,subcat_id:any,cat_id:any):void{
-   let formdata=new FormData();
-  formdata.append('product_name',product_name);
-  formdata.append('description',description);
-  formdata.append('price',price);
-  formdata.append('discount',discount);
-  formdata.append('subcat_id',subcat_id);
-   formdata.append('image', this.files, this.files.name);
-   formdata.append('cat_id',cat_id);
-   console.log(cat_id);
-   
-   this._productService.post(formdata).subscribe(
-     (response:any)=>{
-       this.products.push(this.product); 
-       // window.location.reload();
-       this.myapp.successmessage(response.message);
-      console.log(response);
-      
-       
-     },
-     (error: any) => {
-      for (const err in error.error.errors) {
-        for (let i = 0; i < error.error.errors[err].length; i++){
-          console.log(error.error.errors[err][i]);
-          this.myapp.errormessage(error.error.errors[err][i]);
-        }
-        
-      }
-     }
-   );
-  
-
- }
-
- deleteFeature(index:number):void
- {
-   let store=this.stores[index];
-   this._StoreService.delete(store.id)
-   .subscribe(
-    (response: any) => {
-      console.log(store);
-
-      Swal.fire({
-        title: 'Are you sure?',
-        text: 'You will not be able to recover this item',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, keep it',
-      }).then((result) => {
-
-        if (result.isConfirmed) {
-          // console.log('Clicked Yes, File deleted!');
-          this.products.splice(index, 1);
-          window.location.reload();
-          this.myapp.successmessage(response.message);
-
-        } else if (result.isDismissed) {
-          // console.log('Clicked No, File is safe!');
-          this.myapp.errormessage("product not Deleted");
-        }
-      })
-
-    },
-    (error:any)=>{}
-  );
-
-
- }
- delete(index:number):void
- {
-   let product=this.products[index];
-   this._productService.delete(product.id)
-   .subscribe(
-    (response: any) => {
-      console.log(product);
-
-      Swal.fire({
-        title: 'Are you sure?',
-        text: 'You will not be able to recover this item',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, keep it',
-      }).then((result) => {
-
-        if (result.isConfirmed) {
-          // console.log('Clicked Yes, File deleted!');
-          this.products.splice(index, 1);
-          // window.location.reload();
-          this.myapp.successmessage(response.message);
-
-        } else if (result.isDismissed) {
-          // console.log('Clicked No, File is safe!');
-          this.myapp.errormessage("product not Deleted");
-
-
-        }
-      })
-
-    },
-    (error:any)=>{}
-  );
-
-
- }
- edit(id:number){
-
-   this.products.forEach(
-     c=>{
-       if(c.id == id){
-         $("#uppid").prop('value',c?.id);
-         $("#productName").prop('value',c?.product_name);
-         $("#description").prop('value',c?.description);
-         $("#ProdPrice").prop('value',c?.price);
-         $("#ProdDiscount").prop('value',c?.discount);
-       }
-     }
-   );
-
- }
-
- getId(id:number){
-  this.products.forEach(
-    c=>{
-      if(c.id == id){
-        $("#productId").prop('value',c?.id);
-      }
-    }
-  );
- }
-
- addFeature(id:any,color:string,size:string){
-  this.store.product_id=id;
-  this.store.color=color;
-  this.store.size=size;
-  this._StoreService.post(this.store).subscribe(
-    (res: any) => {
-      this.stores.push(this.store);
-      window.location.reload();
-      this.myapp.successmessage(res.message);
-    },
-    (error: any) => {
-     for (const err in error.error.errors) {
-       for (let i = 0; i < error.error.errors[err].length; i++){
-         console.log(error.error.errors[err][i]);
-         this.myapp.errormessage(error.error.errors[err][i]);
-       }
-
-     }
-    }
-  );
- }
-
- update(id:any,pName:any,pDesc:any,price:any,discount:any):void
- {
-   this.product.product_name=pName;
-   this.product.description=pDesc;
-   this.product.price=price;
-   this.product.discount=discount;
-   this._productService.put(id,this.product)
-   .subscribe(
-     (response: any) => {
-       console.log(response);
-
-      this.myapp.showInfo('product updated successfully','update');
-
-       window.location.reload();
-     },
-     (error: any) => {
-      for (const err in error.error.errors) {
-        for (let i = 0; i < error.error.errors[err].length; i++){
-          console.log(error.error.errors[err][i]);
-          this.myapp.errormessage(error.error.errors[err][i]);
-        }
+    this.getProductData();
+    this.getCategoryData();
+    this.getSubCategoryData();
+    this.getStoreData();
+  }
+  getProductData() {
+    this._productService.get().subscribe(
+      (res: any) => {
+        this.products = res.data;
+        console.log(this.products);
 
       }
-     }
-   );
-   //alert("Done");
- }
+    );
+  }
+  getSubCategoryData() {
+    this._SubcategoryService.get().subscribe(
+      (res: any) => {
+        console.log(JSON.stringify(res));
+        this.subcategories = res.data;
+      }
+    );
+  }
+  getCategoryData() {
+    this._categoryService.get().subscribe(
+      (res: any) => {
+        console.log(JSON.stringify(res));
+        this.categories = res.data;
+      }
+    );
+  }
 
-   
-isValidControl(name:string):boolean
-{
-return this.formProduct.controls[name].valid;
-}
-isInValidAndTouched(name:string):boolean
-{
-return this.formProduct.controls[name].invalid && (this.formProduct.controls[name].dirty || this.formProduct.controls[name].touched);
-}
-isControlHasError(name:string,error:string):boolean
-{
-return this.formProduct.controls[name].invalid && this.formProduct.controls[name].errors?.[error];
-}
+  getStoreData() {
+    this._StoreService.get().subscribe(
+      (res: any) => {
+        this.stores = res.data;
+        console.log(this.stores);
+      }
+    );
+  }
+
+  imageUpload(event: any) {
+    this.files = event.target.files[0];
+    console.log(this.files);
+
+  }
+
+  add(product_name: string, image: any, description: string, price: any, discount: any, subcat_id: any, cat_id: any): void {
+    let formdata = new FormData();
+    formdata.append('product_name', product_name);
+    formdata.append('description', description);
+    formdata.append('price', price);
+    formdata.append('discount', discount);
+    formdata.append('subcat_id', subcat_id);
+    formdata.append('image', this.files, this.files.name);
+    formdata.append('cat_id', cat_id);
+    console.log(cat_id);
+
+    this._productService.post(formdata).subscribe(
+      (response: any) => {
+        this.getCategoryData();
+        this.getSubCategoryData();
+        this.getProductData();
+        // this.products.push(this.product);
+        // window.location.reload();
+        this.myapp.successmessage(response.message);
+      },
+      (error: any) => {
+        for (const err in error.error.errors) {
+          for (let i = 0; i < error.error.errors[err].length; i++) {
+            console.log(error.error.errors[err][i]);
+            this.myapp.errormessage(error.error.errors[err][i]);
+          }
+
+        }
+      }
+    );
+  }
+
+  deleteFeature(index: number): void {
+    let store = this.stores[index];
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this item',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it',
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+        this._StoreService.delete(store.id)
+          .subscribe(
+            (response: any) => {
+              this.products.splice(index, 1);
+              this.getStoreData();
+              this.myapp.successmessage(response.message);
+            })
+
+      } else if (result.isDismissed) {
+        this.myapp.errormessage("product not Deleted");
+      }
+    });
+  }
+  delete(index: number): void {
+    let product = this.products[index];
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this item',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it',
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+        this._productService.delete(product.id)
+          .subscribe(
+            (response: any) => {
+              this.products.splice(index, 1);
+              this.getCategoryData();
+              this.getSubCategoryData();
+              this.getProductData();
+              this.myapp.successmessage(response.message);
+            })
+      } else if (result.isDismissed) {
+        // console.log('Clicked No, File is safe!');
+        this.myapp.errormessage("product not Deleted");
+
+
+      }
+    });
+  }
+  edit(id: number) {
+
+    this.products.forEach(
+      c => {
+        if (c.id == id) {
+          $("#uppid").prop('value', c?.id);
+          $("#productName").prop('value', c?.product_name);
+          $("#description").prop('value', c?.description);
+          $("#ProdPrice").prop('value', c?.price);
+          $("#ProdDiscount").prop('value', c?.discount);
+        }
+      }
+    );
+
+  }
+
+  getId(id: number) {
+    this.products.forEach(
+      c => {
+        if (c.id == id) {
+          $("#productId").prop('value', c?.id);
+        }
+      }
+    );
+  }
+
+  addFeature(id: any, color: string, size: string) {
+    this.store.product_id = id;
+    this.store.color = color;
+    this.store.size = size;
+    this._StoreService.post(this.store).subscribe(
+      (res: any) => {
+        this.getStoreData();
+        this.myapp.successmessage(res.message);
+      },
+      (error: any) => {
+        for (const err in error.error.errors) {
+          for (let i = 0; i < error.error.errors[err].length; i++) {
+            console.log(error.error.errors[err][i]);
+            this.myapp.errormessage(error.error.errors[err][i]);
+          }
+
+        }
+      }
+    );
+  }
+
+  update(id: any, pName: any, pDesc: any, price: any, discount: any): void {
+    this.product.product_name = pName;
+    this.product.description = pDesc;
+    this.product.price = price;
+    this.product.discount = discount;
+    this._productService.put(id, this.product)
+      .subscribe(
+        (response: any) => {
+          console.log(response);
+          this.getCategoryData();
+          this.getSubCategoryData();
+          this.getProductData();
+          this.myapp.showInfo('product updated successfully', 'update');
+        },
+        (error: any) => {
+          for (const err in error.error.errors) {
+            for (let i = 0; i < error.error.errors[err].length; i++) {
+              console.log(error.error.errors[err][i]);
+              this.myapp.errormessage(error.error.errors[err][i]);
+            }
+
+          }
+        }
+      );
+    //alert("Done");
+  }
+
+
+  isValidControl(name: string): boolean {
+    return this.formProduct.controls[name].valid;
+  }
+  isInValidAndTouched(name: string): boolean {
+    return this.formProduct.controls[name].invalid && (this.formProduct.controls[name].dirty || this.formProduct.controls[name].touched);
+  }
+  isControlHasError(name: string, error: string): boolean {
+    return this.formProduct.controls[name].invalid && this.formProduct.controls[name].errors?.[error];
+  }
 
 
 }

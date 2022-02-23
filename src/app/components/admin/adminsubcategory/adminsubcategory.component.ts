@@ -27,24 +27,28 @@ export class AdminsubcategoryComponent implements OnInit {
     ,public myapp: AppComponent) { }
 
   ngOnInit(): void {
+    this.formSubcat=this._formBuilder.group({
+      Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]], 
+      CatId:['',[Validators.required]],           
+      });
+      this.getSubCategoryData();
+      this.getCategoryData();
+  }
+  getSubCategoryData(){
     this._SubcategoryService.get().subscribe(
       (res: any) => {
         console.log(JSON.stringify(res));
         this.subcategories = res.data;
       }
     );
-
+   }
+  getCategoryData(){ 
     this._categoryService.get().subscribe(
-      (res: any) => {
-        console.log(JSON.stringify(res.data));
-        this.categories = res.data;
-      }
-    );
-
-    this.formSubcat=this._formBuilder.group({
-      Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]], 
-      CatId:['',[Validators.required]],           
-      });
+     (res: any) => {
+       console.log(JSON.stringify(res));
+       this.categories = res.data;
+     }
+   );
   }
 
   isValidControl(name:string):boolean
@@ -68,10 +72,8 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
     
     this._SubcategoryService.post(subcategory).subscribe(
       (response: any) => {
-        // this.myapp.successmessage(response.message);
-        this.subcategories.push(subcategory);
-        console.log(response.message);
-        window.location.reload();
+        this.getCategoryData();
+        this.getSubCategoryData();
         this.myapp.successmessage(response.message);
 
       },
@@ -89,10 +91,6 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
 
   delete(index:number):void
   {
-    let subcategory=this.subcategories[index];
-    this._SubcategoryService.delete(subcategory.id)
-    .subscribe(
-      (response: any) => { 
         Swal.fire({
           title: 'Are you sure?',
           text: 'You will not be able to recover this item',
@@ -101,28 +99,20 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
           confirmButtonText: 'Yes, delete it!',
           cancelButtonText: 'No, keep it',
         }).then((result) => {
-    
-          if (result.isConfirmed) {    
-            // console.log('Clicked Yes, File deleted!');
+          if (result.isConfirmed) {   
+            let subcategory=this.subcategories[index];
+            this._SubcategoryService.delete(subcategory.id)
+            .subscribe(
+              (response: any) => {  
             this.subcategories.splice(index, 1);
-            // window.location.reload();
+            this.getSubCategoryData();
+            this.getCategoryData();
             this.myapp.successmessage(response.message);
-
+          })
           } else if (result.isDismissed) {
-            // console.log('Clicked No, File is safe!');
             this.myapp.errormessage("Item not Deleted");
-
-            
           }
-        })
-         
-      
-        // this.myapp.delete();
-        
-      },
-      (error:any)=>{}
-    );    
-
+      });    
   }
 
   edit(id:number){
@@ -144,9 +134,9 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
     this._SubcategoryService.put(id,this.subcategory)
     .subscribe(
       (response:any)=>{
+        this.getCategoryData();
+        this.getSubCategoryData();
         this.myapp.showInfo(' SubCategory updated successfly','update');
-        window.location.reload();
-        // this.myapp.showInfo(' item updated successfly','update');
       },
       (error: any) => {
         for (const err in error.error.errors) {
@@ -158,7 +148,6 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
         }
       }
     );
-    //alert("Done");
   }
 
 }

@@ -131,6 +131,9 @@
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 class="m-0 font-weight-bold text-primary">Table of Users</h6>
+              <div class="col-md-4">
+                <div class="search"> <i class="fa fa-search"></i> <input id="search-input" [(ngModel)]='searchText' type="search" id="form1" class="form-control" /></div>
+            </div>
               <div class="dropdown no-arrow">
                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
@@ -196,9 +199,8 @@
 
                       <td class="d-flex justify-content-start">
                         <!-- <button class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(user.id)" ><i class="fas fa-edit"></i></button> -->
-                        <button class="btn btn-danger mt-5" (click)="delete(currentIndex)"><i
-                            class="fas fa-trash"></i></button>
-                        <button class="btn btn-info mt-5" data-bs-toggle="modal"
+                        <button class="btn btn-danger me-2" (click)="delete(currentIndex)">Delete</button>
+                        <button class="btn btn-info " data-bs-toggle="modal"
                           data-bs-target="#exampleModal">Chat</button>
                       </td>
                     </tr>
@@ -247,11 +249,6 @@
                       >
                     </form>
                   </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
-                      class="fas fa-close"></i></button>
-                  <button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                 </div>
               </div>
             </div>
@@ -405,7 +402,7 @@
                          </div>
 
                           <button type="submit" class="btn btn-primary"
-                            (click)="add(inputCustomerName.value,inputEmail.value,inputpassword.value,inputFullAdress.value,inputhousenumber.value,inputCountry.value,inputCity.value,inputPhone.value)">Add</button>
+                            (click)="add(inputCustomerName.value,inputEmail.value,inputpassword.value,inputFullAdress.value,inputhousenumber.value,inputCountry.value,inputCity.value,inputPhone.value)"><i class="bi bi-plus-circle-fill text-light"></i> Add</button>
 
                         </div>
 

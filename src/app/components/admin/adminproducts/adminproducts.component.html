@@ -120,12 +120,9 @@
               <h6 class="m-0 font-weight-bold text-primary">
                 Table of Products
               </h6>
-              <div class="input-group" style="width: 300px">
-                <div class="form-outline">
-                  <input [(ngModel)]="searchText" type="search" id="form1" class="form-control"
-                    style="border-radius: 0px" placeholder="Search" />
-                </div>
-              </div>
+              <div class="col-md-4">
+                <div class="search"> <i class="fa fa-search"></i> <input id="search-input" [(ngModel)]='searchText' type="search" id="form1" class="form-control" /></div>
+            </div>
               <div class="dropdown no-arrow">
                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
@@ -286,8 +283,8 @@
                       </select>
   
                     </div>
-                    <button type="submit" class="btn btn-primary w-25"
-                      (click)="add(inputProductName.value,inputImage.value,inputDescription.value,inputProductPrice.value,inputProductDiscount.value,inputSubCategoryId.value,inputCategoryId.value)">Add</button>
+                    <button type="submit" class="btn btn-primary"
+                      (click)="add(inputProductName.value,inputImage.value,inputDescription.value,inputProductPrice.value,inputProductDiscount.value,inputSubCategoryId.value,inputCategoryId.value)"><i class="bi bi-plus-circle-fill text-light"></i>Add</button>
                       <!-- inputProductName.value,inputDescription.value,inputSubCategoryId.value,inputStorePrice.value,inputStoreDiscount.value,inputStoreColor.value,inputStoreSize.value -->
                   </div>
                 
@@ -341,8 +338,8 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
-          <button type="button" class="btn btn-primary" (click)="update(inputId.value,inputPName.value,inputDesc.value,inputProdPrice.value,inputProdDiscount.value)"  ><i class="fas fa-edit"></i></button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button type="button" class="btn btn-primary" (click)="update(inputId.value,inputPName.value,inputDesc.value,inputProdPrice.value,inputProdDiscount.value)"><i class="fa fa-check" aria-hidden="true"></i></button>
         </div>
       </div>
     </div>

@@ -18,22 +18,19 @@ export class AdminordersComponent implements OnInit {
   constructor(private _orderService:OrderService ,public myapp: AppComponent) { }
 
   ngOnInit(): void {
-    this._orderService.get().subscribe(
-      (res: any) => {
-        console.log(JSON.stringify(res));
-        this.orders = res.data;
-      }
-    );
+    this.getOrderData();
   }
-
+getOrderData(){
+  this._orderService.get().subscribe(
+    (res: any) => {
+      console.log(JSON.stringify(res));
+      this.orders = res.data;
+    }
+  );
+}
   delete(index:number):void
   {
-    let order=this.orders[index];
-    this._orderService.delete(order.id)
-    .subscribe(
-      (response: any) => {
-        console.log(order);
-        
+    let order=this.orders[index];        
         Swal.fire({
           title: 'Are you sure?',
           text: 'You will not be able to recover this item',
@@ -43,26 +40,20 @@ export class AdminordersComponent implements OnInit {
           cancelButtonText: 'No, keep it',
         }).then((result) => {
     
-          if (result.isConfirmed) {    
-            // console.log('Clicked Yes, File deleted!');
+          if (result.isConfirmed) {   
+            this._orderService.delete(order.id)
+            .subscribe(
+              (response: any) => {
+                console.log(order); 
             this.orders.splice(index, 1);
-          
+            this.getOrderData();
             this.myapp.successmessage(response.message);
-
+          })
           } else if (result.isDismissed) {
             // console.log('Clicked No, File is safe!');
             this.myapp.errormessage("Order not Deleted");
-
-            
           }
-        })
-         
-      
-        // this.myapp.delete();
-        
-      },
-      (error:any)=>{}
-    );
+      });
     
 
   }
@@ -86,9 +77,9 @@ export class AdminordersComponent implements OnInit {
     this._orderService.put(id,this.order)
     .subscribe(
       (response: any) => {
+        this.getOrderData();
         this.myapp.showInfo(' order updated Successfly','update');
         
-        window.location.reload();
       
       },
       (error: any) => {
