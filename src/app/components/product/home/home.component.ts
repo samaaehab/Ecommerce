@@ -26,7 +26,13 @@ imagepath: any = 'http://127.0.0.1:8000/public/image/';
 price:any[]=[];
   p: any = 1;
   count: any = 9;
-  searchText:any;
+  searchText: any;
+  productStore:any[]=[];
+  productColor:any[]=[];
+  productSize:any[]=[];
+  productStoreId:any[]=[];
+  allStore:any[]=[];
+  total:number=0;
   constructor(private productService: ProductService, private storeService: StoreService, private _SubcategoryService: SubcategoryService, private _categoryService: CategoryServiceService, private _userService: UserService
   ,public myapp:AppComponent) { }
 
@@ -70,6 +76,20 @@ price:any[]=[];
     this.getIdByEmail();
     this.getStoreId();
 
+    this.storeService.get().subscribe(
+      (res:any)=>{
+    for(let i in res.data){
+  
+    this.productStore.push(res.data[i]);
+  
+  
+  }
+   console.log(this.productStore);    
+  },
+    (error:any)=>{
+  
+    }
+  );
   }
   
  getPrice(){
@@ -94,17 +114,48 @@ price:any[]=[];
  }
  
  getid(id:number){
-  this.allProducts.forEach(
+  this.productsCategory.forEach(
     c=>{
       if(c.id == id){
+        var img=this.imagepath+c.image;
+         this.total=c.price - c.discount;
         $("#exampleModalLabel1").html(c?.product_name);
         $("#exampleModalLabel2").html(c?.description);
+        $("#exampleModalLabel4").html(String(this.total));
+
+        $("#exampleModalLabel3").prop('src',img);
+        // $("#exampleModalLabel3").prop('src')=c?.src;
+        // console.log(this.imagepath+c.image);
+
+        for(let i=0;i<this.productStore.length;i++){
+         if(id==this.productStore[i].product_id){
+          this.productStoreId.push(this.productStore[i].id);
+          this.productSize.push(this.productStore[i].size);
+          this.productColor.push(this.productStore[i].color);
+          this.allStore.push(this.productStore[i]);
+
+         }
+      
+        }
+
+        console.log(this.productSize);
+        console.log(this.productColor);
+        console.log( this.allStore);
+
 
 
       }
     }
   );
 
+
+ }
+ closeModel(){
+
+  this.productSize=[];
+  this.productColor=[];
+  this.productStoreId=[];
+  this.allStore=[];
 }
 getIdByEmail(){
 this._userService.get().subscribe(
