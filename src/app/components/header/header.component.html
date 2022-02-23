@@ -57,26 +57,38 @@
 							</div>
 							<ul>
 								<li class="submenu">
+									<a routerLink="/home" class="show-submenu">home</a>
+									<ul>
+										<li ><a routerLink="/products/man">Men</a></li>
+									<!-- </ul>
+									<ul> -->
+										<li ><a routerLink="/products/woman">Woman</a></li>
+									<!-- </ul> -->
+									<!-- <ul> -->
+										<li ><a routerLink="/products/kids">Kids</a></li>
+									</ul>
+								</li>
+								<!-- <li class="submenu">
 									<a routerLink="/products/man" class="show-submenu">Men</a>
 									<ul>
 										<li  *ngFor="let sucategory of allsubcategories[0];let currentIndex=index"><a routerLink="/products/man">{{sucategory.subcat_name}}</a></li>
 									</ul>
-								</li>
-                                <li class="submenu">
+								</li> -->
+                                <!-- <li class="submenu">
 									<a routerLink="/products/woman" class="show-submenu">Women</a>
 									<ul>
 
 										<li  *ngFor="let sucategory of allsubcategories[1];let currentIndex=index"><a href="">{{sucategory.subcat_name}}</a></li>
 									</ul>
-								</li>
+								</li> -->
 
-								<li class="submenu">
+								<!-- <li class="submenu">
 									<a routerLink="/products/kids/" class="show-submenu">Kids</a>
 									<ul>
 
 										<li  *ngFor="let sucategory of allsubcategories[2];let currentIndex=index"><a href="">{{sucategory.subcat_name}}</a></li>
 									</ul>
-								</li>
+								</li> -->
 								<li>
 									<a routerLink="/contact/aboutus">About us</a>
 								</li>
@@ -117,9 +129,9 @@
 											<li>
 												<a routerLink="/user/profile"><i class="ti-user"></i>My Profile</a>
 											</li>
-											<li>
+											<!-- <li>
 												<a routerLink="/acount" *ngIf="!logged"><i class="ti-user"></i>Login</a>
-											</li>
+											</li> -->
 											<li>
 												<a *ngIf="logged" (click)="logout($event)" ><i class="ti-user"></i>Logout</a>
 											</li>
