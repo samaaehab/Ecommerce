@@ -93,7 +93,6 @@ mainhomeRate=4;
      
        this.productStore.push(res.data[i]);
      
-     
    }
           
    },

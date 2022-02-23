@@ -17,6 +17,13 @@ export class KidsComponent implements OnInit {
   public allsubcategories:any[]=[];
   public subcategories:any[]=[];
   productsCategory:any[]=[];
+  productStore:any[]=[];
+  productColor:any[]=[];
+  productSize:any[]=[];
+  productStoreId:any[]=[];
+  allStore:any[]=[];
+  total:number=0;
+
 
   storeId:any[]=[];
   cart:any[]=[];
@@ -68,12 +75,72 @@ export class KidsComponent implements OnInit {
         
       }
     ); 
+    this.storeService.get().subscribe(
+      (res:any)=>{
+    for(let i in res.data){
+  
+    this.productStore.push(res.data[i]);
+  
+  
+  }
+   console.log(this.productStore);    
+  },
+    (error:any)=>{
+  
+    }
+  );
     this.getIdByEmail();
     this.getStoreId();
+    this.closeModel();
+
 
   }
  
-   
+  getid(id:number){
+    this.productsCategory.forEach(
+      c=>{
+        if(c.id == id){
+          var img=this.imagepath+c.image;
+           this.total=c.price - c.discount;
+          $("#exampleModalLabel1").html(c?.product_name);
+          $("#exampleModalLabel2").html(c?.description);
+          $("#exampleModalLabel4").html(String(this.total));
+
+          $("#exampleModalLabel3").prop('src',img);
+          // $("#exampleModalLabel3").prop('src')=c?.src;
+          // console.log(this.imagepath+c.image);
+
+          for(let i=0;i<this.productStore.length;i++){
+           if(id==this.productStore[i].product_id){
+            this.productStoreId.push(this.productStore[i].id);
+            this.productSize.push(this.productStore[i].size);
+            this.productColor.push(this.productStore[i].color);
+            this.allStore.push(this.productStore[i]);
+
+           }
+        
+          }
+
+          console.log(this.productSize);
+          console.log(this.productColor);
+          console.log( this.allStore);
+
+
+
+        }
+      }
+    );
+  
+
+  }
+ 
+closeModel(){
+
+  this.productSize=[];
+  this.productColor=[];
+  this.productStoreId=[];
+  this.allStore=[];
+}
  getPrice(){
   this.storeService.get().subscribe(
        (res:any)=>{
@@ -95,19 +162,6 @@ export class KidsComponent implements OnInit {
    console.log(this.price);
 } 
 
-getid(id:number){
-  this.allProducts.forEach(
-    c=>{
-      if(c.id == id){
-        $("#exampleModalLabel1").html(c?.product_name);
-        $("#exampleModalLabel2").html(c?.description);
-
-
-      }
-    }
-  );
-
-}
 getIdByEmail(){
 this._userService.get().subscribe(
 (res: any) => {
