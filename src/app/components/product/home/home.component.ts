@@ -92,6 +92,7 @@ price:any[]=[];
    
     console.log(this.price);
  }
+ 
  getid(id:number){
   this.allProducts.forEach(
     c=>{
