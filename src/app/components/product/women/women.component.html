@@ -80,7 +80,10 @@
                             </div> -->
                             <ul>
                                 <li><a  class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"(click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add to favorites</span></a></li>
-                        <li><a class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart" (click)="addToCart(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add to cart</span></a></li>
+                                <li><a class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart" (click)="addToCart(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add to cart</span></a></li>
+                                <li><a class="tooltip-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-placement="left"
+                                    title="view product"><i class="fa fa-eye" style="font-size:20px"
+                                      (click)="getid(product.id)"></i><span>view product</span></a></li>
                             </ul>
                         </div>
                         <!-- /grid_item -->
@@ -196,4 +199,55 @@
     </div>
     <!-- /container -->
 </main>
+<div>
+    <div style="position: absolute;" class="modal fade" id="exampleModal" tabindex="-1"
+      aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  
+  
+      <div style="position: relative;top:350px ;left: 35px;" class="modal-dialog ">
+  
+        <div class="modal-content">
+          <h3 class="modal-title ms-3" id="exampleModalLabel1"></h3>
+          <div class="modal-header">
+            <br>
+            <a href="product-detail-1.html">
+              <img class="img-fluid lazy" src="" id="exampleModalLabel3" style="width:400px !important; height:170px !important;">
+            </a>
+            <button type="button" class="btn-close" (click)="closeModel()" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+  
+            <p id="exampleModalLabel2"></p>
+            <div class="row">
+              <div class="row d-flex">
+                <div class="col-6">
+                  <select class="form-select" aria-label="Default select example">
+                    <option *ngFor="let store of allStore">{{store.color}}-{{store.size}}</option>
+                  </select>
+                </div>
+                <div class="col-6 pt-2">
+                  <span>Price: <span id="exampleModalLabel4"></span></span>
+                </div>
+              </div>
+             
+            </div>
+            <br>
+            <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
+                class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
+                
+            
+
+          </div>
+     
+  
+          <div class="modal-footer">
+            
+            <button type="button" class="btn btn-info ml-5">add to cart</button>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
