@@ -17,7 +17,7 @@ export class MainhomeComponent implements OnInit {
   LastProducts:Product[]=[];
 
   size:any[]=[];
-
+mainhomeRate=4;
   allProducts: any[] = [];
   store:Store[]=[];
   storeId:any[]=[];
@@ -59,6 +59,10 @@ export class MainhomeComponent implements OnInit {
   this.getIdByEmail();
   this.getStoreId();
   this.getSize();
+  }
+
+  onmainHomeRateChange(rate:number):void{
+this.mainhomeRate=rate;
   }
   getid(id:number){
     this.allProducts.forEach(

@@ -85,7 +85,8 @@
                         <input id="inputProdName" type="hidden" value="{{product.product_name}}" #inputProdName>
                         <br>
                     </a>
-                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
+                   <app-rating [rate]="mainhomeRate" (change)="onmainHomeRateChange($event)"></app-rating>
+                    <!-- <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div> -->
                     <div class="price_box">
                       <input id="inputNewPrice" type="hidden" value="{{product.price - product.discount}}" #inputNewPrice>
                       <span class="new_price">${{product.price - product.discount}}</span>
