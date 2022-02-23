@@ -1,301 +1,348 @@
 <main>
-    <div id="demo" class="carousel slide align-items-center" data-ride="carousel">
+  <div id="demo" class="carousel slide align-items-center" data-ride="carousel">
 
-        <!-- Indicators -->
-        <ul class="carousel-indicators">
-          <li data-target="#demo" data-slide-to="0" class="active"></li>
-          <li data-target="#demo" data-slide-to="1"></li>
-          <li data-target="#demo" data-slide-to="2"></li>
-        </ul>
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li>
+      <li data-target="#demo" data-slide-to="1"></li>
+      <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
 
-        <!-- The slideshow -->
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="../../../assets/images/womans.jpeg" alt="Los Angeles" width="100%" height="350">
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../../../assets/images/womans.jpeg" alt="Los Angeles" width="100%" height="350">
+      </div>
+      <div class="carousel-item">
+        <img src="../../../assets/images/mens.webp" alt="Chicago" width="100%" height="350">
+      </div>
+      <div class="carousel-item">
+        <img src="../../../assets/images/kids.jpeg" alt="New York" width="100%" height="350">
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  </div>
+
+
+  <!--/carousel-->
+
+  <ul id="banners_grid" class="clearfix">
+    <li>
+      <a href="" routerLink="/products/man" class="img_container">
+        <img src="../../../assets/images/man.jpeg" data-src="../../assets/img/banner_1.jpg" alt="" class="lazy">
+        <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
+          <h3>Men's Collection</h3>
+          <div><span class="btn_1">Shop Now</span></div>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="" routerLink="/products/woman" class="img_container">
+        <img src="../../../assets/images/woman.jpeg" data-src="../../assets/img/banner_2.jpg" alt="" class="lazy">
+        <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
+          <h3>Womens's Collection</h3>
+          <div><span class="btn_1">Shop Now</span></div>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="#0" routerLink="/products/kids" class="img_container">
+        <img src="../../../assets/images/kid.jpeg" data-src="../../assets/img/banner_3.jpg" alt="" class="lazy">
+        <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
+          <h3>Kids's Collection</h3>
+          <div><span class="btn_1">Shop Now</span></div>
+        </div>
+      </a>
+    </li>
+  </ul>
+  <!--/banners_grid -->
+
+  <div class="container margin_60_35">
+    <div class="main_title">
+      <h2 class="fw-bold">Lastest Products</h2>
+      <span>Products</span>
+    </div>
+    <div class="row small-gutters">
+      <div class="col-6 col-md-4 col-xl-3" *ngFor="let product of allProducts">
+        <div class="grid_item">
+          <span class="ribbon new">New</span>
+          <input id="id" type="hidden" value="{{product.id}}" #inputId>
+          <figure>
+            <a>
+              <img class="img-fluid lazy" id="inputImage" src="{{imagepath}}{{product.image}}"
+                style="height: 300px !important; width:300px !important" #inputImage>
+            </a>
+          </figure>
+          <!-- <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div> -->
+          <a>
+            <h3 id="inputProdName">{{product.product_name}}</h3>
+            <input id="inputProdName" type="hidden" value="{{product.product_name}}" #inputProdName>
+            <br>
+          </a>
+          <app-rating [rate]="mainhomeRate" (change)="onmainHomeRateChange($event)"></app-rating>
+          <!-- <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div> -->
+          <div class="price_box">
+            <input id="inputNewPrice" type="hidden" value="{{product.price - product.discount}}" #inputNewPrice>
+            <span class="new_price">${{product.price - product.discount}}</span>
+            <span class="old_price" id="inputPrice">${{product.price}}</span>
           </div>
-          <div class="carousel-item">
-            <img src="../../../assets/images/mens.webp" alt="Chicago" width="100%" height="350">
+          <div class="price_box">
+            <!-- <span class="new_price" id="inputPrice">$110.00</span> -->
+            <br>
+            <!-- <button class="btn btn-info me-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getid(product.id)">View product</button> -->
+            <!-- <button class="btn btn-info ms-4" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getid(product.id)">View product</button> -->
+
           </div>
-          <div class="carousel-item">
-            <img src="../../../assets/images/kids.jpeg" alt="New York" width="100%" height="350">
-          </div>
+          <ul>
+            <li><a class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i
+                  class="ti-heart"
+                  (click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add
+                  to favorites</span></a></li>
+            <li><a class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i
+                  class="ti-shopping-cart"
+                  (click)="addToCart(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add
+                  to cart</span></a></li>
+            <li><a class="tooltip-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-placement="left"
+                title="view product"><i class="fa fa-eye" style="font-size:20px"
+                  (click)="getid(product.id)"></i><span>view product</span></a></li>
+          </ul>
+
+
         </div>
 
-        <!-- Left and right controls -->
-        <a class="carousel-control-prev" href="#demo" data-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#demo" data-slide="next">
-          <span class="carousel-control-next-icon"></span>
-        </a>
+
+        <!-- /grid_item -->
       </div>
 
+      <!-- /col -->
 
-    <!--/carousel-->
-
-    <ul id="banners_grid" class="clearfix">
-        <li>
-            <a href="" routerLink="/products/man" class="img_container">
-                <img src="../../../assets/images/man.jpeg" data-src="../../assets/img/banner_1.jpg" alt="" class="lazy">
-                <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                    <h3>Men's Collection</h3>
-                    <div><span class="btn_1">Shop Now</span></div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="" routerLink="/products/woman" class="img_container">
-                <img src="../../../assets/images/woman.jpeg" data-src="../../assets/img/banner_2.jpg" alt="" class="lazy">
-                <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                    <h3>Womens's Collection</h3>
-                    <div><span class="btn_1">Shop Now</span></div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="#0" routerLink="/products/kids" class="img_container">
-                <img src="../../../assets/images/kid.jpeg" data-src="../../assets/img/banner_3.jpg" alt="" class="lazy">
-                <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                    <h3>Kids's Collection</h3>
-                    <div><span class="btn_1">Shop Now</span></div>
-                </div>
-            </a>
-        </li>
-    </ul>
-    <!--/banners_grid -->
-
-    <div class="container margin_60_35">
-        <div class="main_title">
-            <h2 class="fw-bold">Lastest Products</h2>
-            <span>Products</span>
-        </div>
-        <div class="row small-gutters">
-            <div class="col-6 col-md-4 col-xl-3" *ngFor="let product of allProducts">
-                <div class="grid_item">
-                    <span class="ribbon new">New</span>
-                    <input id="id" type="hidden" value="{{product.id}}" #inputId>
-                    <figure>
-                        <a href="">
-                            <img class="img-fluid lazy" id="inputImage" src="{{imagepath}}{{product.image}}" style="height: 300px !important; width:300px !important" #inputImage>
-                        </a>
-                    </figure>
-                    <!-- <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div> -->
-                    <a href="">
-                        <h3 id="inputProdName">{{product.product_name}}</h3>
-                        <input id="inputProdName" type="hidden" value="{{product.product_name}}" #inputProdName>
-                        <br>
-                    </a>
-                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                    <div class="price_box">
-                      <input id="inputNewPrice" type="hidden" value="{{product.price - product.discount}}" #inputNewPrice>
-                      <span class="new_price">${{product.price - product.discount}}</span>
-                      <span class="old_price"id="inputPrice">${{product.price}}</span>
-                    </div>
-                    <div class="price_box">
-                        <!-- <span class="new_price" id="inputPrice">$110.00</span> -->
-                        <br>
-                        <!-- <button class="btn btn-info me-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getid(product.id)">View product</button> -->
-                        <!-- <button class="btn btn-info ms-4" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getid(product.id)">View product</button> -->
-
-                    </div>
-                    <ul>
-                        <li><a  class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"(click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add to favorites</span></a></li>
-                        <li><a class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart" (click)="addToCart(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add to cart</span></a></li>
-                        <li><a class="tooltip-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-placement="left" title="view product"><i class="fa fa-eye" style="font-size:20px" (click)="getid(product.id)"></i><span>view product</span></a></li>                   
-                    </ul>
-
-
-                </div>
-
-
-                <!-- /grid_item -->
-            </div>
-
-            <!-- /col -->
-
-        </div>
-
-        <!-- /row -->
     </div>
 
-    <!-- /container -->
+    <!-- /row -->
+  </div>
 
-    <div class="featured lazy">
+  <!-- /container -->
+
+  <div class="featured lazy">
     <img src="../../../assets/img/WhatsApp Image 2022-02-18 at 12.02.06 AM.jpeg" width="100%">
-        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-            <div class="container margin_60">
-                <div class="row justify-content-center justify-content-md-start">
-                    <div class="col-lg-6 wow" data-wow-offset="150">
-                        <h3>Armor<br>Air Color 720</h3>
-                        <p>Lightweight cushioning and durable support with a Phylon midsole</p>
-                        <div class="feat_text_block">
-                            <div class="price_box">
-                                <span class="new_price">$90.00</span>
-                                <span class="old_price">$170.00</span>
-                            </div>
-                            <!-- <a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a> -->
-                        </div>
-                    </div>
-                </div>
+    <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
+      <div class="container margin_60">
+        <div class="row justify-content-center justify-content-md-start">
+          <div class="col-lg-6 wow" data-wow-offset="150">
+            <h3>Armor<br>Air Color 720</h3>
+            <p>Lightweight cushioning and durable support with a Phylon midsole</p>
+            <div class="feat_text_block">
+              <div class="price_box">
+                <span class="new_price">$90.00</span>
+                <span class="old_price">$170.00</span>
+              </div>
+              <!-- <a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a> -->
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <div class="bg_gray">
-        <div class="container margin_30">
-            <div id="brands" class="owl-carousel owl-theme">
-                <div class="item">
-                    <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png" data-src="../../assets/img/brands/logo_1.png" alt="" class="owl-lazy"></a>
-                </div><!-- /item -->
-                <div class="item">
-                    <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png" data-src="../../assets/img/brands/logo_2.png" alt="" class="owl-lazy"></a>
-                </div><!-- /item -->
-                <div class="item">
-                    <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png" data-src="../../assets/img/brands/logo_3.png" alt="" class="owl-lazy"></a>
-                </div><!-- /item -->
-                <div class="item">
-                    <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png" data-src="../../assets/img/brands/logo_4.png" alt="" class="owl-lazy"></a>
-                </div><!-- /item -->
-                <div class="item">
-                    <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png" data-src="../../assets/img/brands/logo_5.png" alt="" class="owl-lazy"></a>
-                </div><!-- /item -->
-                <div class="item">
-                    <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png" data-src="../../assets/img/brands/logo_6.png" alt="" class="owl-lazy"></a>
-                </div><!-- /item -->
-            </div><!-- /carousel -->
-        </div><!-- /container -->
+  <div class="bg_gray">
+    <div class="container margin_30">
+      <div id="brands" class="owl-carousel owl-theme">
+        <div class="item">
+          <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png"
+              data-src="../../assets/img/brands/logo_1.png" alt="" class="owl-lazy"></a>
+        </div><!-- /item -->
+        <div class="item">
+          <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png"
+              data-src="../../assets/img/brands/logo_2.png" alt="" class="owl-lazy"></a>
+        </div><!-- /item -->
+        <div class="item">
+          <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png"
+              data-src="../../assets/img/brands/logo_3.png" alt="" class="owl-lazy"></a>
+        </div><!-- /item -->
+        <div class="item">
+          <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png"
+              data-src="../../assets/img/brands/logo_4.png" alt="" class="owl-lazy"></a>
+        </div><!-- /item -->
+        <div class="item">
+          <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png"
+              data-src="../../assets/img/brands/logo_5.png" alt="" class="owl-lazy"></a>
+        </div><!-- /item -->
+        <div class="item">
+          <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png"
+              data-src="../../assets/img/brands/logo_6.png" alt="" class="owl-lazy"></a>
+        </div><!-- /item -->
+      </div><!-- /carousel -->
+    </div><!-- /container -->
+  </div>
+  <!-- /bg_gray -->
+
+  <div class="container margin_60_35">
+    <div class="main_title">
+      <h2>Latest news</h2>
+      <span>Blog</span>
+      <p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
     </div>
-    <!-- /bg_gray -->
-
-    <div class="container margin_60_35">
-        <div class="main_title">
-            <h2>Latest news</h2>
-            <span>Blog</span>
-            <p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <a class="box_news" href="blog.html">
-                    <figure>
-                        <img src="../../assets/img/blog-thumb-placeholder.jpg" data-src="../../assets/img/blog-thumb-1.jpg" alt="" width="400" height="266" class="lazy">
-                        <figcaption><strong>28</strong>Dec</figcaption>
-                    </figure>
-                    <ul>
-                        <li>by Mark Twain</li>
-                        <li>20.11.2017</li>
-                    </ul>
-                    <h4>Pri oportere scribentur eu</h4>
-                    <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
-                </a>
-            </div>
-            <!-- /box_news -->
-            <div class="col-lg-6">
-                <a class="box_news" href="blog.html">
-                    <figure>
-                        <img src="../../assets/img/blog-thumb-placeholder.jpg" data-src="../../assets/img/blog-thumb-2.jpg" alt="" width="400" height="266" class="lazy">
-                        <figcaption><strong>28</strong>Dec</figcaption>
-                    </figure>
-                    <ul>
-                        <li>By Jhon Doe</li>
-                        <li>20.11.2017</li>
-                    </ul>
-                    <h4>Duo eius postea suscipit ad</h4>
-                    <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
-                </a>
-            </div>
-            <!-- /box_news -->
-            <div class="col-lg-6">
-                <a class="box_news" href="blog.html">
-                    <figure>
-                        <img src="../../assets/img/blog-thumb-placeholder.jpg" data-src="../../assets/img/blog-thumb-3.jpg" alt="" width="400" height="266" class="lazy">
-                        <figcaption><strong>28</strong>Dec</figcaption>
-                    </figure>
-                    <ul>
-                        <li>By Luca Robinson</li>
-                        <li>20.11.2017</li>
-                    </ul>
-                    <h4>Elitr mandamus cu has</h4>
-                    <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
-                </a>
-            </div>
-            <!-- /box_news -->
-            <div class="col-lg-6">
-                <a class="box_news" href="blog.html">
-                    <figure>
-                        <img src="../../assets/img/blog-thumb-placeholder.jpg" data-src="../../assets/img/blog-thumb-4.jpg" alt="" width="400" height="266" class="lazy">
-                        <figcaption><strong>28</strong>Dec</figcaption>
-                    </figure>
-                    <ul>
-                        <li>By Paula Rodrigez</li>
-                        <li>20.11.2017</li>
-                    </ul>
-                    <h4>Id est adhuc ignota delenit</h4>
-                    <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
-                </a>
-            </div>
-            <!-- /box_news -->
-        </div>
-        <!-- /row -->
+    <div class="row">
+      <div class="col-lg-6">
+        <a class="box_news" href="blog.html">
+          <figure>
+            <img src="../../assets/img/blog-thumb-placeholder.jpg" data-src="../../assets/img/blog-thumb-1.jpg" alt=""
+              width="400" height="266" class="lazy">
+            <figcaption><strong>28</strong>Dec</figcaption>
+          </figure>
+          <ul>
+            <li>by Mark Twain</li>
+            <li>20.11.2017</li>
+          </ul>
+          <h4>Pri oportere scribentur eu</h4>
+          <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....
+          </p>
+        </a>
+      </div>
+      <!-- /box_news -->
+      <div class="col-lg-6">
+        <a class="box_news" href="blog.html">
+          <figure>
+            <img src="../../assets/img/blog-thumb-placeholder.jpg" data-src="../../assets/img/blog-thumb-2.jpg" alt=""
+              width="400" height="266" class="lazy">
+            <figcaption><strong>28</strong>Dec</figcaption>
+          </figure>
+          <ul>
+            <li>By Jhon Doe</li>
+            <li>20.11.2017</li>
+          </ul>
+          <h4>Duo eius postea suscipit ad</h4>
+          <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....
+          </p>
+        </a>
+      </div>
+      <!-- /box_news -->
+      <div class="col-lg-6">
+        <a class="box_news" href="blog.html">
+          <figure>
+            <img src="../../assets/img/blog-thumb-placeholder.jpg" data-src="../../assets/img/blog-thumb-3.jpg" alt=""
+              width="400" height="266" class="lazy">
+            <figcaption><strong>28</strong>Dec</figcaption>
+          </figure>
+          <ul>
+            <li>By Luca Robinson</li>
+            <li>20.11.2017</li>
+          </ul>
+          <h4>Elitr mandamus cu has</h4>
+          <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....
+          </p>
+        </a>
+      </div>
+      <!-- /box_news -->
+      <div class="col-lg-6">
+        <a class="box_news" href="blog.html">
+          <figure>
+            <img src="../../assets/img/blog-thumb-placeholder.jpg" data-src="../../assets/img/blog-thumb-4.jpg" alt=""
+              width="400" height="266" class="lazy">
+            <figcaption><strong>28</strong>Dec</figcaption>
+          </figure>
+          <ul>
+            <li>By Paula Rodrigez</li>
+            <li>20.11.2017</li>
+          </ul>
+          <h4>Id est adhuc ignota delenit</h4>
+          <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....
+          </p>
+        </a>
+      </div>
+      <!-- /box_news -->
     </div>
+    <!-- /row -->
+  </div>
 
-    <!-- /container -->
+  <!-- /container -->
 </main>
 
-<div >
-<div style="position: absolute;" class="modal fade mb-3" id="exampleModal" tabindex="-1"
-aria-labelledby="exampleModalLabel1" aria-hidden="true"  >
+<div>
+  <div style="position: absolute;" class="modal fade" id="exampleModal" tabindex="-1"
+    aria-labelledby="exampleModalLabel1" aria-hidden="true">
 
 
-    <div style="position: relative;top:750px ;left: 35px;" class="modal-dialog " >
+    <div style="position: relative;top:750px ;left: 35px;" class="modal-dialog ">
 
-     <div class="modal-content" >
+      <div class="modal-content">
         <h3 class="modal-title ms-3" id="exampleModalLabel1"></h3>
-<div class="modal-header" >
-           <!-- <h3 class="modal-title" style="top: 10px;" id="exampleModalLabel1"></h3> -->
-           <!-- <h3 class="modal-title ms-3"  id="exampleModalLabel1"></h3> -->
-<br>
-           <a href="product-detail-1.html">
-               <img class="img-fluid lazy" src="" id="exampleModalLabel3">
-           </a>
-             <div >
-     <span>{{size}}</span></div> 
-
-         <!-- <h5 class="modal-title" id="exampleModalLabel">Update Category</h5> -->
-         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-       </div>
-       <div class="modal-body">
-
-        <p id="exampleModalLabel2"></p>
-        <p id="exampleModalLabel5"></p>
-        <p id="exampleModalLabel6"></p>
+        <div class="modal-header">
+          <!-- <h3 class="modal-title" style="top: 10px;" id="exampleModalLabel1"></h3> -->
+          <!-- <h3 class="modal-title ms-3"  id="exampleModalLabel1"></h3> -->
+          <br>
+          <a href="product-detail-1.html">
+            <img class="img-fluid lazy" src="" id="exampleModalLabel3" width="300px" height="180px">
+          </a>
 
 
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Update Category</h5> -->
+          <button type="button" class="btn-close" (click)="closeModel()" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
 
-         <!-- <input type="hidden" id="upcid" #inputId> -->
-         <div class=" mb-3">
-            <!-- <p id="exampleModalLabel5"></p> -->
+          <p id="exampleModalLabel2"></p>
+          <div class="row">
+            <!-- <select class="form-select col-4" aria-label="Default select example">
+            <option *ngFor="let color of productColor;let currentIndex=index">
+                {{color}}-<div *ngFor="let size of productSize;let isIndex=index">
+                <div *ngIf="isIndex === currentIndex">{{size}}
+                    <div *ngFor="let id of productStoreId;let idIndex=index">
+                        <input type="hidden" *ngIf="idIndex === isIndex" value="{{id}}">
+                    </div>
+                </div>
+            </div>
+        </option>
+        </select> -->
 
-           <!-- <label for="upcategory" class="me-3 mt-2">Category</label> -->
-           <!-- <input type="text" id="upcategory" #inputCategory class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1"> -->
-         </div> 
-       </div>
-       <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
- <!-- <div class="price_box" *ngFor="let s of size">
+
+            <div class="row d-flex">
+              <div class="col-6">
+                <select class="form-select" aria-label="Default select example">
+                  <option *ngFor="let store of allStore">{{store.color}}-{{store.size}}</option>
+                </select>
+              </div>
+              <div class="col-6 pt-2">
+                <span>Price: <span id="exampleModalLabel4"></span></span>
+              </div>
+            </div>
+            <!-- <select class="form-select col-4" aria-label="Default select example">
+            <option *ngFor="let size of productSize">{{size}}</option>
+        </select> -->
+          </div>
+          <br>
+
+
+
+
+          <!-- <input type="hidden" id="upcid" #inputId> -->
+          <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
+              class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
+
+        </div>
+        <!-- <div class="price_box" *ngFor="let s of size">
      <span   >$ {{s.size}}</span>
     </div>  -->
 
-    <!-- <div class="price_box" *ngFor="let s of size">
+        <!-- <div class="price_box" *ngFor="let s of size">
         <span class="new_price" *ngIf="s.product_id === product.id" >$ {{s.size}}</span>
     </div> -->
 
-       <div class="modal-footer">
-         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-close"></i></button> -->
-         <!-- <button type="button" class="btn btn-primary"  >add to cart</button> -->
-         <li style="list-style:none; "><a class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart" ></i></a></li>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-close"></i></button> -->
+          <button type="button" class="btn btn-info">add to cart</button>
+          <!-- <li style="list-style:none; "><a class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart" ></i></a></li> -->
 
-       </div>
-     </div>
-   </div>
- </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-

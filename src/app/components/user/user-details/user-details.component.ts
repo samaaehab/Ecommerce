@@ -35,6 +35,8 @@ export class UserDetailsComponent implements OnInit {
     this.edituser.country = country
     this.edituser.city = city
     this.edituser.house_no = house_no
+    // this.edituser.password = password;
+
     this._userService.put(id, this.edituser)
     .subscribe(
       (response: any) => {

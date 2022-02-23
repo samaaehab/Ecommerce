@@ -17,11 +17,17 @@ export class MainhomeComponent implements OnInit {
   LastProducts:Product[]=[];
 
   size:any[]=[];
-
+mainhomeRate=4;
   allProducts: any[] = [];
   store:Store[]=[];
   storeId:any[]=[];
   cart:any[]=[];
+  productStore:any[]=[];
+  productColor:any[]=[];
+  productSize:any[]=[];
+  productStoreId:any[]=[];
+  allStore:any[]=[];
+  total:number=0;
   imagepath: any = 'http://127.0.0.1:8000/public/image/';
   user=localStorage.getItem('email');
 
@@ -56,34 +62,98 @@ export class MainhomeComponent implements OnInit {
 
     }
   );
+
+  this.storeService.get().subscribe(
+    (res:any)=>{
+  for(let i in res.data){
+
+  this.productStore.push(res.data[i]);
+
+
+}
+ console.log(this.productStore);    
+},
+  (error:any)=>{
+
+  }
+);
+
   this.getIdByEmail();
   this.getStoreId();
-  this.getSize();
+  // this.getStore()
+  this.closeModel();
+
+
+}
+
+  getStore(){
+    this.storeService.get().subscribe(
+         (res:any)=>{
+   for(let i in res.data){
+     
+       this.productStore.push(res.data[i]);
+     
+   }
+          
+   },
+       (error:any)=>{
+ 
+       }
+    );
+ 
+    
+     console.log(this.productStore);
   }
+
+  onmainHomeRateChange(rate:number):void{
+this.mainhomeRate=rate;
+  }
+
   getid(id:number){
     this.allProducts.forEach(
       c=>{
         if(c.id == id){
           var img=this.imagepath+c.image;
+           this.total=c.price - c.discount;
           $("#exampleModalLabel1").html(c?.product_name);
           $("#exampleModalLabel2").html(c?.description);
+          $("#exampleModalLabel4").html(String(this.total));
+
           $("#exampleModalLabel3").prop('src',img);
           // $("#exampleModalLabel3").prop('src')=c?.src;
           // console.log(this.imagepath+c.image);
 
-          // for(let s of this.size){
-          //   console.log(s.size) ;
+          for(let i=0;i<this.productStore.length;i++){
+           if(id==this.productStore[i].product_id){
+            this.productStoreId.push(this.productStore[i].id);
+            this.productSize.push(this.productStore[i].size);
+            this.productColor.push(this.productStore[i].color);
+            this.allStore.push(this.productStore[i]);
+
+           }
         
-          // }
+          }
+
+          console.log(this.productSize);
+          console.log(this.productColor);
+          console.log( this.allStore);
+
+
 
         }
       }
     );
-    
+  
 
   }
+ 
+closeModel(){
 
-
+  this.productSize=[];
+  this.productColor=[];
+  this.productStoreId=[];
+  this.allStore=[];
+}
   
   // getidS(id:number){
   //   this.store.forEach(
@@ -157,27 +227,7 @@ addToFav(id:any,ProdName:any,Image:any,newPrice:any){
   this.myapp.successmessage("Added To Wish List Successfuly"); 
 
 }
-getSize(){
-  this.storeService.get().subscribe(
-       (res:any)=>{
- for(let i in res.data){
-   
-    this.size.push(res.data[i]);
-   
-   
-   
- }
- console.log(this.size);
-       
- },
-     (error:any)=>{
 
-     }
-  );
-
-  
-   console.log(this.size);
-}
 
        }
 

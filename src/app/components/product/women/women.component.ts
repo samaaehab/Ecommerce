@@ -23,7 +23,12 @@ export class WomenComponent implements OnInit {
   cart:any[]=[];
   user=localStorage.getItem('email');
   storeId:any[]=[];
-  
+  productStore:any[]=[];
+  productColor:any[]=[];
+  productSize:any[]=[];
+  productStoreId:any[]=[];
+  allStore:any[]=[];
+  total:number=0;
   constructor(private productService: ProductService, private storeService: StoreService, public header: HeaderComponent,
     private _SubcategoryService: SubcategoryService, private _categoryService: CategoryServiceService, private _userService: UserService
   ,public myapp:AppComponent) { }
@@ -137,5 +142,49 @@ export class WomenComponent implements OnInit {
     localStorage.setItem('Fav' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
     this.myapp.successmessage("Added To Wish List Successfuly"); 
   
+  }
+  getid(id:number){
+    this.productsCategory.forEach(
+      c=>{
+        if(c.id == id){
+          var img=this.imagepath+c.image;
+           this.total=c.price - c.discount;
+          $("#exampleModalLabel1").html(c?.product_name);
+          $("#exampleModalLabel2").html(c?.description);
+          $("#exampleModalLabel4").html(String(this.total));
+  
+          $("#exampleModalLabel3").prop('src',img);
+          // $("#exampleModalLabel3").prop('src')=c?.src;
+          // console.log(this.imagepath+c.image);
+  
+          for(let i=0;i<this.productStore.length;i++){
+           if(id==this.productStore[i].product_id){
+            this.productStoreId.push(this.productStore[i].id);
+            this.productSize.push(this.productStore[i].size);
+            this.productColor.push(this.productStore[i].color);
+            this.allStore.push(this.productStore[i]);
+  
+           }
+        
+          }
+  
+          console.log(this.productSize);
+          console.log(this.productColor);
+          console.log( this.allStore);
+  
+  
+  
+        }
+      }
+    );
+  
+  
+   }
+   closeModel(){
+  
+    this.productSize=[];
+    this.productColor=[];
+    this.productStoreId=[];
+    this.allStore=[];
   }
 }
