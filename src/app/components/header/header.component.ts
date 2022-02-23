@@ -16,7 +16,8 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   allsubcategories:any[]=[];
  public subcategories:any[]=[];
- 
+ count:any=0;
+
   public logged=false;
   constructor(private _SubcategoryService:SubcategoryService,
     private _categoryService:CategoryServiceService,
@@ -33,7 +34,7 @@ export class HeaderComponent implements OnInit {
   // switchLang(lang: string) {
   //   this.translate.use(lang);
   // }
-  
+
 
   ngOnInit(): void {
     this.auth.status.subscribe(value=>this.logged=value);
@@ -46,7 +47,7 @@ export class HeaderComponent implements OnInit {
                 this.subcategories=res.data;
 
                 console.log(this.subcategories);
-                
+
                       this.allsubcategories.push(this.subcategories.map(m=>{return m}));
 
                     // for(let i=0;i<res.data.length;i++){
@@ -57,19 +58,19 @@ export class HeaderComponent implements OnInit {
                  },
               (err:any)=>{
                 console.log(err);
-                
+
               }
             )
           }
           console.log(this.allsubcategories);
-          
-          
+
+
         }
       );
-   
+      this.cartCount();
       }
 
-      
+
 
       logout(event:MouseEvent){
         event.preventDefault();
@@ -77,6 +78,19 @@ export class HeaderComponent implements OnInit {
         this.auth.changeAuthStatus(false);
         this.router.navigateByUrl('/acount');
         localStorage.removeItem('email');
+
+      }
+      cartCount(){
+        for(let i =0;i<localStorage.length;i++){
+          let a = localStorage.key(i);
+          if (a?.substring(0, 7) == 'product') {
+            this.count++;
+            // console.log(a?.substring(0, 7));
+
+          }
+        }
+
+        return this.count;
 
       }
   }

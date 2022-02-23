@@ -19,11 +19,12 @@ export class CartComponent implements OnInit {
   cartCount:any;
   loggedUser: any[] = [];
   users:User[]=[];
+  DBCart=new Cart();
 
 
-  totalPrice:number=0; 
+  totalPrice:number=0;
   constructor(private _userService: UserService, private router: Router, public myapp: AppComponent, private route: ActivatedRoute
-  ,private _cartSeervice:CartService) 
+  ,private _cartSeervice:CartService)
     { this.router.routeReuseStrategy.shouldReuseRoute = () => false;}
 
   ngOnInit(): void {
@@ -31,7 +32,7 @@ export class CartComponent implements OnInit {
       let a = localStorage.key(i);
       if (a?.substring(0, 7) == 'product') {
         let products = localStorage.getItem(a);
-      
+
         let splitProduct = products?.split('#$');
         this.productsInCart.push(splitProduct);
         console.log(this.productsInCart);
@@ -39,28 +40,28 @@ export class CartComponent implements OnInit {
 
       }
     }
-    
+
     for (var i = 0; i < this.productsInCart.length; i++) {
-     
+
      this.totalPrice+=Number(this.productsInCart[i][5]);
-     
+
     }
-    
+
     this._userService.get().subscribe(
       (res: any) => {
         console.log(JSON.stringify(res));
         this.users = res.data.find((user:any)=>user.email==this.user);
         this.loggedUser.push(this.users);
-        // console.log(this.loggedUser)
+        // console.log(this.loggedUser[0].id)
       }
     );
 
     this.getTotalPrice();
-    
+    this.addToDBCart();
   }
 
 
-  
+
   omg(key:any) {
     // for (var i = 0; i < localStorage.length; i++) {
     //   let a = localStorage.key(i);
@@ -76,7 +77,7 @@ export class CartComponent implements OnInit {
 price:any;
   getQty(qty:any){
     return this.price=qty;
-    
+
   }
 
   updateCart(id:any,ProdName:any,Image:any,newPrice:any,qty:any,subTotal:any){
@@ -85,18 +86,29 @@ price:any;
       if (a?.substring(0, 7)+id == 'product'+id) {
        localStorage.removeItem(a?.substring(0, 7)+id);
        localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + qty + '#$' + subTotal);      }
-      
+
     }
-     
+
     this.myapp.showInfo("Updated Successfuly","Updated");
   }
   getTotalPrice(){
     for(let prod of this.productsInCart){
       console.log(prod[5]);
-      
+
     }
   }
+  addToDBCart(){
+    for(let i=0;i<this.productsInCart.length;i++){
+      this.DBCart.products_number=this.productsInCart[i][4];
+      this.DBCart.total_price=this.productsInCart[i][5];
+      // this.DBCart.user_id=this.loggedUser[0].id;
+    }
+    console.log(this.loggedUser[0].id);
   
+    // console.log(this.productsInCart);
+
+    // this._cartSeervice.post().subscribe();
+  }
   addtodatabase(total_price: any, products_number: any, status: any, store_id: any, user_id: any) {
     let addcart = new Cart();
     addcart.total_price = total_price;
@@ -107,12 +119,12 @@ price:any;
     this._cartSeervice.post(addcart).subscribe(
 
       (response:any)=>{
-        this.products.push(addcart); 
+        this.products.push(addcart);
         // window.location.reload();
         this.myapp.successmessage(response.message);
        console.log(response);
-       
-        
+
+
       },
       (error: any) => {
        for (const err in error.error.errors) {
@@ -120,7 +132,7 @@ price:any;
            console.log(error.error.errors[err][i]);
            this.myapp.errormessage(error.error.errors[err][i]);
          }
-         
+
        }
       }
 
