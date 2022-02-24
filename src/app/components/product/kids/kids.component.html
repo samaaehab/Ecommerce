@@ -135,13 +135,19 @@
                                     </div>
                                   </div>
                                   <ul>
-                                    <li *ngFor="let sucategory of allsubcategories[2];let currentIndex=index">
-                                        <label ><i class="fa fa-puzzle-piece me-1" style="font-size:16px"></i>{{sucategory.subcat_name}} 
+                                    <label *ngFor="let sucategory of allsubcategories;let currentIndex=index" >
+                                        <li *ngFor="let sub of sucategory"> 
+                                            <div *ngIf="sub.category.cat_name==='kids'">
+                                                <i  class="fa fa-puzzle-piece me-1" 
+                                            style="font-size:16px"></i>
+                                            {{sub.subcat_name}} 
                                             <!-- <small class="ml-5">12</small> -->
                                             <!-- <input type="checkbox"> -->
                                             <!-- <span class="checkmark"></span> -->
-                                        </label>
-                                    </li>
+                                        </div>
+                                        </li>
+                                       
+                                    </label>
                                    
                                 </ul>
                             </div>
@@ -210,7 +216,7 @@ aria-labelledby="exampleModalLabel1" aria-hidden="true"  >
            <!-- <h3 class="modal-title" style="top: 10px;" id="exampleModalLabel1"></h3> -->
            <!-- <h3 class="modal-title ms-3"  id="exampleModalLabel1"></h3> -->
 <br>
-           <a href="product-detail-1.html">
+           <a >
                <img class="img-fluid lazy" src="" id="exampleModalLabel3" width="300px" height="180px">
            </a>
     

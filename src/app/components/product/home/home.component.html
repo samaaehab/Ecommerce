@@ -110,16 +110,19 @@
                                 </div>
                               </div>
                               <ul>
-                                <li *ngFor="let sucategory of allsubcategories[0];let currentIndex=index">
-                                    <label >
-                                        <i class="fa fa-puzzle-piece me-1" 
+                                <label *ngFor="let sucategory of allsubcategories;let currentIndex=index" >
+                                    <li *ngFor="let sub of sucategory"> 
+                                        <div *ngIf="sub.category.cat_name==='men'">
+                                            <i  class="fa fa-puzzle-piece me-1" 
                                         style="font-size:16px"></i>
-                                        {{sucategory.subcat_name}} 
+                                        {{sub.subcat_name}} 
                                         <!-- <small class="ml-5">12</small> -->
                                         <!-- <input type="checkbox"> -->
                                         <!-- <span class="checkmark"></span> -->
-                                    </label>
-                                </li>
+                                    </div>
+                                    </li>
+                                   
+                                </label>
                                
                             </ul>
                         </div>
