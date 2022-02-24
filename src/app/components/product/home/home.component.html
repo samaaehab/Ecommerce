@@ -144,7 +144,7 @@
           <h3 class="modal-title ms-3" id="exampleModalLabel1"></h3>
           <div class="modal-header">
             <br>
-            <a href="product-detail-1.html">
+            <a>
               <img class="img-fluid lazy" src="" id="exampleModalLabel3" style="width:400px !important; height:170px !important;">
             </a>
             <button type="button" class="btn-close" (click)="closeModel()" data-bs-dismiss="modal"
@@ -157,7 +157,7 @@
               <div class="row d-flex">
                 <div class="col-6">
                   <select class="form-select" aria-label="Default select example">
-                    <option *ngFor="let store of allStore">{{store.color}}-{{store.size}}</option>
+                    <option *ngFor="let store of allStore">{{store.color}}-{{store.size | uppercase}}</option>
                   </select>
                 </div>
                 <div class="col-6 pt-2">
