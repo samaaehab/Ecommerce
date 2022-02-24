@@ -40,18 +40,26 @@ price:any[]=[];
   ,public myapp:AppComponent) { }
 
   ngOnInit(): void {
-
-    this.productService.getProductsCategory(1).subscribe(
-      (res: any) => {
-        this.productsCategory.push(res);
-        this.productsCategory=this.productsCategory[0];
-        
-      }
-    );
-
+    
+  
     this.getPrice();
     this._categoryService.get().subscribe(
       (res: any) => {
+        console.log(res.data);
+        let x= res.data.find((cat:any)=>cat.cat_name=='men');
+        console.log(x.id);
+
+        this.productService.getProductsCategory(x.id).subscribe(
+          (res: any) => {
+            this.productsCategory.push(res);
+            this.productsCategory=this.productsCategory[0];
+            console.log(this.productsCategory);
+            // console.log(res);
+    
+    
+          }
+        );
+
         for(const i in res.data){
           const id= res.data[i].id;
           this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
@@ -170,6 +178,7 @@ price:any[]=[];
 getIdByEmail(){
 this._userService.get().subscribe(
 (res: any) => {
+
  let c= res.data.find((user:any)=>user.email==this.user);
  console.log(c.id);
  return c.id;
