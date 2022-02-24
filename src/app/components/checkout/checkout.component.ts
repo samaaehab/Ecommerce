@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartService } from './../../services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/User';
+import { StoreService } from 'src/app/services/store.service';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -15,7 +16,8 @@ export class CheckoutComponent implements OnInit {
   loggedUser: any[] = [];
   cartInOrder:any[]=[];
   user = localStorage.getItem('email');
-  constructor(private _formBuilder: FormBuilder, private _cartService: CartService, private _userService: UserService) { }
+  storeid: number = 0;
+  constructor(private _formBuilder: FormBuilder, private _cartService: CartService, private _userService: UserService,private _storeService:StoreService) { }
   ngOnInit(): void {
     this.formLogin = this._formBuilder.group({
       Email: ['', [Validators.required, Validators.email]],
@@ -38,6 +40,28 @@ export class CheckoutComponent implements OnInit {
         // console.log(this.loggedUser[0].id)
       }
     );
+
+
+    this.getstore(4);
+    
+
+  }
+  // get product id from store id
+  getstore(id:any) {
+    this._storeService.get().subscribe(
+      (res: any) => {
+        console.log(JSON.stringify(res.data));
+        for (let i in res.data) {
+          console.log(res.data[i]);
+          if (id == res.data[i].id) {
+            console.log(res.data[i].product);
+           
+            
+          }
+      
+      }
+      }
+    );
   }
   getCartData() {
     this._cartService.get().subscribe(
@@ -47,14 +71,27 @@ export class CheckoutComponent implements OnInit {
         for (let i = 0; i<userCheckout.length;i++) {
           if(userCheckout[i].status=='waiting'){
             this.cartInOrder.push(userCheckout[i]);
-            // console.log(userCheckout[i]);
+            console.log(this.cartInOrder);
             
           }
+          // this.storeid = userCheckout[i].store_id;
+          // // console.log(this.getstore(this.productid));
+          // this._storeService.show(userCheckout[i].store_id).subscribe(
+          //   (res: any) => {
+          //     console.log(res);
+          //   }, (error:any) => {
+          //     console.log(error);
+          //   }
+          // );
+         
+          console.log(userCheckout[i].store_id);
+          
         }
         console.log(userCheckout);
 
       }
     );
+
   }
   login(): void {
     alert(JSON.stringify(this.formLogin.value));

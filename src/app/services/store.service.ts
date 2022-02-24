@@ -23,4 +23,7 @@ delete(id:number){
 put(id:number,store:Store){
   return this._httpClient.put(this.url+`stores/${id}`,store);
 }
+  show(id: any) {
+    return this._httpClient.get(this.url+`stores/${id}`);
+  }
 }
