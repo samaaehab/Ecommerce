@@ -115,7 +115,7 @@ price:any;
           (res:any)=>{
             console.log(res.message);
           });
-          localStorage.removeItem('product'+this.DBCart.store_id);            
+          // localStorage.removeItem('product'+this.DBCart.store_id);            
 
       }
       

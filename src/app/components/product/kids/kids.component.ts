@@ -36,7 +36,7 @@ export class KidsComponent implements OnInit {
   count: any = 9;
   searchText:any;
   constructor(private productService: ProductService, private storeService: StoreService, public header: HeaderComponent,
-    private _SubcategoryService: SubcategoryService, private _categoryService: CategoryServiceService, private _userService: UserService,
+    private _SubcategoryService: SubcategoryService ,private _categoryService: CategoryServiceService, private _userService: UserService,
   public myapp:AppComponent) { }
 
   ngOnInit(): void {
@@ -103,6 +103,7 @@ export class KidsComponent implements OnInit {
           var img=this.imagepath+c.image;
            this.total=c.price - c.discount;
           $("#exampleModalLabel1").html(c?.product_name);
+          $("#exampleModalLabel11").prop('value',c?.id);
           $("#exampleModalLabel2").html(c?.description);
           $("#exampleModalLabel4").html(String(this.total));
 
@@ -175,14 +176,23 @@ this._userService.get().subscribe(
 }
 );
 }
-addToCart(id:any,ProdName:any,Image:any,newPrice:any){
+products:any[]=[];
+addToCart(id:any,productSizeColor:any){
+this.productService.get().subscribe(
+  (res:any)=>{
+    for(let p in res.data){
+      this.products.push(res.data[p]);
+     
+    } 
+    
+    let product=this.products.find((p:any)=>p.id == id);
+    let price=product.price-product.discount;
+    localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+1+"#$"+price+"#$"+productSizeColor+"#$"+price);
+    alert('yessssssssss');
 
-  let message="";
- console.log(id);
- localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
- this.myapp.successmessage("Added To Cart Successfuly"); 
+  } 
 
-  
+);
 }
 getStoreId(){
 this.storeService.get().subscribe(

@@ -105,12 +105,7 @@
                   class="ti-heart"
                   (click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add
                   to favorites</span></a></li>
-            <li><a class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i
-                  class="ti-shopping-cart"
-                  ></i><span>Add
-                    <!-- (click)="addToCart() -->
-                    <!-- inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value -->
-                  to cart</span></a></li>
+           
             <li><a class="tooltip-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-placement="left"
                 title="view product"><i class="fa fa-eye" style="font-size:20px"
                   (click)="getid(product.id)"></i><span>view product</span></a></li>
@@ -272,7 +267,7 @@
     aria-labelledby="exampleModalLabel1" aria-hidden="true">
 
 
-    <div style="position: relative;top:750px ;left: 35px;" class="modal-dialog ">
+    <div style="position: relative;top:350px ;left: 35px;" class="modal-dialog ">
 
       <div class="modal-content">
         <input type="hidden" name="" id="exampleModalLabel11" #inputProductId>
@@ -282,7 +277,7 @@
           <!-- <h3 class="modal-title ms-3"  id="exampleModalLabel1"></h3> -->
           <br>
           <a href="product-detail-1.html">
-            <img class="img-fluid lazy" src="" id="exampleModalLabel3" width="300px" height="180px">
+            <img class="img-fluid lazy" src="" id="exampleModalLabel3" style="width:400px !important; height:170px !important;">
           </a>
 
 

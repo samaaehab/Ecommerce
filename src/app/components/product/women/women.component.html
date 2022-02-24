@@ -80,7 +80,6 @@
                             </div> -->
                             <ul>
                                 <li><a  class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"(click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add to favorites</span></a></li>
-                                <li><a class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart" (click)="addToCart(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add to cart</span></a></li>
                                 <li><a class="tooltip-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-placement="left"
                                     title="view product"><i class="fa fa-eye" style="font-size:20px"
                                       (click)="getid(product.id)"></i><span>view product</span></a></li>
@@ -213,44 +212,75 @@
       <div style="position: relative;top:350px ;left: 35px;" class="modal-dialog ">
   
         <div class="modal-content">
+          <input type="hidden" name="" id="exampleModalLabel11" #inputProductId>
           <h3 class="modal-title ms-3" id="exampleModalLabel1"></h3>
           <div class="modal-header">
+            <!-- <h3 class="modal-title" style="top: 10px;" id="exampleModalLabel1"></h3> -->
+            <!-- <h3 class="modal-title ms-3"  id="exampleModalLabel1"></h3> -->
             <br>
             <a href="product-detail-1.html">
-              <img class="img-fluid lazy" src="" id="exampleModalLabel3" style="width:400px !important; height:170px !important;">
+              <img class="img-fluid lazy" src="" id="exampleModalLabel3" width="300px" height="180px" style="width:400px !important; height:170px !important;">
             </a>
+  
+  
+            <!-- <h5 class="modal-title" id="exampleModalLabel">Update Category</h5> -->
             <button type="button" class="btn-close" (click)="closeModel()" data-bs-dismiss="modal"
-            aria-label="Close"></button>
+              aria-label="Close"></button>
           </div>
           <div class="modal-body">
   
             <p id="exampleModalLabel2"></p>
             <div class="row">
+              <!-- <select class="form-select col-4" aria-label="Default select example">
+              <option *ngFor="let color of productColor;let currentIndex=index">
+                  {{color}}-<div *ngFor="let size of productSize;let isIndex=index">
+                  <div *ngIf="isIndex === currentIndex">{{size}}
+                      <div *ngFor="let id of productStoreId;let idIndex=index">
+                          <input type="hidden" *ngIf="idIndex === isIndex" value="{{id}}">
+                      </div>
+                  </div>
+              </div>
+          </option>
+          </select> -->
+  
+  
               <div class="row d-flex">
                 <div class="col-6">
-                  <select class="form-select" aria-label="Default select example">
-                    <option *ngFor="let store of allStore">{{store.color}}-{{store.size}}</option>
+                  <select class="form-select" aria-label="Default select example" #inputSelected>
+                    <option *ngFor="let store of allStore" value="{{store.id}}" >{{store.color}}-{{store.size}}</option>
                   </select>
                 </div>
                 <div class="col-6 pt-2">
                   <span>Price: <span id="exampleModalLabel4"></span></span>
                 </div>
               </div>
-             
+              <!-- <select class="form-select col-4" aria-label="Default select example">
+              <option *ngFor="let size of productSize">{{size}}</option>
+          </select> -->
             </div>
             <br>
+  
+  
+  
+  
+            <!-- <input type="hidden" id="upcid" #inputId> -->
             <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
                 class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                
-            
-
+  
           </div>
-     
+          <!-- <div class="price_box" *ngFor="let s of size">
+       <span   >$ {{s.size}}</span>
+      </div>  -->
+  
+          <!-- <div class="price_box" *ngFor="let s of size">
+          <span class="new_price" *ngIf="s.product_id === product.id" >$ {{s.size}}</span>
+      </div> -->
   
           <div class="modal-footer">
-            
-            <button type="button" class="btn btn-info ml-5">add to cart</button>
-  
+            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-close"></i></button> -->
+            <button type="button" class="btn btn-info" (click)="addToCart(inputProductId.value,inputSelected.value)">add to cart</button>
+            <!-- <li style="list-style:none; "><a class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart" ></i></a></li> -->
+  <!-- " -->
           </div>
         </div>
       </div>

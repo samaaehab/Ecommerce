@@ -78,24 +78,27 @@ price:any[]=[];
         
       }
     ); 
-    this.getIdByEmail();
-    this.getStoreId();
 
-    this.storeService.get().subscribe(
-      (res:any)=>{
-    for(let i in res.data){
-  
-    this.productStore.push(res.data[i]);
-  
-  
+  this.storeService.get().subscribe(
+    (res:any)=>{
+  for(let i in res.data){
+
+  this.productStore.push(res.data[i]);
+
+
+}
+ console.log(this.productStore);    
+},
+  (error:any)=>{
+
   }
-   console.log(this.productStore);    
-  },
-    (error:any)=>{
-  
-    }
+
     );
-    this.getCategoryData();
+  this.getCategoryData();
+  this.getIdByEmail();
+  this.getStoreId();
+  this.closeModel();
+
   }
   
  getPrice(){
@@ -126,6 +129,7 @@ price:any[]=[];
         var img=this.imagepath+c.image;
          this.total=c.price - c.discount;
         $("#exampleModalLabel1").html(c?.product_name);
+        $("#exampleModalLabel11").prop('value',c?.id);
         $("#exampleModalLabel2").html(c?.description);
         $("#exampleModalLabel4").html(String(this.total));
 
@@ -155,7 +159,7 @@ price:any[]=[];
   );
 
 
- }
+}
  closeModel(){
 
   this.productSize=[];
@@ -176,15 +180,24 @@ this._userService.get().subscribe(
 }
 );
 }
-addToCart(id:any,ProdName:any,Image:any,newPrice:any){
-
-  let message="";
- console.log(id);
- localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
- this.myapp.successmessage("Added To Cart Successfuly"); 
-
+products:any[]=[];
+addToCart(id:any,productSizeColor:any){
+  this.productService.get().subscribe(
+    (res:any)=>{
+      for(let p in res.data){
+        this.products.push(res.data[p]);
+       
+      } 
+      
+      let product=this.products.find((p:any)=>p.id == id);
+      let price=product.price-product.discount;
+      localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+1+"#$"+price+"#$"+productSizeColor+"#$"+price);
+      alert('yessssssssss');
   
-}
+    } 
+  
+  );
+  }
 getStoreId(){
 this.storeService.get().subscribe(
      (res:any)=>{
