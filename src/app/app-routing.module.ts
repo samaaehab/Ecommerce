@@ -25,6 +25,8 @@ import { FavouritesComponent } from './components/favourites/favourites.componen
 
 import { MainhomeComponent } from './components/mainhome/mainhome.component';
 import { AdminSignupComponent } from './components/admin-signup/admin-signup.component';
+import { AboutComponent } from './components/contact/about/about.component';
+import { ContactsUsComponent } from './components/contact/contacts-us/contacts-us.component';
 // import { OrdersComponent } from './components/orders/orders.component';
 // import { ProfileComponent } from './components/profile/profile.component';
 // import { UserDetailsComponent } from './components/user-details/user-details.component';
@@ -39,6 +41,10 @@ const routes: Routes = [
       {path: 'cart/checkout/confirm', component: ConfirmComponent,canActivate:[AfterLoginService]},
       {path: 'cart/checkout', component: CheckoutComponent,canActivate:[AfterLoginService]},
       {path: 'cart', component: CartComponent},
+      {path: 'about', component: AboutComponent},
+      {path: 'contact', component: ContactsUsComponent},
+
+
       {path: '', component:MainhomeComponent},
       {path:'favourites',component:FavouritesComponent},
       {path:'reset-password',component:ResetPasswordComponent},
