@@ -35,7 +35,6 @@ mainhomeRate=4;
   constructor(public myapp: AppComponent,private _productService:ProductService,private _SubcategoryService:SubcategoryService,private _userService:UserService,private storeService:StoreService) { }
 
 
-
   ngOnInit(): void {
 
     this._SubcategoryService.get().subscribe(
@@ -60,6 +59,7 @@ mainhomeRate=4;
         )
       }
 
+
     }
   );
 
@@ -71,7 +71,7 @@ mainhomeRate=4;
 
 
 }
- console.log(this.productStore);    
+   
 },
   (error:any)=>{
 
@@ -82,8 +82,7 @@ mainhomeRate=4;
   this.getStoreId();
   // this.getStore()
   this.closeModel();
-
-
+  
 }
 
   getStore(){
@@ -108,14 +107,15 @@ mainhomeRate=4;
   onmainHomeRateChange(rate:number):void{
 this.mainhomeRate=rate;
   }
-
   getid(id:number){
+ 
     this.allProducts.forEach(
       c=>{
         if(c.id == id){
           var img=this.imagepath+c.image;
            this.total=c.price - c.discount;
           $("#exampleModalLabel1").html(c?.product_name);
+          $("#exampleModalLabel11").prop('value',c?.id);
           $("#exampleModalLabel2").html(c?.description);
           $("#exampleModalLabel4").html(String(this.total));
 
@@ -186,14 +186,29 @@ this._userService.get().subscribe(
   }
 );
 }
+//id:any,ProdName:any,Image:any,newPrice:any
+products:any[]=[];
+addToCart(id:any,productSizeColor:any){
+this._productService.get().subscribe(
+  (res:any)=>{
+    for(let p in res.data){
+      this.products.push(res.data[p]);
+     
+    } 
+    
+    let product=this.products.find((p:any)=>p.id == id);
+    let price=product.price-product.discount;
+    localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+1+"#$"+price+"#$"+productSizeColor);
+  } 
+);
+ 
 
 
-addToCart(id:any,ProdName:any,Image:any,newPrice:any){
 
-  let message="";
- console.log(id);
- localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
- this.myapp.successmessage("Added To Cart Successfuly"); 
+//   let message="";
+//  console.log(id);
+//  localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
+//  this.myapp.successmessage("Added To Cart Successfuly"); 
 
   
 }

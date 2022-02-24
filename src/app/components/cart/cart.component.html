@@ -37,29 +37,29 @@
 
                                 <td>
                                     <div class="thumb_cart">
-                                        <img src="{{cart[1]}}" data-src="img/products/shoes/2.jpg" class="lazy" alt="Image">
+                                        <img src="{{cart[2]}}" data-src="img/products/shoes/2.jpg" class="lazy" alt="Image">
                                     </div>
-                                    <span class="item_cart">{{cart[0]}}</span>
+                                    <span class="item_cart">{{cart[1]}}</span>
                                 </td>
+                                <td>                                                                                      
+                                    <strong>${{cart[4]}}</strong>
+                                </td>                                                                                                
                                 <td>
-                                    <strong>${{cart[2]}}</strong>
-                                </td>
-                                <td>
-                                    <input style="border-radius: 4px !important;height: 30px !important;width: 50px !important;background-color: white;" type="number" min='1' (change)="getQty(inputQty.value)" (change)="getTotalPrice()"(change)="updateCart(cart[3],cart[0],cart[1],cart[2],inputQty.value,inputSubTotla.value)" #inputQty value="{{cart[4]}}" id="quantity_2" class="qty2" name="quantity_2">
+                                    <input style="border-radius: 4px !important;height: 30px !important;width: 50px !important;background-color: white;" type="number" min='1' (change)="getQty(inputQty.value)" (change)="getTotalPrice()"(change)="updateCart(cart[0],cart[1],cart[2],cart[4],inputQty.value,inputSubTotla.value,cart[5])" #inputQty value="{{cart[3]}}" id="quantity_2" class="qty2" name="quantity_2">
 
                                 </td>
                                 <td>
-                                    <strong>$ {{cart[2]*getQty(inputQty.value)}}</strong>
-                                    <input id="totPrice" #inputSubTotla type="hidden" value="{{cart[2]*getQty(inputQty.value)}}">
+                                    <strong>$ {{cart[4]*getQty(inputQty.value)}}</strong>
+                                    <input id="totPrice" #inputSubTotla type="hidden" value="{{cart[4]*getQty(inputQty.value)}}">
                                 </td>
                                 <td class="options">
-                                    <a href="" routerLink="/cart" ><i class="ti-trash" (click)="omg('product'+cart[3])"></i></a>
+                                    <a href="" routerLink="/cart" ><i class="ti-trash" (click)="omg('product'+cart[5])"></i></a>
                                 </td>
-                                <td>
+                                <!-- <td>
                                     <div class="col-sm-4 text-end">
                                         <button type="button" class="btn_1 gray" (click)="updateCart(cart[3],cart[0],cart[1],cart[2],inputQty.value,inputSubTotla.value)">Update Cart</button>
                                     </div>
-                                </td>
+                                </td> -->
                             </tr>
                         </tbody>
                     </table>

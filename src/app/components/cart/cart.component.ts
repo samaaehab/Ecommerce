@@ -80,12 +80,14 @@ price:any;
 
   }
 
-  updateCart(id:any,ProdName:any,Image:any,newPrice:any,qty:any,subTotal:any){
+  updateCart(id:any,ProdName:any,Image:any,newPrice:any,qty:any,subTotal:any,storeID:any){
     for (var i = 0; i < localStorage.length; i++) {
       let a = localStorage.key(i);
-      if (a?.substring(0, 7)+id == 'product'+id) {
-       localStorage.removeItem(a?.substring(0, 7)+id);
-       localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + qty + '#$' + subTotal);      }
+      if (a?.substring(0, 7)+storeID == 'product'+storeID) {
+       localStorage.removeItem(a?.substring(0, 7)+storeID);
+      //  localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + qty + '#$' + subTotal);      
+      localStorage.setItem('product'+storeID,id+"#$"+ProdName+"#$"+Image+"#$"+qty+"#$"+newPrice+"#$"+storeID+"#$"+subTotal);
+    }
 
     }
 
