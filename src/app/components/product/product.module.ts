@@ -9,7 +9,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
-  {path: 'man', component: HomeComponent},
+  {path: 'men', component: HomeComponent},
   {path: 'woman', component: WomenComponent},
   {path: 'kids', component: KidsComponent},
 ]

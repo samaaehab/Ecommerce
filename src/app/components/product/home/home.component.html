@@ -72,8 +72,8 @@
                             </a>
                             <div class="price_box">
                                 <input id="inputNewPrice" type="hidden" value="{{product.price - product.discount}}" #inputNewPrice>
-                              <span class="new_price">${{product.price - product.discount}}</span>
-                              <span class="old_price"id="inputPrice">${{product.price}}</span>
+                              <span class="new_price">{{product.price - product.discount | currency}}</span>
+                              <span class="old_price"id="inputPrice">{{product.price | currency}}</span>
                             </div>
                             <!-- <div class="price_box" *ngFor="let p of price">
                                 <span class="new_price" *ngIf="p.product_id === product.id" >$ {{p.size}}</span>
@@ -111,7 +111,10 @@
                               </div>
                               <ul>
                                 <li *ngFor="let sucategory of allsubcategories[0];let currentIndex=index">
-                                    <label ><i class="fa fa-puzzle-piece me-1" style="font-size:16px"></i>{{sucategory.subcat_name}} 
+                                    <label >
+                                        <i class="fa fa-puzzle-piece me-1" 
+                                        style="font-size:16px"></i>
+                                        {{sucategory.subcat_name}} 
                                         <!-- <small class="ml-5">12</small> -->
                                         <!-- <input type="checkbox"> -->
                                         <!-- <span class="checkmark"></span> -->
@@ -170,8 +173,6 @@
             <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
                 class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
                 
-            
-
           </div>
      
   

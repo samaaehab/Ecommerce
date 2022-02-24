@@ -6,6 +6,7 @@ import { CategoryServiceService } from 'src/app/services/category-service.servic
 import { SubcategoryService } from 'src/app/services/subcategory.service';
 import { AuthenService } from './../../services/authen.service';
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/app/models/Category';
 // import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -14,17 +15,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  allsubcategories:any[]=[];
+allsubcategories:any[]=[];
  public subcategories:any[]=[];
  count:any=0;
-
-  public logged=false;
-  constructor(private _SubcategoryService:SubcategoryService,
-    private _categoryService:CategoryServiceService,
-    private auth:AuthenService,private router:Router,private token:TokenService) { }
-    searchText:any;
-
-    productCount:any;
+ categories:Category[]=[];
+public logged=false;
+constructor(private _SubcategoryService:SubcategoryService,
+private _categoryService:CategoryServiceService,
+private auth:AuthenService,private router:Router,private token:TokenService) { }
+searchText:any;
+productCount:any;
   // constructor(
   //   public translate: TranslateService
   // ) {
@@ -37,10 +37,13 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
+ 
     this.auth.status.subscribe(value=>this.logged=value);
       this._categoryService.get().subscribe(
         (res: any) => {
-          for(const i in res.data){
+        // console.log(res.data);
+          for (const i in res.data) {
+           
             const id= res.data[i].id;
             this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
               (res:any)=>{
@@ -63,11 +66,13 @@ export class HeaderComponent implements OnInit {
             )
           }
           console.log(this.allsubcategories);
+          
 
 
         }
       );
-      this.cartCount();
+    this.cartCount();
+    this.getCategoryData();
       }
 
 
@@ -93,5 +98,16 @@ export class HeaderComponent implements OnInit {
         return this.count;
 
       }
-  }
+      getCategoryData(){ 
+        this._categoryService.get().subscribe(
+         (res: any) => {
+           console.log(JSON.stringify(res));
+            this.categories = res.data;
+            console.log(this.categories);
+            
+         }
+       );
+      }
+}
+
 

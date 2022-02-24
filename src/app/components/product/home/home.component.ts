@@ -6,6 +6,7 @@ import { CategoryServiceService } from 'src/app/services/category-service.servic
 import { Product } from 'src/app/models/Product';
 import { UserService } from 'src/app/services/user.service';
 import { AppComponent } from 'src/app/app.component';
+import { Category } from 'src/app/models/Category';
 
 @Component({
   selector: 'app-home',
@@ -18,10 +19,12 @@ public subcategories:any[]=[];
 subcat:any[]=[];
 productsCategory:any[]=[];
 storeId:any[]=[];
-  cart:any[]=[];
-  user=localStorage.getItem('email');
-  LastProducts:Product[]=[];
-  allProducts: any[] = [];
+cart:any[]=[];
+user=localStorage.getItem('email');
+LastProducts:Product[]=[];
+allProducts: any[] = [];
+  categories: Category[] = [];
+  catname: any[] = [];
 imagepath: any = 'http://127.0.0.1:8000/public/image/';
 price:any[]=[];
   p: any = 1;
@@ -58,6 +61,8 @@ price:any[]=[];
               
                     this.allsubcategories.push(this.subcategories.map(m=>{return m}));
 
+              console.log(this.allsubcategories);
+              
                   // for(let i=0;i<res.data.length;i++){
                   //   this.subcategories.push(res.data[i])
                   //   this.subcategories=this.subcategories.map(m=>{return m});
@@ -89,7 +94,8 @@ price:any[]=[];
     (error:any)=>{
   
     }
-  );
+    );
+    this.getCategoryData();
   }
   
  getPrice(){
@@ -209,5 +215,20 @@ console.log(this.storeId);
   
   
   }
-  
+  getCategoryData(){ 
+    this._categoryService.get().subscribe(
+     (res: any) => {
+        console.log(JSON.stringify(res));
+        for (let i in res.data) {
+          this.categories.push(res.data[i]);
+        }
+        for (let c in this.categories) {
+          this.catname.push(this.categories[c].cat_name)
+         
+        }
+        console.log(this.catname);
+        
+     }
+   );
+  }
 }

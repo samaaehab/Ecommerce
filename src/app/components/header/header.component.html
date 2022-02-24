@@ -57,15 +57,15 @@
 							</div>
 							<ul>
 								<li class="submenu">
-									<a routerLink="/home" class="show-submenu">home</a>
+									<a routerLink="/home" class="show-submenu" >home</a>
 									<ul>
-										<li ><a routerLink="/products/man">Men</a></li>
+										<li *ngFor="let cat of categories"><a routerLink="/products/{{cat.cat_name}}">{{cat.cat_name}}</a></li>
 									<!-- </ul>
 									<ul> -->
-										<li ><a routerLink="/products/woman">Woman</a></li>
+										<!-- <li ><a routerLink="/products/woman">Woman</a></li> -->
 									<!-- </ul> -->
 									<!-- <ul> -->
-										<li ><a routerLink="/products/kids">Kids</a></li>
+										<!-- <li ><a routerLink="/products/kids">Kids</a></li> -->
 									</ul>
 								</li>
 								<!-- <li class="submenu">
