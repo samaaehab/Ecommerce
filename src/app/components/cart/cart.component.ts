@@ -6,6 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 import { Cart } from 'src/app/models/Cart';
 import { CartService } from 'src/app/services/cart.service';
 import { User } from 'src/app/models/User';
+import { Massege } from 'src/app/models/Massege';
 
 @Component({
   selector: 'app-cart',
@@ -20,11 +21,11 @@ export class CartComponent implements OnInit {
   loggedUser: any[] = [];
   users:User[]=[];
   DBCart=new Cart();
-
-
   totalPrice:number=0;
+
+
   constructor(private _userService: UserService, private router: Router, public myapp: AppComponent, private route: ActivatedRoute
-  ,private _cartSeervice:CartService)
+  ,private _cartService:CartService)
     { this.router.routeReuseStrategy.shouldReuseRoute = () => false;}
 
   ngOnInit(): void {
@@ -43,9 +44,10 @@ export class CartComponent implements OnInit {
 
     for (var i = 0; i < this.productsInCart.length; i++) {
 
-     this.totalPrice+=Number(this.productsInCart[i][5]);
+     this.totalPrice+=Number(this.productsInCart[i][6]);
 
     }
+
 
     this._userService.get().subscribe(
       (res: any) => {
@@ -59,7 +61,11 @@ export class CartComponent implements OnInit {
     this.getTotalPrice();
     this.addToDBCart();
   }
-
+  getTotalPrice(){
+    for(let prod of this.productsInCart){
+      console.log(prod[6]);
+    }
+  }
 
 
   omg(key:any) {
@@ -90,55 +96,68 @@ price:any;
     }
 
     }
-
+    window.location.reload();
     this.myapp.showInfo("Updated Successfuly","Updated");
   }
-  getTotalPrice(){
-    for(let prod of this.productsInCart){
-      console.log(prod[5]);
+
+
+  addToDBCart(){
+    // console.log(this.DBCart.d);
+    if(localStorage.getItem('email')){
+
+      for(let i=0;i<this.productsInCart.length;i++){
+        this.DBCart.products_number=this.productsInCart[i][3];
+        this.DBCart.total_price=this.productsInCart[i][6];
+        this.DBCart.store_id=this.productsInCart[i][5];
+        this.DBCart.user_id=this.loggedUser[0].id;
+        this.DBCart.status='waiting';
+        this._cartService.post(this.DBCart).subscribe(
+          (res:any)=>{
+            console.log(res.message);
+          });
+          localStorage.removeItem('product'+this.DBCart.store_id);            
+
+      }
+      
+    }
+    else{
 
     }
-  }
-  addToDBCart(){
-    for(let i=0;i<this.productsInCart.length;i++){
-      this.DBCart.products_number=this.productsInCart[i][4];
-      this.DBCart.total_price=this.productsInCart[i][5];
-      // this.DBCart.user_id=this.loggedUser[0].id;
-    }
+    console.log(this.productsInCart);
+    
     console.log(this.loggedUser[0].id);
   
     // console.log(this.productsInCart);
 
     // this._cartSeervice.post().subscribe();
   }
-  addtodatabase(total_price: any, products_number: any, status: any, store_id: any, user_id: any) {
-    let addcart = new Cart();
-    addcart.total_price = total_price;
-    addcart.products_number=products_number;
-    addcart.status = status;
-    addcart.store_id = store_id;
-    addcart.user_id = user_id;
-    this._cartSeervice.post(addcart).subscribe(
+//   addtodatabase(total_price: any, products_number: any, status: any, store_id: any, user_id: any) {
+//     let addcart = new Cart();
+//     addcart.total_price = total_price;
+//     addcart.products_number=products_number;
+//     addcart.status = status;
+//     addcart.store_id = store_id;
+//     addcart.user_id = user_id;
+//     this._cartSeervice.post(addcart).subscribe(
 
-      (response:any)=>{
-        this.products.push(addcart);
-        // window.location.reload();
-        this.myapp.successmessage(response.message);
-       console.log(response);
+//       (response:any)=>{
+//         this.products.push(addcart);
+//         // window.location.reload();
+//         this.myapp.successmessage(response.message);
+//        console.log(response);
 
 
-      },
-      (error: any) => {
-       for (const err in error.error.errors) {
-         for (let i = 0; i < error.error.errors[err].length; i++){
-           console.log(error.error.errors[err][i]);
-           this.myapp.errormessage(error.error.errors[err][i]);
-         }
+//       },
+//       (error: any) => {
+//        for (const err in error.error.errors) {
+//          for (let i = 0; i < error.error.errors[err].length; i++){
+//            console.log(error.error.errors[err][i]);
+//            this.myapp.errormessage(error.error.errors[err][i]);
+//          }
 
-       }
-      }
+//        }
+//       }
 
-    );
-
-}
+//     );
+// }
 }
