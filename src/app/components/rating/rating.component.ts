@@ -12,6 +12,7 @@ export class RatingComponent implements OnInit {
   @Output() change=new EventEmitter<number>();
 
 
+
   constructor() { }
 
   ngOnInit(): void {
