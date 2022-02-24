@@ -59,7 +59,7 @@
 								<li class="submenu">
 									<a routerLink="/home" class="show-submenu" >home</a>
 									<ul>
-										<li *ngFor="let cat of categories"><a routerLink="/products/{{cat.cat_name}}">{{cat.cat_name}}</a></li>
+										<li *ngFor="let cat of categories"><a routerLink="/products/{{cat.cat_name}}">{{cat.cat_name |uppercase}}</a></li>
 									<!-- </ul>
 									<ul> -->
 										<!-- <li ><a routerLink="/products/woman">Woman</a></li> -->

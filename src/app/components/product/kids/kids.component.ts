@@ -188,7 +188,8 @@ this.productService.get().subscribe(
     let product=this.products.find((p:any)=>p.id == id);
     let price=product.price-product.discount;
     localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+1+"#$"+price+"#$"+productSizeColor+"#$"+price);
-    alert('yessssssssss');
+    this.myapp.successmessage("Added To Cart Successfuly"); 
+
 
   } 
 

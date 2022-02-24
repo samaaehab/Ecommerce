@@ -36,7 +36,7 @@ export class WomenComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.productService.getProductsCategory(2).subscribe(
+    this.productService.getProductsCategory(4).subscribe(
       (res: any) => {
         this.productsCategory.push(res);
         this.productsCategory=this.productsCategory[0];
@@ -136,7 +136,8 @@ export class WomenComponent implements OnInit {
         let product=this.products.find((p:any)=>p.id == id);
         let price=product.price-product.discount;
         localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+1+"#$"+price+"#$"+productSizeColor+"#$"+price);
-        alert('yessssssssss');
+        this.myapp.successmessage("Added To Cart Successfuly"); 
+
     
       } 
     
