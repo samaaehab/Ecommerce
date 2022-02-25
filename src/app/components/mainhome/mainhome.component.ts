@@ -195,11 +195,21 @@ this._productService.get().subscribe(
       this.products.push(res.data[p]);
      
     } 
-    
-    let product=this.products.find((p:any)=>p.id == id);
+    if(localStorage.getItem('product'+productSizeColor)=== null){
+      let product=this.products.find((p:any)=>p.id == id);
     let price=product.price-product.discount;
     localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+1+"#$"+price+"#$"+productSizeColor+"#$"+price);
     this.myapp.successmessage("Added To Cart Successfuly"); 
+
+    }
+    else{
+      this.myapp.showWarning("Already Added Before","Oops"); 
+
+    }
+    
+    
+
+
   } 
 );
  
