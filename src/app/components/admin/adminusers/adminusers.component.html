@@ -156,7 +156,7 @@
                       <th scope="col">Email</th>
                       <th scope="col">Phone</th>
                       <th scope="col">Full Address</th>
-                      <th scope="col">Housenumber</th>
+                      <!-- <th scope="col">Housenumber</th> -->
 
 
                       <th scope="col">country</th>
@@ -188,10 +188,10 @@
 
 
                       <td>{{user.name}}</td>
-                      <td class="text-break">{{user.email}}</td>
+                      <td >{{user.email|maxLength}}</td>
                       <td>{{user.phone}}</td>
                       <td>{{user.full_address |maxLength}}</td>
-                      <td>{{user.house_no}}</td>
+                      <!-- <td>{{user.house_no}}</td> -->
                       <td>{{user.country}}</td>
                       <td>{{user.city}}</td>
 

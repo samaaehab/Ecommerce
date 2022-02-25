@@ -26,7 +26,7 @@ export class AdminusersComponent implements OnInit {
   users: User[] = [];
   // Pagination parameters.
   p: any = 1;
-  count: any = 3;
+  count: any = 7;
   searchText: any;
   constructor(public myapp: AppComponent, private http: HttpClient, private _formBuilder: FormBuilder, private _userService: UserService) { }
 

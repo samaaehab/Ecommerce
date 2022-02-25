@@ -23,7 +23,7 @@ export class AdmincategoryComponent implements OnInit {
    // Pagination parameters.
 
    p: any = 1;
-   count: any = 3;
+   count: any = 5;
    searchText:any;
 
   constructor(private _formBuilder: FormBuilder, private _categoryService: CategoryServiceService,
