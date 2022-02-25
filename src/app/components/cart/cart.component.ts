@@ -7,6 +7,7 @@ import { Cart } from 'src/app/models/Cart';
 import { CartService } from 'src/app/services/cart.service';
 import { User } from 'src/app/models/User';
 import { Massege } from 'src/app/models/Massege';
+import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-cart',
@@ -22,10 +23,11 @@ export class CartComponent implements OnInit {
   users:User[]=[];
   DBCart=new Cart();
   totalPrice:number=0;
+  productStore:any[]=[];
 
 
   constructor(private _userService: UserService, private router: Router, public myapp: AppComponent, private route: ActivatedRoute
-  ,private _cartService:CartService)
+  ,private _cartService:CartService,private _storeService:StoreService)
     { this.router.routeReuseStrategy.shouldReuseRoute = () => false;}
 
   ngOnInit(): void {
@@ -39,8 +41,25 @@ export class CartComponent implements OnInit {
         console.log(this.productsInCart);
         this.cartCount=this.productsInCart.length;
 
+
+
       }
     }
+    this._storeService.get().subscribe(
+      (res: any) => {
+        console.log(res.data);
+        let data=res.data;
+        console.log(data);
+        for(let i=0;i<this.productsInCart.length;i++){
+          let x= res.data.find((cat:any)=>cat.id==this.productsInCart[i][5]);
+          // console.log(x);   
+          // console.log(this.productsInCart[i][5]);
+          this.productStore.push(x);
+        }
+        console.log(this.productStore)
+     
+      }
+    ); 
 
     for (var i = 0; i < this.productsInCart.length; i++) {
 

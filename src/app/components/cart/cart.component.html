@@ -19,6 +19,12 @@
                                     Product
                                 </th>
                                 <th>
+                                    Color
+                                </th>
+                                <th>
+                                    Size
+                                </th>
+                                <th>
                                     Price
                                 </th>
                                 <th>
@@ -34,13 +40,19 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let cart of productsInCart;let currentIndex=index">
-
+                  
                                 <td>
                                     <div class="thumb_cart">
                                         <img src="{{cart[2]}}" data-src="img/products/shoes/2.jpg" class="lazy" alt="Image">
                                     </div>
                                     <span class="item_cart">{{cart[1]}}</span>
                                 </td>
+                                <td>                                                                                      
+                                    <strong>{{productStore[currentIndex].color}}</strong>
+                                </td>
+                                <td>                                                                                      
+                                    <strong>{{productStore[currentIndex].size|uppercase}}</strong>
+                                </td>    
                                 <td>                                                                                      
                                     <strong>${{cart[4]}}</strong>
                                 </td>                                                                                                
