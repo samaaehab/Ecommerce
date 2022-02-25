@@ -12,9 +12,10 @@ import { StoreService } from 'src/app/services/store.service';
 export class CheckoutComponent implements OnInit {
   formLogin = new FormGroup({});
   formRegister = new FormGroup({});
-  users: User[] = [];
-  loggedUser: any[] = [];
-  order:any[]=[];
+  users=new User();
+  loggedUser:number=0;
+  cartInOrder:any[]=[];
+  totalPrice:number=0;
   user = localStorage.getItem('email');
   storeid: number = 0;
   constructor(private _formBuilder: FormBuilder, private _cartService: CartService, private _userService: UserService,private _storeService:StoreService) { }
@@ -31,20 +32,31 @@ export class CheckoutComponent implements OnInit {
       City: ['', [Validators.required]],
       Phone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
     });
-    this.getCartData();
     this._userService.get().subscribe(
       (res: any) => {
         console.log(JSON.stringify(res));
         this.users = res.data.find((user: any) => user.email == this.user);
-        this.loggedUser.push(this.users);
-        console.log(this.loggedUser[0].id)
+        
+        this._cartService.getCartsForEachUser(this.users.id).subscribe(
+          (res:any)=>{
+            this.cartInOrder=res;
+            for(let i of this.cartInOrder){
+              this.totalPrice+=Number(i.total_price);
+            }
+            console.log(this.totalPrice);
+            
+            
+          }
+        )
+      
       }
     );
-
+    
 
     this.getstore(4);
     
   }
+  
   // get product id from store id
   getstore(id:any) {
     this._storeService.get().subscribe(
@@ -62,38 +74,7 @@ export class CheckoutComponent implements OnInit {
       }
     );
   }
-  getCartData() {
-    this._cartService.get().subscribe(
-      (res: any) => {
 
-        let userCheckout = res.data.filter((u: any) => u.user_id == this.loggedUser[0].id);
-        let cartInOrder = userCheckout.filter((c: any) =>c.status=='waiting');
-        this.order.push(cartInOrder);
-    
-        // return cartInOrder;
-        console.log(this.order);
-        console.log(userCheckout);
-
-          // this.storeid = userCheckout[i].store_id;
-          // // console.log(this.getstore(this.productid));
-          // this._storeService.show(userCheckout[i].store_id).subscribe(
-          //   (res: any) => {
-          //     console.log(res);
-          //   }, (error:any) => {
-          //     console.log(error);
-          //   }
-          // );
-
-          // console.log(userCheckout[i].store_id);
-          console.log(res);
-
-
-        // console.log(userCheckout);
-
-      }
-    );
-
-  }
   login(): void {
     alert(JSON.stringify(this.formLogin.value));
     //Call API to validate user

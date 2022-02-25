@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { AuthenService } from './../../services/authen.service';
 
 import { TokenService } from './../../services/token.service';
@@ -13,6 +14,7 @@ import { GoogleLoginProvider } from "angularx-social-login";
 import { Account } from 'src/app/models/Account';
 import  Swal from 'sweetalert2';
 import { AppComponent } from 'src/app/app.component';
+import { User } from 'src/app/models/User';
 @Component({
 selector: 'app-acount',
 templateUrl: './acount.component.html',
@@ -30,7 +32,8 @@ export class AcountComponent implements OnInit {
     private router:Router,
     private _authService:AuthService,
     private token:TokenService,
-   private auth:AuthenService,public myapp: AppComponent) { } //
+   private auth:AuthenService,public myapp: AppComponent,
+   private _userService:UserService) { } //
  
   signin() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((data) => {
@@ -205,15 +208,43 @@ googleLoginOptions = {
   scope: 'profile email'
 }; // https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauth2clientconfig
 
-  
-
+userData=new User();
 signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID, this.googleLoginOptions ).then((data) => {
-      // console.log(data);
-      alert(JSON.stringify(data));
-      this.account.id=data.id;
-      this.account.name=data.name;
-      this.account.email=data.email;
+      console.log(data);
+     // alert(JSON.stringify(data));
+      // this.account.id=data.id;
+      // this.account.name=data.name;
+      // this.account.email=data.email;
+      this.userData.name=data.name;
+      this.userData.email=data.email;
+      this.userData.country=null;
+      this.userData.city=null;
+      this.userData.full_address=null;
+      this.userData.house_no=0;
+      this.userData.phone='01000000000';
+      this.userData.password=data.idToken;
+      let token=data.idToken;
+      this._userService.get().subscribe(
+        (res:any)=>{
+          let userFound=res.data.find((u:any)=>u.email == this.userData.email)
+          if(userFound){
+            localStorage.setItem('token',token);
+            this.router.navigateByUrl('/home');
+            
+          }else{
+            this._userService.post(this.userData).subscribe(
+              (res:any)=>{
+                localStorage.setItem('token',token);
+                this.router.navigateByUrl('/home');
+              }
+            );
+            
+          }
+          
+        }
+      ); 
+
     }).catch(data => {
       // alert(JSON.stringify(data));
       this.authService.signOut();
