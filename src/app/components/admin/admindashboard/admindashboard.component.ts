@@ -17,7 +17,7 @@ export class AdmindashboardComponent implements OnInit {
   productsCount:number=0;
   categoriesCount:number=0;
   ordersCount:number=0;
-  constructor(private userService:UserService,private productService:ProductService,private orderService:OrderService,private categoryService:CategoryServiceService,private token:AdminTokenService,private auth:AuthenService,private router:Router) { }
+  constructor(private userService:UserService,private productService:ProductService,private orderService:OrderService,private categoryService:CategoryServiceService,private token:AdminTokenService,private auth:AuthenService,private router:Router,public router2:Router) { }
 
   ngOnInit(): void {
   this.categoryService.get().subscribe(

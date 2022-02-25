@@ -15,6 +15,9 @@ import { Category } from 'src/app/models/Category';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  static next(arg0: boolean) {
+    throw new Error('Method not implemented.');
+  }
 allsubcategories:any[]=[];
  public subcategories:any[]=[];
  count:any=0;

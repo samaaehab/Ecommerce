@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 // const FacebookStrategy = require("passport-facebook").Strategy;
@@ -16,7 +17,7 @@ import  Swal from 'sweetalert2';
 export class AppComponent {
 
   constructor(
-    public translate: TranslateService , private _toastrService:ToastrService
+    public translate: TranslateService , private _toastrService:ToastrService,public router:Router
   ) {
     translate.addLangs(['en', 'ar']);
     translate.setDefaultLang('en');
