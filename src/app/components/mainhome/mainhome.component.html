@@ -22,10 +22,10 @@
     </div>
 
     <!-- Left and right controls -->
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <a class="carousel-control-prev"  data-slide="prev">
       <span class="carousel-control-prev-icon"></span>
     </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
+    <a class="carousel-control-next" data-slide="next">
       <span class="carousel-control-next-icon"></span>
     </a>
   </div>
@@ -35,7 +35,7 @@
 
   <ul id="banners_grid" class="clearfix">
     <li>
-      <a href="" routerLink="/products/men" class="img_container">
+      <a routerLink="/products/men" class="img_container">
         <img src="../../../assets/images/man.jpeg" data-src="../../assets/img/banner_1.jpg" alt="" class="lazy">
         <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
           <h3>Men's Collection</h3>
@@ -44,7 +44,7 @@
       </a>
     </li>
     <li>
-      <a href="" routerLink="/products/woman" class="img_container">
+      <a routerLink="/products/woman" class="img_container">
         <img src="../../../assets/images/woman.jpeg" data-src="../../assets/img/banner_2.jpg" alt="" class="lazy">
         <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
           <h3>Womens's Collection</h3>
@@ -53,7 +53,7 @@
       </a>
     </li>
     <li>
-      <a href="#0" routerLink="/products/kids" class="img_container">
+      <a href="" routerLink="/products/kids" class="img_container">
         <img src="../../../assets/images/kid.jpeg" data-src="../../assets/img/banner_3.jpg" alt="" class="lazy">
         <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
           <h3>Kids's Collection</h3>
@@ -130,7 +130,7 @@
   <div class="featured lazy">
     <img src="../../../assets/img/WhatsApp Image 2022-02-18 at 12.02.06 AM.jpeg" width="100%">
     <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-      <div class="container margin_60">
+      <!-- <div class="container margin_60">
         <div class="row justify-content-center justify-content-md-start">
           <div class="col-lg-6 wow" data-wow-offset="150">
             <h3>Armor<br>Air Color 720</h3>
@@ -140,11 +140,10 @@
                 <span class="new_price">$90.00</span>
                 <span class="old_price">$170.00</span>
               </div>
-              <!-- <a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a> -->
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -152,27 +151,27 @@
     <div class="container margin_30">
       <div id="brands" class="owl-carousel owl-theme">
         <div class="item">
-          <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png"
+          <a><img src="../../assets/img/brands/placeholder_brands.png"
               data-src="../../assets/img/brands/logo_1.png" alt="" class="owl-lazy"></a>
         </div><!-- /item -->
         <div class="item">
-          <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png"
+          <a><img src="../../assets/img/brands/placeholder_brands.png"
               data-src="../../assets/img/brands/logo_2.png" alt="" class="owl-lazy"></a>
         </div><!-- /item -->
         <div class="item">
-          <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png"
+          <a><img src="../../assets/img/brands/placeholder_brands.png"
               data-src="../../assets/img/brands/logo_3.png" alt="" class="owl-lazy"></a>
         </div><!-- /item -->
         <div class="item">
-          <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png"
+          <a><img src="../../assets/img/brands/placeholder_brands.png"
               data-src="../../assets/img/brands/logo_4.png" alt="" class="owl-lazy"></a>
         </div><!-- /item -->
         <div class="item">
-          <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png"
+          <a><img src="../../assets/img/brands/placeholder_brands.png"
               data-src="../../assets/img/brands/logo_5.png" alt="" class="owl-lazy"></a>
         </div><!-- /item -->
         <div class="item">
-          <a href="#0"><img src="../../assets/img/brands/placeholder_brands.png"
+          <a><img src="../../assets/img/brands/placeholder_brands.png"
               data-src="../../assets/img/brands/logo_6.png" alt="" class="owl-lazy"></a>
         </div><!-- /item -->
       </div><!-- /carousel -->
@@ -182,79 +181,25 @@
 
   <div class="container margin_60_35">
     <div class="main_title">
-      <h2>Latest news</h2>
+      <h2>Big Sales</h2>
       <span>Blog</span>
-      <p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
     </div>
     <div class="row">
-      <div class="col-lg-6">
-        <a class="box_news" href="blog.html">
+      <div class="col-lg-6"  *ngFor="let disc of productsDisc">
+        <a class="box_news" >
           <figure>
-            <img src="../../assets/img/blog-thumb-placeholder.jpg" data-src="../../assets/img/blog-thumb-1.jpg" alt=""
+            <img src="{{imagepath}}{{disc.image}}" data-src="../../assets/img/blog-thumb-1.jpg" alt=""
               width="400" height="266" class="lazy">
-            <figcaption><strong>28</strong>Dec</figcaption>
+            <figcaption style="width: 56px;height: 48px;text-align: left !important;" class="fw-bold text-start">-{{(disc.discount/disc.price)*100|number}}%</figcaption>
           </figure>
+          <h4>{{disc.product_name}}</h4>
+          <p>{{disc.description}} </p>
           <ul>
-            <li>by Mark Twain</li>
-            <li>20.11.2017</li>
+            <li><span class="new_price">${{disc.price - disc.discount}}</span></li>
+            <li><span class="old_price" id="inputPrice">${{disc.price}}</span></li>
           </ul>
-          <h4>Pri oportere scribentur eu</h4>
-          <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....
-          </p>
         </a>
       </div>
-      <!-- /box_news -->
-      <!-- <div class="col-lg-6">
-        <a class="box_news" href="blog.html">
-          <figure>
-            <img src="../../assets/img/blog-thumb-placeholder.jpg" data-src="../../assets/img/blog-thumb-2.jpg" alt=""
-              width="400" height="266" class="lazy">
-            <figcaption><strong>28</strong>Dec</figcaption>
-          </figure>
-          <ul>
-            <li>By Jhon Doe</li>
-            <li>20.11.2017</li>
-          </ul>
-          <h4>Duo eius postea suscipit ad</h4>
-          <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....
-          </p>
-        </a>
-      </div> -->
-      <!-- /box_news -->
-      <!-- <div class="col-lg-6">
-        <a class="box_news" href="blog.html">
-          <figure>
-            <img src="../../assets/img/blog-thumb-placeholder.jpg" data-src="../../assets/img/blog-thumb-3.jpg" alt=""
-              width="400" height="266" class="lazy">
-            <figcaption><strong>28</strong>Dec</figcaption>
-          </figure>
-          <ul>
-            <li>By Luca Robinson</li>
-            <li>20.11.2017</li>
-          </ul>
-          <h4>Elitr mandamus cu has</h4>
-          <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....
-          </p>
-        </a>
-      </div> -->
-      <!-- /box_news -->
-      <!-- <div class="col-lg-6">
-        <a class="box_news" href="blog.html">
-          <figure>
-            <img src="../../assets/img/blog-thumb-placeholder.jpg" data-src="../../assets/img/blog-thumb-4.jpg" alt=""
-              width="400" height="266" class="lazy">
-            <figcaption><strong>28</strong>Dec</figcaption>
-          </figure>
-          <ul>
-            <li>By Paula Rodrigez</li>
-            <li>20.11.2017</li>
-          </ul>
-          <h4>Id est adhuc ignota delenit</h4>
-          <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....
-          </p>
-        </a>
-      </div> -->
-      <!-- /box_news -->
     </div>
     <!-- /row -->
   </div>

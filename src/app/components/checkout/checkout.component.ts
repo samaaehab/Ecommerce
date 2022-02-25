@@ -55,7 +55,6 @@ export class CheckoutComponent implements OnInit {
 
     this.getstore(4);
     
-
   }
   
   // get product id from store id
@@ -67,10 +66,10 @@ export class CheckoutComponent implements OnInit {
           console.log(res.data[i]);
           if (id == res.data[i].id) {
             console.log(res.data[i].product);
-           
-            
+
+
           }
-      
+
       }
       }
     );

@@ -27,6 +27,7 @@ mainhomeRate=4;
   productSize:any[]=[];
   productStoreId:any[]=[];
   allStore:any[]=[];
+  productsDisc:any[]=[];
   total:number=0;
   imagepath: any = 'http://127.0.0.1:8000/public/image/';
   user=localStorage.getItem('email');
@@ -36,6 +37,13 @@ mainhomeRate=4;
 
 
   ngOnInit(): void {
+   this._productService.getProductWithBigDiscount().subscribe(
+     (res:any)=>{
+      console.log(res);
+      this.productsDisc=res;
+      console.log(this.productsDisc);
+     }
+   )
 
     this._SubcategoryService.get().subscribe(
     (res: any) => {
@@ -196,10 +204,28 @@ this._productService.get().subscribe(
      
     } 
     
-    let product=this.products.find((p:any)=>p.id == id);
+    if(localStorage.getItem('product'+productSizeColor)=== null){
+      let product=this.products.find((p:any)=>p.id == id);
     let price=product.price-product.discount;
     localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+1+"#$"+price+"#$"+productSizeColor+"#$"+price);
+    // if(localStorage.getItem('product'+productSizeColor)=='product'){
+    //   localStorage.removeItem('product');
+    //   this.myapp.errormessage("Sorry not Available");
+    // }
+    
     this.myapp.successmessage("Added To Cart Successfuly"); 
+    }
+    else{
+      this.myapp.showWarning("Already Added Before","Oops"); 
+
+
+    }
+    
+    
+    
+    
+
+
   } 
 );
  

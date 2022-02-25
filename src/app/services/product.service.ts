@@ -21,7 +21,9 @@ public getForEachSubCategory(id:number){
 public getProductsCategory(id:number){
   return this._httpClient.get(this.url + `${id}/products`);
 }
-
+public getProductWithBigDiscount(){
+  return this._httpClient.get(this.url + `discounts`);
+}
 
 public post(product: any) {
   const headers=new HttpHeaders();
