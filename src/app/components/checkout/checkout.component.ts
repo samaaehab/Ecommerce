@@ -14,7 +14,7 @@ export class CheckoutComponent implements OnInit {
   formRegister = new FormGroup({});
   users: User[] = [];
   loggedUser: any[] = [];
-  cartInOrder:any[]=[];
+  order:any[]=[];
   user = localStorage.getItem('email');
   storeid: number = 0;
   constructor(private _formBuilder: FormBuilder, private _cartService: CartService, private _userService: UserService,private _storeService:StoreService) { }
@@ -37,14 +37,13 @@ export class CheckoutComponent implements OnInit {
         console.log(JSON.stringify(res));
         this.users = res.data.find((user: any) => user.email == this.user);
         this.loggedUser.push(this.users);
-        // console.log(this.loggedUser[0].id)
+        console.log(this.loggedUser[0].id)
       }
     );
 
 
     this.getstore(4);
     
-
   }
   // get product id from store id
   getstore(id:any) {
@@ -55,10 +54,10 @@ export class CheckoutComponent implements OnInit {
           console.log(res.data[i]);
           if (id == res.data[i].id) {
             console.log(res.data[i].product);
-           
-            
+
+
           }
-      
+
       }
       }
     );
@@ -68,12 +67,13 @@ export class CheckoutComponent implements OnInit {
       (res: any) => {
 
         let userCheckout = res.data.filter((u: any) => u.user_id == this.loggedUser[0].id);
-        for (let i = 0; i<userCheckout.length;i++) {
-          if(userCheckout[i].status=='waiting'){
-            this.cartInOrder.push(userCheckout[i]);
-            console.log(this.cartInOrder);
-            
-          }
+        let cartInOrder = userCheckout.filter((c: any) =>c.status=='waiting');
+        this.order.push(cartInOrder);
+    
+        // return cartInOrder;
+        console.log(this.order);
+        console.log(userCheckout);
+
           // this.storeid = userCheckout[i].store_id;
           // // console.log(this.getstore(this.productid));
           // this._storeService.show(userCheckout[i].store_id).subscribe(
@@ -83,11 +83,12 @@ export class CheckoutComponent implements OnInit {
           //     console.log(error);
           //   }
           // );
-         
-          console.log(userCheckout[i].store_id);
-          
-        }
-        console.log(userCheckout);
+
+          // console.log(userCheckout[i].store_id);
+          console.log(res);
+
+
+        // console.log(userCheckout);
 
       }
     );
