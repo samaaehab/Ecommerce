@@ -143,10 +143,10 @@
                       <th scope="col">Price</th>
                       <th scope="col">Discount</th> 
                       <th scope="col">Subcategory Name</th>
-                      <th scope="col">Category Name</th>
+                      <th scope="col" >Category Name</th>
                       <!-- <th scope="col">Size</th>
                       <th scope="col">Color</th>-->
-                      <th scope="col">Actions</th>
+                      <th scope="col" class="justify-content-center ml-5" style="padding-left:90px !important">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -165,7 +165,7 @@
                       <td scope="col">{{product.discount}}</td>
                       <td scope="col">{{product.subcategory.subcat_name}}</td>
                       <td scope="col">{{product.category.cat_name}}</td>
-                      <td class="d-flex justify-content-around">
+                      <td class="d-flex justify-content-center">
                         <div class="btn btn-dark mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(product.id)">Edit</div>
                         <div class="btn btn-info mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal1" (click)="getId(product.id)">Features</div>
                         <button class="btn btn-danger" (click)="delete(currentIndex)">Delete</button>

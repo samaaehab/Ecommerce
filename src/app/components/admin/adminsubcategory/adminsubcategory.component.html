@@ -188,7 +188,6 @@
                         <th scope="col">#</th>
                         <th scope="col">SubCategory</th>
                         <th scope="col">Category</th>
-
                         <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -206,7 +205,7 @@
                     <td>{{ subcategory.subcat_name }}</td>
                     <td>{{ subcategory.category.cat_name }}</td>
 
-                    <td class="d-flex justify-content-start">
+                    <td class="d-flex justify-content-center">
                       <button class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(subcategory.id)" >Update</button>
                       <button class="btn btn-danger" (click)="delete(currentIndex)">Delete</button>
                     </td>
