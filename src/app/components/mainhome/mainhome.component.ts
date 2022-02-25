@@ -212,7 +212,6 @@ this._productService.get().subscribe(
     //   localStorage.removeItem('product');
     //   this.myapp.errormessage("Sorry not Available");
     // }
-    
     this.myapp.successmessage("Added To Cart Successfuly"); 
     }
     else{

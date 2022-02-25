@@ -198,11 +198,21 @@ addToCart(id:any,productSizeColor:any){
        
       } 
       
-      let product=this.products.find((p:any)=>p.id == id);
+      if(localStorage.getItem('product'+productSizeColor)=== null){
+        let product=this.products.find((p:any)=>p.id == id);
       let price=product.price-product.discount;
       localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+1+"#$"+price+"#$"+productSizeColor+"#$"+price);
+      // if(localStorage.getItem('product'+productSizeColor)=='product'){
+      //   localStorage.removeItem('product');
+      //   this.myapp.errormessage("Sorry not Available");
+      // }
       this.myapp.successmessage("Added To Cart Successfuly"); 
-
+      }
+      else{
+        this.myapp.showWarning("Already Added Before","Oops"); 
+  
+  
+      }
   
     } 
   
