@@ -22,7 +22,9 @@ allsubcategories:any[]=[];
  public subcategories:any[]=[];
  count:any=0;
  categories:Category[]=[];
-public logged=false;
+  public logged = false;
+  totalPrice: number = 0;
+  productsInCart: any[] = [];
 constructor(private _SubcategoryService:SubcategoryService,
 private _categoryService:CategoryServiceService,
 private auth:AuthenService,private router:Router,private token:TokenService) { }
@@ -40,6 +42,25 @@ productCount:any;
 
 
   ngOnInit(): void {
+    for (var i = 0; i < localStorage.length; i++) {
+      let a = localStorage.key(i);
+      if (a?.substring(0, 7) == 'product') {
+        let products = localStorage.getItem(a);
+
+        let splitProduct = products?.split('#$');
+        this.productsInCart.push(splitProduct);
+        console.log(this.productsInCart);
+        // this.cartCount=this.productsInCart.length;
+
+
+
+      }
+    }
+    for (var i = 0; i < this.productsInCart.length; i++) {
+
+      this.totalPrice+=Number(this.productsInCart[i][6]);
+ 
+     }
  
     this.auth.status.subscribe(value=>this.logged=value);
       this._categoryService.get().subscribe(
