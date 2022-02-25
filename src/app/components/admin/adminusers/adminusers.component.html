@@ -7,7 +7,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -135,7 +135,7 @@
                 <div class="search"> <i class="fa fa-search"></i> <input id="search-input" [(ngModel)]='searchText' type="search" id="form1" class="form-control" /></div>
             </div>
               <div class="dropdown no-arrow">
-                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                 </a>
@@ -156,7 +156,7 @@
                       <th scope="col">Email</th>
                       <th scope="col">Phone</th>
                       <th scope="col">Full Address</th>
-                      <th scope="col">Housenumber</th>
+                      <!-- <th scope="col">Housenumber</th> -->
 
 
                       <th scope="col">country</th>
@@ -188,10 +188,10 @@
 
 
                       <td>{{user.name}}</td>
-                      <td class="text-break">{{user.email}}</td>
+                      <td >{{user.email|maxLength}}</td>
                       <td>{{user.phone}}</td>
                       <td>{{user.full_address |maxLength}}</td>
-                      <td>{{user.house_no}}</td>
+                      <!-- <td>{{user.house_no}}</td> -->
                       <td>{{user.country}}</td>
                       <td>{{user.city}}</td>
 
@@ -265,7 +265,7 @@
                   <!-- <div class="dropdown no-arrow">
                 <a
                   class="dropdown-toggle"
-                  href="#"
+                  
                   role="button"
                   id="dropdownMenuLink"
                   data-toggle="dropdown"

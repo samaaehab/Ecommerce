@@ -52,8 +52,8 @@
 						<!-- Mobile menu button -->
 						<div class="main-menu">
 							<div id="header_menu">
-								<a href="index.html"><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
-								<a href="#" class="open_close" id="close_in"><i class="ti-close"></i></a>
+								<a ><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
+								<a class="open_close" id="close_in"><i class="ti-close"></i></a>
 							</div>
 							<ul>
 								<li class="submenu">
@@ -103,10 +103,10 @@
 						<ul class="top_tools">
 							<li>
 								<div class="dropdown dropdown-cart">
-									<a href="cart.html" class="cart_bt"><strong>{{count}}</strong></a>
+									<a href="" class="cart_bt"><strong>{{count}}</strong></a>
 									<div class="dropdown-menu">
 										<div class="total_drop">
-											<div class="clearfix"><strong>Total</strong><span>$200.00</span></div>
+											<div class="clearfix"><strong>Total</strong><span>{{totalPrice |currency}}</span></div>
 											<a routerLink="/cart" class="btn_1 outline">View Cart</a>
 											<a routerLink="/cart/checkout" class="btn_1">Checkout</a>
 										</div>

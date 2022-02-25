@@ -29,7 +29,7 @@ export class AdminproductsComponent implements OnInit {
   imagepath: any = 'http://127.0.0.1:8000/public/image/';
   // Pagination parameters.
   p: any = 1;
-  count: any = 3;
+  count: any = 6;
   // p1: any = 1;
   // count1: any = 3;
   searchText: any;
