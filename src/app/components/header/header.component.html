@@ -1,130 +1,147 @@
-	<header class="version_2" style="z-index: 0;">
-		<div class="layer"></div><!-- Mobile menu overlay mask -->
-		<div class="top_line version_1 plus_select">
-			<div class="container">
-				<div class="row d-flex align-items-center">
-					<div class="col-sm-6 col-5">Marketplace since 1995
-					</div>
-					<div class="col-sm-6 col-7">
-						<ul class="top_links">
-							<li>
-								<div class="styled-select ">
-
-									<!-- <select>
-										<option>
-											En
-										</option>
-										<option>
-											Ar
-										</option>
-									</select> -->
-								</div>
-							</li>
-							<!-- <li><div class="styled-select currency-selector">
-								<select>
-									<option value="US Dollars" selected="">US Dollars</option>
-									<option value="Euro">Euro</option>
-								</select>
-							</div></li> -->
-						</ul>
+<header>
+  <!-- contact content -->
+  <div class="header-content-top">
+    <div class="content">
+      <span><i class="fas fa-envelope-square"></i>{{user}}</span>
+    </div>
+  </div>
+  <!-- / contact content -->
+  <div class="container">
+    <!-- logo -->
+	<div id="logo">
+		<a routerLink="/home"><img src="../../assets/download (1).png" alt="" width="" height="70"></a>
+	</div>    <!-- open nav mobile -->
+    
+	<div class="nav-container text-center">
+		<nav class="all-category-nav">
+		  <label class="open-menu-all" for="open-menu-all">
+			<input class="input-menu-all" id="open-menu-all" type="checkbox" name="menu-open" />
+			<li  class="all-navigator sub-menu" style="width:175px !important;font-weight:bolder ;"><a class="show-submenu">Home</a>
+			</li>
+	
+			<ul class="all-category-list">
+			  <li class="all-category-list-item" *ngFor="let cat of categories"><a routerLink="/products/{{cat.cat_name}}" class="all-category-list-link">{{cat.cat_name |uppercase}}<i class="fas fa-angle-right"></i></a></li>
+			  <!-- <li *ngFor="let cat of categories"><a routerLink="/products/{{cat.cat_name}}">{{cat.cat_name |uppercase}}</a></li> -->
+	
+			</ul>
+		  </label>
+	
+		</nav>
+		<nav class="featured-category">
+		  <ul class="nav-row">
+			<li class="nav-row-list" style="width: 120px;"><a routerLink="/contact/aboutus" class="nav-row-list-link">About us</a></li>
+			<li class="nav-row-list" style="width: 120px;"><a routerLink="/contact/contactus" class="nav-row-list-link">Contact Us</a></li>
+		</ul>
+		</nav>
+		
+	  </div>
+    <!--search -->
+	<nav class="nav-content" style="margin-right: 0% !important;">
+		<ul class="top_tools">
+			<li>
+				<div class="dropdown dropdown-cart">
+					<a routerLink="/cart" class="cart_bt"><strong>{{count}}</strong></a>
+					<div class="dropdown-menu">
+						<div class="total_drop">
+							<div class="clearfix"><strong>Total</strong><span>{{totalPrice |currency}}</span></div>
+							<a routerLink="/cart" class="btn_1 outline">View Cart</a>
+							<a routerLink="/cart/checkout" class="btn_1">Checkout</a>
+						</div>
 					</div>
 				</div>
-				<!-- End row -->
-			</div>
-			<!-- End container-->
-		</div>
-		<div class="main_header Sticky">
-			<div class="container">
-				<div class="row small-gutters">
-					<div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
-						<div id="logo">
-							<a routerLink="/home"><img src="../../assets/download (1).png" alt="" width="" height="70"></a>
-						</div>
-					</div>
-					<nav class="col-xl-6 col-lg-7">
-						<a class="open_close" href="javascript:void(0);">
-							<div class="hamburger hamburger--spin">
-								<div class="hamburger-box">
-									<div class="hamburger-inner"></div>
-								</div>
-							</div>
-						</a>
-						<!-- Mobile menu button -->
-						<div class="main-menu">
-							<div id="header_menu">
-								<a ><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
-								<a class="open_close" id="close_in"><i class="ti-close"></i></a>
-							</div>
-							<ul>
-								<li class="submenu">
-									<a routerLink="/home" class="show-submenu" >home</a>
-									<ul>
-										<li *ngFor="let cat of categories"><a routerLink="/products/{{cat.cat_name}}">{{cat.cat_name |uppercase}}</a></li>
-									
-									</ul>
-								</li>
-				
-								<li>
-									<a routerLink="/contact/aboutus">About us</a>
-								</li>
-								<li>
-									<a routerLink="/contact/contactus">Contact Us</a>
-								</li>
-							</ul>
-						</div>
-						<!--/main-menu -->
-					</nav>
-					<div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-end">
-						<ul class="top_tools">
+				<!-- /dropdown-cart-->
+			</li>
+			<li>
+				<a routerLink="/favourites" class="wishlist"><span>Wishlist</span></a>
+			</li>
+			<li>
+				<div class="dropdown dropdown-access">
+					<a routerLink="/user/profile/" class="access_link"><span>Account</span></a>
+					<div class="dropdown-menu">
+						<a routerLink="/acount" class="btn_1">Sign In or Sign Up</a>
+						<ul>
 							<li>
-								<div class="dropdown dropdown-cart">
-									<a href="" class="cart_bt"><strong>{{count}}</strong></a>
-									<div class="dropdown-menu">
-										<div class="total_drop">
-											<div class="clearfix"><strong>Total</strong><span>{{totalPrice |currency}}</span></div>
-											<a routerLink="/cart" class="btn_1 outline">View Cart</a>
-											<a routerLink="/cart/checkout" class="btn_1">Checkout</a>
-										</div>
-									</div>
-								</div>
-								<!-- /dropdown-cart-->
+								<a routerLink="/user/profile/order"><i class="ti-package"></i>My Orders</a>
 							</li>
 							<li>
-								<a routerLink="/favourites" class="wishlist"><span>Wishlist</span></a>
+								<a routerLink="/user/profile"><i class="ti-user"></i>My Profile</a>
 							</li>
 							<li>
-								<div class="dropdown dropdown-access">
-									<a href="" class="access_link"><span>Account</span></a>
-									<div class="dropdown-menu">
-										<a routerLink="/acount" class="btn_1">Sign In or Sign Up</a>
-										<ul>
-											<li>
-												<a routerLink="/user/profile/order"><i class="ti-package"></i>My Orders</a>
-											</li>
-											<li>
-												<a routerLink="/user/profile"><i class="ti-user"></i>My Profile</a>
-											</li>
-											<li>
-												<a routerLink="/acount" *ngIf="!logged"><i class="ti-user"></i>Login</a>
-											</li>
-											<li>
-												<a *ngIf="logged" (click)="logout($event)" ><i class="ti-user"></i>Logout</a>
-											</li>
-
-										</ul>
-									</div>
-								</div>
-								<!-- /dropdown-access-->
+								<a routerLink="/acount" *ngIf="!logged"><i class="ti-user"></i>Login</a>
 							</li>
 							<li>
-								<a href="javascript:void(0);" class="search_panel"><span>Search</span></a>
+								<a *ngIf="logged" (click)="logout($event)" ><i class="ti-user"></i>Logout</a>
 							</li>
 
 						</ul>
 					</div>
 				</div>
-				<!-- /row -->
-			</div>
-		</div>
-		<!-- /main_header -->
-	</header>
+				<!-- /dropdown-access-->
+			</li>
+
+		</ul>	
+	</nav>
+    <!-- // search -->
+
+  </div>
+  <!-- nav navigation commerce -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
