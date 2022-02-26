@@ -2221,6 +2221,8 @@ header ul.top_tools > li a.cart_bt strong {
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   border-radius: 50%;
+  background-color: #083487;;
+  color: white;
 }
 @media (max-width: 767px) {
   header ul.top_tools > li a.cart_bt strong {
@@ -2404,7 +2406,7 @@ header.version_1 .main_header ul.top_tools > li a:hover {
   color: #ffff99;
 }
 header.version_1 .main_header ul.top_tools > li a.cart_bt strong {
-  background-color: #083487;
+  background-color: #083487 !important;
   color: #fff !important;
 }
 @media (max-width: 767px) {
