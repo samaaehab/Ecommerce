@@ -1,6 +1,4 @@
-
-        
-    <div class="row">
+       <div class="row">
         <div class="col-lg-9">
             <div class="row small-gutters">
             <div class="col-6 col-md-4" *ngFor="let product of products|paginate: { itemsPerPage: count, currentPage: p }">
@@ -26,16 +24,68 @@
                     <ul>
                         <li><a  class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
                         <li><a class="tooltip-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-placement="left"
-                        title="view product"><i class="fa fa-eye" style="font-size:20px">
+                        title="view product"><i class="fa fa-eye" style="font-size:20px" (click)="getid(product.id)"> 
                         </i><span>view product</span></a></li>                            
                     </ul>
                 </div>
-                <!-- /grid_item -->
+          
             </div>
             </div>
-            <!-- /row -->
+         
             <pagination-controls (pageChange)="p = $event">
             </pagination-controls>
-            <!-- /col -->
+           
 </div>
 </div>
+<!-- model -->
+<div>
+    <div style="position: absolute;" class="modal fade" id="exampleModal" tabindex="-1"
+      aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  
+  
+      <div style="position: relative;top:100px ;left: 35px;" class="modal-dialog ">
+  
+        <div class="modal-content">
+          <input type="hidden" name="" id="exampleModalLabel11" #inputProductId>
+          <h3 class="modal-title ms-3" id="exampleModalLabel1"></h3>
+          <div class="modal-header">
+            
+            <br>
+
+            <a >
+              <img class="img-fluid lazy" src="" id="exampleModalLabel3" width="300px" height="180px" style="width:400px !important; height:170px !important;">
+            </a>
+  
+              <button type="button" class="btn-close" (click)="closeModel()" data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+  
+            <p id="exampleModalLabel2"></p>
+            <div class="row">
+      
+              <div class="row d-flex">
+                <div class="col-6">
+
+                  <select class="form-select" aria-label="Default select example" #inputSelected>
+                    <option *ngFor="let store of allStore" value="{{store.id}}" >{{store.color}}-{{store.size | uppercase}}</option>
+                  </select>
+                </div>
+                <div class="col-6 pt-2">
+                  <span>Price: <span id="exampleModalLabel4"></span></span>
+                </div>
+              </div>
+
+            </div>
+            <br>
+          </div>
+       
+  
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" (click)="addToCart(inputProductId.value,inputSelected.value)">add to cart</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
