@@ -7,13 +7,14 @@
                     <ul>
                         <li><a>Home</a></li>
                         
-                        <li><a >Men</a></li>
+                        <li><a >{{cat}}</a></li>
                     </ul>
                 </div>
-                <h1>MEN</h1>
+                <h1>{{cat|uppercase}}</h1>
             </div>
         </div>
-        <img src="../../assets/img/retro-man-dressed-shirt-lies-floor-posing.jpg" class="img-fluid" alt="">
+        <img *ngIf="cat==='man' || cat==='men'" src="{{men}}" class="img-fluid" alt="">
+        <img *ngIf="cat==='women'" src="{{women}}" class="img-fluid" alt="">
     </div>
     <!-- /top_banner -->
         <div id="stick_here"></div>		
@@ -111,7 +112,7 @@
                               <ul>
                                 <label *ngFor="let sucategory of allsubcategories;let currentIndex=index" >
                                     <li *ngFor="let sub of sucategory"> 
-                                        <a href="" routerLink="/products/{{sub.id}}/{{sub.cat_id}}" *ngIf="sub.category.cat_name==='men'">
+                                        <a href="" routerLink="/products/{{sub.id}}/{{sub.cat_id}}" *ngIf="sub.category.cat_name===cat">
                                             <i  class="fa fa-puzzle-piece me-1" 
                                         style="font-size:16px"></i>
                                         {{sub.subcat_name}} 

@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { StoreService } from './../../../services/store.service';
 import { ProductService } from './../../../services/product.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,6 +17,10 @@ import { Category } from 'src/app/models/Category';
 export class HomeComponent implements OnInit {
 public allsubcategories:any[]=[];
 public subcategories:any[]=[];
+men="../../assets/img/retro-man-dressed-shirt-lies-floor-posing.jpg";
+women="../../assets/img/Banner1.jpg";
+kids="";
+cat:any;
 subcat:any[]=[];
 productsCategory:any[]=[];
 storeId:any[]=[];
@@ -36,56 +41,59 @@ price:any[]=[];
   productStoreId:any[]=[];
   allStore:any[]=[];
   total:number=0;
-  constructor(private productService: ProductService, private storeService: StoreService, private _SubcategoryService: SubcategoryService, private _categoryService: CategoryServiceService, private _userService: UserService
+  constructor(private _activatedRoute:ActivatedRoute,private productService: ProductService, private storeService: StoreService, private _SubcategoryService: SubcategoryService, private _categoryService: CategoryServiceService, private _userService: UserService
   ,public myapp:AppComponent) { }
 
   ngOnInit(): void {
     
+    this._activatedRoute.paramMap.subscribe(params=>{
+      this.cat=params.get('cat'); 
+      this._categoryService.get().subscribe(
+        (res: any) => {
+          console.log(res.data);
+          let x= res.data.find((cat:any)=>cat.cat_name===this.cat);
+          console.log(x);
   
-    this.getPrice();
-    this._categoryService.get().subscribe(
-      (res: any) => {
-        console.log(res.data);
-        let x= res.data.find((cat:any)=>cat.cat_name=='men');
-        console.log(x.id);
-
-        this.productService.getProductsCategory(x.id).subscribe(
-          (res: any) => {
-            this.productsCategory.push(res);
-            this.productsCategory=this.productsCategory[0];
-            console.log(this.productsCategory);
-            // console.log(res);
-    
-    
-          }
-        );
-
-        for(const i in res.data){
-          const id= res.data[i].id;
-          this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
-            (res:any)=>{
-              this.subcategories=res.data;
-              console.log(this.subcategories);
-              
-                    this.allsubcategories.push(this.subcategories.map(m=>{return m}));
-
-              console.log(this.allsubcategories);
-              
-                  // for(let i=0;i<res.data.length;i++){
-                  //   this.subcategories.push(res.data[i])
-                  //   this.subcategories=this.subcategories.map(m=>{return m});
-
-                  // }
-               },
-            (err:any)=>{
-              console.log(err);
-              
+          this.productService.getProductsCategory(x.id).subscribe(
+            (res: any) => {
+              this.productsCategory.push(res);
+              this.productsCategory=this.productsCategory[0];
+              console.log(this.productsCategory);
+              // console.log(res);
+      
+      
             }
-          )
+          );
+  
+          for(const i in res.data){
+            const id= res.data[i].id;
+            this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
+              (res:any)=>{
+                this.subcategories=res.data;
+                console.log(this.subcategories);
+                
+                      this.allsubcategories.push(this.subcategories.map(m=>{return m}));
+  
+                console.log(this.allsubcategories);
+                
+                    // for(let i=0;i<res.data.length;i++){
+                    //   this.subcategories.push(res.data[i])
+                    //   this.subcategories=this.subcategories.map(m=>{return m});
+  
+                    // }
+                 },
+              (err:any)=>{
+                console.log(err);
+                
+              }
+            )
+          }
+          
         }
-        
-      }
-    ); 
+      ); 
+    })
+    this.getPrice();
+    
 
   this.storeService.get().subscribe(
     (res:any)=>{

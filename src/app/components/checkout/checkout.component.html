@@ -150,7 +150,8 @@
 
             </ul>
             <div class="total clearfix">TOTAL <span>{{totalPrice|currency}}</span></div>
-            <a routerLink="/cart/checkout/confirm" class="btn_1 full-width" (click)="addOrder(inputName.value,inputAdress.value,inputHouseNum.value,inputCity.value,inputCountry.value,inputPhone.value,inputPayment.value)">Confirm and Pay</a>
+			<input type="hidden" name="" id="" value="{{totalPrice}}" #inputTotalPrice>
+            <a routerLink="/cart/checkout/confirm" class="btn_1 full-width" (click)="addOrder(inputName.value,inputAdress.value,inputHouseNum.value,inputCity.value,inputCountry.value,inputPhone.value,inputPayment.value,inputTotalPrice.value)">Confirm and Pay</a>
 
           </div>
           <!-- /box_general -->

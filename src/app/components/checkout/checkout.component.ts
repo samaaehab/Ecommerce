@@ -1,3 +1,5 @@
+import { OrderDetailsService } from './../../services/order-details.service';
+import { OrderDetails } from './../../models/OrderDetails';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartService } from './../../services/cart.service';
@@ -15,13 +17,14 @@ export class CheckoutComponent implements OnInit {
   formLogin = new FormGroup({});
   formRegister = new FormGroup({});
   users=new User();
+  order_details=new OrderDetails();
   loggedUser:number=0;
   cartInOrder:any[]=[];
   postOrder = new Order();
   totalPrice:number=0;
   user = localStorage.getItem('email');
   storeid: number = 0;
-  constructor(private _formBuilder: FormBuilder, private _cartService: CartService, private _userService: UserService,private _storeService:StoreService,private _orderService:OrderService) { }
+  constructor(private _formBuilder: FormBuilder, private _cartService: CartService, private _userService: UserService,private _storeService:StoreService,private _orderService:OrderService,private _orderDetailsService:OrderDetailsService) { }
   ngOnInit(): void {
     this.formLogin = this._formBuilder.group({
       Email: ['', [Validators.required, Validators.email]],
@@ -79,7 +82,7 @@ export class CheckoutComponent implements OnInit {
       }
     );
   }
-  addOrder(Name:string,Address:string,HouseNum:any,City:string,Country:string,Phone:any,Payment:string){
+  addOrder(Name:string,Address:string,HouseNum:any,City:string,Country:string,Phone:any,Payment:string,totalPrice:string){
     this.postOrder.name=Name;
     this.postOrder.full_address=Address;
     this.postOrder.house_no=HouseNum;
@@ -89,9 +92,20 @@ export class CheckoutComponent implements OnInit {
     this.postOrder.payment_method=Payment;
     this.postOrder.user_id=this.users.id;
     
-      console.log(this.users.id);
+    this.postOrder.discount=0;
+    this.postOrder.price=Number(totalPrice);
+    if(this.postOrder.price >=5000){
+      this.postOrder.discount=200;
+    }else if(this.postOrder.price >=1000){
+      this.postOrder.discount=100;
+    }else{
+      this.postOrder.discount=0;
+    }
     
-    
+    this._orderService.post(this.postOrder).subscribe(
+      (res:any)=>{
+      }
+    );   
   }
   login(): void {
     alert(JSON.stringify(this.formLogin.value));
