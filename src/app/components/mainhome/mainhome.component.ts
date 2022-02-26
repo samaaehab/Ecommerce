@@ -252,9 +252,12 @@ addToFav(id:any,ProdName:any,Image:any,newPrice:any){
   // localStorage.setItem('product_name' + id,ProdName);
   // localStorage.setItem('image' +id,Image);
   // localStorage.setItem('quantity' +id,'1');
-  localStorage.setItem('Fav' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
-  this.myapp.successmessage("Added To Wish List Successfuly"); 
-
+  if (localStorage.getItem('Fav' + id) === null) {
+    localStorage.setItem('Fav' + id, ProdName + '#$' + Image + '#$' + newPrice + '#$' + id + '#$' + 1);
+    this.myapp.successmessage(ProdName +" Added To Wish List Successfuly");
+  } else {
+    this.myapp.showWarning(ProdName +" Already Added Before","Oops"); 
+  }
 }
 
 
