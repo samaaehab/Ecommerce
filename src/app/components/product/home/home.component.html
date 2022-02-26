@@ -111,14 +111,16 @@
                               <ul>
                                 <label *ngFor="let sucategory of allsubcategories;let currentIndex=index" >
                                     <li *ngFor="let sub of sucategory"> 
-                                        <a href="" routerLink="/products/{{sub.id}}/{{sub.cat_id}}" *ngIf="sub.category.cat_name==='men'">
-                                            <i  class="fa fa-puzzle-piece me-1" 
-                                        style="font-size:16px"></i>
+                                        <div href="" routerLink="/products/{{sub.id}}/{{sub.cat_id}}" *ngIf="sub.category.cat_name==='men'">
+                                            <!-- <i  class="fa fa-puzzle-piece me-1" 
+                                        style="font-size:16px"></i> -->
+                                        <input type="radio">
+                                        <span class="checkmark">
                                         {{sub.subcat_name}} 
                                         <!-- <small class="ml-5">12</small> -->
-                                        <!-- <input type="checkbox"> -->
-                                        <!-- <span class="checkmark"></span> -->
-                                    </a>
+                                       
+                                        </span>
+                                    </div>
                                     </li>
                                    
                                 </label>
