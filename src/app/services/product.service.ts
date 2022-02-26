@@ -21,7 +21,7 @@ public getForEachSubCategory(id:number){
 public getProductsCategory(id:number){
   return this._httpClient.get(this.url + `${id}/products`);
 }
-public getProductsForEachSubCategory(catId:number,subcatId:number){
+public getProductsForEachSubCategory(subcatId:any,catId:any){
   return this._httpClient.get(this.url + `${subcatId}/${catId}/products`);
 }
 public getProductWithBigDiscount(){
