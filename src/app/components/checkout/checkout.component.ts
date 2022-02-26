@@ -4,6 +4,8 @@ import { CartService } from './../../services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/User';
 import { StoreService } from 'src/app/services/store.service';
+import { OrderService } from 'src/app/services/order.service';
+import { Order } from 'src/app/models/Order';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -15,10 +17,11 @@ export class CheckoutComponent implements OnInit {
   users=new User();
   loggedUser:number=0;
   cartInOrder:any[]=[];
+  postOrder = new Order();
   totalPrice:number=0;
   user = localStorage.getItem('email');
   storeid: number = 0;
-  constructor(private _formBuilder: FormBuilder, private _cartService: CartService, private _userService: UserService,private _storeService:StoreService) { }
+  constructor(private _formBuilder: FormBuilder, private _cartService: CartService, private _userService: UserService,private _storeService:StoreService,private _orderService:OrderService) { }
   ngOnInit(): void {
     this.formLogin = this._formBuilder.group({
       Email: ['', [Validators.required, Validators.email]],
@@ -36,6 +39,7 @@ export class CheckoutComponent implements OnInit {
       (res: any) => {
         console.log(JSON.stringify(res));
         this.users = res.data.find((user: any) => user.email == this.user);
+        // console.log(this.users.id);
         
         this._cartService.getCartsForEachUser(this.users.id).subscribe(
           (res:any)=>{
@@ -54,6 +58,7 @@ export class CheckoutComponent implements OnInit {
     
 
     this.getstore(4);
+    // this.addOrder();
     
   }
   
@@ -74,7 +79,20 @@ export class CheckoutComponent implements OnInit {
       }
     );
   }
-
+  addOrder(Name:string,Address:string,HouseNum:any,City:string,Country:string,Phone:any,Payment:string){
+    this.postOrder.name=Name;
+    this.postOrder.full_address=Address;
+    this.postOrder.house_no=HouseNum;
+    this.postOrder.city=City;
+    this.postOrder.country=Country;
+    this.postOrder.phone=Phone;
+    this.postOrder.payment_method=Payment;
+    this.postOrder.user_id=this.users.id;
+    
+      console.log(this.users.id);
+    
+    
+  }
   login(): void {
     alert(JSON.stringify(this.formLogin.value));
     //Call API to validate user

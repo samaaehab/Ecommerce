@@ -18,16 +18,6 @@
       <div class="col-lg-4 col-md-6">
         <div class="step first">
           <h3>1. User Info and Billing address</h3>
-          <ul class="nav nav-tabs" id="tab_checkout" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="home-tab" data-bs-toggle="tab" role="tab"
-                aria-controls="tab_1" aria-selected="true">Register</a>
-            </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" id="profile-tab" data-bs-toggle="tab" role="tab" aria-controls="tab_2"
-                aria-selected="false">Login</a>
-            </li> -->
-          </ul>
           <div class="tab-content checkout">
             <div class="tab-pane fade show active" id="tab_1" role="tabpanel" aria-labelledby="tab_1">
 				<div [formGroup]="formRegister">
@@ -37,7 +27,7 @@
 						<div class="row no-gutters">
 						  <div class="col-12 ">
 							<div class="form-group">
-							  <input formControlName="Name" type="text" class="form-control" [class.is-invalid]="isInValidAndTouched2('Name')" [class.is-valid]="isValidControl2('Name')" placeholder="Name*">
+							  <input formControlName="Name" type="text" class="form-control" [class.is-invalid]="isInValidAndTouched2('Name')" [class.is-valid]="isValidControl2('Name')" placeholder="Name*" #inputName>
 							  <div *ngIf="isInValidAndTouched2('Name')">
 								<small class="form-text text-danger" *ngIf="isControlHasError2('Name','required')">required name</small>
 								<small class="form-text text-danger" *ngIf="isControlHasError2('Name','minlength')">min length is 3</small>
@@ -47,7 +37,7 @@
 						  </div>
 						  <div class="col-12">
 							<div class="form-group">
-							  <input formControlName="Address" type="text" class="form-control" [class.is-invalid]="isInValidAndTouched2('Address')" [class.is-valid]="isValidControl2('Address')" placeholder="Full Address*">
+							  <input formControlName="Address" type="text" class="form-control" [class.is-invalid]="isInValidAndTouched2('Address')" [class.is-valid]="isValidControl2('Address')" placeholder="Full Address*" #inputAdress>
 							  <div *ngIf="isInValidAndTouched2('Address')">
 								<small class="form-text text-danger" *ngIf="isControlHasError2('Address','required')">required address</small>
 								<small class="form-text text-danger" *ngIf="isControlHasError2('Address','maxlength')">max length is 100</small>
@@ -59,7 +49,7 @@
 						<div class="row no-gutters">
 						  <div class="col-6 pr-1">
 							<div class="form-group">
-							  <input formControlName="City" type="text" class="form-control" [class.is-invalid]="isInValidAndTouched2('City')" [class.is-valid]="isValidControl2('City')" placeholder="City*">
+							  <input formControlName="City" type="text" class="form-control" [class.is-invalid]="isInValidAndTouched2('City')" [class.is-valid]="isValidControl2('City')" placeholder="City*" #inputCity>
 							  <div *ngIf="isInValidAndTouched2('City')">
 								<small class="form-text text-danger" *ngIf="isControlHasError2('City','required')">required city</small>
 							</div> 
@@ -67,7 +57,7 @@
 						  </div>
 						  <div class="col-6 pl-1">
 							<div class="form-group">
-							  <input formControlName="HouseNum" type="text" class="form-control" [class.is-invalid]="isInValidAndTouched2('HouseNum')" [class.is-valid]="isValidControl2('HouseNum')" placeholder="House Number*">
+							  <input formControlName="HouseNum" type="text" class="form-control" [class.is-invalid]="isInValidAndTouched2('HouseNum')" [class.is-valid]="isValidControl2('HouseNum')" placeholder="House Number*" #inputHouseNum>
 							  <div *ngIf="isInValidAndTouched2('HouseNum')">
 								<small class="form-text text-danger" *ngIf="isControlHasError2('HouseNum','required')">required house number</small>
 							</div> 
@@ -81,7 +71,7 @@
 							<div class="form-group">
 							  <div class="custom-select-form">
 		
-								<select formControlName="Country" class="form-select" [class.is-invalid]="isInValidAndTouched2('Country')" [class.is-valid]="isValidControl2('Country')" name="country" placeholder="Country*">
+								<select formControlName="Country" class="form-select" [class.is-invalid]="isInValidAndTouched2('Country')" [class.is-valid]="isValidControl2('Country')" name="country" placeholder="Country*" #inputCountry>
 								  <option value="">Country*</option>
 								  <option value="Europe" selected>Egypt</option>
 								  <option value="United states">United states</option>
@@ -95,7 +85,7 @@
 						  </div>
 						  <div class="col-6 pl-1">
 							<div class="form-group">
-							  <input formControlName="Phone" type="text" class="form-control" [class.is-invalid]="isInValidAndTouched2('Phone')" [class.is-valid]="isValidControl2('Phone')" placeholder="Telephone *">
+							  <input formControlName="Phone" type="text" class="form-control" [class.is-invalid]="isInValidAndTouched2('Phone')" [class.is-valid]="isValidControl2('Phone')" placeholder="Telephone *" #inputPhone>
 							  <div *ngIf="isInValidAndTouched2('Phone')">
 								<small class="form-text text-danger" *ngIf="isControlHasError2('Phone','required')">required house phone number</small>
 								<small class="form-text text-danger" *ngIf="isControlHasError2('Phone','minlength')">max length is 11</small>
@@ -113,52 +103,6 @@
               <!-- <hr> -->
               <hr>
             </div>
-            <!-- /tab_1 -->
-            <!-- <div class="tab-pane fade" id="tab_2" role="tabpanel" aria-labelledby="tab_2" style="position: relative;">
-              <a  class="social_bt facebook">Login con Facebook</a>
-              <a class="social_bt google">Login con Google</a>
-
-              <div [formGroup]="formLogin">
-
-                <div class="form-group">
-                  <input formControlName="Email" type="email" class="form-control"
-                    [class.is-invalid]="isInValidAndTouched('Email')" [class.is-valid]="isValidControl('Email')"
-                    name="email" placeholder="User Name*">
-                  <div *ngIf="isInValidAndTouched('Email')">
-                    <small class="form-text text-danger" *ngIf="isControlHasError('Email','required')">required
-                      email</small>
-                    <small class="form-text text-danger" *ngIf="isControlHasError('Email','email')">is not valid</small>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <input formControlName="Password" type="password" class="form-control"
-                    [class.is-invalid]="isInValidAndTouched('Password')" [class.is-valid]="isValidControl('Password')"
-                    name="password_in" placeholder="Password*">
-                  <div *ngIf="isInValidAndTouched('Password')">
-                    <small class="form-text text-danger" *ngIf="isControlHasError('Password','required')">required
-                      password</small>
-                    <small class="form-text text-danger" *ngIf="isControlHasError('Password','minlength')">min length is
-                      6</small>
-                  </div>
-                </div>
-
-                <button [disabled]="formLogin.invalid" (click)="login()" type="button"
-                  class="btn btn-primary btn_1 full-width">Log
-                  IN</button>
-
-              </div>
-              <div class="clearfix add_bottom_15">
-                <div class="checkboxes float-start">
-                  <label class="container_check">Remember me
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div>
-
-              <hr>
-            </div> -->
-            <!-- /tab_2 -->
           </div>
         </div>
         <!-- /step -->
@@ -170,14 +114,14 @@
             <li>
               <label class="container_radio">Credit Card<a  class="info" data-bs-toggle="modal"
                   data-bs-target="#payments_method"></a>
-                <input type="radio" name="payment" checked>
+                <input type="radio" name="payment" checked #inputPayment>
                 <span class="checkmark"></span>
               </label>
             </li>
             <li>
               <label class="container_radio">Cash on delivery<a class="info" data-bs-toggle="modal"
                   data-bs-target="#payments_method"></a>
-                <input type="radio" name="payment">
+                <input type="radio" name="payment" #inputPayment>
                 <span class="checkmark"></span>
               </label>
             </li>
@@ -190,26 +134,6 @@
 
 
           </div>
-
-          <!-- <h6 class="pb-2">Shipping Method</h6> -->
-
-
-          <!-- <ul>
-								<li>
-									<label class="container_radio">Standard shipping<a class="info" data-bs-toggle="modal" data-bs-target="#payments_method"></a>
-										<input type="radio" name="shipping" checked>
-										<span class="checkmark"></span>
-									</label>
-								</li>
-								<li>
-									<label class="container_radio">Express shipping<a class="info" data-bs-toggle="modal" data-bs-target="#payments_method"></a>
-										<input type="radio" name="shipping">
-										<span class="checkmark"></span>
-									</label>
-								</li>
-								
-						</ul> -->
-
         </div>
         <!-- /step -->
 
@@ -226,14 +150,7 @@
 
             </ul>
             <div class="total clearfix">TOTAL <span>{{totalPrice|currency}}</span></div>
-            <div class="form-group">
-              <label class="container_check">Register to the Newsletter.
-                <input type="checkbox" checked>
-                <span class="checkmark"></span>
-              </label>
-            </div>
-
-            <a routerLink="/cart/checkout/confirm" class="btn_1 full-width">Confirm and Pay</a>
+            <a routerLink="/cart/checkout/confirm" class="btn_1 full-width" (click)="addOrder(inputName.value,inputAdress.value,inputHouseNum.value,inputCity.value,inputCountry.value,inputPhone.value,inputPayment.value)">Confirm and Pay</a>
 
           </div>
           <!-- /box_general -->
