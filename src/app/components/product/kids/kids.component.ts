@@ -192,11 +192,21 @@ this.productService.get().subscribe(
      
     } 
     
-    let product=this.products.find((p:any)=>p.id == id);
+    var product=this.products.find((p:any)=>p.id == id);
+    if(localStorage.getItem('product'+productSizeColor)=== null){
     let price=product.price-product.discount;
     localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+1+"#$"+price+"#$"+productSizeColor+"#$"+price);
-    this.myapp.successmessage("Added To Cart Successfuly"); 
+    // if(localStorage.getItem('product'+productSizeColor)=='product'){
+    //   localStorage.removeItem('product');
+    //   this.myapp.errormessage("Sorry not Available");
+    // }
+    this.myapp.successmessage(product.product_name+" Added To Cart Successfuly"); 
+  }
+    else{
+      this.myapp.showWarning(product.product_name+" Already Added Before","Oops"); 
 
+
+    }
 
   } 
 
