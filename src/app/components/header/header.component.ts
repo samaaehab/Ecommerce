@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   }
 allsubcategories:any[]=[];
  public subcategories:any[]=[];
+ user=localStorage.getItem('email');
  count:any=0;
  categories:Category[]=[];
   public logged = false;

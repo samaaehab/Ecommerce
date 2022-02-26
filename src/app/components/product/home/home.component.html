@@ -15,6 +15,7 @@
         </div>
         <img *ngIf="cat==='man' || cat==='men'" src="{{men}}" class="img-fluid" alt="">
         <img *ngIf="cat==='women'" src="{{women}}" class="img-fluid" alt="">
+        <img *ngIf="cat==='kids'" src="{{kids}}" class="img-fluid" alt="">
     </div>
     <!-- /top_banner -->
         <div id="stick_here"></div>		
@@ -112,14 +113,19 @@
                               <ul>
                                 <label *ngFor="let sucategory of allsubcategories;let currentIndex=index" >
                                     <li *ngFor="let sub of sucategory"> 
-                                        <a href="" routerLink="/products/{{sub.id}}/{{sub.cat_id}}" *ngIf="sub.category.cat_name===cat">
-                                            <i  class="fa fa-puzzle-piece me-1" 
-                                        style="font-size:16px"></i>
+
+                                        <div href="" routerLink="/products/{{sub.id}}/{{sub.cat_id}}" *ngIf="sub.category.cat_name===cat">
+                                            <!-- <i  class="fa fa-puzzle-piece me-1"  -->
+                                        <!-- style="font-size:16px"></i> -->
+
+                                        <input type="radio">
+                                        <span class="checkmark">
+
                                         {{sub.subcat_name}} 
                                         <!-- <small class="ml-5">12</small> -->
-                                        <!-- <input type="checkbox"> -->
-                                        <!-- <span class="checkmark"></span> -->
-                                    </a>
+                                       
+                                        </span>
+                                    </div>
                                     </li>
                                    
                                 </label>
@@ -129,7 +135,7 @@
                        
                         <!-- /filter_type -->
                     </div>
-                   
+
                     
                 </div>
             </aside>
