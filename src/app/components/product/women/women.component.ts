@@ -28,7 +28,8 @@ export class WomenComponent implements OnInit {
   productSize:any[]=[];
   productStoreId:any[]=[];
   allStore:any[]=[];
-  total:number=0;
+  total: number = 0;
+  countsub: number = 0;
   constructor(private productService: ProductService, private storeService: StoreService, public header: HeaderComponent,
     private _SubcategoryService: SubcategoryService, private _categoryService: CategoryServiceService, private _userService: UserService
   ,public myapp:AppComponent) { }
@@ -67,6 +68,9 @@ export class WomenComponent implements OnInit {
                   //   this.subcategories=this.subcategories.map(m=>{return m});
 
                   // }
+              console.log(this.allsubcategories);
+              
+              this.countsub = this.allsubcategories.length;
                },
             (err:any)=>{
               console.log(err);

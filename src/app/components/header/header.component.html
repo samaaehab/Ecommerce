@@ -60,35 +60,10 @@
 									<a routerLink="/home" class="show-submenu" >home</a>
 									<ul>
 										<li *ngFor="let cat of categories"><a routerLink="/products/{{cat.cat_name}}">{{cat.cat_name |uppercase}}</a></li>
-									<!-- </ul>
-									<ul> -->
-										<!-- <li ><a routerLink="/products/woman">Woman</a></li> -->
-									<!-- </ul> -->
-									<!-- <ul> -->
-										<!-- <li ><a routerLink="/products/kids">Kids</a></li> -->
+									
 									</ul>
 								</li>
-								<!-- <li class="submenu">
-									<a routerLink="/products/man" class="show-submenu">Men</a>
-									<ul>
-										<li  *ngFor="let sucategory of allsubcategories[0];let currentIndex=index"><a routerLink="/products/man">{{sucategory.subcat_name}}</a></li>
-									</ul>
-								</li> -->
-                                <!-- <li class="submenu">
-									<a routerLink="/products/woman" class="show-submenu">Women</a>
-									<ul>
-
-										<li  *ngFor="let sucategory of allsubcategories[1];let currentIndex=index"><a href="">{{sucategory.subcat_name}}</a></li>
-									</ul>
-								</li> -->
-
-								<!-- <li class="submenu">
-									<a routerLink="/products/kids/" class="show-submenu">Kids</a>
-									<ul>
-
-										<li  *ngFor="let sucategory of allsubcategories[2];let currentIndex=index"><a href="">{{sucategory.subcat_name}}</a></li>
-									</ul>
-								</li> -->
+				
 								<li>
 									<a routerLink="/contact/aboutus">About us</a>
 								</li>
