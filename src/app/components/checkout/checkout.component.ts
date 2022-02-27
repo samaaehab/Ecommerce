@@ -42,7 +42,7 @@ export class CheckoutComponent implements OnInit {
       (res: any) => {
         console.log(JSON.stringify(res));
         this.users = res.data.find((user: any) => user.email == this.user);
-        // console.log(this.users.id);
+        //console.log(this.users.id);
         
         this._cartService.getCartsForEachUser(this.users.id).subscribe(
           (res:any)=>{
