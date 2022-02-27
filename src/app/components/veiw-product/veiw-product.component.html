@@ -48,8 +48,8 @@
                             <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong class="ml-1">Store </strong><a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i class="ti-help-alt"></i></a></label>
                             <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                 <div class="custom-select-form" >
-                                    <select class="form-select" aria-label="Default select example" >
-                                        <option *ngFor="let s of store" value="">
+                                    <select #inputSelected  class="form-select" aria-label="Default select example" >
+                                        <option *ngFor="let s of store" value="{{s.id}}">
                                            <div *ngIf="s.product_id === productDet.id">
                                                {{s.color}}-{{s.size|uppercase}}
                                            </div>
@@ -74,7 +74,7 @@
                             <input id="inputNewPrice" type="hidden" value="{{productDet.price - productDet.discount}}" #inputNewPrice>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <div class="btn_add_to_cart"><a href="#0" class="btn_1">Add to Cart</a></div>
+                            <div class="btn_add_to_cart" (click)="addToCart(inputId.value,inputSelected.value)"><a class="btn_1 text-white">Add to Cart</a></div>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                         <span class="old_price">{{pro.price+pro.discount|currency}}</span>
                     </div>
                     <ul>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+                        <!-- <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li> -->
                         <li><a routerLink="/veiw/{{pro.id}}" class="tooltip-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-placement="left"
                             title="view product"><i class="fa fa-eye" style="font-size:20px"
                               ></i><span>view product</span></a></li>                        
