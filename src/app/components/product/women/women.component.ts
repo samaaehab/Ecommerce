@@ -41,7 +41,7 @@ export class WomenComponent implements OnInit {
     this.getPrice();
     this._categoryService.get().subscribe(
       (res: any) => {
-        let x= res.data.find((cat:any)=>cat.cat_name=='woman');
+        let x= res.data.find((cat:any)=>cat.cat_name=='women');
         console.log(x.id);
 
         this.productService.getProductsCategory(x.id).subscribe(

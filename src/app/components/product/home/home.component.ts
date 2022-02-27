@@ -51,7 +51,7 @@ price:any[]=[];
       this._categoryService.get().subscribe(
         (res: any) => {
           console.log(res.data);
-          let x= res.data.find((cat:any)=>cat.cat_name==='men');
+          let x= res.data.find((cat:any)=>cat.cat_name==='man');
           console.log(x);
   
           this.productService.getProductsCategory(x.id).subscribe(
