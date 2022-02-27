@@ -40,6 +40,7 @@ import { AdminAcountComponent } from './components/admin-acount/admin-acount.com
 import { AdminSignupComponent } from './components/admin-signup/admin-signup.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { WeatherComponent } from './components/weather/weather.component';
+import { VeiwProductComponent } from './components/veiw-product/veiw-product.component';
 
 
 
@@ -63,6 +64,7 @@ import { WeatherComponent } from './components/weather/weather.component';
     AdminSignupComponent,
     RatingComponent,
     WeatherComponent,
+    VeiwProductComponent,
 
 
   ],
