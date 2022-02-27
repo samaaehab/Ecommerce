@@ -7,5 +7,6 @@ export class Product {
   discount:number=0;
   subcat_id: any;
   cat_id: any;
+  category!: object;
 
 }

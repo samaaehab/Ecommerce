@@ -16,7 +16,7 @@ export class VeiwProductComponent implements OnInit {
   productCat:any[]=[];
   store:any[]=[];
 
-  productDet= new Product();
+  productDet:any;
   constructor(private _activatedRoute: ActivatedRoute,
     private _productService: ProductService,private storeService: StoreService, public myapp: AppComponent) { }
 

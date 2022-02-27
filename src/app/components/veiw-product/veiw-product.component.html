@@ -9,8 +9,8 @@
             <div class="col-md-6">
                 <div class="breadcrumbs">
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Category</a></li>
+                        <li><a href="" routerLink="/home">Home</a></li>
+                        <li><a >{{productDet.category.cat_name}}</a></li>
                         <li>{{productDet.product_name}}</li>
                         <input id="inputProdName" type="hidden" value="{{productDet.product_name}}" #inputProdName>
                     </ul>
@@ -29,6 +29,7 @@
                                     <li><a href="#0" class="color color_2"></a></li>
                                     <li><a href="#0" class="color color_3"></a></li>
                                     <li><a href="#0" class="color color_4"></a></li>
+
                                 </ul>
                             </div>
                         </div>
@@ -70,7 +71,11 @@
                 <div class="product_actions">
                     <ul>
                         <li class="link-primary">
-                            <a class="link-primary" (click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"><i class="ti-heart"></i><span>Add to Wishlist</span></a>
+                            <a class="link-primary" 
+                            (click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)">
+                                <i class="ti-heart"></i>
+                                <span >Add to Wishlist</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
