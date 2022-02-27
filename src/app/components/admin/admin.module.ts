@@ -21,7 +21,7 @@ import { MaxLengthPipe } from '../.././pipes/max-length.pipe';
 
 const routes: Routes = [
 
-  {path:'admin',
+  {path:'admin',component:Admin2Component,
     children: [
     {path:'dashboard',component:AdmindashboardComponent},
     {path:'product',component:AdminproductsComponent},
