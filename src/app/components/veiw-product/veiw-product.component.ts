@@ -16,7 +16,7 @@ export class VeiwProductComponent implements OnInit {
   productCat:any[]=[];
   store:any[]=[];
 
-  productDet= new Product();
+  productDet:any;
   constructor(private _activatedRoute: ActivatedRoute,
     private _productService: ProductService,private storeService: StoreService, public myapp: AppComponent) { }
 
@@ -57,6 +57,35 @@ export class VeiwProductComponent implements OnInit {
 
     this.getStore();
     
+  }
+  products:any[]=[];
+addToCart(id:any,productSizeColor:any){
+  this._productService.get().subscribe(
+    (res:any)=>{
+      for(let p in res.data){
+        this.products.push(res.data[p]);
+       
+      } 
+      
+      var product=this.products.find((p:any)=>p.id == id);
+      if(localStorage.getItem('product'+productSizeColor)=== null){
+      let price=product.price-product.discount;
+      localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+1+"#$"+price+"#$"+productSizeColor+"#$"+price);
+      // if(localStorage.getItem('product'+productSizeColor)=='product'){
+      //   localStorage.removeItem('product');
+      //   this.myapp.errormessage("Sorry not Available");
+      // }
+      this.myapp.successmessage(product.product_name+" Added To Cart Successfuly"); 
+    }
+      else{
+        this.myapp.showWarning(product.product_name+" Already Added Before","Oops"); 
+  
+  
+      }
+  
+    } 
+  
+  );
   }
   getStore(){
     this.storeService.get().subscribe(

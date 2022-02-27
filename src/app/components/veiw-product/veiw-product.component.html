@@ -9,8 +9,8 @@
             <div class="col-md-6">
                 <div class="breadcrumbs">
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Category</a></li>
+                        <li><a href="" routerLink="/home">Home</a></li>
+                        <li><a >{{productDet.category.cat_name}}</a></li>
                         <li>{{productDet.product_name}}</li>
                         <input id="inputProdName" type="hidden" value="{{productDet.product_name}}" #inputProdName>
                     </ul>
@@ -25,19 +25,31 @@
                             <label class="col-xl-5 col-lg-5  col-md-6 col-6 pt-0"><strong>Color</strong></label>
                             <div class="col-xl-4 col-lg-5 col-md-6 col-6 colors">
                                 <ul>
-                                    <li><a href="#0" class="color color_1 active"></a></li>
-                                    <li><a href="#0" class="color color_2"></a></li>
+                                    <li *ngFor="let c of store">
+                                        <a *ngIf="c.color=== 'green'" href="" class="color green active"></a>
+                                        <a *ngIf="c.color=== 'red'" href="" class="color red active"></a>
+                                        <a *ngIf="c.color=== 'dark'" href="" class="color dark active"></a>
+                                        <a *ngIf="c.color=== 'orange'" href="" class="color orange active"></a>
+                                        <a *ngIf="c.color=== 'pink'" href="" class="color pink active"></a>
+                                        <a *ngIf="c.color=== 'gray'" href="" class="color red active"></a>
+                                        <a *ngIf="c.color=== 'blue'" href="" class="color blue active"></a>
+                                        <a *ngIf="c.color=== 'white'" href="" class="color white active"></a>
+
+                                    </li>
+                                        
+                                    <!-- <li><a href="#0" class="color color_2"></a></li>
                                     <li><a href="#0" class="color color_3"></a></li>
-                                    <li><a href="#0" class="color color_4"></a></li>
+                                    <li><a href="#0" class="color color_4"></a></li> -->
+
                                 </ul>
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Size</strong> - Size Guide <a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i class="ti-help-alt"></i></a></label>
+                            <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong class="ml-1">Store </strong><a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i class="ti-help-alt"></i></a></label>
                             <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                 <div class="custom-select-form" >
-                                    <select class="form-select" aria-label="Default select example" >
-                                        <option *ngFor="let s of store" value="">
+                                    <select #inputSelected  class="form-select" aria-label="Default select example" >
+                                        <option *ngFor="let s of store" value="{{s.id}}">
                                            <div *ngIf="s.product_id === productDet.id">
                                                {{s.color}}-{{s.size|uppercase}}
                                            </div>
@@ -62,7 +74,7 @@
                             <input id="inputNewPrice" type="hidden" value="{{productDet.price - productDet.discount}}" #inputNewPrice>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <div class="btn_add_to_cart"><a href="#0" class="btn_1">Add to Cart</a></div>
+                            <div class="btn_add_to_cart" (click)="addToCart(inputId.value,inputSelected.value)"><a class="btn_1 text-white">Add to Cart</a></div>
                         </div>
                     </div>
                 </div>
@@ -70,7 +82,11 @@
                 <div class="product_actions">
                     <ul>
                         <li class="link-primary">
-                            <a class="link-primary" (click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"><i class="ti-heart"></i><span>Add to Wishlist</span></a>
+                            <a class="link-primary" 
+                            (click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)">
+                                <i class="ti-heart"></i>
+                                <span >Add to Wishlist</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -108,7 +124,7 @@
                         <span class="old_price">{{pro.price+pro.discount|currency}}</span>
                     </div>
                     <ul>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+                        <!-- <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li> -->
                         <li><a routerLink="/veiw/{{pro.id}}" class="tooltip-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-placement="left"
                             title="view product"><i class="fa fa-eye" style="font-size:20px"
                               ></i><span>view product</span></a></li>                        
