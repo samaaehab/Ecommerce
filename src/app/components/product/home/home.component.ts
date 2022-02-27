@@ -46,12 +46,12 @@ price:any[]=[];
 
   ngOnInit(): void {
     
-    this._activatedRoute.paramMap.subscribe(params=>{
-      this.cat=params.get('cat'); 
+    // this._activatedRoute.paramMap.subscribe(params=>{
+    //   this.cat=params.get('cat'); 
       this._categoryService.get().subscribe(
         (res: any) => {
           console.log(res.data);
-          let x= res.data.find((cat:any)=>cat.cat_name===this.cat);
+          let x= res.data.find((cat:any)=>cat.cat_name==='men');
           console.log(x);
   
           this.productService.getProductsCategory(x.id).subscribe(
@@ -91,7 +91,7 @@ price:any[]=[];
           
         }
       ); 
-    })
+    // })
     this.getPrice();
     
 
@@ -247,12 +247,12 @@ console.log(this.storeId);
   }
 
   addToFav(id:any,ProdName:any,Image:any,newPrice:any){
-    // let id = $("#id").prop('value');
-    // localStorage.setItem('product_name' + id,ProdName);
-    // localStorage.setItem('image' +id,Image);
-    // localStorage.setItem('quantity' +id,'1');
-  localStorage.setItem('Fav' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
- this.myapp.successmessage("Added To Wish List Successfuly"); 
+    if (localStorage.getItem('Fav' + id) === null) {
+      localStorage.setItem('Fav' + id, ProdName + '#$' + Image + '#$' + newPrice + '#$' + id + '#$' + 1);
+      this.myapp.successmessage(ProdName +" Added To Wish List Successfuly");
+    } else {
+      this.myapp.showWarning(ProdName +" Already Added Before","Oops"); 
+    }
   
   
   }

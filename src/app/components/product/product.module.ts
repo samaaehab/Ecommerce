@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
 
 const routes: Routes = [
-  {path: ':cat', component: HomeComponent},
+  {path: 'men', component: HomeComponent},
   {path: 'woman', component: WomenComponent},
   { path: 'kids', component: KidsComponent },
   { path: ':subid/:catid', component: SubcategoryComponent }

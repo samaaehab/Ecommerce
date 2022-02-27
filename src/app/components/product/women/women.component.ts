@@ -28,7 +28,8 @@ export class WomenComponent implements OnInit {
   productSize:any[]=[];
   productStoreId:any[]=[];
   allStore:any[]=[];
-  total:number=0;
+  total: number = 0;
+  countsub: number = 0;
   constructor(private productService: ProductService, private storeService: StoreService, public header: HeaderComponent,
     private _SubcategoryService: SubcategoryService, private _categoryService: CategoryServiceService, private _userService: UserService
   ,public myapp:AppComponent) { }
@@ -67,6 +68,9 @@ export class WomenComponent implements OnInit {
                   //   this.subcategories=this.subcategories.map(m=>{return m});
 
                   // }
+              console.log(this.allsubcategories);
+              
+              this.countsub = this.allsubcategories.length;
                },
             (err:any)=>{
               console.log(err);
@@ -182,12 +186,12 @@ export class WomenComponent implements OnInit {
   
   }
   addToFav(id:any,ProdName:any,Image:any,newPrice:any){
-    // let id = $("#id").prop('value');
-    // localStorage.setItem('product_name' + id,ProdName);
-    // localStorage.setItem('image' +id,Image);
-    // localStorage.setItem('quantity' +id,'1');
-    localStorage.setItem('Fav' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
-    this.myapp.successmessage("Added To Wish List Successfuly"); 
+    if (localStorage.getItem('Fav' + id) === null) {
+      localStorage.setItem('Fav' + id, ProdName + '#$' + Image + '#$' + newPrice + '#$' + id + '#$' + 1);
+      this.myapp.successmessage(ProdName +" Added To Wish List Successfuly");
+    } else {
+      this.myapp.showWarning(ProdName +" Already Added Before","Oops"); 
+    } 
   
   }
   getid(id:number){
