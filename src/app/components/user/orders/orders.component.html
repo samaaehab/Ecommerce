@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="col-lg-8">
-                <div class="card shadow-none mb-0">
+                <div class="card shadow-none mb-0" style="min-height: 500px;">
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
@@ -49,6 +49,7 @@
                                 <tbody>
                                     <tr *ngFor="let order of orders">
                                         <td>{{order.id}}</td>
+                                        <input type="hidden" value="{{order.id}}" #orderId>
                                         <td>{{order.created_at|date}}</td>
                                         <td>
                                             <div class="badge rounded-pill bg-success w-100"  
@@ -57,9 +58,9 @@
                                             [class.bg-warning]="order.status=='pending'">{{order.status}}</div>
                                         </td>
                                         <td>{{order.price|currency}}</td>
-                                        <td>
-                                            <div class="d-flex gap-2">	<a href="javascript:;" class="btn btn-dark btn-sm rounded-0">View</a>
-                                            </div>
+                                        <td class="d-flex gap-2">
+                                          <button class="btn btn-dark btn-sm rounded-0" data-bs-toggle="modal" data-bs-target="#exampleModal"(click)="view(orderId.value)"
+                                           >View</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -70,4 +71,26 @@
             </div>
         </div>
         <!--end row-->
+      </div>
+      <div style="position: absolute;" class="modal fade" id="exampleModal" tabindex="-1"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div style="position: relative;top: 20px;left: 150px;" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Show Order Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="box_general summary">
+              <ul>
+                <li class="clearfix" *ngFor="let cart of carts">
+                  <em>{{cart.products_number}}x {{cart.product_name}}</em> 
+                  <span>${{cart.total_price}}</span>
+                </li>
+  
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>

@@ -11,26 +11,26 @@
 	<div id="logo">
 		<a routerLink="/home"><img src="../../assets/download (1).png" alt="" width="" height="70"></a>
 	</div>    <!-- open nav mobile -->
-    
+
 	<div class="nav-container text-center">
 		<nav class="all-category-nav">
 		  <label class="open-menu-all" for="open-menu-all">
 			<input class="input-menu-all" id="open-menu-all" type="checkbox" name="menu-open" />
-			<li  class="all-navigator sub-menu" style="width:175px !important;font-weight:bolder ;"><a class="show-submenu">Home</a>
+			<li  class="all-navigator sub-menu"><a class="show-submenu">Home</a>
 			</li>
-	
+
 			<ul class="all-category-list">
 			  <li class="all-category-list-item" *ngFor="let cat of categories">
 				<a *ngIf="cat.cat_name==='men'  || cat.cat_name ==='man'" routerLink="/products/men" class="all-category-list-link">{{cat.cat_name |uppercase}}<i class="fas fa-angle-right"></i></a>
 				<a *ngIf="cat.cat_name==='women'|| cat.cat_name ==='woman' || cat.cat_name==='weman'" routerLink="/products/woman" class="all-category-list-link">{{cat.cat_name |uppercase}}<i class="fas fa-angle-right"></i></a>
 				<a *ngIf="cat.cat_name==='kid'  || cat.cat_name ==='kids'" routerLink="/products/kids" class="all-category-list-link">{{cat.cat_name |uppercase}}<i class="fas fa-angle-right"></i></a>
-				  
-					
+
+
 				</li>
 			  <!-- <li *ngFor="let cat of categories"><a routerLink="/products/{{cat.cat_name}}">{{cat.cat_name |uppercase}}</a></li> -->
 			</ul>
 		  </label>
-	
+
 		</nav>
 		<nav class="featured-category">
 		  <ul class="nav-row">
@@ -38,7 +38,7 @@
 			<li class="nav-row-list" style="width: 120px;"><a routerLink="/contact/contactus" class="nav-row-list-link">Contact Us</a></li>
 		</ul>
 		</nav>
-		
+
 	  </div>
     <!--search -->
 	<nav class="nav-content" style="margin-right: 0% !important;">
@@ -84,7 +84,7 @@
 				<!-- /dropdown-access-->
 			</li>
 
-		</ul>	
+		</ul>
 	</nav>
     <!-- // search -->
 
