@@ -39,6 +39,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AdminAcountComponent } from './components/admin-acount/admin-acount.component';
 import { AdminSignupComponent } from './components/admin-signup/admin-signup.component';
 import { RatingComponent } from './components/rating/rating.component';
+import { WeatherComponent } from './components/weather/weather.component';
 
 
 
@@ -61,6 +62,7 @@ import { RatingComponent } from './components/rating/rating.component';
     AdminAcountComponent,
     AdminSignupComponent,
     RatingComponent,
+    WeatherComponent,
 
 
   ],

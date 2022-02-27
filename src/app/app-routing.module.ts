@@ -1,3 +1,4 @@
+import { WeatherComponent } from './components/weather/weather.component';
 import { AdminAcountComponent } from './components/admin-acount/admin-acount.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AfterLoginService } from './services/after-login.service';
@@ -35,7 +36,7 @@ import { ContactsUsComponent } from './components/contact/contacts-us/contacts-u
 
 const routes: Routes = [
       {path: 'home', component:MainhomeComponent},
-
+      {path: 'weather', component:WeatherComponent},
       {path: 'acount', component: AcountComponent,canActivate:[BeforeLoginService]},
       {path: 'admin-acount', component:AdminAcountComponent,canActivate:[BeforeAdminLoginService]},
       {path: 'cart/checkout/confirm', component: ConfirmComponent,canActivate:[AfterLoginService]},

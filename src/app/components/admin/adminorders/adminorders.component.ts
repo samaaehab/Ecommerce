@@ -15,7 +15,7 @@ export class AdminordersComponent implements OnInit {
   p: any = 1;
   count: any = 3;
   searchText:any;
-  constructor(private _orderService:OrderService ,public myapp: AppComponent) { }
+  constructor(private _orderService:OrderService ,public myapp: AppComponent,private orderService:OrderService) { }
 
   ngOnInit(): void {
     this.getOrderData();

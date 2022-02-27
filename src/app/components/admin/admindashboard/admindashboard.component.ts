@@ -17,9 +17,11 @@ export class AdmindashboardComponent implements OnInit {
   productsCount:number=0;
   categoriesCount:number=0;
   ordersCount:number=0;
+  count:number=0;
   constructor(private userService:UserService,private productService:ProductService,private orderService:OrderService,private categoryService:CategoryServiceService,private token:AdminTokenService,private auth:AuthenService,private router:Router,public router2:Router) { }
 
   ngOnInit(): void {
+
   this.categoryService.get().subscribe(
       (res:any)=>{
         this.categoriesCount=res.data.length;
@@ -29,6 +31,12 @@ export class AdmindashboardComponent implements OnInit {
     this.orderService.get().subscribe(
       (res:any)=>{
         this.ordersCount=res.data.length;
+        for(let i = 0 ; i < this.ordersCount ; i++){
+          if(res.data[i].status === 'pending'){
+            this.count++;
+          }
+          
+        }
       }
     )
 

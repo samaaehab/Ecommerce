@@ -111,20 +111,22 @@
         <div class="step middle payments">
           <h3>2. Payment and Shipping</h3>
           <ul>
+			<li>
+				<label class="container_radio">Cash on delivery<a class="info" data-bs-toggle="modal"
+					data-bs-target="#payments_method"></a>
+				  <input type="radio" name="payment" value="cash" #inputPayment id="cashMethod" checked>
+				  <span class="checkmark"></span>
+				</label>
+			  </li>
+
             <li>
               <label class="container_radio">Credit Card<a  class="info" data-bs-toggle="modal"
                   data-bs-target="#payments_method"></a>
-                <input type="radio" name="payment" checked #inputPayment>
+                <input type="radio" name="payment" id="creditMetod" value="credit card" #inputPayment data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <span class="checkmark"></span>
               </label>
             </li>
-            <li>
-              <label class="container_radio">Cash on delivery<a class="info" data-bs-toggle="modal"
-                  data-bs-target="#payments_method"></a>
-                <input type="radio" name="payment" #inputPayment>
-                <span class="checkmark"></span>
-              </label>
-            </li>
+            
           </ul>
           <div class="payment_info d-none d-sm-block">
             <figure>
@@ -151,7 +153,7 @@
             </ul>
             <div class="total clearfix">TOTAL <span>{{totalPrice|currency}}</span></div>
 			<input type="hidden" name="" id="" value="{{totalPrice}}" #inputTotalPrice>
-            <a routerLink="/cart/checkout/confirm" class="btn_1 full-width" (click)="addOrder(inputName.value,inputAdress.value,inputHouseNum.value,inputCity.value,inputCountry.value,inputPhone.value,inputPayment.value,inputTotalPrice.value)">Confirm and Pay</a>
+            <a  class="btn_1 full-width" (click)="addOrder(inputName.value,inputAdress.value,inputHouseNum.value,inputCity.value,inputCountry.value,inputPhone.value,inputTotalPrice.value)">Confirm and Pay</a>
 
           </div>
           <!-- /box_general -->
@@ -163,3 +165,26 @@
   </div>
   <!-- /container -->
 </main>
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade round" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		<div class="modal-body">
+			<div class="container">
+				<h2 class="fw-bold">Checkout</h2>
+				<div class="row mt-2">
+				  <div class="col-md-4">
+					<button (click)="pay(20)" class="btn btn-primary btn-block">Pay {{totalPrice|currency}}</button>
+				  </div>
+				</div>
+				<p class="mt-3">
+					Test card number <strong>4242 4242 4242 4242</strong></p>
+			  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
