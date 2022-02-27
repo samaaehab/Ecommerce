@@ -90,12 +90,17 @@
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Orders</span>
+                    <span data-toggle="tooltip" class="badge" style="background-color: yellow;">{{count}}</span> 
                 </a>
             </li>
+            <li>
+                <a class="nav-link collapsed" href="https://app.smartsupp.com/app/dashboard/conversations/coLxT6puGGSka"></a>
+                <span>Chat</span>
+            </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/home" 
+                <a class="nav-link collapsed"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <span>Log out</span>
+                    <span (click)="logout($event)">Log out</span>
                 </a>
             </li>
 
