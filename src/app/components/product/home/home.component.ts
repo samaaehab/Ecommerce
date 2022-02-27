@@ -46,12 +46,12 @@ price:any[]=[];
 
   ngOnInit(): void {
     
-    this._activatedRoute.paramMap.subscribe(params=>{
-      this.cat=params.get('cat'); 
+    // this._activatedRoute.paramMap.subscribe(params=>{
+    //   this.cat=params.get('cat'); 
       this._categoryService.get().subscribe(
         (res: any) => {
           console.log(res.data);
-          let x= res.data.find((cat:any)=>cat.cat_name===this.cat);
+          let x= res.data.find((cat:any)=>cat.cat_name==='men');
           console.log(x);
   
           this.productService.getProductsCategory(x.id).subscribe(
@@ -91,7 +91,7 @@ price:any[]=[];
           
         }
       ); 
-    })
+    // })
     this.getPrice();
     
 

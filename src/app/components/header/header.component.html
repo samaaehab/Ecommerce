@@ -20,9 +20,14 @@
 			</li>
 	
 			<ul class="all-category-list">
-			  <li class="all-category-list-item" *ngFor="let cat of categories"><a routerLink="/products/{{cat.cat_name}}" class="all-category-list-link">{{cat.cat_name |uppercase}}<i class="fas fa-angle-right"></i></a></li>
+			  <li class="all-category-list-item" *ngFor="let cat of categories">
+				<a *ngIf="cat.cat_name==='men'  || cat.cat_name ==='man'" routerLink="/products/men" class="all-category-list-link">{{cat.cat_name |uppercase}}<i class="fas fa-angle-right"></i></a>
+				<a *ngIf="cat.cat_name==='women'|| cat.cat_name ==='woman' || cat.cat_name==='weman'" routerLink="/products/woman" class="all-category-list-link">{{cat.cat_name |uppercase}}<i class="fas fa-angle-right"></i></a>
+				<a *ngIf="cat.cat_name==='kid'  || cat.cat_name ==='kids'" routerLink="/products/kids" class="all-category-list-link">{{cat.cat_name |uppercase}}<i class="fas fa-angle-right"></i></a>
+				  
+					
+				</li>
 			  <!-- <li *ngFor="let cat of categories"><a routerLink="/products/{{cat.cat_name}}">{{cat.cat_name |uppercase}}</a></li> -->
-	
 			</ul>
 		  </label>
 	
