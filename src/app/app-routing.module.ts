@@ -28,6 +28,7 @@ import { MainhomeComponent } from './components/mainhome/mainhome.component';
 import { AdminSignupComponent } from './components/admin-signup/admin-signup.component';
 import { AboutComponent } from './components/contact/about/about.component';
 import { ContactsUsComponent } from './components/contact/contacts-us/contacts-us.component';
+import { VeiwProductComponent } from './components/veiw-product/veiw-product.component';
 // import { OrdersComponent } from './components/orders/orders.component';
 // import { ProfileComponent } from './components/profile/profile.component';
 // import { UserDetailsComponent } from './components/user-details/user-details.component';
@@ -44,6 +45,8 @@ const routes: Routes = [
       {path: 'cart', component: CartComponent},
       {path: 'about', component: AboutComponent},
       {path: 'contact', component: ContactsUsComponent},
+      {path: 'veiw/:pId', component:VeiwProductComponent},
+
 
 
       {path: '', component:MainhomeComponent},

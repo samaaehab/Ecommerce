@@ -7,7 +7,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/admn/admin/dashboard">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -90,34 +90,23 @@
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Orders</span>
+                    <span data-toggle="tooltip" class="badge" style="background-color: yellow;">{{count}}</span> 
                 </a>
+            </li>
+            <li>
+                <a class="nav-link collapsed" href="https://app.smartsupp.com/app/dashboard/conversations"></a>
+                <span>Chat</span>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/home" 
+                <a class="nav-link collapsed"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <span>Log out</span>
+                    <span (click)="logout($event)">Log out</span>
                 </a>
             </li>
-            <!-- Divider -->
-            <!-- <br>
-            <hr class="sidebar-divider d-none d-md-block">
 
-             Sidebar Toggler (Sidebar) -->
-            <!-- <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div> --> 
 
         </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <!-- <router-outlet></router-outlet> -->
-       
-
-
+        <router-outlet></router-outlet>
     </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->  
 
 </div>

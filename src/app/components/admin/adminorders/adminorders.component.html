@@ -1,111 +1,10 @@
 <div id="page-top">
 
   <!-- Page Wrapper -->
-  <div id="wrapper">
+  <div id="wrapper" style="width: 120%;">
 
-      <!-- Sidebar -->
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-          <!-- Sidebar - Brand -->
-          <a class="sidebar-brand d-flex align-items-center justify-content-center">
-              <div class="sidebar-brand-icon rotate-n-15">
-                  <i class="fas fa-laugh-wink"></i>
-              </div>
-              <div class="sidebar-brand-text mx-3"> Admin </div>
-          </a>
-
-          <!-- Divider -->
-          <br>
-          <hr class="sidebar-divider my-0">
-
-          <!-- Nav Item - Dashboard -->
-          <li class="nav-item">
-              <a class="nav-link" routerLink="/admn/admin/dashboard">
-                  <i class="fas fa-fw fa-tachometer-alt"></i>
-                  <span>Dashboard</span></a>
-          </li>
-          <br>
-          <!-- Divider -->
-          <hr class="sidebar-divider">
-
-          <!-- Heading -->
-          <div class="sidebar-heading">
-              Addons
-          </div>
-
-          <!-- Nav Item - Pages Collapse Menu -->
-          <li class="nav-item">
-              <a class="nav-link collapsed" routerLink="/admn/admin/category" data-toggle="collapse" data-target="#collapsePages"
-                  aria-expanded="true" aria-controls="collapsePages">
-                  <i class="fas fa-fw fa-folder"></i>
-                  <span>Categories</span>
-              </a>
-
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link collapsed"
-              routerLink="/admn/admin/subcategory"
-              data-toggle="collapse"
-              data-target="#collapsePages"
-              aria-expanded="true"
-              aria-controls="collapsePages"
-            >
-              <i class="fas fa-fw fa-folder"></i>
-              <span>SubCategories</span>
-            </a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link collapsed" routerLink="/admn/admin/product" data-toggle="collapse" data-target="#collapsePages"
-                  aria-expanded="true" aria-controls="collapsePages">
-                  <i class="fas fa-fw fa-folder"></i>
-                  <span>Products</span>
-              </a>
-
-          </li>
-          <!-- Nav Item - Charts -->
-          <li class="nav-item">
-              <a class="nav-link collapsed" routerLink="/admn/admin/users" data-toggle="collapse" data-target="#collapsePages"
-                  aria-expanded="true" aria-controls="collapsePages">
-                  <i class="fas fa-fw fa-folder"></i>
-                  <span>Users</span>
-              </a>
-          </li>
-          <!-- Nav Item - Tables -->
-          <li class="nav-item">
-              <a class="nav-link collapsed" routerLink="/admn/admin/order" data-toggle="collapse" data-target="#collapsePages"
-                  aria-expanded="true" aria-controls="collapsePages">
-                  <i class="fas fa-fw fa-folder"></i>
-                  <span>Orders</span>
-              </a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link collapsed" routerLink="/home"
-                  aria-expanded="true" aria-controls="collapsePages">
-                  <span>Log out</span>
-              </a>
-          </li>
-          <!-- Divider -->
-          <!-- <br>
-          <hr class="sidebar-divider d-none d-md-block">
-
-           Sidebar Toggler (Sidebar) -->
-          <!-- <div class="text-center d-none d-md-inline">
-              <button class="rounded-circle border-0" id="sidebarToggle"></button>
-          </div> -->
-
-      </ul>
-      <!-- End of Sidebar -->
-
-      <!-- Content Wrapper -->
-      <!-- <router-outlet></router-outlet> -->
-
-
-
-
-
-<!-- Page Wrapper -->
-<!-- Content Wrapper -->
+    
+  
 <div class="container" class="d-flex flex-column col-10">
   <div class="mt-4">
     <div class="container-fluid col-12">
@@ -146,6 +45,7 @@
                   <th scope="col">customer Name</th>
                   <th scope="col">phone</th>
                   <th scope="col-4">address</th>
+                  <th scope="col-4">Order_num</th>
                   <th scope="col">payment</th>
                   <th scope="col">price</th>
                   <th scope="col">discount</th>
@@ -166,6 +66,7 @@
                   <td>{{order.name}}</td>
                   <td>{{order.phone}}</td>
                   <td>{{order.full_address |maxLength}}</td>
+                  <td>{{order.id}}</td>
                   <td>{{order.payment_method}}</td>
                   <td>{{order.price}}</td>
                   <td>{{order.discount}}</td>

@@ -53,12 +53,7 @@ export class AdmindashboardComponent implements OnInit {
     )
   }
 
-  logout(event:MouseEvent){
-    event.preventDefault();
-    this.token.remove();
-    this.auth.changeAdminAuthStatus(false);
-    this.router.navigateByUrl('/admin-acount');
-  }
+
     
 
 }

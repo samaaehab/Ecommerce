@@ -200,7 +200,7 @@
   transition: all ease .25s;
   width: 40px;
   height: 99px;
-  background: no-repeat rgba(0, 77, 218, 0.85) url(../img/arrow_right.svg) center center;
+  background: no-repeat rgba(0, 77, 218, 0.85) url(../assets/img/arrow_right.svg) center center;
 }
 .all .slider-two .left-t:hover,
 .all .slider-two .right-t:hover {
@@ -340,6 +340,31 @@
 }
 .prod_options .colors ul li a.color.color_5 {
   background-color: #ffcc00;
+}
+.prod_options .colors ul li a.color.red {
+  background-color: #e41616;
+}
+.prod_options .colors ul li a.color.dark {
+  background-color: #050505;
+}
+.prod_options .colors ul li a.color.blue {
+  background-color: #091394;
+}
+.prod_options .colors ul li a.color.pink {
+  background-color: #c754ae;
+}
+.prod_options .colors ul li a.color.green {
+  background-color: #1c8d18;
+}
+.prod_options .colors ul li a.color.gray {
+  background-color: #6c6e6e;
+}
+.prod_options .colors ul li a.color.orange {
+  background-color: orange;
+}
+.prod_options .colors ul li a.color.white {
+  background-color: white;
+  border: solid black 2px;
 }
 .prod_options.version_2 {
   border: none;
