@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Rate } from '../models/rating';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,9 @@ export class RatingService {
 
 public get() { return this._httpClient.get(this.url + `ratings`); }
 
-// public post(store: Rate) {
-//   return this._httpClient.post(this.url + `ratings`, store)
-// }
+public post(rate: Rate) {
+  return this._httpClient.post(this.url + `ratings`, rate)
+}
 
 // put(id:number,store:Store){
 //   return this._httpClient.put(this.url+`ratings/${id}`,store);
