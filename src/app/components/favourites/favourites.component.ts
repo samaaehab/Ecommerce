@@ -11,7 +11,7 @@ export class FavouritesComponent implements OnInit {
   user=localStorage.getItem('email');
   products:any[]=[];
   productsInFav:any[]=[];
-  constructor(private _userService:UserService,private router:Router) { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     for (var i = 0; i < localStorage.length; i++) {

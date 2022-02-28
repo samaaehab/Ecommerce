@@ -64,28 +64,28 @@ export class CheckoutComponent implements OnInit {
     );
     
 
-    this.getstore(4);
+    // this.getstore(4);
     // this.addOrder();
     
   }
   
   // get product id from store id
-  getstore(id:any) {
-    this._storeService.get().subscribe(
-      (res: any) => {
-        console.log(JSON.stringify(res.data));
-        for (let i in res.data) {
-          console.log(res.data[i]);
-          if (id == res.data[i].id) {
-            console.log(res.data[i].product);
+  // getstore(id:any) {
+  //   this._storeService.get().subscribe(
+  //     (res: any) => {
+  //       console.log(JSON.stringify(res.data));
+  //       for (let i in res.data) {
+  //         console.log(res.data[i]);
+  //         if (id == res.data[i].id) {
+  //           console.log(res.data[i].product);
 
 
-          }
+  //         }
 
-      }
-      }
-    );
-  }
+  //     }
+  //     }
+  //   );
+  // }
   addOrder(Name:string,Address:string,HouseNum:any,City:string,Country:string,Phone:any,totalPrice:string){
     this.postOrder.name=Name;
     this.postOrder.full_address=Address;

@@ -50,7 +50,7 @@ productCount:any;
 
         let splitProduct = products?.split('#$');
         this.productsInCart.push(splitProduct);
-        console.log(this.productsInCart);
+        // console.log(this.productsInCart);
         // this.cartCount=this.productsInCart.length;
 
 
@@ -66,15 +66,22 @@ productCount:any;
     this.auth.status.subscribe(value=>this.logged=value);
       this._categoryService.get().subscribe(
         (res: any) => {
+               // get category data
+              //  console.log(JSON.stringify(res));
+               this.categories = res.data;
+              //  console.log(this.categories);
+               //
+          
         // console.log(res.data);
           for (const i in res.data) {
            
             const id= res.data[i].id;
             this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
-              (res:any)=>{
+              (res: any) => {
+           
                 this.subcategories=res.data;
 
-                console.log(this.subcategories);
+                // console.log(this.subcategories);
 
                       this.allsubcategories.push(this.subcategories.map(m=>{return m}));
 
@@ -90,26 +97,33 @@ productCount:any;
               }
             )
           }
-          console.log(this.allsubcategories);
+          // console.log(this.allsubcategories);
           
 
 
         }
       );
     this.cartCount();
-    this.getCategoryData();
+    // this.getCategoryData();
       }
 
 
 
-      logout(event:MouseEvent){
-        event.preventDefault();
-        this.token.remove();
-        this.auth.changeAuthStatus(false);
-        this.router.navigateByUrl('/acount');
-        localStorage.removeItem('email');
+  logout(event: MouseEvent) {
+    event.preventDefault();
+    this.token.remove();
+    this.auth.changeAuthStatus(false);
+    this.router.navigateByUrl('/acount');
+    localStorage.removeItem('email');
+    for (var i = 0; i < localStorage.length; i++) {
+      let a = localStorage.key(i);
+      if (a?.substring(0, 7) == 'product') {
+        localStorage.removeItem(a?.substring(0, 7)+a?.substring(7));
+         
 
       }
+    }
+  }
       cartCount(){
         for(let i =0;i<localStorage.length;i++){
           let a = localStorage.key(i);
@@ -123,16 +137,16 @@ productCount:any;
         return this.count;
 
       }
-      getCategoryData(){ 
-        this._categoryService.get().subscribe(
-         (res: any) => {
-           console.log(JSON.stringify(res));
-            this.categories = res.data;
-            console.log(this.categories);
+      // getCategoryData(){ 
+      //   this._categoryService.get().subscribe(
+      //    (res: any) => {
+      //      console.log(JSON.stringify(res));
+      //       this.categories = res.data;
+      //       console.log(this.categories);
             
-         }
-       );
-      }
+      //    }
+      //  );
+      // }
 }
 
 

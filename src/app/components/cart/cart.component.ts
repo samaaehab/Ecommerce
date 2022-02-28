@@ -128,7 +128,11 @@ price:any;
         this.DBCart.products_number=this.productsInCart[i][3];
         this.DBCart.total_price=this.productsInCart[i][6];
         this.DBCart.store_id=this.productsInCart[i][5];
-        this.DBCart.user_id=this.loggedUser[0].id;
+        if (localStorage.getItem('id')) {
+          this.DBCart.user_id = localStorage.getItem('id');
+        } else {
+          this.DBCart.user_id = this.loggedUser[0].id;
+        }
         this.DBCart.status='waiting';
         this._cartService.post(this.DBCart).subscribe(
           (res:any)=>{

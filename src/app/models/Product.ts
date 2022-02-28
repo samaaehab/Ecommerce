@@ -8,5 +8,6 @@ export class Product {
   subcat_id: any;
   cat_id: any;
   category!: object;
+  subcategory!: object;
 
 }
