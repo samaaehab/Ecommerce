@@ -15,6 +15,7 @@ export class VeiwProductComponent implements OnInit {
   prodid:any;
   productCat:any[]=[];
   store:any[]=[];
+  mainhomeRate=4;
 
   productDet:any;
   constructor(private _activatedRoute: ActivatedRoute,
@@ -87,6 +88,10 @@ addToCart(id:any,productSizeColor:any){
   
   );
   }
+
+  onmainHomeRateChange(rate:number):void{
+    this.mainhomeRate=rate;
+      }
   getStore(){
     this.storeService.get().subscribe(
          (res:any)=>{
