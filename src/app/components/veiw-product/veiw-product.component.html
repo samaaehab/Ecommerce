@@ -18,7 +18,9 @@
                 <!-- /page_header -->
                 <div class="prod_info">
                     <h1>{{productDet.product_name}}</h1>
-                    <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span>
+                    <app-rating [rate]="mainhomeRate" (change)="onmainHomeRateChange($event)"></app-rating>
+
+                    <!-- <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span> -->
                     <p><small>Discription</small><br>{{productDet.description}}</p>
                     <div class="prod_options">
                         <div class="row">
