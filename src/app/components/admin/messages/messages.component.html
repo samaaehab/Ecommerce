@@ -1,0 +1,95 @@
+
+<div id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper" style="width: 256% !important;">
+  
+      <div class="container" class="d-flex flex-column col-10">
+        <div class="mt-4">
+          <div class="container-fluid col-12">
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+              <h1 class="h3 mb-0 text-gray-800">Messages</h1>
+            </div>
+          </div>
+        </div>
+        <br />
+        <!-- Area Chart -->
+        <div class="row">
+          <!-- Area Chart -->
+          <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+              <!-- Card Header - Dropdown -->
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">
+                  Table of Messages
+                </h6>
+                <div class="col-md-4">
+                  <div class="search"> <i class="fa fa-search"></i> <input id="search-input"  [(ngModel)]='searchText' type="search" id="form1" class="form-control" /></div>
+              </div>
+                <div class="dropdown no-arrow">
+                  <a class="dropdown-toggle"  role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                  </a>
+                </div>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body">
+                <div style="height: 400px; text-align: center;">
+                  <table class="table">
+                    <thead class="thead-info">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let currentIndex=index;
+                      let message of messages|
+                        filter:searchText |
+                        paginate: { itemsPerPage: count, currentPage: p }
+                     ">  
+                        <th scope="row">{{currentIndex+1}}</th>
+                        <td>{{message.email}}</td>
+                        <td class="d-flex justify-content-center">
+                          <button (click)="view(message.id)" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">View</button>
+                        </td>
+                        <td *ngIf="message.seen === 1">
+                            <i class="fas fa-check-double text-success"></i>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!--Including the pagination control.-->
+  
+                </div>
+              </div>
+              <div class="text-right">
+                <pagination-controls (pageChange)="p = $event">
+                </pagination-controls>
+              </div>
+            </div>
+            <br />
+          </div>
+        </div>
+      </div>
+
+
+      <div style="position: absolute;" class="modal fade" id="exampleModal" tabindex="-1"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div style="position: relative;top: 200px;left: 150px;" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold" id="exampleModalLabel">{{name|uppercase}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group mb-3">
+              {{contentMessage}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  

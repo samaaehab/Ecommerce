@@ -1,5 +1,7 @@
 export class Contact{
-    name:string="";
-    email:string="";
-    massege:string="";
+  id: any;
+  name: any;
+  email: any;
+  message: any;
+  seen:any=0;
   }

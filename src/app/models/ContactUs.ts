@@ -3,4 +3,5 @@ export class ContactUS {
   name: any;
   email: any;
   message: any;
+  seen:any=0;
  }

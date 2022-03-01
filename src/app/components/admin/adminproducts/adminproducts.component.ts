@@ -21,7 +21,6 @@ import { event } from 'jquery';
 export class AdminproductsComponent implements OnInit {
   products: any[] = [];
   subcategories: SubCategory[] = [];
-
   categories: Category[] = [];
   stores: Store[] = [];
 
@@ -74,7 +73,6 @@ export class AdminproductsComponent implements OnInit {
   getCategoryData() {
     this._categoryService.get().subscribe(
       (res: any) => {
-        console.log(JSON.stringify(res));
         this.categories = res.data;
       }
     );
