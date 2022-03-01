@@ -274,7 +274,9 @@
                       aria-label="Default select example" for="inputSubcategoryName" id="inputSubCat">
                         <option *ngFor="
                         let subcategory of subcategories" value="{{subcategory.id}}">
-                          {{subcategory.subcat_name}}
+                          <span *ngFor="let cat of categories">
+                            <span *ngIf="subcategory.cat_id == cat.id">{{subcategory.subcat_name}}=>{{cat.cat_name}}</span>
+                          </span>
                         </option>
                       </select>
                     </div>

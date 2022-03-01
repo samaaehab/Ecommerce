@@ -101,6 +101,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/admn/admin/messages" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Messages</span>
+                    <span data-toggle="tooltip" class="badge" style="background-color: #7a95e4;margin-left: 10px;">{{counter}}</span> 
+                </a>
+            </li>
+            <li class="nav-item" style="cursor: pointer;">
                 <a class="nav-link collapsed"
                     aria-expanded="true" aria-controls="collapsePages">
                     <span (click)="logout($event)">Log out</span>

@@ -31,6 +31,7 @@ private _categoryService:CategoryServiceService,
 private auth:AuthenService,private router:Router,private token:TokenService) { }
 searchText:any;
 productCount:any;
+WeatherData:any;
   // constructor(
   //   public translate: TranslateService
   // ) {
@@ -43,6 +44,12 @@ productCount:any;
 
 
   ngOnInit(): void {
+    this.WeatherData = {
+      main : {},
+      isDay: true
+    };
+    this.getWeatherData();
+    console.log(this.WeatherData);
     for (var i = 0; i < localStorage.length; i++) {
       let a = localStorage.key(i);
       if (a?.substring(0, 7) == 'product') {
@@ -149,6 +156,23 @@ productCount:any;
       //    }
       //  );
       // }
+      getWeatherData(){
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=sohag&appid=9c57a2635e1987d71a704765bfb30352')
+        .then(response=>response.json())
+        .then(data=>{this.setWeatherData(data);})
+      }
+    
+      setWeatherData(data:any){
+        this.WeatherData = data;
+        let sunsetTime = new Date(this.WeatherData.sys.sunset * 1000);
+        this.WeatherData.sunset_time = sunsetTime.toLocaleTimeString();
+        let currentDate = new Date();
+        this.WeatherData.isDay = (currentDate.getTime() < sunsetTime.getTime());
+        this.WeatherData.temp_celcius = (this.WeatherData.main.temp - 273.15).toFixed(0);
+        this.WeatherData.temp_min = (this.WeatherData.main.temp_min - 273.15).toFixed(0);
+        this.WeatherData.temp_max = (this.WeatherData.main.temp_max - 273.15).toFixed(0);
+        this.WeatherData.temp_feels_like = (this.WeatherData.main.feels_like - 273.15).toFixed(0);
+      }
 }
 
 

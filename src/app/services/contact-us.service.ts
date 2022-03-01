@@ -19,4 +19,10 @@ public get() { return this._httpClient.get(this.url + `contact_us`); }
 public post(contact_us: any) {
   return this._httpClient.post(this.url + `contact_us`, contact_us)
 }
+public show(id:number){
+  return this._httpClient.get(this.url+`contact_us/${id}`);
+}
+public put(id:number,contact:ContactUS){
+  return this._httpClient.put(this.url+`contact_us/${id}`,contact);
+}
 }

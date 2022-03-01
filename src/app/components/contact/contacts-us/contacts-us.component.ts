@@ -20,6 +20,7 @@ export class ContactsUsComponent implements OnInit {
  this.contact.name = name;
  this.contact.email = email;
  this.contact.message = massege;
+ this.contact.seen=0;
  this._contact.post(this.contact).subscribe(
  (response: any) => {
  this.myapp.successmessage(response.message);
