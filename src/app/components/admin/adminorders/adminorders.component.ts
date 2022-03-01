@@ -1,3 +1,5 @@
+import { ContactUsService } from 'src/app/services/contact-us.service';
+import { ContactsUsComponent } from './../../contact/contacts-us/contacts-us.component';
 import { OrderService } from './../../../services/order.service';
 import { Component, OnInit } from '@angular/core';
 import { Order } from 'src/app/models/Order';
@@ -17,10 +19,13 @@ export class AdminordersComponent implements OnInit {
   // Pagination parameters.
   p: any = 1;
   count: any = 5;
-  searchText:any;
+  searchText: any;
+  messagesCount:number=0;
+  counter:number=0
   constructor(private _orderService: OrderService, public myapp: AppComponent,
     private orderService: OrderService ,
-    private token: AdminTokenService, private auth: AuthenService, private router: Router) { }
+    private token: AdminTokenService, private auth: AuthenService,
+    private router: Router , private _contact:ContactUsService) { }
 
   ngOnInit(): void {
     this.getOrderData();
@@ -97,7 +102,19 @@ getOrderData(){
         }
       }
     );
-    
+    this._contact.get().subscribe(
+      (res:any)=>{
+        console.log(res);
+        
+        this.messagesCount=res.length;
+        for(let i = 0 ; i < this.messagesCount ; i++){
+          if(res[i].seen === 0){
+            this.counter++;
+          }
+
+        }
+      }
+    );
   }
   logout(event:MouseEvent){
     event.preventDefault();

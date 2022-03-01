@@ -157,7 +157,7 @@ WeatherData:any;
       //  );
       // }
       getWeatherData(){
-        fetch('https://api.openweathermap.org/data/2.5/weather?q=sohag&appid=9c57a2635e1987d71a704765bfb30352')
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=assiut&appid=9c57a2635e1987d71a704765bfb30352')
         .then(response=>response.json())
         .then(data=>{this.setWeatherData(data);})
       }

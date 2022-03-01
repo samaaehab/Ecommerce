@@ -11,6 +11,7 @@ import  Swal from 'sweetalert2';
 import { AdminTokenService } from 'src/app/services/admin-token.service';
 import { AuthenService } from 'src/app/services/authen.service';
 import { Router } from '@angular/router';
+import { ContactUsService } from 'src/app/services/contact-us.service';
 
 
 @Component({
@@ -26,10 +27,13 @@ export class AdminsubcategoryComponent implements OnInit {
    // Pagination parameters.
    p: any = 1;
    count: any = 5;
-   searchText:any;
+  searchText: any;
+  messagesCount:number=0;
+  counter:number=0
   constructor(private _formBuilder: FormBuilder, private _SubcategoryService: SubcategoryService, private _categoryService: CategoryServiceService
     , public myapp: AppComponent ,
-    private token: AdminTokenService, private auth: AuthenService, private router: Router) { }
+    private token: AdminTokenService, private auth: AuthenService,
+    private router: Router , private _contact:ContactUsService) { }
   
 
   ngOnInit(): void {
@@ -38,7 +42,20 @@ export class AdminsubcategoryComponent implements OnInit {
       CatId:['',[Validators.required]],           
       });
       this.getSubCategoryData();
-      this.getCategoryData();
+    this.getCategoryData();
+    this._contact.get().subscribe(
+      (res:any)=>{
+        console.log(res);
+        
+        this.messagesCount=res.length;
+        for(let i = 0 ; i < this.messagesCount ; i++){
+          if(res[i].seen === 0){
+            this.counter++;
+          }
+
+        }
+      }
+    );
   }
   getSubCategoryData(){
     this._SubcategoryService.get().subscribe(

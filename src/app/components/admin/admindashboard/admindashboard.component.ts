@@ -6,6 +6,7 @@ import { OrderService } from './../../../services/order.service';
 import { ProductService } from './../../../services/product.service';
 import { UserService } from './../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
+import { ContactUsService } from 'src/app/services/contact-us.service';
 
 @Component({
   selector: 'app-admindashboard',
@@ -17,10 +18,13 @@ export class AdmindashboardComponent implements OnInit {
   productsCount:number=0;
   categoriesCount:number=0;
   ordersCount:number=0;
-  count:number=0;
+  count: number = 0;
+  messagesCount:number=0;
+  counter:number=0;
   constructor(private userService: UserService, private productService: ProductService,
     private orderService: OrderService, private categoryService: CategoryServiceService,
-    private token: AdminTokenService, private auth: AuthenService, private router: Router) { }
+    private token: AdminTokenService, private auth: AuthenService
+    , private router: Router ,private _contact:ContactUsService) { }
 
   ngOnInit(): void {
 
@@ -53,6 +57,19 @@ export class AdmindashboardComponent implements OnInit {
         this.usersCount=res.data.length;
       }
     )
+    this._contact.get().subscribe(
+      (res:any)=>{
+        console.log(res);
+        
+        this.messagesCount=res.length;
+        for(let i = 0 ; i < this.messagesCount ; i++){
+          if(res[i].seen === 0){
+            this.counter++;
+          }
+
+        }
+      }
+    );
   }
 
 

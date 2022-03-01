@@ -11,6 +11,7 @@ import Pusher from 'pusher-js';
 import { Router } from '@angular/router';
 import { AdminTokenService } from 'src/app/services/admin-token.service';
 import { AuthenService } from 'src/app/services/authen.service';
+import { ContactUsService } from 'src/app/services/contact-us.service';
 
 declare const $: any;
 
@@ -31,9 +32,12 @@ export class AdminusersComponent implements OnInit {
   p: any = 1;
   count: any = 6;
   searchText: any;
+  messagesCount:number=0;
+  counter:number=0
   constructor(public myapp: AppComponent, private http: HttpClient,
     private _formBuilder: FormBuilder, private _userService: UserService ,
-    private token: AdminTokenService, private auth: AuthenService, private router: Router) { }
+    private token: AdminTokenService, private auth: AuthenService,
+    private router: Router, private _contact:ContactUsService) { }
 
 
 
@@ -60,6 +64,19 @@ export class AdminusersComponent implements OnInit {
 
     });
     this.getUserData();
+    this._contact.get().subscribe(
+      (res:any)=>{
+        console.log(res);
+        
+        this.messagesCount=res.length;
+        for(let i = 0 ; i < this.messagesCount ; i++){
+          if(res[i].seen === 0){
+            this.counter++;
+          }
+
+        }
+      }
+    );
   }
   getUserData() {
     this._userService.get().subscribe(

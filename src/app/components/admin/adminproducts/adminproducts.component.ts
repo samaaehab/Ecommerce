@@ -1,3 +1,4 @@
+import { ContactUsService } from 'src/app/services/contact-us.service';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { Component, OnInit } from '@angular/core';
 import { SubCategory } from 'src/app/models/SubCategory';
@@ -39,10 +40,12 @@ export class AdminproductsComponent implements OnInit {
   product = new Product();
   store = new Store();
   formProduct = new FormGroup({});
-
+  messagesCount:number=0;
+  counter:number=0
   constructor(private _productService: ProductService, private _SubcategoryService: SubcategoryService, private _StoreService: StoreService, private _categoryService: CategoryServiceService,
     public myapp: AppComponent, private http: HttpClient, private _formBuilder: FormBuilder ,
-    private token: AdminTokenService, private auth: AuthenService, private router: Router) { }
+    private token: AdminTokenService, private auth: AuthenService, private router: Router,
+  private _contact:ContactUsService) { }
 
   ngOnInit(): void {
     this.formProduct = this._formBuilder.group({
@@ -56,6 +59,19 @@ export class AdminproductsComponent implements OnInit {
     this.getCategoryData();
     this.getSubCategoryData();
     this.getStoreData();
+    this._contact.get().subscribe(
+      (res:any)=>{
+        console.log(res);
+        
+        this.messagesCount=res.length;
+        for(let i = 0 ; i < this.messagesCount ; i++){
+          if(res[i].seen === 0){
+            this.counter++;
+          }
+
+        }
+      }
+    );
   }
   getProductData() {
     this._productService.get().subscribe(
