@@ -26,5 +26,8 @@ put(id:number,subcategory:SubCategory){
 public getSubCatForEachCategory(id:number){
   return this._httpClient.get(this.url + `${id}/subcategories`);
 }
+public show(id:number){
+  return this._httpClient.get(this.url + `subcategories/${id}`);
+}
 
 }
