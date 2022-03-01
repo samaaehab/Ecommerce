@@ -212,38 +212,16 @@ userData=new User();
 signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID, this.googleLoginOptions ).then((data) => {
       console.log(data);
-     // alert(JSON.stringify(data));
-      // this.account.id=data.id;
-      // this.account.name=data.name;
-      // this.account.email=data.email;
-      this.userData.name=data.name;
-      this.userData.email=data.email;
-      this.userData.country=null;
-      this.userData.city=null;
-      this.userData.full_address=null;
-      this.userData.house_no=0;
-      this.userData.phone='01000000000';
-      this.userData.password=data.idToken;
-      let token=data.idToken;
-      this._userService.get().subscribe(
-        (res:any)=>{
-          let userFound=res.data.find((u:any)=>u.email == this.userData.email)
-          if(userFound){
-            localStorage.setItem('token',token);
-            this.router.navigateByUrl('/home');
-            
-          }else{
-            this._userService.post(this.userData).subscribe(
-              (res:any)=>{
-                localStorage.setItem('token',token);
-                this.router.navigateByUrl('/home');
-              }
-            );
-            
-          }
-          
-        }
-      ); 
+     
+      // let id = data.id;
+      // let gmailtoken = data.authToken;
+      // let gmailname = data.name;
+      // let gmail = data.email;
+      // localStorage.setItem('id', id);
+      // // localStorage.setItem('token', gmailtoken);
+      // localStorage.setItem('gmailname', gmailname);
+      // localStorage.setItem('email', gmail);
+      // this.router.navigateByUrl('/home');
 
     }).catch(data => {
       // alert(JSON.stringify(data));

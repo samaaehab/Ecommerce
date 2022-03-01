@@ -62,15 +62,7 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
     category.cat_name=cat_name;
     this._categoryService.post(category).subscribe(
       (response: any) => {
-        // console.log(response);
-        // console.log(response.message);
-        // this.categories.push(category);
         this.getCategoryData();
- 
-        // var myAlert = document.getElementById('myAlert')
-        // var bsAlert = new bootstrap.Alert(myAlert)
-        //this.myapp.successmessage();
-
         this.myapp.successmessage(response.message);
         
       },

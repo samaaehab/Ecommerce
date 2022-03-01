@@ -11,7 +11,7 @@
                     <ul>
                         <li><a href="" routerLink="/home">Home</a></li>
                         <li><a >{{productDet.category.cat_name}}</a></li>
-                        <li>{{productDet.product_name}}</li>
+                        <li>{{productDet.subcategory.subcat_name}}</li>
                         <input id="inputProdName" type="hidden" value="{{productDet.product_name}}" #inputProdName>
                     </ul>
                     <span *ngIf="check" class="text-danger">Unavailable Now</span>
@@ -29,14 +29,14 @@
                             <div class="col-xl-4 col-lg-5 col-md-6 col-6 colors">
                                 <ul>
                                     <li *ngFor="let c of store">
-                                        <a *ngIf="c.color=== 'green'" href="" class="color green active"></a>
-                                        <a *ngIf="c.color=== 'red'" href="" class="color red active"></a>
-                                        <a *ngIf="c.color=== 'dark'" href="" class="color dark active"></a>
-                                        <a *ngIf="c.color=== 'orange'" href="" class="color orange active"></a>
-                                        <a *ngIf="c.color=== 'pink'" href="" class="color pink active"></a>
-                                        <a *ngIf="c.color=== 'gray'" href="" class="color red active"></a>
-                                        <a *ngIf="c.color=== 'blue'" href="" class="color blue active"></a>
-                                        <a *ngIf="c.color=== 'white'" href="" class="color white active"></a>
+                                        <a *ngIf="c.color=== 'green'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color green active"></a>
+                                        <a *ngIf="c.color=== 'red'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color red active"></a>
+                                        <a *ngIf="c.color=== 'dark'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color dark active"></a>
+                                        <a *ngIf="c.color=== 'orange'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color orange active"></a>
+                                        <a *ngIf="c.color=== 'pink'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color pink active"></a>
+                                        <a *ngIf="c.color=== 'gray'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color gray active"></a>
+                                        <a *ngIf="c.color=== 'blue'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color blue active"></a>
+                                        <a *ngIf="c.color=== 'white'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color white active"></a>
 
                                     </li>
                                         
@@ -67,7 +67,7 @@
                             <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Quantity</strong></label>
                             <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                 <div class="numbers-row">
-                                    <input type="number" value="1" id="quantity_1" class="qty2" name="quantity_1">
+                                    <input type="number" min="1" value="1" id="quantity_1" class="qty2" name="quantity_1" #inputqnt>
                                 </div>
                             </div>
                         </div>
@@ -78,15 +78,15 @@
                             <input id="inputNewPrice" type="hidden" value="{{productDet.price - productDet.discount}}" #inputNewPrice>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <button class="btn_add_to_cart btn_1 text-white" [disabled]="check" (click)="addToCart(inputId.value,inputSelected.value)">Add to Cart</button>
-                        </div>
+                            <button class="btn_add_to_cart btn_1 text-white" [disabled]="check" (click)="addToCart(inputId.value,inputSelected.value,inputqnt.value)">Add to Cart</button>
+
                     </div>
                 </div>
                 <!-- /prod_info -->
                 <div class="product_actions">
                     <ul>
                         <li class="link-primary">
-                            <a class="link-primary" 
+                            <a class="link-primary" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"
                             (click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)">
                                 <i class="ti-heart"></i>
                                 <span >Add to Wishlist</span>
@@ -177,5 +177,5 @@
         </div>
     </div>
     <!--/feat-->
-
+</div>
 </main>

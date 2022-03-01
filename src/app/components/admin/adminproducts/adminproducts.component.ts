@@ -148,7 +148,7 @@ export class AdminproductsComponent implements OnInit {
             })
 
       } else if (result.isDismissed) {
-        this.myapp.errormessage("product not Deleted");
+        this.myapp.errormessage("Store not Deleted");
       }
     });
   }

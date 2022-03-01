@@ -37,18 +37,178 @@ export class WomenComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.showcat();
+    // this.getPrice();
 
-    this.getPrice();
+  //   this.storeService.get().subscribe(
+  //     (res:any)=>{
+  //   for(let i in res.data){
+  
+  //   this.productStore.push(res.data[i]);
+  
+  
+  // }
+  //  console.log(this.productStore);    
+  // },
+  //   (error:any)=>{
+  
+  //   }
+  // );
+    // this.getIdByEmail();
+    // this.getStoreId();
+    // this.closeModel();
+
+  }
+  
+//  getPrice(){
+//    this.storeService.get().subscribe(
+//         (res:any)=>{
+//   for(let i in res.data){
+    
+//       this.price.push(res.data[i]);
+    
+    
+//   }
+   
+        
+//   },
+//       (error:any)=>{
+
+//       }
+//    );
+
+   
+//     console.log(this.price);
+//  }
+//  getIdByEmail(){
+//   this._userService.get().subscribe(
+//     (res: any) => {
+//      let c= res.data.find((user:any)=>user.email==this.user);
+//      console.log(c.id);
+//      return c.id;
+  
+//     },
+//     (err:any)=>{
+//       console.log(err);
+//     }
+//   );
+//   }
+  products:any[]=[];
+  // addToCart(id:any,productSizeColor:any){
+  //   this.productService.get().subscribe(
+  //     (res:any)=>{
+  //       for(let p in res.data){
+  //         this.products.push(res.data[p]);
+         
+  //       } 
+     
+  //       var product=this.products.find((p:any)=>p.id == id);
+  //       if(localStorage.getItem('product'+productSizeColor)=== null){
+  //       let price=product.price-product.discount;
+  //       localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+1+"#$"+price+"#$"+productSizeColor+"#$"+price);
+  //       // if(localStorage.getItem('product'+productSizeColor)=='product'){
+  //       //   localStorage.removeItem('product');
+  //       //   this.myapp.errormessage("Sorry not Available");
+  //       // }
+  //       // if (productSizeColor === null) {
+  //       //   localStorage.removeItem('product'+productSizeColor);
+  //       // // localStorage.removeItem('product');
+  //       //   alert('yes');
+  //       //   return
+  //       // }
+  //       this.myapp.successmessage(product.product_name+" Added To Cart Successfuly"); 
+  //       }
+  //       else{
+  //         this.myapp.showWarning(product.product_name+" Already Added Before","Oops"); 
+    
+  //       }
+
+  //     } );
+  //   }
+  // getStoreId(){
+  //   this.storeService.get().subscribe(
+  //        (res:any)=>{
+  //  for(let i in res.data){
+  
+  //      this.storeId.push(res.data[i].id);
+  
+  //  }
+  // console.log(this.storeId);
+  
+  // //  console.log(res.data[0].id);
+  
+  //  },
+  //      (error:any)=>{
+  
+  //      }
+  //   );
+  
+  // }
+  addToFav(id:any,ProdName:any,Image:any,newPrice:any){
+    if (localStorage.getItem('Fav' + id) === null) {
+      localStorage.setItem('Fav' + id, ProdName + '#$' + Image + '#$' + newPrice + '#$' + id + '#$' + 1);
+      this.myapp.successmessage(ProdName +" Added To Wish List Successfuly");
+    } else {
+      this.myapp.showWarning(ProdName +" Already Added Before","Oops"); 
+    } 
+  
+  }
+  // getid(id:number){
+  //   this.productsCategory.forEach(
+  //     c=>{
+  //       if(c.id == id){
+  //         var img=this.imagepath+c.image;
+  //          this.total=c.price - c.discount;
+  //         $("#exampleModalLabel1").html(c?.product_name);
+  //         $("#exampleModalLabel11").prop('value',c?.id);
+  //         $("#exampleModalLabel2").html(c?.description);
+  //         $("#exampleModalLabel4").html(String(this.total));
+
+  //         $("#exampleModalLabel3").prop('src',img);
+  //         // $("#exampleModalLabel3").prop('src')=c?.src;
+  //         // console.log(this.imagepath+c.image);
+
+  //         for(let i=0;i<this.productStore.length;i++){
+  //          if(id==this.productStore[i].product_id){
+  //           this.productStoreId.push(this.productStore[i].id);
+  //           this.productSize.push(this.productStore[i].size);
+  //           this.productColor.push(this.productStore[i].color);
+  //           this.allStore.push(this.productStore[i]);
+
+  //          }
+        
+  //         }
+
+  //         console.log(this.productSize);
+  //         console.log(this.productColor);
+  //         console.log( this.allStore);
+
+
+
+  //       }
+  //     }
+  //   );
+  
+
+  // }
+  //  closeModel(){
+  
+  //   this.productSize=[];
+  //   this.productColor=[];
+  //   this.productStoreId=[];
+  //   this.allStore=[];
+  // }
+  showcat() {
     this._categoryService.get().subscribe(
       (res: any) => {
-        let x= res.data.find((cat:any)=>cat.cat_name=='women');
-        console.log(x.id);
+        let x= res.data.find((cat:any)=>cat.cat_name=='women' || cat.cat_name=='woman' || cat.cat_name=='weman');
+        // console.log(x.id);
 
         this.productService.getProductsCategory(x.id).subscribe(
           (res: any) => {
             this.productsCategory.push(res);
             this.productsCategory=this.productsCategory[0];
-            console.log(this.productsCategory);
+            // console.log(this.productsCategory);
             // console.log(res);
     
     
@@ -59,7 +219,7 @@ export class WomenComponent implements OnInit {
           this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
             (res:any)=>{
               this.subcategories=res.data;
-              console.log(this.subcategories);
+              // console.log(this.subcategories);
               
                     this.allsubcategories.push(this.subcategories.map(m=>{return m}));
 
@@ -68,12 +228,12 @@ export class WomenComponent implements OnInit {
                   //   this.subcategories=this.subcategories.map(m=>{return m});
 
                   // }
-              console.log(this.allsubcategories);
+              // console.log(this.allsubcategories);
               
               this.countsub = this.allsubcategories.length;
                },
             (err:any)=>{
-              console.log(err);
+              // console.log(err);
               
             }
           )
@@ -81,162 +241,6 @@ export class WomenComponent implements OnInit {
         
       }
     ); 
-    this.storeService.get().subscribe(
-      (res:any)=>{
-    for(let i in res.data){
-  
-    this.productStore.push(res.data[i]);
-  
-  
   }
-   console.log(this.productStore);    
-  },
-    (error:any)=>{
-  
-    }
-  );
-    this.getIdByEmail();
-    this.getStoreId();
-    this.closeModel();
 
-  }
-  
- getPrice(){
-   this.storeService.get().subscribe(
-        (res:any)=>{
-  for(let i in res.data){
-    
-      this.price.push(res.data[i]);
-    
-    
-  }
-   
-        
-  },
-      (error:any)=>{
-
-      }
-   );
-
-   
-    console.log(this.price);
- }
- getIdByEmail(){
-  this._userService.get().subscribe(
-    (res: any) => {
-     let c= res.data.find((user:any)=>user.email==this.user);
-     console.log(c.id);
-     return c.id;
-  
-    },
-    (err:any)=>{
-      console.log(err);
-    }
-  );
-  }
-  products:any[]=[];
-  addToCart(id:any,productSizeColor:any){
-    this.productService.get().subscribe(
-      (res:any)=>{
-        for(let p in res.data){
-          this.products.push(res.data[p]);
-         
-        } 
-     
-        var product=this.products.find((p:any)=>p.id == id);
-        if(localStorage.getItem('product'+productSizeColor)=== null){
-        let price=product.price-product.discount;
-        localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+1+"#$"+price+"#$"+productSizeColor+"#$"+price);
-        // if(localStorage.getItem('product'+productSizeColor)=='product'){
-        //   localStorage.removeItem('product');
-        //   this.myapp.errormessage("Sorry not Available");
-        // }
-        // if (productSizeColor === null) {
-        //   localStorage.removeItem('product'+productSizeColor);
-        // // localStorage.removeItem('product');
-        //   alert('yes');
-        //   return
-        // }
-        this.myapp.successmessage(product.product_name+" Added To Cart Successfuly"); 
-        }
-        else{
-          this.myapp.showWarning(product.product_name+" Already Added Before","Oops"); 
-    
-        }
-
-      } );
-    }
-  getStoreId(){
-    this.storeService.get().subscribe(
-         (res:any)=>{
-   for(let i in res.data){
-  
-       this.storeId.push(res.data[i].id);
-  
-   }
-  console.log(this.storeId);
-  
-  //  console.log(res.data[0].id);
-  
-   },
-       (error:any)=>{
-  
-       }
-    );
-  
-  }
-  addToFav(id:any,ProdName:any,Image:any,newPrice:any){
-    if (localStorage.getItem('Fav' + id) === null) {
-      localStorage.setItem('Fav' + id, ProdName + '#$' + Image + '#$' + newPrice + '#$' + id + '#$' + 1);
-      this.myapp.successmessage(ProdName +" Added To Wish List Successfuly");
-    } else {
-      this.myapp.showWarning(ProdName +" Already Added Before","Oops"); 
-    } 
-  
-  }
-  getid(id:number){
-    this.productsCategory.forEach(
-      c=>{
-        if(c.id == id){
-          var img=this.imagepath+c.image;
-           this.total=c.price - c.discount;
-          $("#exampleModalLabel1").html(c?.product_name);
-          $("#exampleModalLabel11").prop('value',c?.id);
-          $("#exampleModalLabel2").html(c?.description);
-          $("#exampleModalLabel4").html(String(this.total));
-
-          $("#exampleModalLabel3").prop('src',img);
-          // $("#exampleModalLabel3").prop('src')=c?.src;
-          // console.log(this.imagepath+c.image);
-
-          for(let i=0;i<this.productStore.length;i++){
-           if(id==this.productStore[i].product_id){
-            this.productStoreId.push(this.productStore[i].id);
-            this.productSize.push(this.productStore[i].size);
-            this.productColor.push(this.productStore[i].color);
-            this.allStore.push(this.productStore[i]);
-
-           }
-        
-          }
-
-          console.log(this.productSize);
-          console.log(this.productColor);
-          console.log( this.allStore);
-
-
-
-        }
-      }
-    );
-  
-
-  }
-   closeModel(){
-  
-    this.productSize=[];
-    this.productColor=[];
-    this.productStoreId=[];
-    this.allStore=[];
-  }
 }

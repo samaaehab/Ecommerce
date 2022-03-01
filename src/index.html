@@ -101,6 +101,11 @@
     } 
   }
 </script>
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
+</script>
 <!-- SPECIFIC SCRIPTS -->
 <!-- <script src="assets/js/carousel-home.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script> -->
