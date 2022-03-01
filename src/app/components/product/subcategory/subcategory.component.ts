@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from 'src/app/models/Store';
 import { StoreService } from 'src/app/services/store.service';
 import { AppComponent } from 'src/app/app.component';
+import { SubcategoryService } from 'src/app/services/subcategory.service';
 
 @Component({
   selector: 'app-subcategory',
@@ -16,10 +17,14 @@ export class SubcategoryComponent implements OnInit {
   p: any = 1;
   count: any = 9;
   allStore: any[] = [];
+  subcat="";
   total: number = 0;
+  category="";
   productStore: any[] = [];
   constructor(private _activatedRoute: ActivatedRoute,
-    private _productService: ProductService, private storeService: StoreService, public myapp: AppComponent) { }
+    private _productService: ProductService, private storeService: StoreService, public myapp: AppComponent,
+    private _subcatService:SubcategoryService
+    ) { }
 
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe(params => {
@@ -29,11 +34,26 @@ export class SubcategoryComponent implements OnInit {
         (res: any) => {
           this.products = res;
           console.log(this.products);
+
+          this._subcatService.show(Number(subid)).subscribe(
+            (res:any)=>{
+              this.subcat=res.data;
+              console.log(this.subcat);
+              this.category=res.data.category.cat_name;
+              this.subcat=res.data.subcat_name;
+              console.log( this.category);
+              console.log( this.subcat);
+
+              
+
+            }
+          )
             
         }
       );
         
     })
+
     this.storeService.get().subscribe(
       (res: any) => {
         for (let i in res.data) {

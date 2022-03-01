@@ -1,0 +1,11 @@
+.countdown_inner {
+    background-color: cornflowerblue ;
+    color: #fff;
+    width: 81%;
+    margin-top: 2%;
+    margin-left: 10%;
+   margin-bottom: 0px; 
+    padding: 5px;
+    text-align: center;
+    font-weight: 500;
+}
