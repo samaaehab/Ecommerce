@@ -14,6 +14,7 @@
                         <li>{{productDet.product_name}}</li>
                         <input id="inputProdName" type="hidden" value="{{productDet.product_name}}" #inputProdName>
                     </ul>
+                    <span *ngIf="check" class="text-danger">Unavailable Now</span>
                 </div>
                 <!-- /page_header -->
                 <div class="prod_info">
@@ -50,10 +51,11 @@
                             <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong class="ml-1">Store </strong><a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i class="ti-help-alt"></i></a></label>
                             <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                 <div class="custom-select-form" >
-                                    <select #inputSelected  class="form-select" aria-label="Default select example" >
+                                    <select #inputSelected class="form-select" aria-label="Default select example" >
                                         <option *ngFor="let s of store" value="{{s.id}}">
                                            <div *ngIf="s.product_id === productDet.id">
                                                {{s.color}}-{{s.size|uppercase}}
+                                               
                                            </div>
                                         </option>
                                 
@@ -76,7 +78,7 @@
                             <input id="inputNewPrice" type="hidden" value="{{productDet.price - productDet.discount}}" #inputNewPrice>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <div class="btn_add_to_cart" (click)="addToCart(inputId.value,inputSelected.value)"><a class="btn_1 text-white">Add to Cart</a></div>
+                            <button class="btn_add_to_cart btn_1 text-white" [disabled]="check" (click)="addToCart(inputId.value,inputSelected.value)">Add to Cart</button>
                         </div>
                     </div>
                 </div>

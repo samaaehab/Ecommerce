@@ -108,6 +108,12 @@ productCount:any;
         this.auth.changeAuthStatus(false);
         this.router.navigateByUrl('/acount');
         localStorage.removeItem('email');
+        for (var i = 0; i < localStorage.length; i++) {
+          let a = localStorage.key(i);
+          if (a?.substring(0, 7) == 'product') {
+           localStorage.removeItem(a?.substring(0, 7));
+          }
+        }
 
       }
       cartCount(){

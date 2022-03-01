@@ -12,54 +12,62 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class VeiwProductComponent implements OnInit {
   imagepath: any = 'http://127.0.0.1:8000/public/image/';
+  x=0;
   prodid:any;
   productCat:any[]=[];
   store:any[]=[];
   mainhomeRate=4;
-
+  check:boolean=false;
   productDet:any;
   constructor(private _activatedRoute: ActivatedRoute,
     private _productService: ProductService,private storeService: StoreService, public myapp: AppComponent) { }
 
   ngOnInit(): void {
+    
     this._activatedRoute.paramMap.subscribe(params => {
       this.prodid = params.get('pId');
+      this.show(this.prodid);
+      this.storeService.get().subscribe(
+        (res:any)=>{
+          for(let i in res.data){
 
-      this._productService.show(this.prodid).subscribe(
-        (res: any) => {
-          this.productDet=res.data;
-          console.log(this.productDet);
-          let catId=res.data.category.id;
-
-          // console.log(catId);
-
-          this._productService.getProductsCategory(catId).subscribe(
-            (res: any) => {
-              // console.log(res);
-      
-              this.productCat=res;
-              console.log(this.productCat);
-
-            },(error:any)=>{
-              console.log(error);
+            if(res.data[i].product_id==this.productDet.id)
+              this.store.push(res.data[i]);
+              console.log(this.store.length);
+              
+            if(this.store.length === 0){
+              this.check=true;
+            }else{
+              this.check=false;
             }
-            
-      
-          );
-            
-        },(error:any)=>{
-          console.log(error);
+          } 
+          },
+          (error:any)=>{
+
         }
-        
-
       );
+      
     });
-
-
-    this.getStore();
     
   }
   products:any[]=[];
+  show(id:any){
+    this._productService.show(id).subscribe(
+      (res: any) => {
+        this.productDet=res.data;
+        let catId=this.productDet.category.id;
+        this._productService.getProductsCategory(catId).subscribe(
+          (res: any) => {
+            this.productCat=res;
+          },(error:any)=>{
+            console.log(error);
+          }
+        ); 
+      },(error:any)=>{
+        console.log(error);
+      } 
+    );
+  }
 addToCart(id:any,productSizeColor:any){
   this._productService.get().subscribe(
     (res:any)=>{
@@ -92,24 +100,12 @@ addToCart(id:any,productSizeColor:any){
   onmainHomeRateChange(rate:number):void{
     this.mainhomeRate=rate;
       }
-  getStore(){
-    this.storeService.get().subscribe(
-         (res:any)=>{
-   for(let i in res.data){
-
-     if(res.data[i].product_id==this.productDet.id)
-       this.store.push(res.data[i]);
-        
-   } 
-   },
-       (error:any)=>{
- 
-       }
-    );
+  // getStore(){
+   
  
     
-     console.log(this.store);
-  }
+     
+  // }
   addToFav(id:any,ProdName:any,Image:any,newPrice:any){
     // let id = $("#id").prop('value');
     // localStorage.setItem('product_name' + id,ProdName);
