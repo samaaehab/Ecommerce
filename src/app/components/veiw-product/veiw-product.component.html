@@ -18,7 +18,7 @@
                 <!-- /page_header -->
                 <div class="prod_info">
                     <h1>{{productDet.product_name}}</h1>
-                    <app-rating [rate]="mainhomeRate" (change)="onmainHomeRateChange($event)"></app-rating>
+                    <app-rating [rate]="mainhomeRate" (change)="onmainHomeRateChange($event,productDet.id)"></app-rating>
 
                     <!-- <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span> -->
                     <p><small>Discription</small><br>{{productDet.description}}</p>
@@ -102,43 +102,6 @@
 
     <!-- /tab_content_wrapper -->
 
-    <div class="container margin_60_35">
-        <div class="main_title">
-            <h2>Related</h2>
-            <span>Products</span>
-            <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
-        </div>
-        <div class="row">
-            <div class="item col-4" *ngFor="let pro of productCat">
-                <div class="grid_item">
-                    <span class="ribbon new">New</span>
-                    <figure>
-                        <a >
-                            <img class="owl-lazy" src="{{imagepath}}{{pro.image}}" #inputImage  style="height: 300px !important; width:300px !important" alt="">
-                        </a>
-                    </figure>
-                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                    <a href="product-detail-1.html">
-                        <h3>{{pro.product_name}}</h3>
-                    </a>
-                    <div class="price_box">
-                        <span class="new_price">${{pro.price}}</span>
-                        <span class="old_price">{{pro.price+pro.discount|currency}}</span>
-                    </div>
-                    <ul>
-                        <!-- <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li> -->
-                        <li><a routerLink="/veiw/{{pro.id}}" class="tooltip-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-placement="left"
-                            title="view product"><i class="fa fa-eye" style="font-size:20px"
-                              ></i><span>view product</span></a></li>                        
-                    </ul>
-                </div>
-                <!-- /grid_item -->
-            </div>
-            <!-- /item -->
-            <!-- /item -->
-        </div>
-        <!-- /products_carousel -->
-    </div>
     <!-- /container -->
 
     <div class="feat">

@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Product } from 'src/app/models/Product';
+import { Rating } from 'src/app/models/rating';
+import { User } from 'src/app/models/User';
 import { ProductService } from 'src/app/services/product.service';
 import { StoreService } from 'src/app/services/store.service';
+import { RatingService } from './../../services/rating.service';
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-veiw-product',
@@ -13,13 +17,18 @@ import { StoreService } from 'src/app/services/store.service';
 export class VeiwProductComponent implements OnInit {
   imagepath: any = 'http://127.0.0.1:8000/public/image/';
   prodid:any;
+  users=new User();
+  user = localStorage.getItem('email');
+  ratings=new Rating();
   productCat:any[]=[];
   store:any[]=[];
-  mainhomeRate=4;
+  mainhomeRate=0;
+  R:any;
+
 
   productDet:any;
   constructor(private _activatedRoute: ActivatedRoute,
-    private _productService: ProductService,private storeService: StoreService, public myapp: AppComponent) { }
+    private _productService: ProductService,private storeService: StoreService, private _ratingService:RatingService,private _userService:UserService,public myapp: AppComponent) { }
 
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe(params => {
@@ -54,10 +63,20 @@ export class VeiwProductComponent implements OnInit {
 
       );
     });
-
+    this._userService.get().subscribe(
+      (res: any) => {
+        console.log(JSON.stringify(res));
+        this.users = res.data.find((user: any) => user.email == this.user);
+        this._ratingService.check(this.users.id,this.prodid).subscribe(
+          (res:any)=>{
+            console.log(this.users.id);
+            console.log(this.prodid);
+            
+            this.mainhomeRate=res[0].degree;
+          });    
+      });
 
     this.getStore();
-    
   }
   products:any[]=[];
 addToCart(id:any,productSizeColor:any,qnt:any){
@@ -87,11 +106,37 @@ addToCart(id:any,productSizeColor:any,qnt:any){
     } 
   
   );
+
   }
 
-  onmainHomeRateChange(rate:number):void{
+  onmainHomeRateChange(rate:number,product_id:number):void{
     this.mainhomeRate=rate;
-      }
+        this.ratings.product_id=product_id;
+        this.ratings.degree=rate;
+        this.ratings.user_id=this.users.id;
+        this._ratingService.check(this.ratings.user_id,this.ratings.product_id).subscribe(
+          (res:any)=>{
+            
+            this.R = res.length;
+        // console.log(this.R);
+            if(this.R>0){
+              this.ratings.product_id=product_id;
+              this.ratings.degree=rate;
+              this.ratings.user_id=this.users.id;
+              this._ratingService.put(res[0].id,this.ratings).subscribe(
+                (res:any)=>{}
+              );
+              // console.log(res[0].id);
+            }
+            else{
+          this._ratingService.post(this.ratings).subscribe(
+            (res:any)=>{
+            });  
+          }
+          // this._ratingService.show();
+          }
+        );
+    }
   getStore(){
     this.storeService.get().subscribe(
          (res:any)=>{
