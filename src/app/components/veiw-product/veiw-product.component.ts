@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { HeaderComponent } from './../header/header.component';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Product } from 'src/app/models/Product';
@@ -25,14 +26,17 @@ export class VeiwProductComponent implements OnInit {
   store:any[]=[];
   mainhomeRate=0;
   R:any;
-  check:boolean=false;
-
+  check: boolean = false;
+  
   productDet:any;
   constructor(private _activatedRoute: ActivatedRoute,
-    private _productService: ProductService,private storeService: StoreService, private _ratingService:RatingService,private _userService:UserService,public myapp: AppComponent) { }
+    private _productService: ProductService, private storeService: StoreService,
+    private _ratingService: RatingService, private _userService: UserService,
+    public myapp: AppComponent , public header:HeaderComponent) { }
 
   ngOnInit(): void {
-    
+   
+
     this._activatedRoute.paramMap.subscribe(params => {
       this.prodid = params.get('pId');
       this.show(this.prodid);
@@ -100,15 +104,13 @@ addToCart(id:any,productSizeColor:any,qnt:any){
         this.products.push(res.data[p]);
        
       } 
-      
+    
       var product=this.products.find((p:any)=>p.id == id);
-      if(localStorage.getItem('product'+productSizeColor)=== null){
+      if (localStorage.getItem('product' + productSizeColor) === null) {
+        // this.header.cartCount();
       let price=product.price-product.discount;
-      localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+qnt+"#$"+price+"#$"+productSizeColor+"#$"+price);
-      // if(localStorage.getItem('product'+productSizeColor)=='product'){
-      //   localStorage.removeItem('product');
-      //   this.myapp.errormessage("Sorry not Available");
-      // }
+      localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+qnt+"#$"+price+"#$"+productSizeColor+"#$"+price*qnt);
+        this.header.count++;
       this.myapp.successmessage(product.product_name+" Added To Cart Successfuly"); 
     }
       else{
@@ -120,6 +122,7 @@ addToCart(id:any,productSizeColor:any,qnt:any){
     } 
   
   );
+ 
 
   }
 
@@ -151,21 +154,21 @@ addToCart(id:any,productSizeColor:any,qnt:any){
           }
         );
     }
-  getStore(){
-    this.storeService.get().subscribe(
-         (res:any)=>{
-   for(let i in res.data){
+  // getStore(){
+  //   this.storeService.get().subscribe(
+  //        (res:any)=>{
+  //  for(let i in res.data){
 
-     if(res.data[i].product_id==this.productDet.id)
-       this.store.push(res.data[i]);
+  //    if(res.data[i].product_id==this.productDet.id)
+  //      this.store.push(res.data[i]);
         
-   } 
-   },
-       (error:any)=>{
+  //  } 
+  //  },
+  //      (error:any)=>{
  
-       }
-    );
-      }
+  //      }
+  //   );
+  //     }
  
     
      

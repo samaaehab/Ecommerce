@@ -8,6 +8,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { User } from 'src/app/models/User';
 import Pusher from 'pusher-js';
+import { Router } from '@angular/router';
+import { AdminTokenService } from 'src/app/services/admin-token.service';
+import { AuthenService } from 'src/app/services/authen.service';
 
 declare const $: any;
 
@@ -26,9 +29,11 @@ export class AdminusersComponent implements OnInit {
   users: User[] = [];
   // Pagination parameters.
   p: any = 1;
-  count: any = 7;
+  count: any = 6;
   searchText: any;
-  constructor(public myapp: AppComponent, private http: HttpClient, private _formBuilder: FormBuilder, private _userService: UserService) { }
+  constructor(public myapp: AppComponent, private http: HttpClient,
+    private _formBuilder: FormBuilder, private _userService: UserService ,
+    private token: AdminTokenService, private auth: AuthenService, private router: Router) { }
 
 
 
@@ -154,5 +159,10 @@ export class AdminusersComponent implements OnInit {
         }
       );
   }
-
+  logout(event:MouseEvent){
+    event.preventDefault();
+    this.token.remove();
+    this.auth.changeAdminAuthStatus(false);
+    this.router.navigateByUrl('/admin-acount');
+  }
 }

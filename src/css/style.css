@@ -5199,7 +5199,12 @@ input.qty2:focus {
 .ribbon.off:before {
   border-color: #F33 transparent transparent;
 }
-
+.ribbon.child {
+  background-color: rgb(14, 151, 185);
+}
+.ribbon.child:before {
+  border-color: rgb(14, 151, 185) transparent transparent;
+}
 .box_general {
   padding: 25px 25px 5px 25px;
   margin-bottom: 25px;

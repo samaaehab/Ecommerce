@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Order } from 'src/app/models/Order';
 import { AppComponent } from 'src/app/app.component';
 import  Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { AdminTokenService } from 'src/app/services/admin-token.service';
+import { AuthenService } from 'src/app/services/authen.service';
 declare const $: any;
 @Component({
   selector: 'app-adminorders',
@@ -13,9 +16,11 @@ export class AdminordersComponent implements OnInit {
   orders:Order[]=[];
   // Pagination parameters.
   p: any = 1;
-  count: any = 3;
+  count: any = 5;
   searchText:any;
-  constructor(private _orderService:OrderService ,public myapp: AppComponent,private orderService:OrderService) { }
+  constructor(private _orderService: OrderService, public myapp: AppComponent,
+    private orderService: OrderService ,
+    private token: AdminTokenService, private auth: AuthenService, private router: Router) { }
 
   ngOnInit(): void {
     this.getOrderData();
@@ -94,6 +99,11 @@ getOrderData(){
     );
     
   }
-
+  logout(event:MouseEvent){
+    event.preventDefault();
+    this.token.remove();
+    this.auth.changeAdminAuthStatus(false);
+    this.router.navigateByUrl('/admin-acount');
+  }
 
 }

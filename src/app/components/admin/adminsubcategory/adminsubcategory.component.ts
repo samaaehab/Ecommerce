@@ -1,3 +1,4 @@
+import { AdmindashboardComponent } from './../admindashboard/admindashboard.component';
 import { Component, OnInit } from '@angular/core';
 import { SubCategory } from 'src/app/models/SubCategory';
 import { SubcategoryService } from 'src/app/services/subcategory.service';
@@ -7,6 +8,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppComponent } from 'src/app/app.component';
 import  Swal from 'sweetalert2';
+import { AdminTokenService } from 'src/app/services/admin-token.service';
+import { AuthenService } from 'src/app/services/authen.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,7 +28,9 @@ export class AdminsubcategoryComponent implements OnInit {
    count: any = 5;
    searchText:any;
   constructor(private _formBuilder: FormBuilder, private _SubcategoryService: SubcategoryService, private _categoryService: CategoryServiceService
-    ,public myapp: AppComponent) { }
+    , public myapp: AppComponent ,
+    private token: AdminTokenService, private auth: AuthenService, private router: Router) { }
+  
 
   ngOnInit(): void {
     this.formSubcat=this._formBuilder.group({
@@ -136,7 +142,8 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
       (response:any)=>{
         this.getCategoryData();
         this.getSubCategoryData();
-        this.myapp.showInfo(' SubCategory updated successfly','update');
+        this.myapp.showInfo(' SubCategory updated successfly', 'update');
+        
       },
       (error: any) => {
         for (const err in error.error.errors) {
@@ -149,5 +156,10 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
       }
     );
   }
-
+  logout(event:MouseEvent){
+    event.preventDefault();
+    this.token.remove();
+    this.auth.changeAdminAuthStatus(false);
+    this.router.navigateByUrl('/admin-acount');
+  }  
 }

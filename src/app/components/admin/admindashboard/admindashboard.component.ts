@@ -18,7 +18,9 @@ export class AdmindashboardComponent implements OnInit {
   categoriesCount:number=0;
   ordersCount:number=0;
   count:number=0;
-  constructor(private userService:UserService,private productService:ProductService,private orderService:OrderService,private categoryService:CategoryServiceService,private token:AdminTokenService,private auth:AuthenService,private router:Router,public router2:Router) { }
+  constructor(private userService: UserService, private productService: ProductService,
+    private orderService: OrderService, private categoryService: CategoryServiceService,
+    private token: AdminTokenService, private auth: AuthenService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -54,6 +56,11 @@ export class AdmindashboardComponent implements OnInit {
   }
 
 
-    
+  logout(event:MouseEvent){
+    event.preventDefault();
+    this.token.remove();
+    this.auth.changeAdminAuthStatus(false);
+    this.router.navigateByUrl('/admin-acount');
+  }  
 
 }

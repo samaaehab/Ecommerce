@@ -119,8 +119,9 @@ productCount:any;
       let a = localStorage.key(i);
       if (a?.substring(0, 7) == 'product') {
         localStorage.removeItem(a?.substring(0, 7)+a?.substring(7));
-         
-
+      }
+      if (a?.substring(0, 3) == 'Fav') {
+        localStorage.removeItem(a?.substring(0, 3)+a?.substring(3));
       }
     }
   }
@@ -131,9 +132,10 @@ productCount:any;
             this.count++;
             // console.log(a?.substring(0, 7));
 
+            console.log('yes');
           }
         }
-
+          
         return this.count;
 
       }

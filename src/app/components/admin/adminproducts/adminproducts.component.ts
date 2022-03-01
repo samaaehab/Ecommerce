@@ -12,6 +12,9 @@ import { StoreService } from './../../../services/store.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Category } from 'src/app/models/Category';
 import { event } from 'jquery';
+import { Router } from '@angular/router';
+import { AdminTokenService } from 'src/app/services/admin-token.service';
+import { AuthenService } from 'src/app/services/authen.service';
 
 @Component({
   selector: 'app-adminproducts',
@@ -29,7 +32,7 @@ export class AdminproductsComponent implements OnInit {
   imagepath: any = 'http://127.0.0.1:8000/public/image/';
   // Pagination parameters.
   p: any = 1;
-  count: any = 6;
+  count: any = 5;
   // p1: any = 1;
   // count1: any = 3;
   searchText: any;
@@ -39,7 +42,8 @@ export class AdminproductsComponent implements OnInit {
   formProduct = new FormGroup({});
 
   constructor(private _productService: ProductService, private _SubcategoryService: SubcategoryService, private _StoreService: StoreService, private _categoryService: CategoryServiceService,
-    public myapp: AppComponent, private http: HttpClient, private _formBuilder: FormBuilder) { }
+    public myapp: AppComponent, private http: HttpClient, private _formBuilder: FormBuilder ,
+    private token: AdminTokenService, private auth: AuthenService, private router: Router) { }
 
   ngOnInit(): void {
     this.formProduct = this._formBuilder.group({
@@ -265,7 +269,12 @@ export class AdminproductsComponent implements OnInit {
   isControlHasError(name: string, error: string): boolean {
     return this.formProduct.controls[name].invalid && this.formProduct.controls[name].errors?.[error];
   }
-
+  logout(event:MouseEvent){
+    event.preventDefault();
+    this.token.remove();
+    this.auth.changeAdminAuthStatus(false);
+    this.router.navigateByUrl('/admin-acount');
+  }
 
 }
 
