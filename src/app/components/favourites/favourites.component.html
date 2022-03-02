@@ -29,7 +29,7 @@
                                     Subtotal
                                 </th> -->
                                 <th>
-                                    
+
                                 </th>
                             </tr>
                         </thead>
@@ -56,7 +56,7 @@
                                     <a href="" routerLink="/favourites"><i class="ti-trash"(click)="omg('Fav'+fav[3])"></i></a>
                                 </td>
                             </tr>
-                           
+
                         </tbody>
                     </table>
 
@@ -74,12 +74,12 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <!-- /cart_actions-->
 
     </div>
     <!-- /container -->
-    
+
     <div class="box_cart">
         <div class="container">
         <div class="row justify-content-end">
@@ -105,10 +105,10 @@
 <ng-container *ngIf="productsInFav.length ==0">
   <div class="container">
       <div class="card">
-          <h5 class="card-title">WISHLIST</h5>
+          <h5 class="card-title">MY WISHLIST <i class="fas fa-heart text-danger"></i></h5>
       </div>
       <div class="center">
-          <img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90" alt="">
+          <img src="../../assets/empty-wishlist.png" alt="">
           <h4>Your wish list is empty!</h4>
           <h6>Add item to it now</h6>
           <button routerLink="/home" class="btn btn-primary">Shop Now</button>

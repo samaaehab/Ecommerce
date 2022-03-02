@@ -1,7 +1,6 @@
 .card {
-  height: 60vh;
+  min-height: 500px;
   margin: 25px;
-  padding: 25px;
 }
 
 .center img {
@@ -21,22 +20,28 @@ h6 {
 
 .center {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
 }
 
-.card-table {
+h5{
   position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  min-width: none;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
+  display: inline-block;
+  font-weight: bold;
+  background: rgb(154,154,154);
+  background: linear-gradient(90deg, rgba(154,154,154,1) 0%, rgba(15,36,222,1) 14%, rgba(0,157,198,1) 49%, rgba(202,28,224,1) 74%, rgba(76,0,255,1) 100%);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: .25rem;
+  padding: 20px 0;
 }
 
 .center .btn {

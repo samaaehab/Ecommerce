@@ -169,7 +169,7 @@ header {
 .nav-container .all-category-nav .input-menu-all {
     display: none;
 }
-.nav-container .all-category-nav .input-menu-all:checked ~ .all-category-list {
+.nav-container .all-category-nav .input-menu-all:hover ~ .all-category-list {
     display: block;
 }
 
@@ -187,10 +187,14 @@ header {
     height: auto;
     padding: 15px 0;
     position: absolute;
-    top: 50px;
+    top: 35px;
     left: 24px;
     width: 200px;
     z-index: 90;
+    transition: 100ms all linear 0s;
+}
+.nav-container .all-category-list:hover{
+  display: block;
 }
 
 @media (max-width: 991px) {

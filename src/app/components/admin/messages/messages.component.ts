@@ -25,39 +25,45 @@ contentMessage:any;
  
  ngOnInit(): void {
   //  this.get();
-   this._contact.get().subscribe(
-    (res:any)=>{
-      console.log(res);
-      this.messages=res;
-
-      this.messagesCount=res.length;
-      for(let i = 0 ; i < this.messagesCount ; i++){
-        if(res[i].seen === 0){
-          this.counter++;
-        }
-
-      }
-    }
-  );
+  //  this.getmsg();
  }
+//  getmsg() {
+//   this._contact.get().subscribe(
+//     (res:any)=>{
+//       console.log(res);
+//       this.messages=res;
 
- view(id:any){
- this._contact.show(id).subscribe(
- (res:any)=>{
- this.name=res.name;
- this.contentMessage=res.message;
- this.contact.seen=1;
- this._contact.put(id,this.contact).subscribe(
- (res:any)=>{}
- )
- }
- );
+//       this.messagesCount=res.length;
+//       for(let i = 0 ; i < this.messagesCount ; i++){
+//         if(res[i].seen === 0){
+//           this.counter++;
+//         }
+
+//       }
+//     }
+//   );
+// }
+//  view(id:any){
+//  this._contact.show(id).subscribe(
+//  (res:any)=>{
+//  this.name=res.name;
+//  this.contentMessage=res.message;
+//  this.contact.seen=1;
+//  this._contact.put(id,this.contact).subscribe(
+//    (res: any) => {
+//    this.getmsg();
+     
+//  }
+//  )
+//  }
+//  );
  
- }
- logout(event:MouseEvent){
-  event.preventDefault();
-  this.token.remove();
-  this.auth.changeAdminAuthStatus(false);
-  this.router.navigateByUrl('/admin-acount');
-}  
+//  }
+
+//  logout(event:MouseEvent){
+//   event.preventDefault();
+//   this.token.remove();
+//   this.auth.changeAdminAuthStatus(false);
+//   this.router.navigateByUrl('/admin-acount');
+// }  
 }

@@ -3,7 +3,7 @@ import { Component, Input, OnInit,Output, EventEmitter} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Product } from 'src/app/models/Product';
-import { Rating } from 'src/app/models/rating';
+import { Rating } from 'src/app/models/Rating';
 import { User } from 'src/app/models/User';
 import { ProductService } from 'src/app/services/product.service';
 import { StoreService } from 'src/app/services/store.service';
