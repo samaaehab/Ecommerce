@@ -1,3 +1,4 @@
+import { ContactUsService } from 'src/app/services/contact-us.service';
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/Category';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
@@ -9,6 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Massege } from 'src/app/models/Massege';
 declare const $: any;
 import  Swal from 'sweetalert2';
+import { AdminTokenService } from 'src/app/services/admin-token.service';
+import { AuthenService } from 'src/app/services/authen.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,15 +29,30 @@ export class AdmincategoryComponent implements OnInit {
    p: any = 1;
    count: any = 5;
    searchText:any;
-
+   messagesCount:number=0;
+   counter:number=0;
   constructor(private _formBuilder: FormBuilder, private _categoryService: CategoryServiceService,
-    public myapp: AppComponent) { }
+    public myapp: AppComponent, private token: AdminTokenService,
+    private auth: AuthenService, private router: Router , private _contact:ContactUsService) { }
 
   ngOnInit(): void {
     this.formCat=this._formBuilder.group({
       Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],      
       });
-      this.getCategoryData();
+    this.getCategoryData();
+    this._contact.get().subscribe(
+      (res:any)=>{
+        console.log(res);
+        
+        this.messagesCount=res.length;
+        for(let i = 0 ; i < this.messagesCount ; i++){
+          if(res[i].seen === 0){
+            this.counter++;
+          }
+
+        }
+      }
+    );
   }
   getCategoryData(){ 
     this._categoryService.get().subscribe(
@@ -143,5 +162,10 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
     //alert("Done");
   }
 
-
+  logout(event:MouseEvent){
+    event.preventDefault();
+    this.token.remove();
+    this.auth.changeAdminAuthStatus(false);
+    this.router.navigateByUrl('/admin-acount');
+  }
 }

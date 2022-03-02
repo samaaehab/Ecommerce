@@ -38,7 +38,15 @@
 			<li class="nav-row-list" style="width: 120px;"><a routerLink="/contact/contactus" class="nav-row-list-link">Contact Us</a></li>
 		</ul>
 		</nav>
-
+		<nav>
+			<ul class="d-flex" style="margin-left: 70px;">
+				<li style="width: 100px; margin-top: 30px;">
+					<i class="weatherWidgetRow" style="margin-top: 5px;">{{WeatherData.name}} : {{WeatherData.temp_celcius}}°</i>
+				</li>
+				<li ><i style="font-size: 35px;" class="fas fa-3x fa-sun sun weatherWidgetRow" *ngIf="WeatherData.isDay"></i></li>
+				<li ><i style="font-size: 35px;color: #fffb00;"class="fas fa-3x fa-moon moon weatherWidgetRow" *ngIf="!WeatherData.isDay"></i></li>	
+			</ul>
+		</nav>
 	  </div>
     <!--search -->
 	<nav class="nav-content" style="margin-right: 0% !important;">
@@ -88,7 +96,6 @@
 		</ul>
 	</nav>
     <!-- // search -->
-
   </div>
   <!-- nav navigation commerce -->
 

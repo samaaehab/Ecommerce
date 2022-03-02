@@ -54,7 +54,7 @@ export class CheckoutComponent implements OnInit {
             for(let i of this.cartInOrder){
               this.totalPrice+=Number(i.total_price);
             }
-            console.log(this.totalPrice);
+            console.log(this.cartInOrder);
             
             
           }
@@ -223,5 +223,15 @@ export class CheckoutComponent implements OnInit {
        
       window.document.body.appendChild(s);
     }
+  }
+  imagepath: any = 'http://127.0.0.1:8000/public/image/';
+  return(id:any,s_id:any,p_id:any,p_name:any,img:any,p_number:any,disc:any,pric:any,tot_price:any){
+    this._cartService.delete(id).subscribe(
+      (res:any)=>{
+         localStorage.setItem('product'+s_id,p_id+"#$"+p_name+"#$"+this.imagepath+img+"#$"+p_number+"#$"+(pric-disc)+"#$"+s_id+"#$"+tot_price);
+         this.router.navigateByUrl('/cart');
+      }
+    );
+   
   }
 }

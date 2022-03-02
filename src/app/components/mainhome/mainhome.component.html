@@ -188,8 +188,9 @@
       <div class="col-lg-6"  *ngFor="let disc of productsDisc">
         <a class="box_news" >
           <figure>
-            <img src="{{imagepath}}{{disc.image}}" data-src="../../assets/img/blog-thumb-1.jpg" alt=""
-              width="400" height="266" class="lazy">
+            <a href="" routerLink="/veiw/{{disc.id}}">
+            <img  src="{{imagepath}}{{disc.image}}" data-src="../../assets/img/blog-thumb-1.jpg" alt=""
+              width="400" height="266" class="lazy"></a>
             <figcaption style="width: 56px;height: 48px;text-align: left !important;" class="fw-bold text-start">-{{(disc.discount/disc.price)*100|number}}%</figcaption>
           </figure>
           <h4>{{disc.product_name}}</h4>

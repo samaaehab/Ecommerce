@@ -1,3 +1,4 @@
+import { ContactUsService } from './../../../services/contact-us.service';
 import { OrderService } from './../../../services/order.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -12,9 +13,24 @@ import { AuthenService } from 'src/app/services/authen.service';
 export class Admin2Component implements OnInit {
   count:number=0;
   ordersCount:number=0;
-  constructor(private orderService:OrderService,private token:AdminTokenService,private auth:AuthenService,private router:Router) { }
+  messagesCount:number=0;
+  counter:number=0;
+  constructor(private _contact:ContactUsService,private orderService:OrderService,private token:AdminTokenService,private auth:AuthenService,private router:Router) { }
 
   ngOnInit(): void {
+    this._contact.get().subscribe(
+      (res:any)=>{
+        console.log(res);
+        
+        this.messagesCount=res.length;
+        for(let i = 0 ; i < this.messagesCount ; i++){
+          if(res[i].seen === 0){
+            this.counter++;
+          }
+
+        }
+      }
+    );
     this.orderService.get().subscribe(
       (res:any)=>{
         this.ordersCount=res.data.length;

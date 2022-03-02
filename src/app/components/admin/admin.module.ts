@@ -13,6 +13,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AdminsubcategoryComponent } from './adminsubcategory/adminsubcategory.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaxLengthPipe } from '../.././pipes/max-length.pipe';
+import { MessagesComponent } from './messages/messages.component';
 
 
 // toast
@@ -21,7 +22,7 @@ import { MaxLengthPipe } from '../.././pipes/max-length.pipe';
 
 const routes: Routes = [
 
-  {path:'admin',component:Admin2Component,
+  {path:'admin',
     children: [
     {path:'dashboard',component:AdmindashboardComponent},
     {path:'product',component:AdminproductsComponent},
@@ -29,6 +30,7 @@ const routes: Routes = [
     {path:'category',component:AdmincategoryComponent},
     {path:'order',component:AdminordersComponent},
     {path:'subcategory',component:AdminsubcategoryComponent},
+    {path:'messages',component:MessagesComponent},
 
   ]
 },
@@ -43,6 +45,7 @@ const routes: Routes = [
     AdminordersComponent,
     AdminsubcategoryComponent,
     MaxLengthPipe,
+    MessagesComponent,
 
   ],
   imports: [

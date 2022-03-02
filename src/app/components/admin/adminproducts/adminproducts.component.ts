@@ -1,3 +1,4 @@
+import { ContactUsService } from 'src/app/services/contact-us.service';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { Component, OnInit } from '@angular/core';
 import { SubCategory } from 'src/app/models/SubCategory';
@@ -12,6 +13,9 @@ import { StoreService } from './../../../services/store.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Category } from 'src/app/models/Category';
 import { event } from 'jquery';
+import { Router } from '@angular/router';
+import { AdminTokenService } from 'src/app/services/admin-token.service';
+import { AuthenService } from 'src/app/services/authen.service';
 
 @Component({
   selector: 'app-adminproducts',
@@ -21,7 +25,6 @@ import { event } from 'jquery';
 export class AdminproductsComponent implements OnInit {
   products: any[] = [];
   subcategories: SubCategory[] = [];
-
   categories: Category[] = [];
   stores: Store[] = [];
 
@@ -29,7 +32,7 @@ export class AdminproductsComponent implements OnInit {
   imagepath: any = 'http://127.0.0.1:8000/public/image/';
   // Pagination parameters.
   p: any = 1;
-  count: any = 6;
+  count: any = 5;
   // p1: any = 1;
   // count1: any = 3;
   searchText: any;
@@ -37,9 +40,12 @@ export class AdminproductsComponent implements OnInit {
   product = new Product();
   store = new Store();
   formProduct = new FormGroup({});
-
+  messagesCount:number=0;
+  counter:number=0
   constructor(private _productService: ProductService, private _SubcategoryService: SubcategoryService, private _StoreService: StoreService, private _categoryService: CategoryServiceService,
-    public myapp: AppComponent, private http: HttpClient, private _formBuilder: FormBuilder) { }
+    public myapp: AppComponent, private http: HttpClient, private _formBuilder: FormBuilder ,
+    private token: AdminTokenService, private auth: AuthenService, private router: Router,
+  private _contact:ContactUsService) { }
 
   ngOnInit(): void {
     this.formProduct = this._formBuilder.group({
@@ -53,6 +59,19 @@ export class AdminproductsComponent implements OnInit {
     this.getCategoryData();
     this.getSubCategoryData();
     this.getStoreData();
+    this._contact.get().subscribe(
+      (res:any)=>{
+        console.log(res);
+        
+        this.messagesCount=res.length;
+        for(let i = 0 ; i < this.messagesCount ; i++){
+          if(res[i].seen === 0){
+            this.counter++;
+          }
+
+        }
+      }
+    );
   }
   getProductData() {
     this._productService.get().subscribe(
@@ -74,7 +93,6 @@ export class AdminproductsComponent implements OnInit {
   getCategoryData() {
     this._categoryService.get().subscribe(
       (res: any) => {
-        console.log(JSON.stringify(res));
         this.categories = res.data;
       }
     );
@@ -265,7 +283,12 @@ export class AdminproductsComponent implements OnInit {
   isControlHasError(name: string, error: string): boolean {
     return this.formProduct.controls[name].invalid && this.formProduct.controls[name].errors?.[error];
   }
-
+  logout(event:MouseEvent){
+    event.preventDefault();
+    this.token.remove();
+    this.auth.changeAdminAuthStatus(false);
+    this.router.navigateByUrl('/admin-acount');
+  }
 
 }
 
