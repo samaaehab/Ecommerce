@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { TokenService } from './../../services/token.service';
 import { Router } from '@angular/router';
 import { event } from 'jquery';
@@ -28,7 +29,7 @@ allsubcategories:any[]=[];
   productsInCart: any[] = [];
 constructor(private _SubcategoryService:SubcategoryService,
 private _categoryService:CategoryServiceService,
-private auth:AuthenService,private router:Router,private token:TokenService) { }
+private auth:AuthenService,private router:Router,private token:TokenService,private _userService:UserService) { }
 searchText:any;
 productCount:any;
 WeatherData:any;
@@ -42,7 +43,11 @@ WeatherData:any;
   //   this.translate.use(lang);
   // }
 
+  message:string="";
 
+  receiveMessage($event:any) {
+    this.message = $event
+  }
   ngOnInit(): void {
     this.WeatherData = {
       main : {},
@@ -156,10 +161,18 @@ WeatherData:any;
       //    }
       //  );
       // }
+      users:any;
       getWeatherData(){
-        fetch('https://api.openweathermap.org/data/2.5/weather?q=assiut&appid=9c57a2635e1987d71a704765bfb30352')
-        .then(response=>response.json())
-        .then(data=>{this.setWeatherData(data);})
+        this._userService.get().subscribe(
+          (res: any) => {
+            console.log(JSON.stringify(res));
+            this.users = res.data.find((user: any) => user.email == this.user);
+            fetch('https://api.openweathermap.org/data/2.5/weather?q='+this.users.city+'&appid=9c57a2635e1987d71a704765bfb30352')
+            .then(response=>response.json())
+            .then(data=>{this.setWeatherData(data);})
+          }
+        );
+        
       }
     
       setWeatherData(data:any){

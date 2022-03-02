@@ -1,5 +1,5 @@
 import { HeaderComponent } from './../header/header.component';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,Output, EventEmitter} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Product } from 'src/app/models/Product';
@@ -29,6 +29,12 @@ export class VeiwProductComponent implements OnInit {
   check: boolean = false;
   
   productDet:any;
+  message: string = "Hola Mundo!"
+
+  @Output() messageEvent = new EventEmitter<string>();
+  sendMessage() {
+    this.messageEvent.emit(this.message)
+  }
   constructor(private _activatedRoute: ActivatedRoute,
     private _productService: ProductService, private storeService: StoreService,
     private _ratingService: RatingService, private _userService: UserService,
