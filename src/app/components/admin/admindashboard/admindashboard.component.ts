@@ -28,7 +28,8 @@ export class AdmindashboardComponent implements OnInit {
   ordersCount:number=0;
   count: number = 0;
   messagesCount:number=0;
-  counter:number=0;
+  counter: number = 0;
+  WeatherData:any;
   constructor(private userService: UserService, private productService: ProductService,
     private orderService: OrderService, private categoryService: CategoryServiceService,
     private token: AdminTokenService, private auth: AuthenService
@@ -79,6 +80,12 @@ export class AdmindashboardComponent implements OnInit {
         }
       }
     );
+    this.WeatherData = {
+ 	 	main : {},
+ 	 	isDay: true
+ 	 	};
+ 	 	this.getWeatherData();
+ 	 	console.log(this.WeatherData);
   }
 
   getmsg() {
@@ -121,5 +128,21 @@ export class AdmindashboardComponent implements OnInit {
     this.auth.changeAdminAuthStatus(false);
     this.router.navigateByUrl('/admin-acount');
   }  
-
+  getWeatherData(){
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=sohag&appid=9c57a2635e1987d71a704765bfb30352')
+    .then(response=>response.json())
+    .then(data=>{this.setWeatherData(data);})
+    }
+     
+    setWeatherData(data:any){
+    this.WeatherData = data;
+    let sunsetTime = new Date(this.WeatherData.sys.sunset * 1000);
+    this.WeatherData.sunset_time = sunsetTime.toLocaleTimeString();
+    let currentDate = new Date();
+    this.WeatherData.isDay = (currentDate.getTime() < sunsetTime.getTime());
+    this.WeatherData.temp_celcius = (this.WeatherData.main.temp - 273.15).toFixed(0);
+    this.WeatherData.temp_min = (this.WeatherData.main.temp_min - 273.15).toFixed(0);
+    this.WeatherData.temp_max = (this.WeatherData.main.temp_max - 273.15).toFixed(0);
+    this.WeatherData.temp_feels_like = (this.WeatherData.main.feels_like - 273.15).toFixed(0);
+    }
 }
