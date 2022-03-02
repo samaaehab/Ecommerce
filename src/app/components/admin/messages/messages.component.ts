@@ -25,7 +25,10 @@ contentMessage:any;
  
  ngOnInit(): void {
   //  this.get();
-   this._contact.get().subscribe(
+   this.getmsg();
+ }
+ getmsg() {
+  this._contact.get().subscribe(
     (res:any)=>{
       console.log(res);
       this.messages=res;
@@ -39,8 +42,7 @@ contentMessage:any;
       }
     }
   );
- }
-
+}
  view(id:any){
  this._contact.show(id).subscribe(
  (res:any)=>{
@@ -48,12 +50,16 @@ contentMessage:any;
  this.contentMessage=res.message;
  this.contact.seen=1;
  this._contact.put(id,this.contact).subscribe(
- (res:any)=>{}
+   (res: any) => {
+   this.getmsg();
+     
+ }
  )
  }
  );
  
  }
+
  logout(event:MouseEvent){
   event.preventDefault();
   this.token.remove();
