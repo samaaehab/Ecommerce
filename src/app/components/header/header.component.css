@@ -25,14 +25,16 @@ header {
     z-index: 10;
 }
 .header-content-top {
+  position: relative;
+  top: -16px;
     background: #004dda;
-    height: 30px;
+    height: 50px;
     width: 100%;
 }
 .header-content-top .content {
     align-items: center;
     display: flex;
-    height: 30px;
+    height: 50px;
     justify-content: flex-end;
     margin: 0 auto;
     max-width: 1300px;
@@ -218,30 +220,33 @@ header {
     transition: 100ms all linear 0s;
 }
 #divWeatherMain{
-    display: block;
     border-radius: 10px;
-    width: 200px;
-    height: 220px;
     background: rgb(0,0,0);
     background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(8,7,42,1) 75%, rgb(8, 10, 63) 100%);
-    color: white;;
+    color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .weatherWidgetRow{
-    display:block;
-    margin:0 auto;
+  position: absolute;
+    display:flex;
+    left: 130px;
+    top: 15px;
+    color: #fff;
+    flex-direction: row;
     width: fit-content;
 }
 
 .sun{
-    margin-top: 10px;
+    left: 90px;
+    top: 13px;
     color: yellow;
     filter: drop-shadow( 1px 1px 10px yellow);
 }
 
 .moon{
-    margin-top: 10px;
+  left: 90px;
+  top: 13px;
     color: white;
     filter: drop-shadow( 1px 1px 10px white);
 }

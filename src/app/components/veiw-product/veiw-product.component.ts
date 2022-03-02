@@ -1,5 +1,5 @@
 import { HeaderComponent } from './../header/header.component';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,Output, EventEmitter} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Product } from 'src/app/models/Product';

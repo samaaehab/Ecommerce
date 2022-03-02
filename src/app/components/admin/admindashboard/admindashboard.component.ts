@@ -67,19 +67,8 @@ export class AdmindashboardComponent implements OnInit {
         this.usersCount=res.data.length;
       }
     )
-    this._contact.get().subscribe(
-      (res:any)=>{
-        console.log(res);
-        
-        this.messagesCount=res.length;
-        for(let i = 0 ; i < this.messagesCount ; i++){
-          if(res[i].seen === 0){
-            this.counter++;
-          }
 
-        }
-      }
-    );
+      
     this.WeatherData = {
  	 	main : {},
  	 	isDay: true
@@ -95,12 +84,12 @@ export class AdmindashboardComponent implements OnInit {
         this.messages=res;
   
         this.messagesCount=res.length;
-        for(let i = 0 ; i < this.messagesCount ; i++){
-          if(res[i].seen === 0){
-            this.counter++;
-          }
+        // for(let i = 0 ; i < this.messagesCount ; i++){
+        //   if(res[i].seen === 0){
+        //     this.counter++;
+        //   }
   
-        }
+        // }
       }
     );
   }
