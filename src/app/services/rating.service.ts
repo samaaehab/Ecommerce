@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Rating } from '../models/rating';
+import { Rating } from '../models/Rating';
 
 @Injectable({
   providedIn: 'root'

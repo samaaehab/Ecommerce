@@ -1,3 +1,13 @@
 h6{
     color:white !important;
 }
+.footer{
+  position: relative;
+  top: -30px;
+}
+@media (max-width:767px) {
+  .footer-mobile{
+    padding-top: 50px;
+  }
+
+}

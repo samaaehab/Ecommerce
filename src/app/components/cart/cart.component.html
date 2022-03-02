@@ -40,22 +40,22 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let cart of productsInCart;let currentIndex=index">
-                  
+
                                 <td>
                                     <div class="thumb_cart">
                                         <img src="{{cart[2]}}" data-src="img/products/shoes/2.jpg" class="lazy" alt="Image">
                                     </div>
                                     <span class="item_cart">{{cart[1]}}</span>
                                 </td>
-                                <td>                                                                                      
+                                <td>
                                     <strong>{{productStore[currentIndex].color}}</strong>
                                 </td>
-                                <td>                                                                                      
+                                <td>
                                     <strong>{{productStore[currentIndex].size|uppercase}}</strong>
-                                </td>    
-                                <td>                                                                                      
+                                </td>
+                                <td>
                                     <strong>{{cart[4]|currency}}</strong>
-                                </td>                                                                                                
+                                </td>
                                 <td>
                                     <input style="border-radius: 4px !important;height: 30px !important;width: 50px !important;background-color: white;" type="number" min='1' (change)="getQty(inputQty.value)" (change)="getTotalPrice()"(change)="updateCart(cart[0],cart[1],cart[2],cart[4],inputQty.value,inputSubTotla.value,cart[5])" #inputQty value="{{cart[3]}}" id="quantity_2" class="qty2" name="quantity_2">
 
@@ -101,10 +101,10 @@
   <ng-container *ngIf="productsInCart.length ==0">
     <div class="container">
         <div class="card">
-            <h5 class="card-title">My Cart</h5>
+            <h5 class="card-title ">My Cart <i class="fas fa-shopping-cart"></i></h5>
         </div>
         <div class="center">
-            <img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90" alt="">
+            <img src="../../assets/empty.png" alt="">
             <h4>Your cart is empty!</h4>
             <h6>Add item to it now</h6>
             <button routerLink="/home" class="btn btn-primary">Shop Now</button>
