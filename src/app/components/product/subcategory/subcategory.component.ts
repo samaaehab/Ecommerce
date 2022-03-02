@@ -54,21 +54,21 @@ export class SubcategoryComponent implements OnInit {
         
     })
 
-    this.storeService.get().subscribe(
-      (res: any) => {
-        for (let i in res.data) {
+    // this.storeService.get().subscribe(
+    //   (res: any) => {
+    //     for (let i in res.data) {
   
-          this.productStore.push(res.data[i]);
+    //       this.productStore.push(res.data[i]);
   
   
-        }
-        console.log(this.productStore);
-      },
-      (error: any) => {
+    //     }
+    //     console.log(this.productStore);
+    //   },
+    //   (error: any) => {
   
-      }
+    //   }
   
-    );
+    // );
   }
 
   // getid(id: number) {
