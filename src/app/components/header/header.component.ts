@@ -42,12 +42,6 @@ WeatherData:any;
   // switchLang(lang: string) {
   //   this.translate.use(lang);
   // }
-
-  message:string="";
-
-  receiveMessage($event:any) {
-    this.message = $event
-  }
   ngOnInit(): void {
     this.WeatherData = {
       main : {},
