@@ -4,7 +4,7 @@ export class Order {
     name: string = "";
     discount: number = 0;
     price: number = 0;
-    // quantity: number = 0;
+    email: string = "";
     country: string = "";
     city: string = "";
     full_address: string = "";
