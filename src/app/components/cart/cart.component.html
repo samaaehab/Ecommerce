@@ -65,7 +65,7 @@
                                     <input id="totPrice" #inputSubTotla type="hidden" value="{{cart[4]*getQty(inputQty.value)}}">
                                 </td>
                                 <td class="options">
-                                    <a href="" routerLink="/cart" ><i class="ti-trash" (click)="omg('product'+cart[5])"></i></a>
+                                    <a href="" routerLink="/cart" ><i class="ti-trash" (click)="removeItem('product'+cart[5])"></i></a>
                                 </td>
                                 <!-- <td>
                                     <div class="col-sm-4 text-end">

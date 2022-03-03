@@ -276,14 +276,14 @@ header {
     flex-direction: row;
     width: fit-content;
   }
-  
+
   .sun {
     left: 90px;
     top: 13px;
     color: yellow;
     filter: drop-shadow(1px 1px 10px yellow);
   }
-  
+
   .moon {
     left: 90px;
     top: 13px;
@@ -314,7 +314,7 @@ header {
     font-size: 25px;
     color: white;
     filter: drop-shadow(1px 1px 10px white);
-  }  
+  }
 }
 @media (max-width:991px) {
   .weatherWidgetRow {
@@ -337,8 +337,8 @@ header {
     font-size: 25px;
     color: white;
     filter: drop-shadow(1px 1px 10px white);
-  } 
-  
+  }
+
 }
 .cloudDiv {
   margin-top: -40px;

@@ -49,25 +49,7 @@ WeatherData:any;
     };
     this.getWeatherData();
     console.log(this.WeatherData);
-    for (var i = 0; i < localStorage.length; i++) {
-      let a = localStorage.key(i);
-      if (a?.substring(0, 7) == 'product') {
-        let products = localStorage.getItem(a);
 
-        let splitProduct = products?.split('#$');
-        this.productsInCart.push(splitProduct);
-        // console.log(this.productsInCart);
-        // this.cartCount=this.productsInCart.length;
-
-
-
-      }
-    }
-    for (var i = 0; i < this.productsInCart.length; i++) {
-
-      this.totalPrice+=Number(this.productsInCart[i][6]);
- 
-     }
  
     this.auth.status.subscribe(value=>this.logged=value);
       this._categoryService.get().subscribe(
@@ -117,6 +99,9 @@ WeatherData:any;
       }
       getloginUser(){
         return this._userService.loginUser();
+      }
+      gettotalPrice(){
+        return this._cartService.totalPrice();
       }
   logout(event: MouseEvent) {
     event.preventDefault();
