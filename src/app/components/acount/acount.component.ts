@@ -28,7 +28,7 @@ export class AcountComponent implements OnInit {
   public loggedin!: boolean;
   public user: any;
   public error: any;
-  public U_Login:any;
+  U_Login=new User();
   userLogin = new User();
   constructor(private _formBuilder: FormBuilder,
     private authService: SocialAuthService,

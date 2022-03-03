@@ -9,6 +9,7 @@ import { AuthenService } from './../../services/authen.service';
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/Category';
 // import { TranslateService } from '@ngx-translate/core';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -20,16 +21,15 @@ export class HeaderComponent implements OnInit {
     throw new Error('Method not implemented.');
   }
 allsubcategories:any[]=[];
- public subcategories:any[]=[];
- user=localStorage.getItem('email');
- count:any=0;
+ public subcategories:any[]=[]
  categories:Category[]=[];
   public logged = false;
   totalPrice: number = 0;
   productsInCart: any[] = [];
+  user=localStorage.getItem('email');
 constructor(private _SubcategoryService:SubcategoryService,
 private _categoryService:CategoryServiceService,
-private auth:AuthenService,private router:Router,private token:TokenService,private _userService:UserService) { }
+private auth:AuthenService,private router:Router,private token:TokenService,private _userService:UserService,private _cartService:CartService) { }
 searchText:any;
 productCount:any;
 WeatherData:any;
@@ -109,12 +109,15 @@ WeatherData:any;
 
         }
       );
-    this.cartCount();
     // this.getCategoryData();
       }
 
-
-
+      getTotalCount() {
+        return this._cartService.cartCount();
+      }
+      getloginUser(){
+        return this._userService.loginUser();
+      }
   logout(event: MouseEvent) {
     event.preventDefault();
     this.token.remove();
@@ -131,20 +134,7 @@ WeatherData:any;
       }
     }
   }
-      cartCount(){
-        for(let i =0;i<localStorage.length;i++){
-          let a = localStorage.key(i);
-          if (a?.substring(0, 7) == 'product') {
-            this.count++;
-            // console.log(a?.substring(0, 7));
 
-            console.log('yes');
-          }
-        }
-          
-        return this.count;
-
-      }
       // getCategoryData(){ 
       //   this._categoryService.get().subscribe(
       //    (res: any) => {
