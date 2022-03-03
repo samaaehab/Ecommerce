@@ -28,7 +28,7 @@ export class AcountComponent implements OnInit {
   public loggedin!: boolean;
   public user: any;
   public error: any;
-  U_Login=new User();
+  U_Login: any[] = [];
   userLogin = new User();
   constructor(private _formBuilder: FormBuilder,
     private authService: SocialAuthService,
@@ -40,12 +40,42 @@ export class AcountComponent implements OnInit {
 
   signin() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((data) => {
-      alert(JSON.stringify(data));
-      this.router.navigateByUrl('/user/profile');
+      // alert(JSON.stringify(data));
+      // this.router.navigateByUrl('/user/profile');
+      this.userData.name = data.name;
+      this.userData.email = data.email;
+      this.userData.password = '000000';
+      this.userData.city = 'assiut';
+      this.userData.country = 'aaaa';
+      this.userData.phone = '01022222222';
+      this.userData.house_no = 22;
+      this.userData.full_address = "sss, alex";
+        this._userService.post(this.userData).subscribe(
+          (res: any) => {
+            alert("ss")
+            res.next();
+          }
+        );
+        this.userLogin.email = data.email;
+        this.userLogin.password = this.userData.password;
+        this._authService.login(this.userLogin).subscribe(
+          (response: any) => {
+            this.handelResponse(response);
+  
+            localStorage.setItem('email', this.userLogin.email);
+          },
+          (error: any) => {
+  
+            this.handelError(error);
+            this.myapp.errormessage(error.error.error);
+          }
+        );
+
+
     }).catch(data => {
-      alert(JSON.stringify(data));
+      // alert(JSON.stringify(data));
       this.authService.signOut();
-      this.router.navigateByUrl('/home');
+      // this.router.navigateByUrl('/home');
 
     })
   }
@@ -60,6 +90,8 @@ export class AcountComponent implements OnInit {
   //   });
   // }
   ngOnInit(): void {
+    this.signInWithGoogle();
+    this.U_Login;
     //   this.authService.authState.subscribe((user) => {
     //     this.user = user;
     //     this.loggedin = user != null
@@ -208,10 +240,6 @@ export class AcountComponent implements OnInit {
   userData = new User();
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID, this.googleLoginOptions).then((data) => {
-      console.log(data);
-
-      // let id = data.id;
-      // let gmailtoken = data.authToken;
       this.userData.name = data.name;
       this.userData.email = data.email;
       this.userData.password = '000000';
@@ -220,36 +248,26 @@ export class AcountComponent implements OnInit {
       this.userData.phone = '01222222222';
       this.userData.house_no = 22;
       this.userData.full_address = "egypt, alex";
-      this._userService.get().subscribe(
-        (response: any) => {
-        this.U_Login= response.data.find((u: any) => u.email == data.email);
-        }
-      );
-      console.log(this.U_Login);
-      if (this.U_Login.email !== data.email) {
         this._userService.post(this.userData).subscribe(
           (res: any) => {
             res.next();
           }
         );
-      }
-      this.userLogin.email = data.email;
-      this.userLogin.password = this.userData.password;
-      this._authService.login(this.userLogin).subscribe(
-        (response: any) => {
-          this.handelResponse(response);
+        this.userLogin.email = data.email;
+        this.userLogin.password = this.userData.password;
+        this._authService.login(this.userLogin).subscribe(
+          (response: any) => {
+            this.handelResponse(response);
+  
+            localStorage.setItem('email', this.userLogin.email);
+          },
+          (error: any) => {
+  
+            this.handelError(error);
+            this.myapp.errormessage(error.error.error);
+          }
+        );
 
-          localStorage.setItem('email', this.userLogin.email);
-        },
-        (error: any) => {
-
-          this.handelError(error);
-          this.myapp.errormessage(error.error.error);
-        }
-      );
-
-
-      // this.router.navigateByUrl('/home');
 
     }).catch(data => {
       // alert(JSON.stringify(data));
