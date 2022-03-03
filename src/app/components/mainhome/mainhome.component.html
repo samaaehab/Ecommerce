@@ -105,7 +105,7 @@
                   class="ti-heart"
                   (click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add
                   to favorites</span></a></li>
-           
+
             <li><a routerLink="/veiw/{{product.id}}" class="tooltip-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-placement="left"
                 title="view product"><i class="fa fa-eye" style="font-size:20px"
                   ></i><span>view product</span></a></li>
@@ -196,8 +196,8 @@
           <h4>{{disc.product_name}}</h4>
           <p>{{disc.description}} </p>
           <ul>
-            <li><span class="new_price">${{disc.price - disc.discount}}</span></li>
-            <li><span class="old_price" id="inputPrice">${{disc.price}}</span></li>
+            <li><span class="new_price">{{disc.price - disc.discount|currency}}</span></li>
+            <li><span class="old_price" id="inputPrice">${{disc.price|currency}}</span></li>
           </ul>
         </a>
       </div>

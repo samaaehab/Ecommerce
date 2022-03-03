@@ -23,4 +23,8 @@ export class UserService {
   put(id:number,user:User){
     return this._httpClient.put(this.url+`users/${id}`,user);
   }
+  loginUser(){
+    let user=localStorage.getItem('email');
+    return user;
+  }
 }

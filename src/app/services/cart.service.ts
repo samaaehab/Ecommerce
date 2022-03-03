@@ -23,4 +23,20 @@ delete(id:number){
 put(id:number,cart:Cart){
   return this._httpClient.put(this.url+`carts/${id}`,cart);
 }
+
+cartCount(){
+  let count = 0;
+  for(let i =0;i<localStorage.length;i++){
+    let a = localStorage.key(i);
+    if (a?.substring(0, 7) == 'product') {
+      count++;
+      // console.log(a?.substring(0, 7));
+
+    }
+  }
+    
+  return count;
+
 }
+}
+

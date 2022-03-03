@@ -86,14 +86,14 @@ export class CheckoutComponent implements OnInit {
   //     }
   //   );
   // }
-  addOrder(Name:string,Address:string,HouseNum:any,City:string,Country:string,Phone:any,totalPrice:string){
+  addOrder(Name:string,Address:string,HouseNum:any,City:string,Country:string,Phone:any,totalPrice:string,email:string){
     this.postOrder.name=Name;
     this.postOrder.full_address=Address;
     this.postOrder.house_no=HouseNum;
     this.postOrder.city=City;
     this.postOrder.country=Country;
     this.postOrder.phone=Phone;
-    //this.postOrder.payment_method=Payment;
+    this.postOrder.email=email;
     this.postOrder.user_id=this.users.id;
     
     this.postOrder.discount=0;

@@ -12,37 +12,40 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GoogleLoginProvider } from "angularx-social-login";
 import { Account } from 'src/app/models/Account';
-import  Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import { AppComponent } from 'src/app/app.component';
 import { User } from 'src/app/models/User';
+import { data } from 'jquery';
 @Component({
-selector: 'app-acount',
-templateUrl: './acount.component.html',
-styleUrls: ['./acount.component.css']
+  selector: 'app-acount',
+  templateUrl: './acount.component.html',
+  styleUrls: ['./acount.component.css']
 })
 export class AcountComponent implements OnInit {
-  formLogin= new FormGroup({});
+  formLogin = new FormGroup({});
   formRegister = new FormGroup({});
-  account =new Account;
+  account = new Account;
   public loggedin!: boolean;
   public user: any;
-  public error:any;
-  constructor(private _formBuilder: FormBuilder, 
+  public error: any;
+  U_Login=new User();
+  userLogin = new User();
+  constructor(private _formBuilder: FormBuilder,
     private authService: SocialAuthService,
-    private router:Router,
-    private _authService:AuthService,
-    private token:TokenService,
-   private auth:AuthenService,public myapp: AppComponent,
-   private _userService:UserService) { } //
- 
+    private router: Router,
+    private _authService: AuthService,
+    private token: TokenService,
+    private auth: AuthenService, public myapp: AppComponent,
+    private _userService: UserService) { } //
+
   signin() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((data) => {
       alert(JSON.stringify(data));
-     this.router.navigateByUrl('/user/profile');
+      this.router.navigateByUrl('/user/profile');
     }).catch(data => {
       alert(JSON.stringify(data));
       this.authService.signOut();
-     this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/home');
 
     })
   }
@@ -57,11 +60,11 @@ export class AcountComponent implements OnInit {
   //   });
   // }
   ngOnInit(): void {
-  //   this.authService.authState.subscribe((user) => {
-  //     this.user = user;
-  //     this.loggedin = user != null 
-      
-  // })
+    //   this.authService.authState.subscribe((user) => {
+    //     this.user = user;
+    //     this.loggedin = user != null
+
+    // })
     // (window as any).fbAsyncInit = function() {
     //   FB.init({
     //     appId      : '1617656521913206',
@@ -71,7 +74,7 @@ export class AcountComponent implements OnInit {
     //   });
     //   FB.AppEvents.logPageView();
     // };
-  
+
     // (function(d, s, id){
     //    var js, fjs = d.getElementsByTagName(s)[0];
     //    if (d.getElementById(id)) {return;}
@@ -81,29 +84,29 @@ export class AcountComponent implements OnInit {
     //  }(document, 'script', 'facebook-jssdk'));
 
 
-this.formLogin=this._formBuilder.group({
-email:['',[Validators.required,Validators.email]],
-password:['',[Validators.required,Validators.minLength(6)]]
+    this.formLogin = this._formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
 
-});
-this.formRegister=this._formBuilder.group({
-  name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],
-  email:['',[Validators.required,Validators.email]],
-  password:['',[Validators.required,Validators.minLength(6)]],
-  full_address:['',[Validators.required,Validators.maxLength(100)]],
-  house_no:['',[Validators.required]],
-  country:['',[Validators.required]],
-  city:['',[Validators.required]],
-  phone:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],
-});  
-  // auth
+    });
+    this.formRegister = this._formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      full_address: ['', [Validators.required, Validators.maxLength(100)]],
+      house_no: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      phone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+    });
+    // auth
 
-// this.authService.initState.subscribe(value => {
-//   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(user => {
-//     console.log('GoogleContainerComponent.ngOnInit user:', user)
-//   });
-// })
-}
+    // this.authService.initState.subscribe(value => {
+    //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(user => {
+    //     console.log('GoogleContainerComponent.ngOnInit user:', user)
+    //   });
+    // })
+  }
   //facebook fun
   // submitLogin(){
   //   console.log("submit login to facebook");
@@ -122,96 +125,93 @@ this.formRegister=this._formBuilder.group({
   //     });
 
   // }
- login(){
-  this._authService.login(this.formLogin.value).subscribe(
-    (response:any)=>{
-      this.handelResponse(response);
-      
-      localStorage.setItem('email',this.formLogin.value.email);
-//this.token.handel(response.access_token);
-      //this.myapp.successmessage(response.message);
-       //console.log(response);
-    },
-    (error:any)=>{
-      
-      this.handelError(error);
-          this.myapp.errormessage(error.error.error);
-    }
-  );
+  login() {
+    this._authService.login(this.formLogin.value).subscribe(
+      (response: any) => {
+        this.handelResponse(response);
 
-}
-register(){
-  this._authService.signup(this.formRegister.value).subscribe(
-    (response:any)=>{
-     this.myapp.successmessage(response.message);
-    },
-    (error:any)=>{
-      this.handelError(error);
-      for (const err in error.error.errors) {
-        for (let i = 0; i < error.error.errors[err].length; i++){
-          console.log(error.error.errors[err][i]);
-          this.myapp.errormessage(error.error.errors[err][i]);
+        localStorage.setItem('email', this.formLogin.value.email);
+        //this.token.handel(response.access_token);
+        //this.myapp.successmessage(response.message);
+        //console.log(response);
+      },
+      (error: any) => {
+
+        this.handelError(error);
+        this.myapp.errormessage(error.error.error);
+      }
+    );
+
+  }
+  register() {
+    this._authService.signup(this.formRegister.value).subscribe(
+      (response: any) => {
+        this.myapp.successmessage(response.message);
+      },
+      (error: any) => {
+        this.handelError(error);
+        for (const err in error.error.errors) {
+          for (let i = 0; i < error.error.errors[err].length; i++) {
+            console.log(error.error.errors[err][i]);
+            this.myapp.errormessage(error.error.errors[err][i]);
+          }
         }
       }
-    }
-  );
-}
-handelResponse(response:any){
-  this.token.handel(response.access_token);
-  this.auth.changeAuthStatus(false);
-  this.router.navigateByUrl('/home');
-}
+    );
+  }
+  handelResponse(response: any) {
+    this.token.handel(response.access_token);
+    this.auth.changeAuthStatus(false);
+    this.router.navigateByUrl('/home');
+  }
 
-handelError(error:any){
-  this.error=error.error.error;
-  
-}
+  handelError(error: any) {
+    this.error = error.error.error;
 
-
-isValidControl(name:string):boolean
-{
-return this.formLogin.controls[name].valid;
-}
-isInValidAndTouched(name:string):boolean
-{
-return this.formLogin.controls[name].invalid && (this.formLogin.controls[name].dirty || this.formLogin.controls[name].touched);
-}
-isControlHasError(name:string,error:string):boolean
-{
-return this.formLogin.controls[name].invalid && this.formLogin.controls[name].errors?.[error];
-}
+  }
 
 
-isValidControl2(name:string):boolean
-{
-return this.formRegister.controls[name].valid;
-}
-isInValidAndTouched2(name:string):boolean
-{
-return this.formRegister.controls[name].invalid && (this.formRegister.controls[name].dirty || this.formRegister.controls[name].touched);
-}
-isControlHasError2(name:string,error:string):boolean
-{
-return this.formRegister.controls[name].invalid && this.formRegister.controls[name].errors?.[error];
-}
+  isValidControl(name: string): boolean {
+    return this.formLogin.controls[name].valid;
+  }
+  isInValidAndTouched(name: string): boolean {
+    return this.formLogin.controls[name].invalid && (this.formLogin.controls[name].dirty || this.formLogin.controls[name].touched);
+  }
+  isControlHasError(name: string, error: string): boolean {
+    return this.formLogin.controls[name].invalid && this.formLogin.controls[name].errors?.[error];
+  }
 
 
-// signInWithGoogle(): void {
-//   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then( (data)=>{
-//     localStorage.setItem('google_auth',JSON.stringify(data));
-//     this.router.navigateByUrl('/home').then();
-//   });
-  
-// }
+  isValidControl2(name: string): boolean {
+    return this.formRegister.controls[name].valid;
+  }
+  isInValidAndTouched2(name: string): boolean {
+    return this.formRegister.controls[name].invalid && (this.formRegister.controls[name].dirty || this.formRegister.controls[name].touched);
+  }
+  isControlHasError2(name: string, error: string): boolean {
+    return this.formRegister.controls[name].invalid && this.formRegister.controls[name].errors?.[error];
+  }
 
-googleLoginOptions = {
-  scope: 'profile email'
-}; // https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauth2clientconfig
 
-userData=new User();
-userLogin=new User();
-signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID, this.googleLoginOptions ).then((data) => {
+  // signInWithGoogle(): void {
+  //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then( (data)=>{
+  //     localStorage.setItem('google_auth',JSON.stringify(data));
+  //     this.router.navigateByUrl('/home').then();
+  //   });
+
+  // }
+
+  googleLoginOptions = {
+    scope: 'profile email'
+  }; // https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauth2clientconfig
+
+  userData = new User();
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID, this.googleLoginOptions).then((data) => {
+      console.log(data);
+
+      // let id = data.id;
+      // let gmailtoken = data.authToken;
       this.userData.name = data.name;
       this.userData.email = data.email;
       this.userData.password = '000000';
@@ -220,18 +220,29 @@ signInWithGoogle(): void {
       this.userData.phone = '01222222222';
       this.userData.house_no = 22;
       this.userData.full_address = "egypt, alex";
-      this._userService.post(this.userData).subscribe(
-            (res: any) => {
-            }
+      this._userService.get().subscribe(
+        (response: any) => {
+        this.U_Login= response.data.find((u: any) => u.email == data.email);
+        }
+      );
+      console.log(this.U_Login);
+      if (this.U_Login.email !== data.email) {
+        this._userService.post(this.userData).subscribe(
+          (res: any) => {
+            res.next();
+          }
         );
+      }
       this.userLogin.email = data.email;
       this.userLogin.password = this.userData.password;
       this._authService.login(this.userLogin).subscribe(
         (response: any) => {
           this.handelResponse(response);
+
           localStorage.setItem('email', this.userLogin.email);
         },
         (error: any) => {
+
           this.handelError(error);
           this.myapp.errormessage(error.error.error);
         }
@@ -243,11 +254,11 @@ signInWithGoogle(): void {
     }).catch(data => {
       // alert(JSON.stringify(data));
       this.authService.signOut();
-      //this.router.navigateByUrl('/home');
+      // this.router.navigateByUrl('/home');
     });
   }
-signOut(): void {
-  this.authService.signOut();
-}
+  signOut(): void {
+    this.authService.signOut();
+  }
 
 }

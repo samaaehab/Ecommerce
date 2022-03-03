@@ -9,14 +9,14 @@
       <li ><i class="fas fa-2x fa-moon moon weatherWidgetRow" *ngIf="!WeatherData.isDay"></i></li>
     </ul>
     <div class="content">
-      <span><i class="fas fa-envelope-square"></i>{{user}}</span>
+      <span><i class="fas fa-envelope-square"></i>{{getloginUser()}}</span>
     </div>
   </div>
   <!-- / contact content -->
   <div class="container">
     <!-- logo -->
 	<div id="logo">
-		<a routerLink="/home"><img src="../../assets/download (1).png" alt="" width="" height="70"></a>
+		<a routerLink="/home"><img src="../../assets/download (1).png" alt="" width="" height="50"></a>
 	</div>    <!-- open nav mobile -->
 
 	<div class="nav-container text-center">
@@ -61,7 +61,7 @@
 			<li>
 				<div class="dropdown dropdown-cart">
 
-					<a routerLink="/cart" class="cart_bt"><strong>{{count}}</strong></a>
+					<a routerLink="/cart" class="cart_bt"><strong>{{getTotalCount()}}</strong></a>
 					<div class="dropdown-menu">
 						<div class="total_drop">
 							<div class="clearfix"><strong>Total</strong><span>{{totalPrice |currency}}</span></div>
