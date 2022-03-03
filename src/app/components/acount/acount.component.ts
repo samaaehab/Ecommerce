@@ -209,24 +209,41 @@ googleLoginOptions = {
 }; // https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauth2clientconfig
 
 userData=new User();
+userLogin=new User();
 signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID, this.googleLoginOptions ).then((data) => {
-      console.log(data);
-     
-      // let id = data.id;
-      // let gmailtoken = data.authToken;
-      // let gmailname = data.name;
-      // let gmail = data.email;
-      // localStorage.setItem('id', id);
-      // // localStorage.setItem('token', gmailtoken);
-      // localStorage.setItem('gmailname', gmailname);
-      // localStorage.setItem('email', gmail);
+      this.userData.name = data.name;
+      this.userData.email = data.email;
+      this.userData.password = '000000';
+      this.userData.city = 'sohag';
+      this.userData.country = 'egypt';
+      this.userData.phone = '01222222222';
+      this.userData.house_no = 22;
+      this.userData.full_address = "egypt, alex";
+      this._userService.post(this.userData).subscribe(
+            (res: any) => {
+            }
+        );
+      this.userLogin.email = data.email;
+      this.userLogin.password = this.userData.password;
+      this._authService.login(this.userLogin).subscribe(
+        (response: any) => {
+          this.handelResponse(response);
+          localStorage.setItem('email', this.userLogin.email);
+        },
+        (error: any) => {
+          this.handelError(error);
+          this.myapp.errormessage(error.error.error);
+        }
+      );
+
+
       // this.router.navigateByUrl('/home');
 
     }).catch(data => {
       // alert(JSON.stringify(data));
       this.authService.signOut();
-      this.router.navigateByUrl('/home');
+      //this.router.navigateByUrl('/home');
     });
   }
 signOut(): void {
