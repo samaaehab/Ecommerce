@@ -34,8 +34,37 @@ cartCount(){
 
     }
   }
-    
   return count;
+}
+totalPrice(){
+  let productsInCart:any[]= [];
+  let totalPrice =0;
+  for (var i = 0; i < localStorage.length; i++) {
+    let a = localStorage.key(i);
+    if (a?.substring(0, 7) == 'product') {
+      let products = localStorage.getItem(a);
+
+      let splitProduct = products?.split('#$');
+      productsInCart.push(splitProduct);
+      // console.log(this.productsInCart);
+      // this.cartCount=this.productsInCart.length;
+
+
+
+    }
+  }
+
+  for (var i = 0; i < productsInCart.length; i++) {
+
+    totalPrice+=Number(productsInCart[i][6]);
+
+   }
+   return totalPrice;
+}
+
+omg(key:any) {
+
+  localStorage.removeItem(key);
 
 }
 }

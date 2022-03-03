@@ -2170,31 +2170,8 @@ header ul.top_tools > li a.btn_search_mob:before, header ul.top_tools > li a.sea
   font-size: 26px;
   font-size: 1.625rem;
 }
-header ul.top_tools > li a.btn_cat_mob {
-  line-height: 32px !important;
-  height: 28px !important;
-  padding-left: 35px;
-  font-weight: 700;
-  font-size: 13px;
-  font-size: 0.8125rem;
-  text-transform: uppercase;
-}
-@media (max-width: 991px) {
-  header ul.top_tools > li a.btn_cat_mob {
-    padding-left: 0;
-  }
-}
-header ul.top_tools > li a.btn_cat_mob .hamburger-box {
-  position: absolute;
-  top: 5px;
-  left: 0;
-  margin-right: 10px;
-}
-@media (max-width: 991px) {
-  header ul.top_tools > li a.btn_cat_mob .hamburger-box {
-    display: none;
-  }
-}
+
+
 header ul.top_tools > li a.wishlist:before {
   content: '\0041';
 }
@@ -2222,7 +2199,7 @@ header ul.top_tools > li a.cart_bt strong {
   -ms-border-radius: 50%;
   border-radius: 50%;
   background-color: #083487;;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 @media (max-width: 767px) {
   header ul.top_tools > li a.cart_bt strong {
@@ -2235,7 +2212,8 @@ header ul.top_tools > li .dropdown-access .dropdown-menu {
   min-width: 0;
   padding: 15px;
   width: 260px;
-  top: 100%;
+  top: 85%;
+  left: 30px;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
@@ -2246,11 +2224,24 @@ header ul.top_tools > li .dropdown-access .dropdown-menu {
   font-size: 13px;
   font-size: 0.8125rem;
 }
+
+header ul.top_tools > li:hover .dropdown-cart .dropdown-menu,
+header ul.top_tools > li:hover .dropdown-access .dropdown-menu {
+  
+  display: block !important;
+}
 @media (max-width: 991px) {
   header ul.top_tools > li .dropdown-cart .dropdown-menu,
   header ul.top_tools > li .dropdown-access .dropdown-menu {
     display: none !important;
-  }
+    width: 190px;
+  }  
+  header ul.top_tools > li:hover .dropdown-cart .dropdown-menu,
+  header ul.top_tools > li:hover .dropdown-access .dropdown-menu {
+    display: block !important;
+    top: 30px;
+    left: 50px;
+    }
 }
 header ul.top_tools > li .dropdown-cart .dropdown-menu:before,
 header ul.top_tools > li .dropdown-access .dropdown-menu:before {

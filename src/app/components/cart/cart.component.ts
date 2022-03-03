@@ -86,19 +86,9 @@ export class CartComponent implements OnInit {
     }
   }
 
-
-  omg(key:any) {
-    // for (var i = 0; i < localStorage.length; i++) {
-    //   let a = localStorage.key(i);
-    //   if (a?.substring(0, 7) == 'product') {
-    //     let products = localStorage.getItem(a);
-    localStorage.removeItem(key);
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-    this.router.navigate(['/cart']);
-   });
-  // this.router.navigate(['/cart'], {relativeTo: this.route, skipLocationChange: true});
-  // this.ngOnInit();
-  }
+removeItem(key:any){
+return this._cartService.omg(key);
+}
 price:any;
   getQty(qty:any){
     return this.price=qty;
