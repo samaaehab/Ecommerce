@@ -113,7 +113,10 @@ price:any;
        localStorage.removeItem(a?.substring(0, 7)+storeID);
       //  localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + qty + '#$' + subTotal);
       localStorage.setItem('product'+storeID,id+"#$"+ProdName+"#$"+Image+"#$"+qty+"#$"+newPrice+"#$"+storeID+"#$"+subTotal);
-    }
+        this.productsInCart = [];
+        this.getCartDetails();
+
+      }
 
     }
     this.myapp.showInfo("Updated Successfuly","Updated");
@@ -124,7 +127,8 @@ price:any;
     // console.log(this.DBCart.d);
     if(localStorage.getItem('email')){
 
-      for(let i=0;i<this.productsInCart.length;i++){
+      for (let i = 0; i < this.productsInCart.length; i++){
+        // alert(this.productsInCart[i][3])
         this.DBCart.products_number=this.productsInCart[i][3];
         this.DBCart.total_price=this.productsInCart[i][6];
         this.DBCart.store_id=this.productsInCart[i][5];

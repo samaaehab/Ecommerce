@@ -27,4 +27,5 @@ export class UserService {
     let user=localStorage.getItem('email');
     return user;
   }
+  
 }
