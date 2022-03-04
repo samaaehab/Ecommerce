@@ -54,7 +54,7 @@ export class CheckoutComponent implements OnInit {
             for(let i of this.cartInOrder){
               this.totalPrice+=Number(i.total_price);
             }
-            console.log(this.cartInOrder);
+            // console.log(this.cartInOrder);
             
             
           }

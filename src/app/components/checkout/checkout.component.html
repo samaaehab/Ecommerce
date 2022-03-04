@@ -78,7 +78,7 @@
 		
 								<select formControlName="Country" class="form-select" [class.is-invalid]="isInValidAndTouched2('Country')" [class.is-valid]="isValidControl2('Country')" name="country" placeholder="Country*" #inputCountry>
 								  <option value="">Country*</option>
-								  <option value="Europe" selected>Egypt</option>
+								  <option value="Egypt" selected>Egypt</option>
 								  <option value="United states">United states</option>
 								  <option value="Asia">Asia</option>
 								</select>
@@ -152,7 +152,7 @@
             <ul>
               <li class="clearfix d-flex justify-content-between" *ngFor="let cart of cartInOrder">
                 <em>{{cart.products_number}}x {{cart.product_name}}</em> 
-                <span style="margin-right: 15px;">${{cart.total_price}}</span>
+                <span style="margin-right: 15px;">{{cart.total_price|currency}}</span>
 				<i class="fas fa-rotate-left" style="cursor: pointer;" (click)="return(cart.id,cart.store_id,cart.product_id,cart.product_name,cart.image,cart.products_number,cart.discount,cart.price,cart.total_price)"></i>
               </li>
 
