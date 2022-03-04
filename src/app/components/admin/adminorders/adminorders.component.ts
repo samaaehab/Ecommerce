@@ -22,6 +22,9 @@ export class AdminordersComponent implements OnInit {
   searchText: any;
   messagesCount:number=0;
   counter:number=0
+  ordersCount:number=0;
+  order_count: any = 0;
+
   constructor(private _orderService: OrderService, public myapp: AppComponent,
     private orderService: OrderService ,
     private token: AdminTokenService, private auth: AuthenService,
@@ -29,6 +32,7 @@ export class AdminordersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOrderData();
+    this.getOrderCount();
   }
 getOrderData(){
   this._orderService.get().subscribe(
@@ -38,7 +42,7 @@ getOrderData(){
     }
   );
 }
-  delete(index:number):void
+  delete(index:number,status:any):void
   {
     let order=this.orders[index];        
         Swal.fire({
@@ -56,6 +60,9 @@ getOrderData(){
               (response: any) => {
                 console.log(order); 
             this.orders.splice(index, 1);
+            if(status=="pending"){
+              --this.order_count;
+            }
             this.getOrderData();
             this.myapp.successmessage(response.message);
           })
@@ -64,7 +71,6 @@ getOrderData(){
             this.myapp.errormessage("Order not Deleted");
           }
       });
-    
 
   }
 
@@ -89,7 +95,12 @@ getOrderData(){
       (response: any) => {
         this.getOrderData();
         this.myapp.showInfo(' order updated Successfly','update');
-        
+        if(status=="pending"){
+          ++this.order_count;
+        }
+        else{
+          --this.order_count;
+        }
       
       },
       (error: any) => {
@@ -121,6 +132,20 @@ getOrderData(){
     this.token.remove();
     this.auth.changeAdminAuthStatus(false);
     this.router.navigateByUrl('/admin-acount');
+  }
+
+  getOrderCount(){
+    this.orderService.get().subscribe(
+      (res:any)=>{
+        this.ordersCount=res.data.length;
+        for(let i = 0 ; i < this.ordersCount ; i++){
+          if(res.data[i].status === 'pending'){
+            this.order_count++;
+          }
+          
+        }
+      }
+    )
   }
 
 }

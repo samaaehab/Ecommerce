@@ -12,6 +12,7 @@ import { AdminTokenService } from 'src/app/services/admin-token.service';
 import { AuthenService } from 'src/app/services/authen.service';
 import { Router } from '@angular/router';
 import { ContactUsService } from 'src/app/services/contact-us.service';
+import { OrderService } from 'src/app/services/order.service';
 
 
 @Component({
@@ -29,14 +30,17 @@ export class AdminsubcategoryComponent implements OnInit {
    count: any = 5;
   searchText: any;
   messagesCount:number=0;
-  counter:number=0
+  counter:number=0;
+  ordersCount:number=0;
+  order_count: any = 0;
   constructor(private _formBuilder: FormBuilder, private _SubcategoryService: SubcategoryService, private _categoryService: CategoryServiceService
-    , public myapp: AppComponent ,
+    , public myapp: AppComponent ,private orderService: OrderService,
     private token: AdminTokenService, private auth: AuthenService,
     private router: Router , private _contact:ContactUsService) { }
   
 
   ngOnInit(): void {
+    this.getOrderCount();
     this.formSubcat=this._formBuilder.group({
       Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]], 
       CatId:['',[Validators.required]],           
@@ -179,4 +183,17 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
     this.auth.changeAdminAuthStatus(false);
     this.router.navigateByUrl('/admin-acount');
   }  
+  getOrderCount(){
+    this.orderService.get().subscribe(
+      (res:any)=>{
+        this.ordersCount=res.data.length;
+        for(let i = 0 ; i < this.ordersCount ; i++){
+          if(res.data[i].status === 'pending'){
+            this.order_count++;
+          }
+          
+        }
+      }
+    )
+  }
 }

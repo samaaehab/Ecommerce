@@ -16,6 +16,7 @@ import { event } from 'jquery';
 import { Router } from '@angular/router';
 import { AdminTokenService } from 'src/app/services/admin-token.service';
 import { AuthenService } from 'src/app/services/authen.service';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-adminproducts',
@@ -41,13 +42,16 @@ export class AdminproductsComponent implements OnInit {
   store = new Store();
   formProduct = new FormGroup({});
   messagesCount:number=0;
-  counter:number=0
+  counter:number=0;
+  ordersCount:number=0;
+  order_count: any = 0;
   constructor(private _productService: ProductService, private _SubcategoryService: SubcategoryService, private _StoreService: StoreService, private _categoryService: CategoryServiceService,
-    public myapp: AppComponent, private http: HttpClient, private _formBuilder: FormBuilder ,
+    public myapp: AppComponent, private http: HttpClient, private _formBuilder: FormBuilder ,private orderService: OrderService ,
     private token: AdminTokenService, private auth: AuthenService, private router: Router,
   private _contact:ContactUsService) { }
 
   ngOnInit(): void {
+    this.getOrderCount();
     this.formProduct = this._formBuilder.group({
       ProductName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
       ProductDescription: ['', [Validators.required, Validators.maxLength(255), Validators.minLength(10)]],
@@ -289,6 +293,18 @@ export class AdminproductsComponent implements OnInit {
     this.auth.changeAdminAuthStatus(false);
     this.router.navigateByUrl('/admin-acount');
   }
+  getOrderCount(){
+    this.orderService.get().subscribe(
+      (res:any)=>{
+        this.ordersCount=res.data.length;
+        for(let i = 0 ; i < this.ordersCount ; i++){
+          if(res.data[i].status === 'pending'){
+            this.order_count++;
+          }
+          
+        }
+      }
+    )
+  }
 
 }
-

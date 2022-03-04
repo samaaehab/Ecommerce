@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { AdminTokenService } from 'src/app/services/admin-token.service';
 import { AuthenService } from 'src/app/services/authen.service';
 import { ContactUsService } from 'src/app/services/contact-us.service';
+import { OrderService } from 'src/app/services/order.service';
 
 declare const $: any;
 
@@ -33,15 +34,19 @@ export class AdminusersComponent implements OnInit {
   count: any = 6;
   searchText: any;
   messagesCount:number=0;
-  counter:number=0
+  counter:number=0;
+  ordersCount:number=0;
+  order_count: any = 0;
   constructor(public myapp: AppComponent, private http: HttpClient,
-    private _formBuilder: FormBuilder, private _userService: UserService ,
+    private _formBuilder: FormBuilder, private _userService: UserService ,private orderService: OrderService,
     private token: AdminTokenService, private auth: AuthenService,
     private router: Router, private _contact:ContactUsService) { }
 
 
 
   ngOnInit(): void {
+    this.getOrderCount();
+
     Pusher.logToConsole = true;
 
     const pusher = new Pusher('950c501a49561d478fcc', {
@@ -181,5 +186,19 @@ export class AdminusersComponent implements OnInit {
     this.token.remove();
     this.auth.changeAdminAuthStatus(false);
     this.router.navigateByUrl('/admin-acount');
+  }
+
+  getOrderCount(){
+    this.orderService.get().subscribe(
+      (res:any)=>{
+        this.ordersCount=res.data.length;
+        for(let i = 0 ; i < this.ordersCount ; i++){
+          if(res.data[i].status === 'pending'){
+            this.order_count++;
+          }
+          
+        }
+      }
+    )
   }
 }

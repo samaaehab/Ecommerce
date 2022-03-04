@@ -13,6 +13,7 @@ import  Swal from 'sweetalert2';
 import { AdminTokenService } from 'src/app/services/admin-token.service';
 import { AuthenService } from 'src/app/services/authen.service';
 import { Router } from '@angular/router';
+import { OrderService } from 'src/app/services/order.service';
 
 
 @Component({
@@ -31,11 +32,14 @@ export class AdmincategoryComponent implements OnInit {
    searchText:any;
    messagesCount:number=0;
    counter:number=0;
+   ordersCount:number=0;
+   order_count: any = 0;
   constructor(private _formBuilder: FormBuilder, private _categoryService: CategoryServiceService,
-    public myapp: AppComponent, private token: AdminTokenService,
+    public myapp: AppComponent, private token: AdminTokenService,private orderService: OrderService ,
     private auth: AuthenService, private router: Router , private _contact:ContactUsService) { }
 
   ngOnInit(): void {
+    this.getOrderCount();
     this.formCat=this._formBuilder.group({
       Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],      
       });
@@ -167,5 +171,19 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
     this.token.remove();
     this.auth.changeAdminAuthStatus(false);
     this.router.navigateByUrl('/admin-acount');
+  }
+
+  getOrderCount(){
+    this.orderService.get().subscribe(
+      (res:any)=>{
+        this.ordersCount=res.data.length;
+        for(let i = 0 ; i < this.ordersCount ; i++){
+          if(res.data[i].status === 'pending'){
+            this.order_count++;
+          }
+          
+        }
+      }
+    )
   }
 }
