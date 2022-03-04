@@ -1,6 +1,6 @@
 <header>
   <!-- contact content -->
-  <div class="header-content-top">
+  <div class="header-content-top" *ngIf="getloginUser()">
     <ul>
       <li>
         <i class="weatherWidgetRow">{{WeatherData.name}} : {{WeatherData.temp_celcius}}°</i>
@@ -26,8 +26,8 @@
 			<li  class="all-navigator sub-menu"><a class="show-submenu">Home</a>
 			</li>
 
-			<ul class="all-category-list">
-			  <li class="all-category-list-item" *ngFor="let cat of categories">
+			<ul class="all-category-list dropdown_menu--animated">
+			  <li class="all-category-list-item dropdown_item" *ngFor="let cat of categories">
 				<a *ngIf="cat.cat_name==='men'  || cat.cat_name ==='man'" routerLink="/products/men" class="all-category-list-link">{{cat.cat_name |uppercase}}<i class="fas fa-angle-right"></i></a>
 				<a *ngIf="cat.cat_name==='women'|| cat.cat_name ==='woman' || cat.cat_name==='weman'" routerLink="/products/woman" class="all-category-list-link">{{cat.cat_name |uppercase}}<i class="fas fa-angle-right"></i></a>
 				<a *ngIf="cat.cat_name==='kid'  || cat.cat_name ==='kids'" routerLink="/products/kids" class="all-category-list-link">{{cat.cat_name |uppercase}}<i class="fas fa-angle-right"></i></a>
@@ -62,7 +62,7 @@
 				<div class="dropdown dropdown-cart">
 
 					<a  class="cart_bt"><strong>{{getTotalCount()}}</strong></a>
-					<div class="dropdown-menu">
+					<div class="dropdown-menu dropdown_menu--animated">
 						<div class="total_drop">
 							<div class="clearfix"><strong>Total</strong><span>{{gettotalPrice() |currency}}</span></div>
 							<a routerLink="/cart" class="btn_1 outline">View Cart</a>
@@ -78,7 +78,7 @@
 			<li>
 				<div class="dropdown dropdown-access">
 					<a  class="access_link"><span>Account</span></a>
-					<div class="dropdown-menu">
+					<div class="dropdown-menu dropdown_menu--animated">
 						<a routerLink="/acount" class="btn_1">Sign In or Sign Up</a>
 						<ul>
 							<li>

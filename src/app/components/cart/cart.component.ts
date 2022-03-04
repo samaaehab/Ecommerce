@@ -31,20 +31,7 @@ export class CartComponent implements OnInit {
     { this.router.routeReuseStrategy.shouldReuseRoute = () => false;}
 
   ngOnInit(): void {
-    for (var i = 0; i < localStorage.length; i++) {
-      let a = localStorage.key(i);
-      if (a?.substring(0, 7) == 'product') {
-        let products = localStorage.getItem(a);
-
-        let splitProduct = products?.split('#$');
-        this.productsInCart.push(splitProduct);
-        console.log(this.productsInCart);
-        this.cartCount=this.productsInCart.length;
-
-
-
-      }
-    }
+this.getCartDetails();
     this._storeService.get().subscribe(
       (res: any) => {
         console.log(res.data);
@@ -52,14 +39,14 @@ export class CartComponent implements OnInit {
         console.log(data);
         for(let i=0;i<this.productsInCart.length;i++){
           let x= res.data.find((cat:any)=>cat.id==this.productsInCart[i][5]);
-          // console.log(x);   
+          // console.log(x);
           // console.log(this.productsInCart[i][5]);
           this.productStore.push(x);
         }
         console.log(this.productStore)
-     
+
       }
-    ); 
+    );
 
     for (var i = 0; i < this.productsInCart.length; i++) {
 
@@ -76,18 +63,42 @@ export class CartComponent implements OnInit {
         // console.log(this.loggedUser[0].id)
       }
     );
-
-    this.getTotalPrice();
     this.addToDBCart();
   }
-  getTotalPrice(){
-    for(let prod of this.productsInCart){
-      console.log(prod[6]);
+  getCartDetails(){
+    for (var i = 0; i < localStorage.length; i++) {
+      let a = localStorage.key(i);
+      if (a?.substring(0, 7) == 'product') {
+        let products = localStorage.getItem(a);
+
+        let splitProduct = products?.split('#$');
+        this.productsInCart.push(splitProduct);
+        // alert(this.productsInCart);
+        this.cartCount=this.productsInCart.length;
+
+
+      }
     }
   }
+  gettotalPrice(){
+    return this._cartService.totalPrice();
+  }
+removeItem(key:any,storeId:any){
+//  let x= this.productsInCart.indexOf(storeId);
+  localStorage.removeItem(key);
 
-removeItem(key:any){
-return this._cartService.omg(key);
+  for(let i=0;i<this.productsInCart.length;i++){
+    // console.log(this.productsInCart[i].findIndex(storeId));
+    // console.log(this.productsInCart[i]);
+    for(let j=0;j<this.productsInCart[i].length;j++){
+      if(this.productsInCart[i][5]==storeId){
+        this.productsInCart.splice(i,1)
+      }
+      // console.log(this.productsInCart[i][j]);
+    }
+
+  }
+  //  console.log(this.productsInCart[0]);
 }
 price:any;
   getQty(qty:any){
@@ -100,12 +111,11 @@ price:any;
       let a = localStorage.key(i);
       if (a?.substring(0, 7)+storeID == 'product'+storeID) {
        localStorage.removeItem(a?.substring(0, 7)+storeID);
-      //  localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + qty + '#$' + subTotal);      
+      //  localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + qty + '#$' + subTotal);
       localStorage.setItem('product'+storeID,id+"#$"+ProdName+"#$"+Image+"#$"+qty+"#$"+newPrice+"#$"+storeID+"#$"+subTotal);
     }
 
     }
-    window.location.reload();
     this.myapp.showInfo("Updated Successfuly","Updated");
   }
 
@@ -128,18 +138,18 @@ price:any;
           (res:any)=>{
             console.log(res.message);
           });
-          localStorage.removeItem('product'+this.DBCart.store_id);            
+          localStorage.removeItem('product'+this.DBCart.store_id);
 
       }
-      
+
     }
     else{
 
     }
     console.log(this.productsInCart);
-    
+
     console.log(this.loggedUser[0].id);
-  
+
     // console.log(this.productsInCart);
 
     // this._cartSeervice.post().subscribe();

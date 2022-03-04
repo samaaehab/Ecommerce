@@ -62,10 +62,6 @@ totalPrice(){
    return totalPrice;
 }
 
-omg(key:any) {
 
-  localStorage.removeItem(key);
-
-}
 }
 
