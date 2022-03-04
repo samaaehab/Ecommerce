@@ -91,7 +91,7 @@ export class AcountComponent implements OnInit {
   //   });
   // }
   ngOnInit(): void {
-    this.signInWithGoogle();
+    // this.signInWithGoogle();
     this.U_Login;
     //   this.authService.authState.subscribe((user) => {
     //     this.user = user;

@@ -13,7 +13,8 @@ export class AfterLoginService implements CanActivate {
     
     if(this.token.isLog()){
       return this.token.isLog();
-    }else{
+    }
+    else {
       return this.router.navigateByUrl('/acount');
     }
   }

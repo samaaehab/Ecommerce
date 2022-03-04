@@ -43,6 +43,8 @@ WeatherData:any;
   //   this.translate.use(lang);
   // }
   ngOnInit(): void {
+    this.getauthlogin();
+    this.getloginUser();
     this.WeatherData = {
       main : {},
       isDay: true
@@ -51,7 +53,8 @@ WeatherData:any;
     console.log(this.WeatherData);
 
  
-    this.auth.status.subscribe(value=>this.logged=value);
+    this.auth.status.subscribe(value => this.logged = value);
+    
       this._categoryService.get().subscribe(
         (res: any) => {
           
@@ -83,6 +86,9 @@ WeatherData:any;
       gettotalPrice(){
         return this._cartService.totalPrice();
       }
+  getauthlogin() {
+   return this._userService.authlogin();
+  }
   logout(event: MouseEvent) {
     event.preventDefault();
     this.token.remove();

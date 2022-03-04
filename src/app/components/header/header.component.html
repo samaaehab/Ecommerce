@@ -91,7 +91,8 @@
 								<a routerLink="/acount" *ngIf="!getloginUser()"><i class="ti-user"></i>Login</a>
 							</li> -->
 							<li>
-								<a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" *ngIf="getloginUser()" (click)="logout($event)" ><i class="ti-user"></i>Logout</a>
+								<a *ngIf="getauthlogin() || getloginUser()" (click)="logout($event)">
+									<i class="ti-user"></i>Logout</a>
 							</li>
 
 						</ul>
