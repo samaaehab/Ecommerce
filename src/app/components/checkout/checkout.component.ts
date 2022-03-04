@@ -36,6 +36,7 @@ export class CheckoutComponent implements OnInit {
     });
     this.formRegister = this._formBuilder.group({
       Name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+      Email: ['', [Validators.required, Validators.email]],
       Address: ['', [Validators.required, Validators.maxLength(100)]],
       HouseNum: ['', [Validators.required]],
       Country: ['', [Validators.required]],

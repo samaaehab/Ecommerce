@@ -37,7 +37,15 @@
 						  </div>
 						  <div class="col-12 ">
 							<div class="form-group">
-							  <input  type="email" class="form-control"  placeholder="Email*" #inputEmail>
+							  <input  type="email" formControlName="Email" class="form-control" 
+							  [class.is-invalid]="isInValidAndTouched2('Email')" [class.is-valid]="isValidControl2('Email')" 
+							  placeholder="Email*" #inputEmail>
+							  <div *ngIf="isInValidAndTouched2('Email')">
+								<small class="form-text text-danger" *ngIf="isControlHasError2('Email','required')">required
+								  email</small>
+								<small class="form-text text-danger" *ngIf="isControlHasError2('Email','email')">email is not
+								  valid</small>
+							  </div>
 							</div>
 						  </div>
 						  <div class="col-12">

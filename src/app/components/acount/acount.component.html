@@ -168,14 +168,13 @@
                   <div class="col-12">
                     <div class="form-group">
                       <input formControlName="full_address" type="text" class="form-control"
-                        [class.is-invalid]="isInValidAndTouched2('full_address')"
-                        [class.is-valid]="isValidControl2('full_address')" placeholder="Full Address*">
-                      <div *ngIf="isInValidAndTouched2('full_address')">
+                        placeholder="Full Address*">
+                      <!-- <div *ngIf="isInValidAndTouched2('full_address')">
                         <small class="form-text text-danger" *ngIf="isControlHasError2('full_address','required')">required
                           address</small>
                         <small class="form-text text-danger" *ngIf="isControlHasError2('full_address','maxlength')">max
                           length is 100</small>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -184,23 +183,21 @@
                   <div class="col-6 pr-1">
                     <div class="form-group">
                       <input formControlName="city" type="text" class="form-control"
-                        [class.is-invalid]="isInValidAndTouched2('city')" [class.is-valid]="isValidControl2('city')"
                         placeholder="city*">
-                      <div *ngIf="isInValidAndTouched2('city')">
+                      <!-- <div *ngIf="isInValidAndTouched2('city')">
                         <small class="form-text text-danger" *ngIf="isControlHasError2('city','required')">required
                           city</small>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                   <div class="col-6 pl-1">
                     <div class="form-group">
-                      <input formControlName="house_no" type="text" class="form-control"
-                        [class.is-invalid]="isInValidAndTouched2('house_no')"
-                        [class.is-valid]="isValidControl2('house_no')" placeholder="House Number*">
-                      <div *ngIf="isInValidAndTouched2('house_no')">
+                      <input type="text" formControlName="house_no" class="form-control"
+                       placeholder="House Number*">
+                      <!-- <div *ngIf="isInValidAndTouched2('house_no')">
                         <small class="form-text text-danger" *ngIf="isControlHasError2('house_no','required')">required
                           house number</small>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -211,27 +208,25 @@
                     <div class="form-group">
                       <div class="custom-select-form">
 
-                        <select formControlName="country" class="form-select"
-                          [class.is-invalid]="isInValidAndTouched2('country')"
-                          [class.is-valid]="isValidControl2('country')" name="country" placeholder="country*">
+                        <select  class="form-select"
+                           name="country" formControlName="country" placeholder="country*">
                           <option value="">Country*</option>
                           <option value="Egypt" selected>Egypt</option>
                           <option value="United states">United states</option>
                           <option value="Asia">Asia</option>
                         </select>
                       </div>
-                      <div *ngIf="isInValidAndTouched2('country')">
+                      <!-- <div *ngIf="isInValidAndTouched2('country')">
                         <small class="form-text text-danger" *ngIf="isControlHasError2('country','required')">required
                           house country</small>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                   <div class="col-6 pl-1">
                     <div class="form-group">
                       <input formControlName="phone" type="text" class="form-control"
-                        [class.is-invalid]="isInValidAndTouched2('phone')" [class.is-valid]="isValidControl2('phone')"
                         placeholder="Telephone *">
-                      <div *ngIf="isInValidAndTouched2('phone')">
+                      <!-- <div *ngIf="isInValidAndTouched2('phone')">
                         <small class="form-text text-danger" *ngIf="isControlHasError2('phone','required')">required
                           house phone number</small>
                         <small class="form-text text-danger" *ngIf="isControlHasError2('phone','minlength')">max length
@@ -239,7 +234,7 @@
                         <small class="form-text text-danger" *ngIf="isControlHasError2('phone','maxlength')">max length
                           is 11</small>
 
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>

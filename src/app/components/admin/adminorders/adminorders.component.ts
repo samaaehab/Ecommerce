@@ -101,7 +101,6 @@ getOrderData(){
         else{
           --this.order_count;
         }
-      
       },
       (error: any) => {
         for (const err in error.error.errors) {
