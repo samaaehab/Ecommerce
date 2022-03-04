@@ -259,7 +259,6 @@ export class AcountComponent implements OnInit {
         this._authService.login(this.userLogin).subscribe(
           (response: any) => {
             this.handelResponse(response);
-  
             localStorage.setItem('email', this.userLogin.email);
           },
           (error: any) => {
