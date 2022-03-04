@@ -128,7 +128,7 @@ price:any;
     if(localStorage.getItem('email')){
 
       for (let i = 0; i < this.productsInCart.length; i++){
-        alert(this.productsInCart[i][3])
+        // alert(this.productsInCart[i][3])
         this.DBCart.products_number=this.productsInCart[i][3];
         this.DBCart.total_price=this.productsInCart[i][6];
         this.DBCart.store_id=this.productsInCart[i][5];
