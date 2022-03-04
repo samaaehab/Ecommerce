@@ -54,44 +54,24 @@ WeatherData:any;
     this.auth.status.subscribe(value=>this.logged=value);
       this._categoryService.get().subscribe(
         (res: any) => {
-               // get category data
-              //  console.log(JSON.stringify(res));
+          
                this.categories = res.data;
-              //  console.log(this.categories);
-               //
-          
-        // console.log(res.data);
-          for (const i in res.data) {
+          // for (const i in res.data) {
            
-            const id= res.data[i].id;
-            this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
-              (res: any) => {
-           
-                this.subcategories=res.data;
+          //   const id= res.data[i].id;
+          //   this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
+          //     (res: any) => {
+          //       this.subcategories=res.data;
+          //             this.allsubcategories.push(this.subcategories.map(m=>{return m}));
+          //        },
+          //     (err:any)=>{
+          //       console.log(err);
 
-                // console.log(this.subcategories);
-
-                      this.allsubcategories.push(this.subcategories.map(m=>{return m}));
-
-                    // for(let i=0;i<res.data.length;i++){
-                    //   this.subcategories.push(res.data[i])
-                    //   this.subcategories=this.subcategories.map(m=>{return m});
-
-                    // }
-                 },
-              (err:any)=>{
-                console.log(err);
-
-              }
-            )
-          }
-          // console.log(this.allsubcategories);
-          
-
-
+          //     }
+          //   )
+          // }          
         }
       );
-    // this.getCategoryData();
       }
 
       getTotalCount() {
