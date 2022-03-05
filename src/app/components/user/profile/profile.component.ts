@@ -11,12 +11,14 @@ import { AppComponent } from 'src/app/app.component';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  username='';
+  // username='';
   message='';
+  created_at='';
   messages:any= [];
   users:User[]=[];
   newUser:any[]=[]
-  user=localStorage.getItem('email')
+  user=localStorage.getItem('email');
+  ChatUSer:any;
   constructor(private http:HttpClient,private userService:UserService,private _userService:UserService,public myapp:AppComponent) { }
 
   ngOnInit(): void {
@@ -29,25 +31,30 @@ export class ProfileComponent implements OnInit {
     const channel = pusher.subscribe('chat');
     channel.bind('message', (data: any) => {
       this.messages.push(data);
+      console.log(this.messages);
+
     });
     this._userService.get().subscribe(
       (res: any) => {
         console.log(JSON.stringify(res));
         this.users = res.data.find((user:any)=>user.email==this.user);
         this.newUser.push(this.users);
+        this.ChatUSer=this.newUser[0].name;
         console.log(this.newUser[0])
       }
     );
   }
-  
-  setUsername(username:string):void{
-    this.username=username;
-  }
-  submit():void{
-    this.http.post('http://localhost:8000/api/messages',{
-      username:this.username,
-      message:this.message
-    }).subscribe(()=>this.message='');
+
+  // setUsername(username:string):void{
+  //   this.ChatUSer=username;
+  // }
+
+  submit(): void {
+    this.http.post('http://localhost:8000/api/messages', {
+      username: this.ChatUSer,
+      message: this.message,
+      created_at:this.created_at,
+    }).subscribe(() => this.message = '');
   }
 
 }

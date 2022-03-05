@@ -55,6 +55,7 @@ export class AdminusersComponent implements OnInit {
 
     const channel = pusher.subscribe('chat');
     channel.bind('message', (data: any) => {
+      console.log(this.messages);
       this.messages.push(data);
     });
     this.formUser = this._formBuilder.group({

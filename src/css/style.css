@@ -5,7 +5,7 @@ Theme URI: http://www.ansonika.com/allaia/
 Author: Ansonika
 Author URI: http://themeforest.net/user/Ansonika/
 
-[Table of contents] 
+[Table of contents]
 
 1. SITE STRUCTURE
 - 1.0 Icons
@@ -19,10 +19,10 @@ Author URI: http://themeforest.net/user/Ansonika/
 
 2. CONTENT
 - 2.1 Home
-- 2.2 General Listing 
+- 2.2 General Listing
 
 3. COMMON
-- 3.1 Owl Carousel Custom Nav 
+- 3.1 Owl Carousel Custom Nav
 - 3.2 Misc
 - 3.3 Spacing
 - 3.4 Sing In Modal
@@ -2226,7 +2226,7 @@ header ul.top_tools > li .dropdown-access .dropdown-menu {
 }
 header ul.top_tools > li:hover .dropdown-cart .dropdown-menu,
 header ul.top_tools > li:hover .dropdown-access .dropdown-menu {
-  
+
   display: block !important;
 }
 .dropdown_menu--animated{
@@ -2237,7 +2237,7 @@ header ul.top_tools > li:hover .dropdown-access .dropdown-menu {
     opacity: 0;
     transform: translateX(60px);
   }
-  
+
   80% {
     transform: translateX(-5px);
   }
@@ -2252,7 +2252,7 @@ header ul.top_tools > li:hover .dropdown-access .dropdown-menu {
   header ul.top_tools > li .dropdown-access .dropdown-menu {
     display: none !important;
     width: 190px;
-  }  
+  }
   header ul.top_tools > li:hover .dropdown-cart .dropdown-menu,
   header ul.top_tools > li:hover .dropdown-access .dropdown-menu {
     display: block !important;
@@ -2265,7 +2265,7 @@ header ul.top_tools > li:hover .dropdown-access .dropdown-menu {
   header ul.top_tools > li .dropdown-access .dropdown-menu {
     display: none !important;
     width: 190px;
-  }  
+  }
   header ul.top_tools > li:hover .dropdown-cart .dropdown-menu,
   header ul.top_tools > li:hover .dropdown-access .dropdown-menu {
     display: block !important;
@@ -2363,7 +2363,7 @@ header .main_nav .custom-search-input button[type='submit']:hover {
 }
 header .sticky_element {
   width: 100%;
-  position: fixed;
+  position: sticky;
   left: 0;
   top: 0;
   z-index: 9999;
@@ -2373,7 +2373,12 @@ header .sticky_element {
   -moz-box-shadow: 0 20px 20px -20px rgba(0, 0, 0, 0.25);
   box-shadow: 0 20px 20px -20px rgba(0, 0, 0, 0.25);
 }
-
+#btn-back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+}
 @keyframes smoothScroll {
   0% {
     transform: translateY(-60px);

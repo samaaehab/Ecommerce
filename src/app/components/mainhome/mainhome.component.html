@@ -126,58 +126,26 @@
   </div>
 
   <!-- /container -->
-
-  <div class="featured lazy">
-    <img src="../../../assets/img/WhatsApp Image 2022-02-18 at 12.02.06 AM.jpeg" width="100%">
-    <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-      <!-- <div class="container margin_60">
+  <div class="featured lazy" data-bg="url('../../../assets/image_z.jpg')"style="background-image: url('../../../assets/image_z.jpg')">
+    <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)" style="background-color: rgba(0, 0, 0, 0.5);">
+      <div class="container margin_60">
         <div class="row justify-content-center justify-content-md-start">
-          <div class="col-lg-6 wow" data-wow-offset="150">
-            <h3>Armor<br>Air Color 720</h3>
-            <p>Lightweight cushioning and durable support with a Phylon midsole</p>
+          <div  class="col-lg-6 wow animated" data-wow-offset="150" style="visibility: visible;">
+            <h3>Sell <br> New Collection</h3>
+            <p>Showcase your Collection at their absolute best. Allow your visitors to browse your merchandise, add items to their cart.</p>
             <div class="feat_text_block">
               <div class="price_box">
-                <span class="new_price">$90.00</span>
-                <span class="old_price">$170.00</span>
+                <span class="new_price">-50% Sales</span>
               </div>
+              <a class="btn_1" routerLink="/products/woman" role="button">Shop Now</a>
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 
-  <div class="bg_gray">
-    <div class="container margin_30">
-      <div id="brands" class="owl-carousel owl-theme">
-        <div class="item">
-          <a><img src="../../assets/img/brands/placeholder_brands.png"
-              data-src="../../assets/img/brands/logo_1.png" alt="" class="owl-lazy"></a>
-        </div><!-- /item -->
-        <div class="item">
-          <a><img src="../../assets/img/brands/placeholder_brands.png"
-              data-src="../../assets/img/brands/logo_2.png" alt="" class="owl-lazy"></a>
-        </div><!-- /item -->
-        <div class="item">
-          <a><img src="../../assets/img/brands/placeholder_brands.png"
-              data-src="../../assets/img/brands/logo_3.png" alt="" class="owl-lazy"></a>
-        </div><!-- /item -->
-        <div class="item">
-          <a><img src="../../assets/img/brands/placeholder_brands.png"
-              data-src="../../assets/img/brands/logo_4.png" alt="" class="owl-lazy"></a>
-        </div><!-- /item -->
-        <div class="item">
-          <a><img src="../../assets/img/brands/placeholder_brands.png"
-              data-src="../../assets/img/brands/logo_5.png" alt="" class="owl-lazy"></a>
-        </div><!-- /item -->
-        <div class="item">
-          <a><img src="../../assets/img/brands/placeholder_brands.png"
-              data-src="../../assets/img/brands/logo_6.png" alt="" class="owl-lazy"></a>
-        </div><!-- /item -->
-      </div><!-- /carousel -->
-    </div><!-- /container -->
-  </div>
-  <!-- /bg_gray -->
+
 
   <div class="container margin_60_35">
     <div class="main_title">
@@ -190,14 +158,14 @@
           <figure>
             <a href="" routerLink="/veiw/{{disc.id}}">
             <img  src="{{imagepath}}{{disc.image}}" data-src="../../assets/img/blog-thumb-1.jpg" alt=""
-              width="400" height="266" class="lazy"></a>
-            <figcaption style="width: 56px;height: 48px;text-align: left !important;" class="fw-bold text-start">-{{(disc.discount/disc.price)*100|number}}%</figcaption>
+               class="lazy"></a>
+            <figcaption class="fw-bold text-start">-{{(disc.discount/disc.price)*100|number: '1.0-0'}}%</figcaption>
           </figure>
           <h4>{{disc.product_name}}</h4>
           <p>{{disc.description}} </p>
           <ul>
             <li><span class="new_price">{{disc.price - disc.discount|currency}}</span></li>
-            <li><span class="old_price" id="inputPrice">${{disc.price|currency}}</span></li>
+            <li><span class="old_price" id="inputPrice">{{disc.price|currency}}</span></li>
           </ul>
         </a>
       </div>

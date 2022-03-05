@@ -116,6 +116,7 @@ price:any;
     }
 
     }
+    // window.location.reload();
     this.myapp.showInfo("Updated Successfuly","Updated");
   }
 

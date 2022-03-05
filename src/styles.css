@@ -11,7 +11,9 @@
 @import "css/checkout.css";
 @import "css/cart.css";
 @import "css/custom.css";
-@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:400,700");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+
 /* @import "css/bootstrap.css"; */
 
 /* templet 2 */
@@ -19,10 +21,10 @@
 @import "plugins2/simplebar/css/simplebar.css";
  @import "plugins2/perfect-scrollbar/css/perfect-scrollbar.css";
 @import "plugins2/metismenu/css/metisMenu.min.css";
-@import "plugins2/nouislider/nouislider.min.css"; 
-@import "css2/pace.min.css"; 
+@import "plugins2/nouislider/nouislider.min.css";
+@import "css2/pace.min.css";
 @import "css2/bootstrap.min.css";
-@import "css2/app.css"; 
+@import "css2/app.css";
 @import "css2/icons.css";
 
 @import "css/product_page.css";
@@ -61,7 +63,7 @@
 }
 @media (min-width: 768px) {
   .modal-dialog {
-    width: 100%;    
+    width: 100%;
     margin: 30px auto;
   }
 }

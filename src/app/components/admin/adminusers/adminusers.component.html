@@ -7,10 +7,10 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/admn/admin/dashboard">
-          <div class="sidebar-brand-icon rotate-n-15">
-              <i class="fas fa-laugh-wink"></i>
-          </div>
-          <div class="sidebar-brand-text mx-3"> Admin </div>
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3"> Admin </div>
       </a>
 
       <!-- Divider -->
@@ -19,98 +19,79 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-          <a class="nav-link" routerLink="/admn/admin/dashboard">
-              <i class="fas fa-fw fa-tachometer-alt"></i>
-              <span>Dashboard</span>
+        <a class="nav-link" routerLink="/admn/admin/dashboard">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span>
 
-            </a>
+        </a>
       </li>
-     
-      <!-- Divider -->
-  
-
-      <!-- Heading -->
-     
-
-      <!-- Nav Item - Pages Collapse Menu -->
-   
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-     
-
       <br>
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <!-- Heading -->
       <div class="sidebar-heading">
-          Addons
+        Addons
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-          <a class="nav-link collapsed" routerLink="/admn/admin/category" data-toggle="collapse" data-target="#collapsePages"
-              aria-expanded="true" aria-controls="collapsePages">
-              <i class="fas fa-fw fa-folder"></i>
-              <span>Categories</span>
-          </a>
-          
+        <a class="nav-link collapsed" routerLink="/admn/admin/category" data-toggle="collapse"
+          data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Categories</span>
+        </a>
+
       </li>
       <li class="nav-item">
-          <a
-            class="nav-link collapsed"
-            routerLink="/admn/admin/subcategory"
-            data-toggle="collapse"
-            data-target="#collapsePages"
-            aria-expanded="true"
-            aria-controls="collapsePages"
-          >
-            <i class="fas fa-fw fa-folder"></i>
-            <span>SubCategories</span>
-          </a>
-        </li>
+        <a class="nav-link collapsed" routerLink="/admn/admin/subcategory" data-toggle="collapse"
+          data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>SubCategories</span>
+        </a>
+      </li>
       <li class="nav-item">
-          <a class="nav-link collapsed" routerLink="/admn/admin/product" data-toggle="collapse" data-target="#collapsePages"
-              aria-expanded="true" aria-controls="collapsePages">
-              <i class="fas fa-fw fa-folder"></i>
-              <span>Products</span>
-          </a>
-          
+        <a class="nav-link collapsed" routerLink="/admn/admin/product" data-toggle="collapse"
+          data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Products</span>
+        </a>
+
       </li>
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-          <a class="nav-link collapsed" routerLink="/admn/admin/users" data-toggle="collapse" data-target="#collapsePages"
-              aria-expanded="true" aria-controls="collapsePages">
-              <i class="fas fa-fw fa-folder"></i>
-              <span>Users</span>
-          </a>
+        <a class="nav-link collapsed" routerLink="/admn/admin/users" data-toggle="collapse" data-target="#collapsePages"
+          aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Users</span>
+        </a>
       </li>
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-          <a class="nav-link collapsed" routerLink="/admn/admin/order" data-toggle="collapse" data-target="#collapsePages"
-              aria-expanded="true" aria-controls="collapsePages">
-              <i class="fas fa-fw fa-folder"></i>
-              <span>Orders</span>
-              <span data-toggle="tooltip" class="badge" style="background-color: #7a95e4;margin-left: 10px;">{{order_count}}</span> 
-          </a>
+        <a class="nav-link collapsed" routerLink="/admn/admin/order" data-toggle="collapse" data-target="#collapsePages"
+          aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Orders</span>
+          <span data-toggle="tooltip" class="badge"
+            style="background-color: #7a95e4;margin-left: 10px;">{{order_count}}</span>
+        </a>
       </li>
       <li class="nav-item">
-          <a class="nav-link collapsed" href="https://app.smartsupp.com/app/dashboard/conversations"
-              aria-expanded="true" aria-controls="collapsePages" target="_blank">
-              <i class="fas fa-fw fa-folder"></i>
-              <span>Chat</span>
-          </a>
+        <a class="nav-link collapsed" href="https://app.smartsupp.com/app/dashboard/conversations" aria-expanded="true"
+          aria-controls="collapsePages" target="_blank">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Chat</span>
+        </a>
       </li>
 
       <li class="nav-item">
-          <a class="nav-link collapsed"
-              aria-expanded="true" aria-controls="collapsePages">
-              <span (click)="logout($event)">Log out</span>
-          </a>
+        <a class="nav-link collapsed" aria-expanded="true" aria-controls="collapsePages">
+          <span (click)="logout($event)">Log out</span>
+        </a>
       </li>
 
 
-  </ul>
+    </ul>
 
     <div class="container" class="d-flex flex-column col-10">
       <div class="mt-4">
@@ -132,8 +113,9 @@
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 class="m-0 font-weight-bold text-primary">Table of Users</h6>
               <div class="col-md-4">
-                <div class="search"> <i class="fa fa-search"></i> <input id="search-input" [(ngModel)]='searchText' type="search" id="form1" class="form-control" /></div>
-            </div>
+                <div class="search"> <i class="fa fa-search"></i> <input id="search-input" [(ngModel)]='searchText'
+                    type="search" id="form1" class="form-control" /></div>
+              </div>
               <div class="dropdown no-arrow">
                 <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
@@ -188,7 +170,7 @@
 
 
                       <td>{{user.name}}</td>
-                      <td >{{user.email|maxLength}}</td>
+                      <td>{{user.email|maxLength}}</td>
                       <td>{{user.phone}}</td>
                       <td>{{user.full_address |maxLength}}</td>
                       <!-- <td>{{user.house_no}}</td> -->
@@ -200,8 +182,7 @@
                       <td class="d-flex justify-content-start">
                         <!-- <button class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(user.id)" ><i class="fas fa-edit"></i></button> -->
                         <button class="btn btn-danger me-2" (click)="delete(currentIndex)">Delete</button>
-                        <button class="btn btn-info " data-bs-toggle="modal"
-                          data-bs-target="#exampleModal">Chat</button>
+                        <button class="btn btn-info " data-toggle="modal" data-target="#staticBackdrop">Chat</button>
                       </td>
                     </tr>
                     <tr></tr>
@@ -216,218 +197,197 @@
             </div>
           </div>
           <br>
-          <div style="position: absolute;" class="modal fade" id="exampleModal" tabindex="-1"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div style="position: relative;top: 50px;left:-70px;" class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Chating</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="col-lg-12">
-                    <div class="card shadow-none mb-0" style="height: 300px;">
-                      <input type="text" id="upcategory" class="form-control"  [value]="username" placeholder=""
-                                       aria-label="Example text with button addon" style="width: 30%;" aria-describedby="button-addon1">
-                       <div class="list-group listgroup-flush border-bottom scrollarea">
-                      <div class="list-group-item list-group-item-action py-3 lh-tight"
-                        *ngFor="let msg of messages"
-                      >
-                      <div class="d-flex w-75 align-items-center justfiy-content-between">
-
-
-                        <strong class="mb-1 text-primary">{{msg.username}}</strong>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Area Chart -->
+        <div class="col-xl-12 col-lg-12">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">
+                Add new Customer
+              </h6>
+            </div>
+            <div class="card-body">
+              <div class="chart-area" style="height: 600px;">
+                <div [formGroup]="formUser">
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <div class="row">
+                        <div class="form-group col-6">
+                          <label for="customerName">Customer Name</label>
+                          <input #inputCustomerName formControlName="Name" type="text" class="form-control"
+                            id="customerName" [class.is-invalid]="isInValidAndTouched('Name')"
+                            [class.is-valid]="isValidControl('Name')" placeholder="Customer Name" />
+                          <div *ngIf="isInValidAndTouched('Name')">
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Name','required')">required
+                              user name</small>
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Name','minlength')">min
+                              length is
+                              3</small>
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Name','maxlength')">max
+                              length is
+                              25</small>
+                          </div>
+                        </div>
+                        <div class="form-group col-6">
+                          <label for="customerEmail">Email</label>
+                          <input #inputEmail type="text" formControlName="Email" class="form-control"
+                            [class.is-invalid]="isInValidAndTouched('Email')" [class.is-valid]="isValidControl('Email')"
+                            id="customerEmail" placeholder="Email" />
+                          <div *ngIf="isInValidAndTouched('Email')">
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Email','required')">required
+                              email</small>
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Email','email')">is-invalid
+                              email
+                            </small>
+                          </div>
+                        </div>
                       </div>
-                      <div class="col-6 mb-1 small" >{{msg.message}}</div>
-                      </div>
-                    </div>
-                    </div>
 
-                    <form (submit)="submit()">
-                      <input class="form-control" placeholder="Write the Message" [value]="message"
-                       (change)="message = $any($event.target).value"
-                      >
-                    </form>
+                      <div class="row">
+                        <div class="form-group col-6">
+                          <label for="fullAdress">full Adresss</label>
+                          <input #inputFullAdress type="text" formControlName="Full_address" class="form-control"
+                            id="fullAdress" [class.is-invalid]="isInValidAndTouched('Full_address')"
+                            [class.is-valid]="isValidControl('Full_address')" placeholder="Full Address" />
+                          <div *ngIf="isInValidAndTouched('Full_address')">
+                            <small class="form-text text-danger"
+                              *ngIf="isControlHasError('Full_address','required')">required
+                              full address </small>
+                            <small class="form-text text-danger"
+                              *ngIf="isControlHasError('Full_address','maxlength')">max length is
+                              100
+                            </small>
+                          </div>
+                        </div>
+                        <div class="form-group col-6">
+                          <label for="phone">Phone</label>
+                          <input #inputPhone type="text" formControlName="Phone" class="form-control"
+                            [class.is-invalid]="isInValidAndTouched('Phone')" [class.is-valid]="isValidControl('Phone')"
+                            id="phone" placeholder="Phone" />
+                          <div *ngIf="isInValidAndTouched('Phone')">
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Phone','required')">required
+                              phone number </small>
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Phone','minlength')">min
+                              length is
+                              11
+                            </small>
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Phone','maxlength')">max
+                              length is
+                              11
+                            </small>
+                            <!-- <small class="form-text text-danger" *ngIf="isControlHasError('Phone','pattern')">start with 010
+                                      </small> -->
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+                        <div class="form-group col-6">
+                          <label for="country">Country</label>
+                          <input #inputCountry type="text" class="form-control" formControlName="Country"
+                            [class.is-invalid]="isInValidAndTouched('Country')"
+                            [class.is-valid]="isValidControl('Country')" id="country" placeholder="Country" />
+                          <div *ngIf="isInValidAndTouched('Country')">
+                            <small class="form-text text-danger"
+                              *ngIf="isControlHasError('Country','required')">required
+                              country</small>
+
+                          </div>
+                        </div>
+                        <div class="form-group col-6">
+                          <label for="city">City</label>
+                          <input #inputCity type="text" formControlName="City" class="form-control"
+                            [class.is-invalid]="isInValidAndTouched('City')" [class.is-valid]="isValidControl('City')"
+                            id="city" placeholder="City" />
+                          <div *ngIf="isInValidAndTouched('City')">
+                            <small class="form-text text-danger" *ngIf="isControlHasError('City','required')">required
+                              city </small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-6">
+                          <label for="housenumber">house number</label>
+                          <input #inputhousenumber type="text" formControlName="HouseNum" class="form-control"
+                            [class.is-invalid]="isInValidAndTouched('HouseNum')"
+                            [class.is-valid]="isValidControl('HouseNum')" id="housenumber" placeholder="House Number" />
+                          <div *ngIf="isInValidAndTouched('HouseNum')">
+                            <small class="form-text text-danger"
+                              *ngIf="isControlHasError('HouseNum','required')">required
+                              house number </small>
+                          </div>
+                        </div>
+                        <div class="form-group col-6">
+                          <label for="password">password</label>
+                          <input #inputpassword type="password" formControlName="Password" class="form-control"
+                            [class.is-invalid]="isInValidAndTouched('Password')"
+                            [class.is-valid]="isValidControl('Password')" id="password" placeholder="Password" />
+                          <div *ngIf="isInValidAndTouched('Password')">
+                            <small class="form-text text-danger"
+                              *ngIf="isControlHasError('Password','required')">required
+                              password </small>
+                            <small class="form-text text-danger" *ngIf="isControlHasError('Phone','minlength')">min
+                              length is
+                              6
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary"
+                        (click)="add(inputCustomerName.value,inputEmail.value,inputpassword.value,inputFullAdress.value,inputhousenumber.value,inputCountry.value,inputCity.value,inputPhone.value)"><i
+                          class="bi bi-plus-circle-fill text-light"></i> Add</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <!-- Area Chart -->
-            <div class="col-xl-12 col-lg-12">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">
-                    Add new Customer
-                  </h6>
-                  <!-- <div class="dropdown no-arrow">
-                <a
-                  class="dropdown-toggle"
-                  
-                  role="button"
-                  id="dropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                </a>
-              </div> -->
-                </div>
-                <div class="card-body">
-                  <div class="chart-area" style="height: 600px;">
-                    <div [formGroup]="formUser">
-                      <div class="form-row">
-                        <div class="form-group col-md-12">
-                         <div class="row">
-                          <div class="form-group col-6">
-                            <label for="customerName">Customer Name</label>
-                          <input #inputCustomerName formControlName="Name" type="text" class="form-control" id="customerName"
-                          [class.is-invalid]="isInValidAndTouched('Name')" [class.is-valid]="isValidControl('Name')"
-                          placeholder="Customer Name" />
-                          <div *ngIf="isInValidAndTouched('Name')">
-                            <small class="form-text text-danger" *ngIf="isControlHasError('Name','required')">required
-                              user name</small>
-                              <small class="form-text text-danger" *ngIf="isControlHasError('Name','minlength')">min length is
-                                3</small>
-                                <small class="form-text text-danger" *ngIf="isControlHasError('Name','maxlength')">max length is
-                                  25</small>
-                          </div>
-                          </div>
-
-                          <div class="form-group col-6">
-                            <label for="customerEmail">Email</label>
-                          <input #inputEmail type="text" formControlName="Email" class="form-control"
-                          [class.is-invalid]="isInValidAndTouched('Email')" [class.is-valid]="isValidControl('Email')"
-                          id="customerEmail" placeholder="Email" />
-                          <div *ngIf="isInValidAndTouched('Email')">
-                            <small class="form-text text-danger" *ngIf="isControlHasError('Email','required')">required
-                              email</small>
-                              <small class="form-text text-danger" *ngIf="isControlHasError('Email','email')">is-invalid email
-                                </small>
-                          </div>
-                          </div>
-                         </div>
-
-                         <div class="row">
-                          <div class="form-group col-6">
-                            <label for="fullAdress">full Adresss</label>
-                          <input #inputFullAdress type="text" formControlName="Full_address" class="form-control" id="fullAdress"
-                          [class.is-invalid]="isInValidAndTouched('Full_address')" [class.is-valid]="isValidControl('Full_address')"
-                          placeholder="Full Address" />
-                          <div *ngIf="isInValidAndTouched('Full_address')">
-                            <small class="form-text text-danger" *ngIf="isControlHasError('Full_address','required')">required
-                              full address </small>
-                              <small class="form-text text-danger" *ngIf="isControlHasError('Full_address','maxlength')">max length is
-                                100
-                                </small>
-                          </div>
-                          </div>
-                          <div class="form-group col-6">
-                            <label for="phone">Phone</label>
-                            <input #inputPhone type="text" formControlName="Phone" class="form-control"
-                            [class.is-invalid]="isInValidAndTouched('Phone')" [class.is-valid]="isValidControl('Phone')"
-                            id="phone" placeholder="Phone" />
-                            <div *ngIf="isInValidAndTouched('Phone')">
-                              <small class="form-text text-danger" *ngIf="isControlHasError('Phone','required')">required
-                                phone number </small>
-                                <small class="form-text text-danger" *ngIf="isControlHasError('Phone','minlength')">min length is
-                                  11
-                                  </small>
-                                  <small class="form-text text-danger" *ngIf="isControlHasError('Phone','maxlength')">max length is
-                                    11
-                                    </small>
-                                    <!-- <small class="form-text text-danger" *ngIf="isControlHasError('Phone','pattern')">start with 010
-                                      </small> -->
-                            </div>
-                          </div>
-
-                         </div>
-
-                         <div class="row">
-                         <div class="form-group col-6">
-                          <label for="country">Country</label>
-                          <input #inputCountry type="text" class="form-control" formControlName="Country"
-                          [class.is-invalid]="isInValidAndTouched('Country')" [class.is-valid]="isValidControl('Country')"
-                          id="country" placeholder="Country" />
-                          <div *ngIf="isInValidAndTouched('Country')">
-                            <small class="form-text text-danger" *ngIf="isControlHasError('Country','required')">required
-                              country</small>
-
-                          </div>
-                         </div>
-                          <div class="form-group col-6">
-                            <label for="city">City</label>
-                          <input #inputCity type="text" formControlName="City" class="form-control"
-                          [class.is-invalid]="isInValidAndTouched('City')" [class.is-valid]="isValidControl('City')"
-                          id="city" placeholder="City" />
-                          <div *ngIf="isInValidAndTouched('City')">
-                            <small class="form-text text-danger" *ngIf="isControlHasError('City','required')">required
-                              city </small>
-
-                          </div>
-
-                          </div>
-                         </div>
-                         <div class="row">
-                           <div class="form-group col-6">
-                            <label for="housenumber">house number</label>
-                            <input #inputhousenumber type="text" formControlName="HouseNum" class="form-control"
-                            [class.is-invalid]="isInValidAndTouched('HouseNum')" [class.is-valid]="isValidControl('HouseNum')"
-                            id="housenumber"
-                              placeholder="House Number" />
-                              <div *ngIf="isInValidAndTouched('HouseNum')">
-                                <small class="form-text text-danger" *ngIf="isControlHasError('HouseNum','required')">required
-                                  house number </small>
-
-                              </div>
-                           </div>
-                           <div class="form-group col-6">
-                            <label for="password">password</label>
-                            <input #inputpassword type="password" formControlName="Password" class="form-control"
-                            [class.is-invalid]="isInValidAndTouched('Password')" [class.is-valid]="isValidControl('Password')"
-                            id="password" placeholder="Password" />
-                            <div *ngIf="isInValidAndTouched('Password')">
-                              <small class="form-text text-danger" *ngIf="isControlHasError('Password','required')">required
-                                password </small>
-                                <small class="form-text text-danger" *ngIf="isControlHasError('Phone','minlength')">min length is
-                                  6
-                                  </small>
-
-                            </div>
-                           </div>
-
-                         </div>
-
-                          <button type="submit" class="btn btn-primary"
-                            (click)="add(inputCustomerName.value,inputEmail.value,inputpassword.value,inputFullAdress.value,inputhousenumber.value,inputCountry.value,inputCity.value,inputPhone.value)"><i class="bi bi-plus-circle-fill text-light"></i> Add</button>
-
-                        </div>
-
+        </div>
+      </div>
+      <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Chating</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="list-group listgroup-flush border-bottom scrollarea"
+                style="height: 40vh; max-height: 40vh; overflow:auto;">
+                <div class="list-group-item list-group-item-action py-3 lh-tight justify-content-around"
+                  *ngFor="let msg of messages">
+                  <div class="bubbleWrapper" *ngIf="msg.username=='Admin'">
+                    <div class="inlineContainer">
+                      <img class="inlineIcon" src="../../assets/software-engineer.png">
+                      <div class="otherBubble other">
+                        {{msg.message}}
                       </div>
                     </div>
-
-                    <!-- </div>  -->
-                    <!-- <div class="form-group col-md-6">
-                    <label for="inputEmail4">SubCategory Name</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Email" />
-                  </div> -->
-                    <!-- </div>
-                    <button type="submit" class="btn btn-primary" (click)="add(inputCategoryName.value)"><i class="fas fa-plus"></i></button>
-                  </form>
-                      </div>
-
-
-                    </div>
-
-    </div>
-  </div> -->
-
-                    <!-- End of Content Wrapper -->
-                    <!-- End of Page Wrapper -->
                   </div>
-                  <!-- End of Page Wrapper -->
-                  <!-- Scroll to Top Button-->
+                  <div class="bubbleWrapper">
+                    <div class="inlineContainer own" *ngIf="msg.username != 'Admin'">
+                      <img class="inlineIcon"
+                        src="https://www.pinclipart.com/picdir/middle/205-2059398_blinkk-en-mac-app-store-ninja-icon-transparent.png">
+                      <div class="ownBubble own">
+                        {{msg.message}}
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
+              <div class="row">
+                <input class="form-control col-10" type="text" style="flex: 1;" placeholder="Write the Message"
+                  (change)="submit()" [(ngModel)]="message">
+                <button class="btn btn-primary col-2" (click)="submit()"><i class="bi bi-send-fill" style="font-size: 15px;"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

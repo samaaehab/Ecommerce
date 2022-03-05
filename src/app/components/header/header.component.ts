@@ -50,7 +50,7 @@ WeatherData:any;
     this.getWeatherData();
     console.log(this.WeatherData);
 
- 
+
     this.auth.status.subscribe(value=>this.logged=value);
       this._categoryService.get().subscribe(
         (res: any) => {
@@ -59,14 +59,14 @@ WeatherData:any;
                this.categories = res.data;
               //  console.log(this.categories);
                //
-          
+
         // console.log(res.data);
           for (const i in res.data) {
-           
+
             const id= res.data[i].id;
             this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
               (res: any) => {
-           
+
                 this.subcategories=res.data;
 
                 // console.log(this.subcategories);
@@ -86,7 +86,7 @@ WeatherData:any;
             )
           }
           // console.log(this.allsubcategories);
-          
+
 
 
         }
@@ -120,13 +120,13 @@ WeatherData:any;
     }
   }
 
-      // getCategoryData(){ 
+      // getCategoryData(){
       //   this._categoryService.get().subscribe(
       //    (res: any) => {
       //      console.log(JSON.stringify(res));
       //       this.categories = res.data;
       //       console.log(this.categories);
-            
+
       //    }
       //  );
       // }
@@ -141,9 +141,9 @@ WeatherData:any;
             .then(data=>{this.setWeatherData(data);})
           }
         );
-        
+
       }
-    
+
       setWeatherData(data:any){
         this.WeatherData = data;
         let sunsetTime = new Date(this.WeatherData.sys.sunset * 1000);
