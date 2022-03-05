@@ -1,26 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private auth_url=`http://127.0.0.1:8000/api`;
+  private auth_url=`${environment.URLAPI}`
   constructor(private http:HttpClient) { }
 
   login(form:any){
-    return this.http.post(`${this.auth_url}/login`,form);
+    return this.http.post(`${this.auth_url}login`,form);
   }
 
   signup(form:any){
-    return this.http.post(`${this.auth_url}/signup`,form);
+    return this.http.post(`${this.auth_url}signup`,form);
   }
 
   resetPassword(form:any){
-    return this.http.post(`${this.auth_url}/resetPassword`,form);
+    return this.http.post(`${this.auth_url}resetPassword`,form);
   }
 
   adminLogin(form:any){
-    return this.http.post(`${this.auth_url}/admin/login`,form);
+    return this.http.post(`${this.auth_url}admin/login`,form);
   }
 }

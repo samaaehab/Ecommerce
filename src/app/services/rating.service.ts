@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 import { Rating } from '../models/Rating';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class RatingService {
 
   allRating = new BehaviorSubject<Rating[]>([]);
   constructor(private _httpClient: HttpClient) { }
-  private url=`http://127.0.0.1:8000/api/`;
+  private url=`${environment.URLAPI}`;
 
 public get() { return this._httpClient.get(this.url + `ratings`); }
 

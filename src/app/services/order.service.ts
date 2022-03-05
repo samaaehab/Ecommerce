@@ -2,6 +2,7 @@ import { Order } from './../models/Order';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 export class OrderService {
   allOrders = new BehaviorSubject<Order[]>([]);
   constructor(private _httpClient: HttpClient) { }
-  private url = `http://127.0.0.1:8000/api/`;
+  private url=`${environment.URLAPI}`;
 
   public get() { return this._httpClient.get(this.url + `orders`); }
   

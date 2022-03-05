@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
 import { OrderDetails } from '../models/OrderDetails';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderDetailsService {
-  private url=`http://127.0.0.1:8000/api/`;
+  private url=`${environment.URLAPI}`;
   constructor(private _httpClient: HttpClient) { }
   public get() { return this._httpClient.get(this.url + `order_details`); }
   public post(order_details:OrderDetails) {

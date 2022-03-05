@@ -13,6 +13,7 @@ import { AdminTokenService } from 'src/app/services/admin-token.service';
 import { AuthenService } from 'src/app/services/authen.service';
 import { ContactUsService } from 'src/app/services/contact-us.service';
 import { OrderService } from 'src/app/services/order.service';
+import { environment } from 'src/environments/environment.prod';
 
 declare const $: any;
 
@@ -93,7 +94,7 @@ export class AdminusersComponent implements OnInit {
   }
 
   submit(): void {
-    this.http.post('http://localhost:8000/api/messages', {
+    this.http.post(`${environment.URLAPI}messages`, {
       username: this.username,
       message: this.message
     }).subscribe(() => this.message = '');

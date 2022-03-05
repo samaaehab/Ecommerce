@@ -46,14 +46,14 @@ export class AcountComponent implements OnInit {
       this.userData.name = data.name;
       this.userData.email = data.email;
       this.userData.password = '000000';
-      this.userData.city = 'assiut';
-      this.userData.country = 'aaaa';
+      this.userData.city = 'cairo';
+      this.userData.country = null;
       this.userData.phone = '01022222222';
-      this.userData.house_no = 22;
-      this.userData.full_address = "sss, alex";
+      this.userData.house_no = null;
+      this.userData.full_address = null;
         this._userService.post(this.userData).subscribe(
           (res: any) => {
-            alert("ss")
+            // alert("ss")
             res.next();
           }
         );
@@ -244,14 +244,14 @@ export class AcountComponent implements OnInit {
       this.userData.name = data.name;
       this.userData.email = data.email;
       this.userData.password = '000000';
-      this.userData.city = 'sohag';
-      this.userData.country = 'egypt';
+      this.userData.city = 'cairo';
+      this.userData.country = null;
       this.userData.phone = '01222222222';
-      this.userData.house_no = 22;
-      this.userData.full_address = "egypt, alex";
+      this.userData.house_no = null ;
+      this.userData.full_address = null;
         this._userService.post(this.userData).subscribe(
           (res: any) => {
-            res.next();
+            // res.next();
           }
         );
         this.userLogin.email = data.email;

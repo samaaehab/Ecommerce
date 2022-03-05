@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 import { Product } from './../models/Product';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class ProductService {
   allProducts = new BehaviorSubject<Product[]>([]);
   constructor(private _httpClient: HttpClient) { }
 
-private url=`http://127.0.0.1:8000/api/`;
+  private url=`${environment.URLAPI}`;
 
 public get() { return this._httpClient.get(this.url + `products`); }
 
