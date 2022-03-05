@@ -36,6 +36,7 @@ export class CheckoutComponent implements OnInit {
     });
     this.formRegister = this._formBuilder.group({
       Name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+      Email: ['', [Validators.required, Validators.email]],
       Address: ['', [Validators.required, Validators.maxLength(100)]],
       HouseNum: ['', [Validators.required]],
       Country: ['', [Validators.required]],
@@ -54,7 +55,7 @@ export class CheckoutComponent implements OnInit {
             for(let i of this.cartInOrder){
               this.totalPrice+=Number(i.total_price);
             }
-            console.log(this.cartInOrder);
+            // console.log(this.cartInOrder);
             
             
           }

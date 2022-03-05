@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import Pusher from 'pusher-js';
 import { User } from 'src/app/models/User';
 import { AppComponent } from 'src/app/app.component';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-profile',
@@ -44,17 +45,15 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-
+  
   // setUsername(username:string):void{
   //   this.ChatUSer=username;
   // }
-
-  submit(): void {
-    this.http.post('http://localhost:8000/api/messages', {
-      username: this.ChatUSer,
-      message: this.message,
-      created_at:this.created_at,
-    }).subscribe(() => this.message = '');
+  submit():void{
+    this.http.post(`${environment.URLAPI}messages`,{
+      username:this.ChatUSer,
+      message:this.message
+    }).subscribe(()=>this.message='');
   }
 
 }

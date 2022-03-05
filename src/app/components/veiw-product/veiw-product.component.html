@@ -1,6 +1,6 @@
 <main>
     <div class="container margin_30">
-        <div class="countdown_inner">-{{(productDet.discount/productDet.price)*100|number}}% offer in this Product </div>
+        <div class="countdown_inner">-{{(productDet.discount/productDet.price)*100|number: '1.0-0'}}% offer in this Product </div>
         <input id="id" type="hidden" value="{{productDet.id}}" #inputId>
         <div class="row">
             <div class="col-md-6">
@@ -74,7 +74,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-5 col-md-6">
-                            <div class="price_main"><span class="new_price">{{productDet.price-productDet.discount|currency}}</span><span class="percentage">-{{(productDet.discount/productDet.price)*100|number}}%</span> <span class="old_price">{{productDet.price|currency}}</span></div>
+                            <div class="price_main"><span class="new_price">{{productDet.price-productDet.discount|currency}}</span><span class="percentage">-{{(productDet.discount/productDet.price)*100|number: '1.0-0'}}%</span> <span class="old_price">{{productDet.price|currency}}</span></div>
                             <input id="inputNewPrice" type="hidden" value="{{productDet.price - productDet.discount}}" #inputNewPrice>
                         </div>
                         <div class="col-lg-4 col-md-6">

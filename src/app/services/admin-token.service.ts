@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class AdminTokenService {
 
   private iss={
-    login:"http://127.0.0.1:8000/api/admin/login",
+    login:`${environment.URLAPI}`+"admin/login",
   }
   constructor() { }
 

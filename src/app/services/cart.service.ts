@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
 import { Cart } from './../models/Cart';
 
 @Injectable({
@@ -9,7 +10,7 @@ export class CartService {
 
   constructor(private _httpClient: HttpClient) { }
 
-private url=`http://127.0.0.1:8000/api/`;
+private url=`${environment.URLAPI}`;
 
 public get() { return this._httpClient.get(this.url + `carts`); }
 public getCartsForEachUser(id:any) { return this._httpClient.get(this.url + `cart/${id}`); }
