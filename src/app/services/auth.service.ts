@@ -20,6 +20,9 @@ export class AuthService {
   resetPassword(form:any){
     return this.http.post(`${this.auth_url}resetPassword`,form);
   }
+  changePassword(form:any){
+    return this.http.post(`${this.auth_url}resetMyPassword`,form);
+  }
 
   adminLogin(form:any){
     return this.http.post(`${this.auth_url}admin/login`,form);
