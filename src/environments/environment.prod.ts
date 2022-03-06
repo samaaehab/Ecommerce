@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  URLAPI:`http://ecommercelaravel22.herokuapp.com/api/`,
+  URLAPI:`https://ecommercelaravel22.herokuapp.com/api/`,
 };

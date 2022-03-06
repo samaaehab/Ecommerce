@@ -11,13 +11,13 @@
     <!-- The slideshow -->
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../../../assets/images/womans.jpeg" alt="Los Angeles" width="100%" height="350">
+        <img src="assets/images/womans.jpeg" alt="Los Angeles" width="100%" height="350">
       </div>
       <div class="carousel-item">
-        <img src="../../../assets/images/mens.webp" alt="Chicago" width="100%" height="350">
+        <img src="assets/images/mens.webp" alt="Chicago" width="100%" height="350">
       </div>
       <div class="carousel-item">
-        <img src="../../../assets/images/kids.jpeg" alt="New York" width="100%" height="350">
+        <img src="assets/images/kids.jpeg" alt="New York" width="100%" height="350">
       </div>
     </div>
 
@@ -36,7 +36,7 @@
   <ul id="banners_grid" class="clearfix">
     <li>
       <a routerLink="/products/men" class="img_container">
-        <img src="../../../assets/images/man.jpeg" data-src="../../assets/img/banner_1.jpg" alt="" class="lazy">
+        <img src="assets/images/man.jpeg" data-src="../../assets/img/banner_1.jpg" alt="" class="lazy">
         <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
           <h3>Men's Collection</h3>
           <div><span class="btn_1">Shop Now</span></div>
@@ -45,7 +45,7 @@
     </li>
     <li>
       <a routerLink="/products/woman" class="img_container">
-        <img src="../../../assets/images/woman.jpeg" data-src="../../assets/img/banner_2.jpg" alt="" class="lazy">
+        <img src="assets/images/woman.jpeg" data-src="../../assets/img/banner_2.jpg" alt="" class="lazy">
         <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
           <h3>Womens's Collection</h3>
           <div><span class="btn_1">Shop Now</span></div>
@@ -54,7 +54,7 @@
     </li>
     <li>
       <a href="" routerLink="/products/kids" class="img_container">
-        <img src="../../../assets/images/kid.jpeg" data-src="../../assets/img/banner_3.jpg" alt="" class="lazy">
+        <img src="assets/images/kid.jpeg" data-src="../../assets/img/banner_3.jpg" alt="" class="lazy">
         <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
           <h3>Kids's Collection</h3>
           <div><span class="btn_1">Shop Now</span></div>
@@ -126,7 +126,7 @@
   </div>
 
   <!-- /container -->
-  <div class="featured lazy" data-bg="url('../../../assets/image_z.jpg')"style="background-image: url('../../../assets/image_z.jpg')">
+  <div class="featured lazy" data-bg="url('assets/image_z.jpg')"style="background-image: url('assets/image_z.jpg')">
     <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)" style="background-color: rgba(0, 0, 0, 0.5);">
       <div class="container margin_60">
         <div class="row justify-content-center justify-content-md-start">
@@ -157,7 +157,7 @@
         <a class="box_news" >
           <figure>
             <a href="" routerLink="/veiw/{{disc.id}}">
-            <img  src="{{imagepath}}{{disc.image}}" data-src="../../assets/img/blog-thumb-1.jpg" alt=""
+            <img  src="{{imagepath}}{{disc.image}}" data-src="assets/img/blog-thumb-1.jpg" alt=""
                class="lazy"></a>
             <figcaption class="fw-bold text-start">-{{(disc.discount/disc.price)*100|number: '1.0-0'}}%</figcaption>
           </figure>
