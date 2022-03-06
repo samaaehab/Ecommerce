@@ -30,7 +30,7 @@ export class KidsComponent implements OnInit {
   user=localStorage.getItem('email');
   LastProducts:Product[]=[];
   allProducts: any[] = [];
-  imagepath: any = 'http://127.0.0.1:8000/public/image/';
+  imagepath: any = 'https://ecommercelaravel22.herokuapp.com/public/image/';
   price: any[] = [];
   p: any = 1;
   count: any = 9;
@@ -41,21 +41,21 @@ export class KidsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.showcat(); 
+    this.showcat();
     // this.getPrice();
 
   //   this.storeService.get().subscribe(
   //     (res:any)=>{
   //   for(let i in res.data){
-  
+
   //   this.productStore.push(res.data[i]);
-  
-  
+
+
   // }
-  //  console.log(this.productStore);    
+  //  console.log(this.productStore);
   // },
   //   (error:any)=>{
-  
+
   //   }
   // );
     // this.getIdByEmail();
@@ -64,7 +64,7 @@ export class KidsComponent implements OnInit {
 
 
   }
- 
+
   // getid(id:number){
   //   this.productsCategory.forEach(
   //     c=>{
@@ -88,7 +88,7 @@ export class KidsComponent implements OnInit {
   //           this.allStore.push(this.productStore[i]);
 
   //          }
-        
+
   //         }
 
   //         console.log(this.productSize);
@@ -100,10 +100,10 @@ export class KidsComponent implements OnInit {
   //       }
   //     }
   //   );
-  
+
 
   // }
- 
+
 // closeModel(){
 
 //   this.productSize=[];
@@ -115,22 +115,22 @@ export class KidsComponent implements OnInit {
 //   this.storeService.get().subscribe(
 //        (res:any)=>{
 //  for(let i in res.data){
-   
+
 //      this.price.push(res.data[i]);
-   
-   
+
+
 //  }
-  
-       
+
+
 //  },
 //      (error:any)=>{
 
 //      }
 //   );
 
-  
+
 //    console.log(this.price);
-// } 
+// }
 
 // getIdByEmail(){
 // this._userService.get().subscribe(
@@ -151,9 +151,9 @@ products:any[]=[];
 //   (res:any)=>{
 //     for(let p in res.data){
 //       this.products.push(res.data[p]);
-     
-//     } 
-    
+
+//     }
+
 //     var product=this.products.find((p:any)=>p.id == id);
 //     if(localStorage.getItem('product'+productSizeColor)=== null){
 //     let price=product.price-product.discount;
@@ -162,15 +162,15 @@ products:any[]=[];
 //     //   localStorage.removeItem('product');
 //     //   this.myapp.errormessage("Sorry not Available");
 //     // }
-//     this.myapp.successmessage(product.product_name+" Added To Cart Successfuly"); 
+//     this.myapp.successmessage(product.product_name+" Added To Cart Successfuly");
 //   }
 //     else{
-//       this.myapp.showWarning(product.product_name+" Already Added Before","Oops"); 
+//       this.myapp.showWarning(product.product_name+" Already Added Before","Oops");
 
 
 //     }
 
-//   } 
+//   }
 
 // );
 // }
@@ -199,9 +199,9 @@ products:any[]=[];
       localStorage.setItem('Fav' + id, ProdName + '#$' + Image + '#$' + newPrice + '#$' + id + '#$' + 1);
       this.myapp.successmessage(ProdName +" Added To Wish List Successfuly");
     } else {
-      this.myapp.showWarning(ProdName +" Already Added Before","Oops"); 
+      this.myapp.showWarning(ProdName +" Already Added Before","Oops");
     }
-  
+
   }
 
   showcat() {
@@ -216,8 +216,8 @@ products:any[]=[];
             this.productsCategory=this.productsCategory[0];
             // console.log(this.productsCategory);
             // console.log(res);
-    
-    
+
+
           }
         );
         for(const i in res.data){
@@ -226,7 +226,7 @@ products:any[]=[];
             (res:any)=>{
               this.subcategories=res.data;
               // console.log(this.subcategories);
-              
+
                     this.allsubcategories.push(this.subcategories.map(m=>{return m}));
 
                   // for(let i=0;i<res.data.length;i++){
@@ -237,12 +237,12 @@ products:any[]=[];
                },
             (err:any)=>{
               // console.log(err);
-              
+
             }
           )
         }
-        
+
       }
-    ); 
+    );
   }
 }

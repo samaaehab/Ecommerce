@@ -15,7 +15,7 @@ export class WomenComponent implements OnInit {
   public allsubcategories:any[]=[];
   public subcategories:any[]=[];
   productsCategory:any[]=[];
-  imagepath: any = 'http://127.0.0.1:8000/public/image/';
+  imagepath: any = 'https://ecommercelaravel22.herokuapp.com/public/image/';
   price: any[] = [];
   p: any = 1;
   count: any = 9;
@@ -43,15 +43,15 @@ export class WomenComponent implements OnInit {
   //   this.storeService.get().subscribe(
   //     (res:any)=>{
   //   for(let i in res.data){
-  
+
   //   this.productStore.push(res.data[i]);
-  
-  
+
+
   // }
-  //  console.log(this.productStore);    
+  //  console.log(this.productStore);
   // },
   //   (error:any)=>{
-  
+
   //   }
   // );
     // this.getIdByEmail();
@@ -59,25 +59,25 @@ export class WomenComponent implements OnInit {
     // this.closeModel();
 
   }
-  
+
 //  getPrice(){
 //    this.storeService.get().subscribe(
 //         (res:any)=>{
 //   for(let i in res.data){
-    
+
 //       this.price.push(res.data[i]);
-    
-    
+
+
 //   }
-   
-        
+
+
 //   },
 //       (error:any)=>{
 
 //       }
 //    );
 
-   
+
 //     console.log(this.price);
 //  }
 //  getIdByEmail(){
@@ -86,7 +86,7 @@ export class WomenComponent implements OnInit {
 //      let c= res.data.find((user:any)=>user.email==this.user);
 //      console.log(c.id);
 //      return c.id;
-  
+
 //     },
 //     (err:any)=>{
 //       console.log(err);
@@ -99,9 +99,9 @@ export class WomenComponent implements OnInit {
   //     (res:any)=>{
   //       for(let p in res.data){
   //         this.products.push(res.data[p]);
-         
-  //       } 
-     
+
+  //       }
+
   //       var product=this.products.find((p:any)=>p.id == id);
   //       if(localStorage.getItem('product'+productSizeColor)=== null){
   //       let price=product.price-product.discount;
@@ -116,11 +116,11 @@ export class WomenComponent implements OnInit {
   //       //   alert('yes');
   //       //   return
   //       // }
-  //       this.myapp.successmessage(product.product_name+" Added To Cart Successfuly"); 
+  //       this.myapp.successmessage(product.product_name+" Added To Cart Successfuly");
   //       }
   //       else{
-  //         this.myapp.showWarning(product.product_name+" Already Added Before","Oops"); 
-    
+  //         this.myapp.showWarning(product.product_name+" Already Added Before","Oops");
+
   //       }
 
   //     } );
@@ -129,29 +129,29 @@ export class WomenComponent implements OnInit {
   //   this.storeService.get().subscribe(
   //        (res:any)=>{
   //  for(let i in res.data){
-  
+
   //      this.storeId.push(res.data[i].id);
-  
+
   //  }
   // console.log(this.storeId);
-  
+
   // //  console.log(res.data[0].id);
-  
+
   //  },
   //      (error:any)=>{
-  
+
   //      }
   //   );
-  
+
   // }
   addToFav(id:any,ProdName:any,Image:any,newPrice:any){
     if (localStorage.getItem('Fav' + id) === null) {
       localStorage.setItem('Fav' + id, ProdName + '#$' + Image + '#$' + newPrice + '#$' + id + '#$' + 1);
       this.myapp.successmessage(ProdName +" Added To Wish List Successfuly");
     } else {
-      this.myapp.showWarning(ProdName +" Already Added Before","Oops"); 
-    } 
-  
+      this.myapp.showWarning(ProdName +" Already Added Before","Oops");
+    }
+
   }
   // getid(id:number){
   //   this.productsCategory.forEach(
@@ -176,7 +176,7 @@ export class WomenComponent implements OnInit {
   //           this.allStore.push(this.productStore[i]);
 
   //          }
-        
+
   //         }
 
   //         console.log(this.productSize);
@@ -188,11 +188,11 @@ export class WomenComponent implements OnInit {
   //       }
   //     }
   //   );
-  
+
 
   // }
   //  closeModel(){
-  
+
   //   this.productSize=[];
   //   this.productColor=[];
   //   this.productStoreId=[];
@@ -210,8 +210,8 @@ export class WomenComponent implements OnInit {
             this.productsCategory=this.productsCategory[0];
             // console.log(this.productsCategory);
             // console.log(res);
-    
-    
+
+
           }
         );
         for(const i in res.data){
@@ -220,7 +220,7 @@ export class WomenComponent implements OnInit {
             (res:any)=>{
               this.subcategories=res.data;
               // console.log(this.subcategories);
-              
+
                     this.allsubcategories.push(this.subcategories.map(m=>{return m}));
 
                   // for(let i=0;i<res.data.length;i++){
@@ -229,18 +229,18 @@ export class WomenComponent implements OnInit {
 
                   // }
               // console.log(this.allsubcategories);
-              
+
               this.countsub = this.allsubcategories.length;
                },
             (err:any)=>{
               // console.log(err);
-              
+
             }
           )
         }
-        
+
       }
-    ); 
+    );
   }
 
 }

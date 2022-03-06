@@ -5,28 +5,28 @@ import { Injectable } from '@angular/core';
 })
 export class TokenService {
   private iss={
-    login:"http://127.0.0.1:8000/api/login",
-    signup:"http://127.0.0.1:8000/api/signup"
+    login:"https://ecommercelaravel22.herokuapp.com/api/login",
+    signup:"https://ecommercelaravel22.herokuapp.com/api/signup"
   }
   constructor() { }
 
   handel(tok:any){
     this.set(tok);
     console.log(this.isValide());
-    
+
   }
   set(tok:any){
     localStorage.setItem('token',tok);
   }
-  
+
   get(){
     return localStorage.getItem('token');
   }
-  
+
   remove(){
     return localStorage.removeItem('token');
   }
-  
+
   isValide(){
     const tok=this.get();
     if(tok){
@@ -40,7 +40,7 @@ export class TokenService {
     }
     return false;
   }
-  
+
   payload(tok:any){
     const payload= tok.split('.')[1];
     return this.decode(payload);

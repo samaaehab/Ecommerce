@@ -62,11 +62,11 @@ export class AcountComponent implements OnInit {
         this._authService.login(this.userLogin).subscribe(
           (response: any) => {
             this.handelResponse(response);
-  
+
             localStorage.setItem('email', this.userLogin.email);
           },
           (error: any) => {
-  
+
             this.handelError(error);
             this.myapp.errormessage(error.error.error);
           }
@@ -251,7 +251,7 @@ export class AcountComponent implements OnInit {
       this.userData.full_address = null;
         this._userService.post(this.userData).subscribe(
           (res: any) => {
-            // res.next();
+            res.next();
           }
         );
         this.userLogin.email = data.email;
@@ -262,7 +262,7 @@ export class AcountComponent implements OnInit {
             localStorage.setItem('email', this.userLogin.email);
           },
           (error: any) => {
-  
+
             this.handelError(error);
             this.myapp.errormessage(error.error.error);
           }
