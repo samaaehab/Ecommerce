@@ -53,7 +53,7 @@ export class AdminproductsComponent implements OnInit {
   ngOnInit(): void {
     this.getOrderCount();
     this.formProduct = this._formBuilder.group({
-      ProductName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+      ProductName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       ProductDescription: ['', [Validators.required, Validators.maxLength(255), Validators.minLength(10)]],
       SubCategory: ['', [Validators.required]],
       Category: ['', [Validators.required]],
