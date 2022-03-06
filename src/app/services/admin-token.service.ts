@@ -30,8 +30,11 @@ export class AdminTokenService {
     const token1=this.get();
     if(token1){
       const payload=this.payload(token1);
+      // if(payload){
+      //   return Object.values(this.iss).indexOf(payload.iss) > -1 ? true:false;
+      // }
       if(payload){
-        return Object.values(this.iss).indexOf(payload.iss) > -1 ? true:false;
+        return (payload.iss === 'http://ecommercelaravel22.herokuapp.com/api/admin/login') ? true : false ;
       }
     }
     return false;
