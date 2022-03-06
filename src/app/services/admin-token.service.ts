@@ -34,7 +34,7 @@ export class AdminTokenService {
       //   return Object.values(this.iss).indexOf(payload.iss) > -1 ? true:false;
       // }
       if(payload){
-        return (payload.iss === 'http://ecommercelaravel22.herokuapp.com/api/admin/login') ? true : false ;
+        return (payload.iss === 'https://ecommercelaravel22.herokuapp.com/api/admin/login') ? true : false ;
       }
     }
     return false;
