@@ -30,7 +30,8 @@ LastProducts:Product[]=[];
 allProducts: any[] = [];
   categories: Category[] = [];
   catname: any[] = [];
-  imagepath: any = 'https://ecommercelaravel22.herokuapp.com/public/image/';
+  imagepath: any = 'https://res.cloudinary.com/ecommerceangular22/image/upload/v1646609059/';
+
   price:any[]=[];
   p: any = 1;
   count: any = 9;

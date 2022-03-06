@@ -29,7 +29,7 @@ mainhomeRate=4;
   allStore:any[]=[];
   productsDisc:any[]=[];
   total:number=0;
-  imagepath: any = 'https://ecommercelaravel22.herokuapp.com/public/image/';
+  imagepath: any = 'https://res.cloudinary.com/ecommerceangular22/image/upload/v1646609059/';
   user=localStorage.getItem('email');
 
 
