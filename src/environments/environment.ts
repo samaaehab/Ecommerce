@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  URLAPI:`http://ecommercelaravel22.herokuapp.com/api/`
+  URLAPI:`https://ecommercelaravel22.herokuapp.com/api/`
 };
 
 /*
