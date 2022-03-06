@@ -251,7 +251,7 @@ export class AcountComponent implements OnInit {
       this.userData.full_address = null;
         this._userService.post(this.userData).subscribe(
           (res: any) => {
-            // res.next();
+            res.next();
           }
         );
         this.userLogin.email = data.email;
