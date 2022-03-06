@@ -1886,7 +1886,7 @@ p.l-t-meta-date {
     top: -50px;
     left: 12px;
     border-radius: 50%;
-    background-image: url(../../../assets/img/demo/user-1.png);
+    background-image: url(assets/img/demo/user-1.png);
     float: left;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1896,7 +1896,7 @@ p.l-t-meta-date {
 .chat .chat-body .chat-system .chat_window .chat-messages .message.right .avatar {
     position: absolute;
     float: right;
-    background-image: url(../../../assets/img/email/90x90.jpg);
+    background-image: url(assets/img/email/90x90.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     right: 0;
@@ -2726,7 +2726,7 @@ p.usr-deal-number {
     top: -75px;
     left: 20px;
     border-radius: 50%;
-    background-image: url(../../../assets/img/90x90.jpg);
+    background-image: url(assets/img/90x90.jpg);
     float: left;
     background-repeat: no-repeat;
     background-size: cover;
@@ -2737,7 +2737,7 @@ p.usr-deal-number {
 .chat .chat-body .chat-system .chat_window .chat-messages .message.right .avatar {
     position: absolute;
     float: right;
-    background-image: url(../../../assets/img/90x90.jpg);
+    background-image: url(assets/img/90x90.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     right: 0;
@@ -3383,7 +3383,7 @@ p.usr-deal-number {
     -ms-transform: translateX(-50%) translateY(-50%);
     -o-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    background: url(../../../assets/img/cd-arrow.svg) no-repeat 0 0;
+    background: url(assets/img/cd-arrow.svg) no-repeat 0 0;
 }
 .timeline-widget .cd-timeline-navigation a.prev {
     left: 0;

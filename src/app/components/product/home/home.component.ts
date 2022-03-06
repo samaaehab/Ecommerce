@@ -18,8 +18,8 @@ export class HomeComponent implements OnInit {
 public allsubcategories:any[]=[];
 public subcategories:any[]=[];
 men="assets/img/retro-man-dressed-shirt-lies-floor-posing.jpg";
-women="../../assets/img/Banner1.jpg";
-kids="../../assets/img/WhatsApp Image 2022-02-10 at 9.53.55 PM.jpeg";
+women="assets/img/Banner1.jpg";
+kids="assets/img/WhatsApp Image 2022-02-10 at 9.53.55 PM.jpeg";
 cat:any;
 subcat:any[]=[];
 productsCategory:any[]=[];

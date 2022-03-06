@@ -1,5 +1,5 @@
 body {
-    background: #0f1015 url("../../../../assets/img/bg-1920x1080.jpg") no-repeat fixed center;
+    background: #0f1015 url("assets/img/bg-1920x1080.jpg") no-repeat fixed center;
     background-size: cover;
 }
 #info {
