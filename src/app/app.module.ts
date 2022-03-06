@@ -41,6 +41,7 @@ import { AdminSignupComponent } from './components/admin-signup/admin-signup.com
 import { RatingComponent } from './components/rating/rating.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { VeiwProductComponent } from './components/veiw-product/veiw-product.component';
+import { ResponseResetComponent } from './components/response-reset/response-reset.component';
 
 
 
@@ -65,6 +66,8 @@ import { VeiwProductComponent } from './components/veiw-product/veiw-product.com
     RatingComponent,
     WeatherComponent,
     VeiwProductComponent,
+    ResponseResetComponent,
+
 
 
   ],

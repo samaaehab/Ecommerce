@@ -1,5 +1,6 @@
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-reset-password',
@@ -10,15 +11,17 @@ export class ResetPasswordComponent implements OnInit {
   public form={
     email:null
   }
-  constructor(private auth:AuthService) { }
+  constructor(private auth:AuthService,public myapp:AppComponent) { }
 
   ngOnInit(): void {
   }
   onSubmit(){
     this.auth.resetPassword(this.form).subscribe(
-      (res:any)=>{console.log(res);
+      (res:any)=>{
+        this.myapp.successmessage("Check Your Acount");
       },
-      (error:any)=>{console.log(error);
+      (error:any)=>{
+        this.myapp.errormessage("Enter Correct Email");
       }
     );
   }

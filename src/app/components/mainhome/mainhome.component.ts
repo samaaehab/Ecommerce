@@ -29,7 +29,7 @@ mainhomeRate=4;
   allStore:any[]=[];
   productsDisc:any[]=[];
   total:number=0;
-  imagepath: any = 'http://127.0.0.1:8000/public/image/';
+  imagepath: any = 'https://ecommercelaravel22.herokuapp.com/public/image/';
   user=localStorage.getItem('email');
 
 
@@ -49,7 +49,7 @@ mainhomeRate=4;
 
 
 // }
-   
+
 // },
 //   (error:any)=>{
 
@@ -60,25 +60,25 @@ mainhomeRate=4;
   // this.getStoreId();
   // this.getStore()
   // this.closeModel();
-  
+
 }
 
   // getStore(){
   //   this.storeService.get().subscribe(
   //        (res:any)=>{
   //  for(let i in res.data){
-     
+
   //      this.productStore.push(res.data[i]);
-     
+
   //  }
-          
+
   //  },
   //      (error:any)=>{
- 
+
   //      }
   //   );
- 
-    
+
+
   //    console.log(this.productStore);
   // }
 
@@ -86,7 +86,7 @@ mainhomeRate=4;
 this.mainhomeRate=rate;
   }
   // getid(id:number){
- 
+
   //   this.allProducts.forEach(
   //     c=>{
   //       if(c.id == id){
@@ -109,7 +109,7 @@ this.mainhomeRate=rate;
   //           this.allStore.push(this.productStore[i]);
 
   //          }
-        
+
   //         }
 
   //         console.log(this.productSize);
@@ -121,10 +121,10 @@ this.mainhomeRate=rate;
   //       }
   //     }
   //   );
-  
+
 
   // }
- 
+
 // closeModel(){
 
 //   this.productSize=[];
@@ -132,7 +132,7 @@ this.mainhomeRate=rate;
 //   this.productStoreId=[];
 //   this.allStore=[];
 // }
-  
+
   // getidS(id:number){
   //   this.store.forEach(
   //     c=>{
@@ -144,7 +144,7 @@ this.mainhomeRate=rate;
 
   //         for(let s of this.size){
   //          console.log(s.size) ;
-       
+
   //        }
   //       }
   //     }
@@ -171,9 +171,9 @@ products:any[]=[];
 //   (res:any)=>{
 //     for(let p in res.data){
 //       this.products.push(res.data[p]);
-     
-//     } 
-    
+
+//     }
+
 //     var product=this.products.find((p:any)=>p.id == id);
 //     if(localStorage.getItem('product'+productSizeColor)=== null){
 //     let price=product.price-product.discount;
@@ -182,19 +182,19 @@ products:any[]=[];
 //     //   localStorage.removeItem('product');
 //     //   this.myapp.errormessage("Sorry not Available");
 //     // }
-//     this.myapp.successmessage(product.product_name+" Added To Cart Successfuly"); 
+//     this.myapp.successmessage(product.product_name+" Added To Cart Successfuly");
 //   }
 //     else{
-//       this.myapp.showWarning(product.product_name+" Already Added Before","Oops"); 
+//       this.myapp.showWarning(product.product_name+" Already Added Before","Oops");
 
 //     }
-    
-//   } 
+
+//   }
 // );
 // //   let message="";
 // //  console.log(id);
 // //  localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
-// //  this.myapp.successmessage("Added To Cart Successfuly");  
+// //  this.myapp.successmessage("Added To Cart Successfuly");
 // }
 // getStoreId(){
 //   this.storeService.get().subscribe(
@@ -205,7 +205,7 @@ products:any[]=[];
 //    this.storeId.push(res.data[i].id);
 
 //  }
-      
+
 // console.log(this.storeId);
 
 // //  console.log(res.data[0].id);
@@ -226,7 +226,7 @@ addToFav(id:any,ProdName:any,Image:any,newPrice:any){
     localStorage.setItem('Fav' + id, ProdName + '#$' + Image + '#$' + newPrice + '#$' + id + '#$' + 1);
     this.myapp.successmessage(ProdName +" Added To Wish List Successfuly");
   } else {
-    this.myapp.showWarning(ProdName +" Already Added Before","Oops"); 
+    this.myapp.showWarning(ProdName +" Already Added Before","Oops");
   }
 }
   productdiscount() {
@@ -246,25 +246,25 @@ addToFav(id:any,ProdName:any,Image:any,newPrice:any){
           this._productService.getForEachSubCategory(id).subscribe(
             (res:any)=>{
               this.LastProducts=res.data;
-  
+
               for(let i=0;i<this.LastProducts.length;i++){
                this.allProducts.push(this.LastProducts[i]) ;
                 //  console.log(this.allProducts);
               }
-  
-  
+
+
             },
             (err:any)=>{
               console.log(err);
-  
+
             }
           )
         }
-  
-  
+
+
       }
     );
 }
  }
 
-      
+

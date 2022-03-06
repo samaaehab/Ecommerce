@@ -13,7 +13,7 @@ import { SubcategoryService } from 'src/app/services/subcategory.service';
 })
 export class SubcategoryComponent implements OnInit {
   products: any[] = [];
-  imagepath: any = 'http://127.0.0.1:8000/public/image/';
+  imagepath: any = 'https://ecommercelaravel22.herokuapp.com/public/image/';
   p: any = 1;
   count: any = 9;
   allStore: any[] = [];
@@ -44,30 +44,30 @@ export class SubcategoryComponent implements OnInit {
               console.log( this.category);
               console.log( this.subcat);
 
-              
+
 
             }
           )
-            
+
         }
       );
-        
+
     })
 
     // this.storeService.get().subscribe(
     //   (res: any) => {
     //     for (let i in res.data) {
-  
+
     //       this.productStore.push(res.data[i]);
-  
-  
+
+
     //     }
     //     console.log(this.productStore);
     //   },
     //   (error: any) => {
-  
+
     //   }
-  
+
     // );
   }
 
@@ -81,36 +81,36 @@ export class SubcategoryComponent implements OnInit {
   //         $("#exampleModalLabel11").prop('value', c?.id);
   //         $("#exampleModalLabel2").html(c?.description);
   //         $("#exampleModalLabel4").html(String(this.total));
-  
+
   //         $("#exampleModalLabel3").prop('src', img);
   //         // $("#exampleModalLabel3").prop('src')=c?.src;
   //         // console.log(this.imagepath+c.image);
-  
+
   //         for (let i = 0; i < this.productStore.length; i++) {
   //           if (id == this.productStore[i].product_id) {
   //             // this.productStoreId.push(this.productStore[i].id);
   //             // this.productSize.push(this.productStore[i].size);
   //             // this.productColor.push(this.productStore[i].color);
   //             this.allStore.push(this.productStore[i]);
-  
+
   //           }
-        
+
   //         }
-  
+
   //         ;
-          
-  
-  
-  
+
+
+
+
   //       }
   //     }
   //   );
-  
-  
+
+
   // }
   // closeModel() {
-  
-   
+
+
   //   this.allStore = [];
   // }
 //   addToCart(id: any, productSizeColor: any) {
@@ -121,9 +121,9 @@ export class SubcategoryComponent implements OnInit {
 //         (res: any) => {
 //           for (let p in res.data) {
 //             this.products.push(res.data[p]);
-         
+
 //           }
-        
+
 //           var product = this.products.find((p: any) => p.id == id);
 //           if (localStorage.getItem('product' + productSizeColor) === null) {
 //             let price = product.price - product.discount;
@@ -132,12 +132,12 @@ export class SubcategoryComponent implements OnInit {
 //           }
 //           else {
 //             this.myapp.showWarning(product.product_name + " Already Added Before", "Oops");
-    
-    
+
+
 //           }
-    
+
 //         }
-    
+
 //       );
 //     });
 // }
@@ -148,7 +148,7 @@ addToFav(id:any,ProdName:any,Image:any,newPrice:any){
   // localStorage.setItem('image' +id,Image);
   // localStorage.setItem('quantity' +id,'1');
   localStorage.setItem('Fav' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + 1);
-  this.myapp.successmessage("Added To Wish List Successfuly"); 
+  this.myapp.successmessage("Added To Wish List Successfuly");
 
 }
 }
