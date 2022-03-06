@@ -63,9 +63,11 @@ export class VeiwProductComponent implements OnInit {
               this.store.push(res.data[i]);
               console.log(this.store.length);
 
-            if(this.store.length === 0){
+            if (this.store.length === 0) {
+              // alert('no')
               this.check=true;
-            }else{
+            } else {
+              // alert('yes')
               this.check=false;
             }
           }
