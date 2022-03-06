@@ -1,0 +1,27 @@
+<div class="box_account" style="margin-top: 100px !important;
+width: 50%;
+margin: auto;">
+    <h3 class="client">Already Client</h3>
+    <div class="form_container">
+      <div class="row no-gutters">
+
+      <form #ResetPasswordForm=ngForm (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+
+          <input type="email" name="email" class="form-control" 
+           [(ngModel)]="form.email" required placeholder="Email*">
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" class="form-control"  placeholder="Password" 
+          [(ngModel)]="form.password" required>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password_confirmation" class="form-control"  placeholder="Confirm Password" 
+            [(ngModel)]="form.password_confirmation" required>
+          </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!ResetPasswordForm.valid">Change Password</button>
+        </form>
+    </div>
+  </div>

@@ -1,3 +1,4 @@
+import { ResponseResetComponent } from './components/response-reset/response-reset.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { AdminAcountComponent } from './components/admin-acount/admin-acount.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
@@ -46,7 +47,7 @@ const routes: Routes = [
       {path: 'about', component: AboutComponent},
       {path: 'contact', component: ContactsUsComponent},
       {path: 'veiw/:pId', component:VeiwProductComponent},
-
+      {path: 'response-reset',component:ResponseResetComponent,canActivate: [BeforeLoginService]},
 
 
       {path: '', component:MainhomeComponent},

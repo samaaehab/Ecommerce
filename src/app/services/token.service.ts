@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
   private iss={
-    login:"https://ecommercelaravel22.herokuapp.com/api/login",
-    signup:"https://ecommercelaravel22.herokuapp.com/api/signup"
+    login:`${environment.URLAPI}login`,
+    signup:`${environment.URLAPI}signup`
   }
   constructor() { }
 
