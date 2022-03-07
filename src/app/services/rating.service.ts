@@ -15,6 +15,8 @@ export class RatingService {
 
 public get() { return this._httpClient.get(this.url + `ratings`); }
 
+public reviews(id:any) { return this._httpClient.get(this.url + `ratings/product/${id}`); }
+
 public post(rate: Rating) {
   return this._httpClient.post(this.url + `ratings`, rate)
 }

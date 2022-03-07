@@ -262,7 +262,6 @@ export class AcountComponent implements OnInit {
             localStorage.setItem('email', this.userLogin.email);
           },
           (error: any) => {
-
             this.handelError(error);
             this.myapp.errormessage(error.error.error);
           }

@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import { HeaderComponent } from './../header/header.component';
 import { Component, Input, OnInit,Output, EventEmitter} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -42,7 +43,8 @@ export class VeiwProductComponent implements OnInit {
       this.prodid = params.get('pId');
       this.show(this.prodid);
 
-
+      this.reviews(this.prodid);
+      
     });
     this._userService.get().subscribe(
       (res: any) => {
@@ -50,8 +52,8 @@ export class VeiwProductComponent implements OnInit {
         this.users = res.data.find((user: any) => user.email == this.user);
         this._ratingService.check(this.users.id,this.prodid).subscribe(
           (res:any)=>{
-            console.log(this.users.id);
-            console.log(this.prodid);
+            // console.log(this.users.id);
+            // console.log(this.prodid);
 
             this.mainhomeRate=res[0].degree;
           });
@@ -78,10 +80,10 @@ export class VeiwProductComponent implements OnInit {
         }
       );
     // this.getStore();
-
+this.reviews(1);
   }
-
   products:any[]=[];
+  reviewsForProduct:any;
   show(id:any){
     this._productService.show(id).subscribe(
       (res: any) => {
@@ -99,7 +101,19 @@ export class VeiwProductComponent implements OnInit {
       }
     );
   }
-
+reviews(id:any){
+  this._ratingService.reviews(id).subscribe(
+    (res:any)=>{
+      this.reviewsForProduct=res[0].count;
+      //console.log();
+      
+    },
+    (error)=>{
+      console.log(error);
+      
+    }
+  )
+}
 addToCart(id:any,productSizeColor:any,qnt:any){
   this._productService.get().subscribe(
     (res:any)=>{
