@@ -3451,8 +3451,7 @@ header.version_2 .menu ul li ul li ul {
 @media (max-width: 575px) {
   .top_banner img {
     height: 200px;
-    width: auto !important;
-    max-width: inherit !important;
+
   }
 }
 .top_banner.version_2 h1 {

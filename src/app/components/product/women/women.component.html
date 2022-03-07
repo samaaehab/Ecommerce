@@ -1,7 +1,7 @@
 
 <main>
     <div class="top_banner">
-        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.3)">
+        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.3)" style="background-color: rgba(0, 0, 0, 0.3);">
             <div class="container">
                 <div class="breadcrumbs">
                     <ul>
@@ -13,7 +13,7 @@
                 <h1>Women</h1>
             </div>
         </div>
-        <img src="assets/img/Banner1.jpg" class="img-fluid" alt="">
+        <img src="assets/img/Banner2.jpg" class="img-fluid" alt="">
     </div>
     <!-- /top_banner -->
         <div id="stick_here"></div>		
@@ -103,6 +103,11 @@
                     <div class="inner_bt"><a href="#" class="open_filters"><i class="ti-close"></i></a></div>
                     <div class="filter_type version_2">
                         <h4><a data-bs-toggle="collapse" class="opened" href="#filter_1">Products</a></h4>
+                        <div class="input-group mb-2" style="width: 300px;">
+                          <div class="form-outline">
+                            <input [(ngModel)]='searchText' type="search" id="form1" class="form-control" style="border-radius: 0px;" placeholder="Search"/>
+                          </div>
+                        </div>
                         <div class="collapse show" id="filter_1">
                             <!-- <ul>
                                 <li>
@@ -131,17 +136,13 @@
                                 </li>
                                
                             </ul> -->
-                            <div class="input-group" style="width: 300px;">
-                                <div class="form-outline">
-                                  <input [(ngModel)]='searchText' type="search" id="form1" class="form-control" style="border-radius: 0px;" placeholder="Search"/>
-                                </div>
-                              </div>
                               <ul>
                                 <label *ngFor="let sucategory of allsubcategories;let currentIndex=index" >
                                     <li *ngFor="let sub of sucategory"> 
                                         <a href="" routerLink="/products/{{sub.id}}/{{sub.cat_id}}" *ngIf="sub.category.cat_name==='woman' || sub.category.cat_name==='women' || sub.category.cat_name==='weman'">
-                                            <i  class="fa fa-puzzle-piece me-1"
-                                            style="font-size:16px"></i>
+                                          <i class="fas fa-shopping-bag"></i>
+                                            <!-- <i  class="fa fa-puzzle-piece me-1"
+                                            style="font-size:16px"></i> -->
                                             <!-- <input type="radio">
                                             <span class="checkmark"> -->
                                         <!-- <small class="ml-5">{{countsub}}</small> -->
