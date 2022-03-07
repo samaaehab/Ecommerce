@@ -16,12 +16,6 @@ MIT
 @angular/router
 MIT
 
-@ngx-translate/core
-MIT
-
-@ngx-translate/http-loader
-MIT
-
 angularx-social-login
 MIT
 The MIT License
