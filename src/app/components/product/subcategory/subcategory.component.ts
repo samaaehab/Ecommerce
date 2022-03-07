@@ -13,7 +13,8 @@ import { SubcategoryService } from 'src/app/services/subcategory.service';
 })
 export class SubcategoryComponent implements OnInit {
   products: any[] = [];
-  imagepath: any = 'https://ecommercelaravel22.herokuapp.com/public/image/';
+  imagepath: any = 'https://res.cloudinary.com/ecommerceangular22/image/upload/v1646609059/';
+
   p: any = 1;
   count: any = 9;
   allStore: any[] = [];

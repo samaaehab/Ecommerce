@@ -521,7 +521,7 @@ li.list-inline-item a { color: #515365; }
 /*  Banner Section    */
 
 #content .banner-section .card {
-    background: #fff url(../../../assets/img/280x300.jpg) no-repeat center center;
+    background: #fff url(assets/img/280x300.jpg) no-repeat center center;
     padding: 100px 0;
     background-size: cover;
     color: #fff;

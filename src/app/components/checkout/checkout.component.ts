@@ -225,7 +225,7 @@ export class CheckoutComponent implements OnInit {
       window.document.body.appendChild(s);
     }
   }
-  imagepath: any = 'https://ecommercelaravel22.herokuapp.com/public/image/';
+  imagepath: any = 'https://res.cloudinary.com/ecommerceangular22/image/upload/v1646609059/';
   return(id:any,s_id:any,p_id:any,p_name:any,img:any,p_number:any,disc:any,pric:any,tot_price:any){
     this._cartService.delete(id).subscribe(
       (res:any)=>{

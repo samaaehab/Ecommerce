@@ -1229,7 +1229,7 @@ p.l-t-meta-date {
     top: -50px;
     left: 12px;
     border-radius: 50%;
-    background-image: url(../../../assets/img/90x90.jpg);
+    background-image: url(assets/img/90x90.jpg);
     float: left;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1239,7 +1239,7 @@ p.l-t-meta-date {
 .chat .chat-body .chat-system .chat_window .chat-messages .message.right .avatar {
     position: absolute;
     float: right;
-    background-image: url(../../../assets/img/90x90.jpg);
+    background-image: url(assets/img/90x90.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     right: 0;

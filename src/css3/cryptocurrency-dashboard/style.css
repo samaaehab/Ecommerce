@@ -683,7 +683,7 @@
     ALL COINS TABLE
 */
 .all-coins .custom-select {
-    background: url(../../../assets/img/arrows_down.png) right 0.75rem center no-repeat;
+    background: url(assets/img/arrows_down.png) right 0.75rem center no-repeat;
     width: auto;
     max-width: 100%;
 }

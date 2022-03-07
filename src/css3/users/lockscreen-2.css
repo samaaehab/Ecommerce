@@ -2,7 +2,7 @@ html, body { height: 100%; }
 body {
     padding-top: 40px;
     padding-bottom: 40px;
-    background: #1b1c25 url("../../../assets/img/bg-1920x1080.jpg") no-repeat fixed center;
+    background: #1b1c25 url("assets/img/bg-1920x1080.jpg") no-repeat fixed center;
     background-size: cover;
     display: -ms-flexbox;
     display: flex;

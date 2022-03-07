@@ -252,7 +252,7 @@ blockquote.blockquote {
 /* 	Masonry Blog Background Text card */
 
 .masonry-blog-style .m-b-background-text-card {
-    background: #fff url(../../../../assets/img/400x300.jpg) no-repeat center;
+    background: #fff url(assets/img/400x300.jpg) no-repeat center;
     background-size: cover;
 }
 .masonry-blog-style .m-b-background-text-card .card-title { color: #fff!important; }
