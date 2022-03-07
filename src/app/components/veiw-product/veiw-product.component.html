@@ -4,8 +4,7 @@
         <input id="id" type="hidden" value="{{productDet.id}}" #inputId>
         <div class="row">
             <div class="col-md-6 magnific-gallery">
-              <!-- <img src="{{imagepath}}{{productDet.image}}" #inputImage  style="width: 500px;"> -->
-              <img src="assets/images/product.jpg"class="img-fluid" #inputImage  >
+              <img src="{{productDet.image}}" #inputImage  style="width: 500px;">
             </div>
             <div class="col-md-6" id="sidebar_fixed">
                 <div class="breadcrumbs">
@@ -21,7 +20,7 @@
                 <div class="prod_info">
                     <h1>{{productDet.product_name}}</h1>
                     <app-rating [rate]="mainhomeRate" (change)="onmainHomeRateChange($event,productDet.id)"></app-rating>
-                    <span class="ms-5">{{reviewsForProduct}} Reviews</span>
+                    <span class="ms-3 font-italic">{{reviewsForProduct}} Reviews</span>
                     <!-- <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span> -->
                     <p><small>Discription</small><br>{{productDet.description}}</p>
                     <div class="prod_options">

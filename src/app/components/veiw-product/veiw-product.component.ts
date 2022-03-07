@@ -126,7 +126,7 @@ addToCart(id:any,productSizeColor:any,qnt:any){
       if (localStorage.getItem('product' + productSizeColor) === null) {
         // this.header.cartCount();
       let price=product.price-product.discount;
-      localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+qnt+"#$"+price+"#$"+productSizeColor+"#$"+price*qnt);
+      localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+product.image+"#$"+qnt+"#$"+price+"#$"+productSizeColor+"#$"+price*qnt);
         // this.header.count++;
       this.myapp.successmessage(product.product_name+" Added To Cart Successfuly");
     }
