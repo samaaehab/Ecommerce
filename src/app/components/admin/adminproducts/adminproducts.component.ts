@@ -30,7 +30,7 @@ export class AdminproductsComponent implements OnInit {
   stores: Store[] = [];
 
   files: any;
-  imagepath: any = 'http://127.0.0.1:8000/public/image/';
+  imagepath: any = 'https://ecommercelaravel22.herokuapp.com/public/image/';
   // Pagination parameters.
   p: any = 1;
   count: any = 5;
@@ -53,7 +53,7 @@ export class AdminproductsComponent implements OnInit {
   ngOnInit(): void {
     this.getOrderCount();
     this.formProduct = this._formBuilder.group({
-      ProductName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+      ProductName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       ProductDescription: ['', [Validators.required, Validators.maxLength(255), Validators.minLength(10)]],
       SubCategory: ['', [Validators.required]],
       Category: ['', [Validators.required]],
@@ -66,7 +66,7 @@ export class AdminproductsComponent implements OnInit {
     this._contact.get().subscribe(
       (res:any)=>{
         console.log(res);
-        
+
         this.messagesCount=res.length;
         for(let i = 0 ; i < this.messagesCount ; i++){
           if(res[i].seen === 0){
@@ -301,7 +301,7 @@ export class AdminproductsComponent implements OnInit {
           if(res.data[i].status === 'pending'){
             this.order_count++;
           }
-          
+
         }
       }
     )

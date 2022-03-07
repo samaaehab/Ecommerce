@@ -30,7 +30,7 @@ LastProducts:Product[]=[];
 allProducts: any[] = [];
   categories: Category[] = [];
   catname: any[] = [];
-  imagepath: any = 'http://127.0.0.1:8000/public/image/';
+  imagepath: any = 'https://ecommercelaravel22.herokuapp.com/public/image/';
   price:any[]=[];
   p: any = 1;
   count: any = 9;
@@ -45,14 +45,14 @@ allProducts: any[] = [];
   ,public myapp:AppComponent) { }
 
   ngOnInit(): void {
-    
+
     this.showcat();
     // this._activatedRoute.paramMap.subscribe(params=>{
-    //   this.cat=params.get('cat'); 
+    //   this.cat=params.get('cat');
 
     // })
     // this.getPrice();
-    
+
 
 //   this.storeService.get().subscribe(
 //     (res:any)=>{
@@ -62,7 +62,7 @@ allProducts: any[] = [];
 
 
 // }
-//  console.log(this.productStore);    
+//  console.log(this.productStore);
 // },
 //   (error:any)=>{
 
@@ -75,28 +75,28 @@ allProducts: any[] = [];
   // this.closeModel();
 
   }
-  
+
 //  getPrice(){
 //    this.storeService.get().subscribe(
 //         (res:any)=>{
 //   for(let i in res.data){
-    
+
 //       this.price.push(res.data[i]);
-    
-    
+
+
 //   }
-   
-        
+
+
 //   },
 //       (error:any)=>{
 
 //       }
 //    );
 
-   
+
 //     console.log(this.price);
 //  }
- 
+
 //  getid(id:number){
 //   this.productsCategory.forEach(
 //     c=>{
@@ -120,7 +120,7 @@ allProducts: any[] = [];
 //           this.allStore.push(this.productStore[i]);
 
 //          }
-      
+
 //         }
 
 //         console.log(this.productSize);
@@ -162,9 +162,9 @@ products:any[]=[];
 //     (res:any)=>{
 //       for(let p in res.data){
 //         this.products.push(res.data[p]);
-       
-//       } 
-      
+
+//       }
+
 //       var product=this.products.find((p:any)=>p.id == id);
 //       if(localStorage.getItem('product'+productSizeColor)=== null){
 //       let price=product.price-product.discount;
@@ -173,16 +173,16 @@ products:any[]=[];
 //       //   localStorage.removeItem('product');
 //       //   this.myapp.errormessage("Sorry not Available");
 //       // }
-//       this.myapp.successmessage(product.product_name+" Added To Cart Successfuly"); 
+//       this.myapp.successmessage(product.product_name+" Added To Cart Successfuly");
 //     }
 //       else{
-//         this.myapp.showWarning(product.product_name+" Already Added Before","Oops"); 
-  
-  
+//         this.myapp.showWarning(product.product_name+" Already Added Before","Oops");
+
+
 //       }
-  
-//     } 
-  
+
+//     }
+
 //   );
 //   }
 // getStoreId(){
@@ -210,12 +210,12 @@ products:any[]=[];
       localStorage.setItem('Fav' + id, ProdName + '#$' + Image + '#$' + newPrice + '#$' + id + '#$' + 1);
       this.myapp.successmessage(ProdName +" Added To Wish List Successfuly");
     } else {
-      this.myapp.showWarning(ProdName +" Already Added Before","Oops"); 
+      this.myapp.showWarning(ProdName +" Already Added Before","Oops");
     }
-  
-  
+
+
   }
-  // getCategoryData(){ 
+  // getCategoryData(){
   //   this._categoryService.get().subscribe(
   //    (res: any) => {
   //       console.log(JSON.stringify(res));
@@ -224,10 +224,10 @@ products:any[]=[];
   //       }
   //       for (let c in this.categories) {
   //         this.catname.push(this.categories[c].cat_name)
-         
+
   //       }
   //       console.log(this.catname);
-        
+
   //    }
   //  );
   // }
@@ -241,11 +241,11 @@ products:any[]=[];
         }
         for (let c in this.categories) {
           this.catname.push(this.categories[c].cat_name)
-         
+
         }
         // console.log(this.catname);
-        
-     
+
+
         //
         // console.log(res.data);
         let x= res.data.find((cat:any)=> cat.cat_name ==='men'|| cat.cat_name==='man');
@@ -257,8 +257,8 @@ products:any[]=[];
             this.productsCategory=this.productsCategory[0];
             // console.log(this.productsCategory);
             // console.log(res);
-    
-    
+
+
           }
         );
 
@@ -268,11 +268,11 @@ products:any[]=[];
             (res:any)=>{
               this.subcategories=res.data;
               // console.log(this.subcategories);
-              
+
                     this.allsubcategories.push(this.subcategories.map(m=>{return m}));
 
               // console.log(this.allsubcategories);
-              
+
                   // for(let i=0;i<res.data.length;i++){
                   //   this.subcategories.push(res.data[i])
                   //   this.subcategories=this.subcategories.map(m=>{return m});
@@ -281,12 +281,12 @@ products:any[]=[];
                },
             (err:any)=>{
               // console.log(err);
-              
+
             }
           )
         }
-        
+
       }
-    ); 
+    );
 }
 }

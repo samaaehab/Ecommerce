@@ -17,7 +17,7 @@ import { UserService } from './../../services/user.service';
   styleUrls: ['./veiw-product.component.css']
 })
 export class VeiwProductComponent implements OnInit {
-  imagepath: any = 'http://127.0.0.1:8000/public/image/';
+  imagepath: any = 'https://ecommercelaravel22.herokuapp.com/public/image/';
   x=0;
   prodid:any;
   users=new User();
@@ -28,7 +28,7 @@ export class VeiwProductComponent implements OnInit {
   mainhomeRate=0;
   R:any;
   check: boolean = false;
-  
+
   productDet:any;
   constructor(private _activatedRoute: ActivatedRoute,
     private _productService: ProductService, private storeService: StoreService,
@@ -36,11 +36,12 @@ export class VeiwProductComponent implements OnInit {
     public myapp: AppComponent , public header:HeaderComponent) { }
 
   ngOnInit(): void {
-   
+
 
     this._activatedRoute.paramMap.subscribe(params => {
       this.prodid = params.get('pId');
       this.show(this.prodid);
+
       this.reviews(this.prodid);
       
     });
@@ -52,9 +53,9 @@ export class VeiwProductComponent implements OnInit {
           (res:any)=>{
             // console.log(this.users.id);
             // console.log(this.prodid);
-            
+
             this.mainhomeRate=res[0].degree;
-          });    
+          });
       });
       this.storeService.get().subscribe(
         (res:any)=>{
@@ -62,14 +63,16 @@ export class VeiwProductComponent implements OnInit {
 
             if(res.data[i].product_id==this.productDet.id)
               this.store.push(res.data[i]);
-              // console.log(this.store.length);
-              
-            if(this.store.length === 0){
+              console.log(this.store.length);
+
+            if (this.store.length === 0) {
+              // alert('no')
               this.check=true;
-            }else{
+            } else {
+              // alert('yes')
               this.check=false;
             }
-          } 
+          }
           },
           (error:any)=>{
 
@@ -91,10 +94,10 @@ this.reviews(1);
           },(error:any)=>{
             console.log(error);
           }
-        ); 
+        );
       },(error:any)=>{
         console.log(error);
-      } 
+      }
     );
   }
 reviews(id:any){
@@ -115,27 +118,27 @@ addToCart(id:any,productSizeColor:any,qnt:any){
     (res:any)=>{
       for(let p in res.data){
         this.products.push(res.data[p]);
-       
-      } 
-    
+
+      }
+
       var product=this.products.find((p:any)=>p.id == id);
       if (localStorage.getItem('product' + productSizeColor) === null) {
         // this.header.cartCount();
       let price=product.price-product.discount;
       localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+qnt+"#$"+price+"#$"+productSizeColor+"#$"+price*qnt);
         // this.header.count++;
-      this.myapp.successmessage(product.product_name+" Added To Cart Successfuly"); 
+      this.myapp.successmessage(product.product_name+" Added To Cart Successfuly");
     }
       else{
-        this.myapp.showWarning(product.product_name+" Already Added Before","Oops"); 
-  
-  
+        this.myapp.showWarning(product.product_name+" Already Added Before","Oops");
+
+
       }
-  
-    } 
-  
+
+    }
+
   );
- 
+
 
   }
 
@@ -146,7 +149,7 @@ addToCart(id:any,productSizeColor:any,qnt:any){
         this.ratings.user_id=this.users.id;
         this._ratingService.check(this.ratings.user_id,this.ratings.product_id).subscribe(
           (res:any)=>{
-            
+
             this.R = res.length;
         // console.log(this.R);
             if(this.R>0){
@@ -161,7 +164,7 @@ addToCart(id:any,productSizeColor:any,qnt:any){
             else{
           this._ratingService.post(this.ratings).subscribe(
             (res:any)=>{
-            });  
+            });
           }
           // this._ratingService.show();
           }
@@ -174,17 +177,17 @@ addToCart(id:any,productSizeColor:any,qnt:any){
 
   //    if(res.data[i].product_id==this.productDet.id)
   //      this.store.push(res.data[i]);
-        
-  //  } 
+
+  //  }
   //  },
   //      (error:any)=>{
- 
+
   //      }
   //   );
   //     }
- 
-    
-     
+
+
+
   // }
   addToFav(id:any,ProdName:any,Image:any,newPrice:any){
     // let id = $("#id").prop('value');
@@ -195,8 +198,8 @@ addToCart(id:any,productSizeColor:any,qnt:any){
       localStorage.setItem('Fav' + id, ProdName + '#$' + Image + '#$' + newPrice + '#$' + id + '#$' + 1);
       this.myapp.successmessage(ProdName +" Added To Wish List Successfuly");
     } else {
-      this.myapp.showWarning(ProdName +" Already Added Before","Oops"); 
+      this.myapp.showWarning(ProdName +" Already Added Before","Oops");
     }
   }
-  
+
 }

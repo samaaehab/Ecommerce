@@ -48,7 +48,7 @@ export class CheckoutComponent implements OnInit {
         console.log(JSON.stringify(res));
         this.users = res.data.find((user: any) => user.email == this.user);
         //console.log(this.users.id);
-        
+
         this._cartService.getCartsForEachUser(this.users.id).subscribe(
           (res:any)=>{
             this.cartInOrder=res;
@@ -56,20 +56,20 @@ export class CheckoutComponent implements OnInit {
               this.totalPrice+=Number(i.total_price);
             }
             // console.log(this.cartInOrder);
-            
-            
+
+
           }
         )
-      
+
       }
     );
-    
+
 
     // this.getstore(4);
     // this.addOrder();
-    
+
   }
-  
+
   // get product id from store id
   // getstore(id:any) {
   //   this._storeService.get().subscribe(
@@ -96,7 +96,7 @@ export class CheckoutComponent implements OnInit {
     this.postOrder.phone=Phone;
     this.postOrder.email=email;
     this.postOrder.user_id=this.users.id;
-    
+
     this.postOrder.discount=0;
     this.postOrder.price=Number(totalPrice);
     if(this.postOrder.price >=5000){
@@ -123,12 +123,12 @@ export class CheckoutComponent implements OnInit {
         (error)=>{
           for (const err in error.error.errors) {
             for (let i = 0; i < error.error.errors[err].length; i++) {
-              this.myapp.errormessage(error.error.errors[err][i]);   
-            }   
+              this.myapp.errormessage(error.error.errors[err][i]);
+            }
             }
         }
-      ); 
-      
+      );
+
     }else if(this.postOrder.payment_method === 'credit card' && this.cartInOrder.length>0){
       if(localStorage.getItem('orderToken')){
         this._orderService.post(this.postOrder).subscribe(
@@ -139,20 +139,20 @@ export class CheckoutComponent implements OnInit {
             (error)=>{
               for (const err in error.error.errors) {
                 for (let i = 0; i < error.error.errors[err].length; i++) {
-                this.myapp.errormessage(error.error.errors[err][i]);   
-                }   
+                this.myapp.errormessage(error.error.errors[err][i]);
+                }
                 }
             }
-          ); 
+          );
       }else{
          this.myapp.errormessage('Confirm U are Pay Firstly');
       }
-      
+
     }else{
       this.myapp.errormessage('Check Products In Ur Order Or Confirm U are Pay');
     }
-    
-      
+
+
   }
   login(): void {
     alert(JSON.stringify(this.formLogin.value));
@@ -180,8 +180,8 @@ export class CheckoutComponent implements OnInit {
   isControlHasError2(name: string, error: string): boolean {
     return this.formRegister.controls[name].invalid && this.formRegister.controls[name].errors?.[error];
   }
-  pay(amount: any) {    
- 
+  pay(amount: any) {
+
     var handler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51KXiTqCac1rFJKk7X7T633HwpeZOAzTipqVW1faLM1C4gIH0wT9sJY7XcyPiTOEXNx2uy0ewAbrDTieDM22KE4eY00WY7971N6',
       locale: 'auto',
@@ -191,19 +191,19 @@ export class CheckoutComponent implements OnInit {
         if(token){
           localStorage.setItem('orderToken',token.id);
         }
-      
+
       }
     });
- 
+
     handler.open({
       name: 'Welcome',
       description: 'Pay Now',
       amount: this.totalPrice *100
     });
- 
+
   }
   loadStripe() {
-     
+
     if(!window.document.getElementById('stripe-script')) {
       var s = window.document.createElement("script");
       s.id = "stripe-script";
@@ -217,15 +217,15 @@ export class CheckoutComponent implements OnInit {
             // You can access the token ID with `token.id`.
             // Get the token ID to your server-side code for use.
             console.log(token);
-            
+
           }
         });
       }
-       
+
       window.document.body.appendChild(s);
     }
   }
-  imagepath: any = 'http://127.0.0.1:8000/public/image/';
+  imagepath: any = 'https://ecommercelaravel22.herokuapp.com/public/image/';
   return(id:any,s_id:any,p_id:any,p_name:any,img:any,p_number:any,disc:any,pric:any,tot_price:any){
     this._cartService.delete(id).subscribe(
       (res:any)=>{
@@ -233,6 +233,6 @@ export class CheckoutComponent implements OnInit {
          this.router.navigateByUrl('/cart');
       }
     );
-   
+
   }
 }

@@ -43,6 +43,7 @@ WeatherData:any;
   //   this.translate.use(lang);
   // }
   ngOnInit(): void {
+    
     this.getauthlogin();
     this.getloginUser();
     this.WeatherData = {
@@ -73,7 +74,11 @@ WeatherData:any;
           //     }
           //   )
           // }          
-        }
+        },
+            (err:any)=>{
+              console.log(err);
+
+            }
       );
       }
 
