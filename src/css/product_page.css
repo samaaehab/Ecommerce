@@ -251,8 +251,9 @@
   margin-bottom: 20px;
 }
 .prod_info small {
+  font-size: 20px;
   font-weight: 600;
-  color:#e41616;
+  color:#444;
 }
 .prod_info.version_2 {
   border-bottom: none;

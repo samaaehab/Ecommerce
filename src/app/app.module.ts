@@ -24,8 +24,8 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+// import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+// import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { FacebookLoginProvider, SocialAuthService, SocialAuthServiceConfig } from 'angularx-social-login';
 import { SocialLoginModule} from 'angularx-social-login';
@@ -81,16 +81,16 @@ import { ResponseResetComponent } from './components/response-reset/response-res
     BrowserAnimationsModule,
     ToastrModule,
     Ng2SearchPipeModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpTranslateLoader,
-        deps: [HttpClient]
-      }
-    }),
+    // TranslateModule.forRoot({
+    //   loader: {
+    //     provide: TranslateLoader,
+    //     useFactory: httpTranslateLoader,
+    //     deps: [HttpClient]
+    //   }
+    // }),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    
+
   ],
   // exports: [CommonModule, NgxPaginationModule],
 
@@ -127,10 +127,10 @@ import { ResponseResetComponent } from './components/response-reset/response-res
     CartComponent
    ],
   bootstrap: [AppComponent]
-  
+
 })
 export class AppModule { }
 
-export function httpTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
+// export function httpTranslateLoader(http: HttpClient) {
+//   return new TranslateHttpLoader(http);
+// }
