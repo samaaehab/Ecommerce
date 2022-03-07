@@ -2267,19 +2267,6 @@ header ul.top_tools > li:hover .dropdown-access .dropdown-menu {
     left: 70px;
     }
 }
-@media (max-width: 991px) {
-  header ul.top_tools > li .dropdown-cart .dropdown-menu,
-  header ul.top_tools > li .dropdown-access .dropdown-menu {
-    display: none !important;
-    width: 160px;
-  }
-  header ul.top_tools > li:hover .dropdown-cart .dropdown-menu,
-  header ul.top_tools > li:hover .dropdown-access .dropdown-menu {
-    display: block !important;
-    top: 50px;
-    left: 70px;
-    }
-}
 @media (min-width: 991px) {
   header ul.top_tools > li .dropdown-cart .dropdown-menu,
   header ul.top_tools > li .dropdown-access .dropdown-menu {
@@ -4680,6 +4667,11 @@ body.modal-open .mm-slideout {
   -ms-transition: all 0.7s ease;
   transition: all 0.7s ease;
 }
+@media (max-width:767px) {
+  .grid_item  figure{
+    height: 160px;
+  }
+}
 .grid_item figure img:nth-child(1) {
   visibility: visible;
   opacity: 1;
@@ -4695,7 +4687,7 @@ body.modal-open .mm-slideout {
 .grid_item figure:hover {
   -webkit-box-shadow: 0 20px 20px -20px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0 20px 20px -20px rgba(0, 0, 0, 0.25);
-  box-shadow: 0 20px 20px -20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 20px -20px rgba(2, 27, 252, 0.486);
 }
 .grid_item figure:hover img {
   -webkit-transition: opacity 0.5s ease, -webkit-transform 1.5s cubic-bezier(0, 0, 0.44, 1.18);
@@ -4708,6 +4700,7 @@ body.modal-open .mm-slideout {
   opacity: 1;
   transform: scale(1.05);
 }
+
 .grid_item ul {
   margin: 0;
   padding: 0;
@@ -4747,7 +4740,7 @@ body.modal-open .mm-slideout {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
-  border-radius: 0;
+  border-radius: 5px;
   width: 36px;
   height: 36px;
   color: #444;
@@ -4757,8 +4750,10 @@ body.modal-open .mm-slideout {
   margin: 0;
   padding: 0;
 }
-.grid_item ul li a:hover {
-  background-color: #004dda;
+.grid_item ul li:nth-child(1) a:hover {
+  background-color: #da0024;
+}.grid_item ul li:nth-child(2) a:hover {
+  background-color: #0016da;
 }
 .grid_item ul li a:hover i {
   color: #fff;
@@ -7306,4 +7301,10 @@ img.mfp-img {
 
 .mfp-bg {
   opacity: 0.8 !important;
+}
+
+@media(max-width:767px){
+  .carousel-inner img{
+    height: 200px;
+  }
 }

@@ -242,7 +242,7 @@
 .prod_info h1 {
   font-size: 24px;
   font-size: 1.5rem;
-  margin: 10px 0 2px 0;
+  margin: 10px 0 8px 0;
 }
 .prod_info .rating {
   margin-bottom: 10px;
@@ -252,6 +252,7 @@
 }
 .prod_info small {
   font-weight: 600;
+  color:#e41616;
 }
 .prod_info.version_2 {
   border-bottom: none;
@@ -401,7 +402,9 @@
 .price_main .percentage {
   top: -2px;
 }
-
+.btn_add_to_cart {
+  color: #fff;
+}
 @media (max-width: 767px) {
   .btn_add_to_cart {
     text-align: right;
@@ -409,13 +412,22 @@
 }
 .btn_add_to_cart a.btn_1 {
   text-transform: uppercase;
+  margin-bottom: 15px;
   width: 100%;
+}
+.btn_add_to_fav{
+  cursor:pointer;
+  text-align: right;
+  transition: .2s ease-in-out;
+}
+.btn_add_to_fav:hover{
+  color: #e41616;
 }
 @media (max-width: 767px) {
   .btn_add_to_cart a.btn_1 {
     display: inline-block;
     width: auto;
-    margin-top: 30px;
+    margin: 30px 0 15px 0;
   }
 }
 
