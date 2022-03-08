@@ -6,7 +6,7 @@
                 <div class="breadcrumbs">
                     <ul>
                         <li><a>Home</a></li>
-                        
+
                         <!-- <li><a >{{cat}}</a></li> -->
                         <li><a >men</a></li>
 
@@ -26,7 +26,7 @@
 
     </div>
     <!-- /top_banner -->
-        <div id="stick_here"></div>		
+        <div id="stick_here"></div>
         <!-- <div class="toolbox elemento_stick">
             <div class="container">
             <ul class="clearfix">
@@ -55,10 +55,10 @@
             </div>
         </div> -->
         <!-- /toolbox -->
-    
-        
+
+
         <div class="container margin_30">
-        
+
         <div class="row">
             <div class="col-lg-9">
                 <div class="row small-gutters">
@@ -76,7 +76,7 @@
                                 </a>
                             </figure>
                             <a>
-                                <h3 id="inputProdName">{{product.product_name}}</h3>
+                                <h3 id="inputProdName">{{(product.product_name.length>30)? (product.product_name|slice:0:30)+'...':(product.product_name) }}</h3>
                                 <input id="inputProdName" type="hidden" value="{{product.product_name}}" #inputProdName>
 
                             </a>
@@ -88,25 +88,25 @@
                             <!-- <div class="price_box" *ngFor="let p of price">
                                 <span class="new_price" *ngIf="p.product_id === product.id" >$ {{p.size}}</span>
                             </div> -->
-                          
+
                             <ul>
                                 <li><a  class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"(click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add to favorites</span></a></li>
                                 <li><a routerLink="/veiw/{{product.id}}" class="tooltip-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-placement="left"
                                     title="view product"><i class="fa fa-eye" style="font-size:20px"
-                                      ></i><span>view product</span></a></li>                            
+                                      ></i><span>view product</span></a></li>
                             </ul>
                         </div>
                         <!-- /grid_item -->
                     </div>
-                    <!-- /col -->	
-                    
+                    <!-- /col -->
+
                 </div>
                 <!-- /row -->
                 <pagination-controls (pageChange)="p = $event">
                 </pagination-controls>
                 </div>
                 <!-- /col -->
-            
+
                 <aside class="col-lg-3" id="sidebar_fixed">
                 <div class="filter_col"  >
                     <div class="inner_bt"><a href="#" class="open_filters"><i class="ti-close"></i></a></div>
@@ -120,35 +120,34 @@
                               </div>
                               <ul>
                                 <label *ngFor="let sucategory of allsubcategories;let currentIndex=index" >
-                                    <li *ngFor="let sub of sucategory"> 
+                                    <li *ngFor="let sub of sucategory">
 
                                         <a href="" routerLink="/products/{{sub.id}}/{{sub.cat_id}}" *ngIf="sub.category.cat_name==='man' || sub.category.cat_name==='men'">
-                                            <i  class="fa fa-puzzle-piece me-1"
-                                        style="font-size:16px"></i>
+                                          <i class="fas fa-shopping-bag"></i>
                                         <!-- <input type="radio">
                                         <span class="checkmark"> -->
-                                        
+
                                         <!-- <small class="ml-5">12</small> -->
                                         <!-- </span> -->
-                                        {{sub.subcat_name}} 
+                                        {{sub.subcat_name}}
                                     </a>
                                     </li>
-                                   
+
                                 </label>
-                               
+
                             </ul>
                         </div>
-                       
+
                         <!-- /filter_type -->
                     </div>
 
-                    
+
                 </div>
             </aside>
         </div>
-            
+
     </div>
 
-  
+
 </main>
 

@@ -3,8 +3,12 @@
 
 <router-outlet></router-outlet>
 
-<app-footer *ngIf="!router.url.includes('admn') && !router.url.includes('weather')&& !router.url.includes('response-reset') && !router.url.includes('reset-password')"> </app-footer> 
+<app-footer *ngIf="!router.url.includes('admn') && !router.url.includes('weather')&& !router.url.includes('response-reset') && !router.url.includes('reset-password')"> </app-footer>
 
 
 
 
+<ngx-scrolltop [size]="50"
+backgroundColor="#004dda"
+symbolColor="#fff"
+position="left"></ngx-scrolltop>
