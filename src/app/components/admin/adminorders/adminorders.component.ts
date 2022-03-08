@@ -44,7 +44,7 @@ getOrderData(){
 }
   delete(index:number,status:any):void
   {
-    let order=this.orders[index];        
+    let order=this.orders[index];
         Swal.fire({
           title: 'Are you sure?',
           text: 'You will not be able to recover this item',
@@ -53,12 +53,12 @@ getOrderData(){
           confirmButtonText: 'Yes, delete it!',
           cancelButtonText: 'No, keep it',
         }).then((result) => {
-    
-          if (result.isConfirmed) {   
-            this._orderService.delete(order.id)
+
+          if (result.isConfirmed) {
+            this._orderService.delete(index)
             .subscribe(
               (response: any) => {
-                console.log(order); 
+                console.log(order);
             this.orders.splice(index, 1);
             if(status=="pending"){
               --this.order_count;
@@ -75,7 +75,7 @@ getOrderData(){
   }
 
   edit(id:number){
-    
+
     this.orders.forEach(
       o=>{
         if(o.id == id){
@@ -84,7 +84,7 @@ getOrderData(){
         }
       }
     );
-    
+
   }
   order =new Order();
   update(id:any,status:any):void
@@ -108,14 +108,14 @@ getOrderData(){
             console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
-          
+
         }
       }
     );
     this._contact.get().subscribe(
       (res:any)=>{
         console.log(res);
-        
+
         this.messagesCount=res.length;
         for(let i = 0 ; i < this.messagesCount ; i++){
           if(res[i].seen === 0){
@@ -141,7 +141,7 @@ getOrderData(){
           if(res.data[i].status === 'pending'){
             this.order_count++;
           }
-          
+
         }
       }
     )

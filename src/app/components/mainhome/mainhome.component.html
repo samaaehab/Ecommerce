@@ -82,7 +82,7 @@
           </figure>
           <!-- <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div> -->
           <a>
-            <h3 id="inputProdName">{{product.product_name}}</h3>
+            <h3 id="inputProdName">{{(product.product_name.length>30)? (product.product_name|slice:0:30)+'...':(product.product_name) }}</h3>
             <input id="inputProdName" type="hidden" value="{{product.product_name}}" #inputProdName>
             <br>
           </a>

@@ -6,7 +6,7 @@
                 <div class="breadcrumbs">
                     <ul>
                         <li><a>Home</a></li>
-                        
+
                         <li><a>kids</a></li>
                     </ul>
                 </div>
@@ -16,7 +16,7 @@
         <img src="assets/img/WhatsApp Image 2022-02-10 at 9.53.55 PM.jpeg" class="img-fluid" alt="">
     </div>
     <!-- /top_banner -->
-        <div id="stick_here"></div>		
+        <div id="stick_here"></div>
         <!-- <div class="toolbox elemento_stick">
             <div class="container">
             <ul class="clearfix">
@@ -45,15 +45,15 @@
             </div>
         </div> -->
         <!-- /toolbox -->
-    
-        
+
+
         <div class="container margin_30">
-        
+
             <div class="row">
                 <div class="col-lg-9">
                     <div class="row small-gutters">
-    
-    
+
+
                         <div class="col-6 col-md-4" *ngFor="let product of productsCategory |
                         filter:searchText|
                         paginate: { itemsPerPage: count, currentPage: p }">
@@ -67,7 +67,7 @@
                                     </a>
                                 </figure>
                                 <a >
-                                    <h3 id="inputProdName">{{product.product_name}}</h3>
+                                    <h3 id="inputProdName">{{(product.product_name.length>30)? (product.product_name|slice:0:30)+'...':(product.product_name) }}</h3>
                                     <input id="inputProdName" type="hidden" value="{{product.product_name}}" #inputProdName>
 
                                 </a>
@@ -81,20 +81,20 @@
                                 </div> -->
                                 <ul>
                                     <li><a  class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"(click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)"></i><span>Add to favorites</span></a></li>
-                                    <li><a routerLink="/veiw/{{product.id}}" class="tooltip-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-placement="left" title="view product"><i class="fa fa-eye" style="font-size:20px"></i><span>view product</span></a></li>                   
+                                    <li><a routerLink="/veiw/{{product.id}}" class="tooltip-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-placement="left" title="view product"><i class="fa fa-eye" style="font-size:20px"></i><span>view product</span></a></li>
                                 </ul>
                             </div>
                             <!-- /grid_item -->
                         </div>
-                        <!-- /col -->	
-                        
+                        <!-- /col -->
+
                     </div>
                     <!-- /row -->
                     <pagination-controls (pageChange)="p = $event">
                     </pagination-controls>
                     </div>
                     <!-- /col -->
-                
+
                     <aside class="col-lg-3" id="sidebar_fixed">
                     <div class="filter_col">
                         <div class="inner_bt"><a href="#" class="open_filters"><i class="ti-close"></i></a></div>
@@ -126,7 +126,7 @@
                                             <span class="checkmark"></span>
                                         </label>
                                     </li>
-                                   
+
                                 </ul> -->
                                 <div class="input-group" style="width: 300px;">
                                     <div class="form-outline">
@@ -135,20 +135,19 @@
                                   </div>
                                   <ul>
                                     <label *ngFor="let sucategory of allsubcategories;let currentIndex=index" >
-                                        <li *ngFor="let sub of sucategory"> 
+                                        <li *ngFor="let sub of sucategory">
                                             <a href="" routerLink="/products/{{sub.id}}/{{sub.cat_id}}" *ngIf="sub.category.cat_name==='kids' || sub.category.cat_name==='kid'">
-                                                <i  class="fa fa-puzzle-piece me-1"
-                                                style="font-size:16px"></i>
+                                              <i class="fas fa-shopping-bag"></i>
                                                 <!-- <input type="radio">
                                                 <span class="checkmark"> -->
-                                            {{sub.subcat_name}} 
+                                            {{sub.subcat_name}}
                                             <!-- <small class="ml-5">12</small> -->
                                                 <!-- </span> -->
                                         </a>
                                         </li>
-                                       
+
                                     </label>
-                                   
+
                                 </ul>
                             </div>
                             <!-- /filter_type -->
@@ -186,9 +185,9 @@
                             </div>
                         </div> -->
                         <!-- /filter_type -->
-                      
+
                         <!-- /filter_type -->
-                      
+
                         <!-- /filter_type -->
                         <!-- <div class="buttons">
                             <a href="#0" class="btn_1">Filter</a> <a href="#0" class="btn_1 gray">Reset</a>
@@ -198,8 +197,8 @@
                 <!-- /col -->
             </div>
         <!-- /row -->
-        
-            
+
+
     </div>
     <!-- /container -->
 </main>

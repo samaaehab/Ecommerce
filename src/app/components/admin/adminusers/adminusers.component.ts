@@ -74,7 +74,7 @@ export class AdminusersComponent implements OnInit {
     this._contact.get().subscribe(
       (res:any)=>{
         console.log(res);
-        
+
         this.messagesCount=res.length;
         for(let i = 0 ; i < this.messagesCount ; i++){
           if(res[i].seen === 0){
@@ -124,7 +124,7 @@ export class AdminusersComponent implements OnInit {
   //   }
 
 
-  // 
+  //
 
   add(name: string, email: string, password: string, full_address: string, house_no: any, country: string, city: string, phone: string): void {
     let user = new User();
@@ -166,14 +166,14 @@ export class AdminusersComponent implements OnInit {
           }).then((result) => {
 
             if (result.isConfirmed) {
-              this._userService.delete(user.id)
+              this._userService.delete(index)
               .subscribe(
                 (response: any) => {
                   console.log(user);
-        
+
               // console.log('Clicked Yes, File deleted!');
               this.users.splice(index, 1);
-
+              this.getUserData();
               this.myapp.successmessage(response.message);
             })
             } else if (result.isDismissed) {
@@ -198,7 +198,7 @@ export class AdminusersComponent implements OnInit {
           if(res.data[i].status === 'pending'){
             this.order_count++;
           }
-          
+
         }
       }
     )

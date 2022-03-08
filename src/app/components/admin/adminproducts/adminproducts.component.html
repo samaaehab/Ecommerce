@@ -162,7 +162,7 @@
                           (click)="edit(product.id)">Edit</div>
                         <div class="btn btn-info mr-2" data-toggle="modal" data-target="#staticBackdrop2"
                           (click)="getId(product.id)">Features</div>
-                        <button class="btn btn-danger" (click)="delete(currentIndex)">Delete</button>
+                        <button class="btn btn-danger" (click)="delete(product.id)">Delete</button>
                       </td>
                     </tr>
                     <tr></tr>
@@ -368,6 +368,7 @@
                   <option value="dark">Dark</option>
                   <option value="white">White</option>
                   <option value="red">Red</option>
+                  <option value="blue">Blue</option>
                   <option value="pink">Pink</option>
                   <option value="green">Green</option>
                   <option value="gray">Gray</option>
@@ -410,7 +411,7 @@
                     <td *ngIf="store.product_id == productid.value" scope="col">{{store.color}}</td>
                     <td *ngIf="store.product_id == productid.value" scope="col">{{store.size}}</td>
                     <td *ngIf="store.product_id == productid.value" class="d-flex justify-content-around">
-                      <button class="btn btn-danger" (click)="deleteFeature(currentIndex)">Delete</button>
+                      <button class="btn btn-danger" (click)="deleteFeature(store.id)">Delete</button>
                     </td>
                   </tr>
                 </tbody>

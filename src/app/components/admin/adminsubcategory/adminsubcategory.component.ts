@@ -37,20 +37,20 @@ export class AdminsubcategoryComponent implements OnInit {
     , public myapp: AppComponent ,private orderService: OrderService,
     private token: AdminTokenService, private auth: AuthenService,
     private router: Router , private _contact:ContactUsService) { }
-  
+
 
   ngOnInit(): void {
     this.getOrderCount();
     this.formSubcat=this._formBuilder.group({
-      Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]], 
-      CatId:['',[Validators.required]],           
+      Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],
+      CatId:['',[Validators.required]],
       });
       this.getSubCategoryData();
     this.getCategoryData();
     this._contact.get().subscribe(
       (res:any)=>{
         console.log(res);
-        
+
         this.messagesCount=res.length;
         for(let i = 0 ; i < this.messagesCount ; i++){
           if(res[i].seen === 0){
@@ -69,7 +69,7 @@ export class AdminsubcategoryComponent implements OnInit {
       }
     );
    }
-  getCategoryData(){ 
+  getCategoryData(){
     this._categoryService.get().subscribe(
      (res: any) => {
        console.log(JSON.stringify(res));
@@ -96,7 +96,7 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
     let subcategory = new SubCategory();
     subcategory.subcat_name=sub_name;
     subcategory.cat_id=cat_id;
-    
+
     this._SubcategoryService.post(subcategory).subscribe(
       (response: any) => {
         this.getCategoryData();
@@ -110,7 +110,7 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
             console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
-          
+
         }
       }
     );
@@ -126,11 +126,11 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
           confirmButtonText: 'Yes, delete it!',
           cancelButtonText: 'No, keep it',
         }).then((result) => {
-          if (result.isConfirmed) {   
+          if (result.isConfirmed) {
             let subcategory=this.subcategories[index];
-            this._SubcategoryService.delete(subcategory.id)
+            this._SubcategoryService.delete(index)
             .subscribe(
-              (response: any) => {  
+              (response: any) => {
             this.subcategories.splice(index, 1);
             this.getSubCategoryData();
             this.getCategoryData();
@@ -139,11 +139,11 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
           } else if (result.isDismissed) {
             this.myapp.errormessage("Item not Deleted");
           }
-      });    
+      });
   }
 
   edit(id:number){
-    
+
     this.subcategories.forEach(
       c=>{
         if(c.id == id){
@@ -152,7 +152,7 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
         }
       }
     );
-    
+
   }
   subcategory =new SubCategory();
   update(id:any,cName:string):void
@@ -164,7 +164,7 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
         this.getCategoryData();
         this.getSubCategoryData();
         this.myapp.showInfo(' SubCategory updated successfly', 'update');
-        
+
       },
       (error: any) => {
         for (const err in error.error.errors) {
@@ -172,7 +172,7 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
             console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
-          
+
         }
       }
     );
@@ -182,7 +182,7 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
     this.token.remove();
     this.auth.changeAdminAuthStatus(false);
     this.router.navigateByUrl('/admin-acount');
-  }  
+  }
   getOrderCount(){
     this.orderService.get().subscribe(
       (res:any)=>{
@@ -191,7 +191,7 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
           if(res.data[i].status === 'pending'){
             this.order_count++;
           }
-          
+
         }
       }
     )
