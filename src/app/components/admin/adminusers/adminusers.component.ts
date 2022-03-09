@@ -88,7 +88,7 @@ export class AdminusersComponent implements OnInit {
   getUserData() {
     this._userService.get().subscribe(
       (res: any) => {
-        console.log(JSON.stringify(res));
+        //console.log(JSON.stringify(res));
         this.users = res.data;
       }
     );
@@ -169,7 +169,7 @@ export class AdminusersComponent implements OnInit {
               this._userService.delete(user.id)
               .subscribe(
                 (response: any) => {
-                  console.log(user);
+                 // console.log(user);
         
               // console.log('Clicked Yes, File deleted!');
               this.users.splice(index, 1);
