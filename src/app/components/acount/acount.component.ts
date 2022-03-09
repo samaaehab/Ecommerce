@@ -130,7 +130,7 @@ export class AcountComponent implements OnInit {
       house_no: [''],
       country: [''],
       city: [''],
-      phone: [''],
+      phone: ['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],
     });
     // auth
 
