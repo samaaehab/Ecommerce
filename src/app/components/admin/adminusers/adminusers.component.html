@@ -181,7 +181,7 @@
 
                       <td class="d-flex justify-content-start">
                         <!-- <button class="btn btn-info me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(user.id)" ><i class="fas fa-edit"></i></button> -->
-                        <button class="btn btn-danger me-2" (click)="delete(currentIndex)">Delete</button>
+                        <button class="btn btn-danger me-2" (click)="delete(user.id)">Delete</button>
                         <button class="btn btn-info " data-toggle="modal" data-target="#staticBackdrop">Chat</button>
                       </td>
                     </tr>
@@ -365,7 +365,7 @@
                   *ngFor="let msg of messages">
                   <div class="bubbleWrapper" *ngIf="msg.username=='Admin'">
                     <div class="inlineContainer">
-                      <img class="inlineIcon" src="../../assets/software-engineer.png">
+                      <img class="inlineIcon" src="assets/software-engineer.png">
                       <div class="otherBubble other">
                         {{msg.message}}
                       </div>
@@ -384,7 +384,7 @@
               </div>
               <div class="row">
                 <input class="form-control col-10" type="text" style="flex: 1;" placeholder="Write the Message"
-                  (change)="submit()" [(ngModel)]="message">
+                  (click)="submit()" [(ngModel)]="message">
                 <button class="btn btn-primary col-2" (click)="submit()"><i class="bi bi-send-fill" style="font-size: 15px;"></i></button>
               </div>
             </div>

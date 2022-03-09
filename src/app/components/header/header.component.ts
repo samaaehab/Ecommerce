@@ -43,7 +43,7 @@ WeatherData:any;
   //   this.translate.use(lang);
   // }
   ngOnInit(): void {
-    
+
     this.getauthlogin();
     this.getloginUser();
     this.WeatherData = {
@@ -53,15 +53,15 @@ WeatherData:any;
     this.getWeatherData();
     console.log(this.WeatherData);
 
- 
+
     this.auth.status.subscribe(value => this.logged = value);
-    
+
       this._categoryService.get().subscribe(
         (res: any) => {
-          
+
                this.categories = res.data;
           // for (const i in res.data) {
-           
+
           //   const id= res.data[i].id;
           //   this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
           //     (res: any) => {
@@ -73,7 +73,7 @@ WeatherData:any;
 
           //     }
           //   )
-          // }          
+          // }
         },
             (err:any)=>{
               console.log(err);

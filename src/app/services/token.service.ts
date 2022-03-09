@@ -32,12 +32,12 @@ export class TokenService {
     const tok=this.get();
     if(tok){
       const payload=this.payload(tok);
-      if(payload){
-        return Object.values(this.iss).indexOf(payload.iss)>-1 ? true:false;
-      }
       // if(payload){
-      //   return (payload.iss === 'http://127.0.0.1:8000/api/login') ? true : false ;
+      //   return Object.values(this.iss).indexOf(payload.iss)>-1 ? true:false;
       // }
+      if(payload){
+        return (payload.iss === 'http://ecommercelaravel22.herokuapp.com/api/login') ? true : false ;
+      }
     }
     return false;
   }

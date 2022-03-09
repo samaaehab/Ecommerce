@@ -225,16 +225,17 @@
                   <div class="col-6 pl-1">
                     <div class="form-group">
                       <input formControlName="phone" type="text" class="form-control"
-                        placeholder="Telephone *">
-                      <!-- <div *ngIf="isInValidAndTouched2('phone')">
+                      [class.is-invalid]="isInValidAndTouched2('phone')" [class.is-valid]="isValidControl2('phone')"  
+                      placeholder="Telephone *">
+                      <div *ngIf="isInValidAndTouched2('phone')">
                         <small class="form-text text-danger" *ngIf="isControlHasError2('phone','required')">required
-                          house phone number</small>
-                        <small class="form-text text-danger" *ngIf="isControlHasError2('phone','minlength')">max length
+                           phone number</small>
+                        <small class="form-text text-danger" *ngIf="isControlHasError2('phone','minlength')">min length
                           is 11</small>
                         <small class="form-text text-danger" *ngIf="isControlHasError2('phone','maxlength')">max length
                           is 11</small>
 
-                      </div> -->
+                      </div>
                     </div>
                   </div>
                 </div>

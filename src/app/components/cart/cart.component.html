@@ -12,69 +12,72 @@
         <h1>Cart page</h1>
     </div>
     <!-- /page_header -->
-    <table class="table table-striped cart-list">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Product
-                                </th>
-                                <th>
-                                    Color
-                                </th>
-                                <th>
-                                    Size
-                                </th>
-                                <th>
-                                    Price
-                                </th>
-                                <th>
-                                    Quantity
-                                </th>
-                                <th>
-                                    Subtotal
-                                </th>
-                                <th>
+    <div class="table-responsive">
+      <table class="table table-striped cart-list">
+        <thead>
+            <tr>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Color
+                </th>
+                <th>
+                    Size
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Subtotal
+                </th>
+                <th>
 
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let cart of productsInCart;let currentIndex=index">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cart of productsInCart;let currentIndex=index">
 
-                                <td>
-                                    <div class="thumb_cart">
-                                        <img src="{{cart[2]}}" data-src="img/products/shoes/2.jpg" class="lazy" alt="Image">
-                                    </div>
-                                    <span class="item_cart">{{cart[1]}}</span>
-                                </td>
-                                <td>
-                                    <strong>{{productStore[currentIndex].color}}</strong>
-                                </td>
-                                <td>
-                                    <strong>{{productStore[currentIndex].size|uppercase}}</strong>
-                                </td>
-                                <td>
-                                    <strong>{{cart[4]|currency}}</strong>
-                                </td>
-                                <td>
-                                    <input style="border-radius: 4px !important;height: 30px !important;width: 50px !important;background-color: white;" type="number" min='1' (change)="getQty(inputQty.value)" (change)="gettotalPrice()"(change)="updateCart(cart[0],cart[1],cart[2],cart[4],inputQty.value,inputSubTotla.value,cart[5])" #inputQty value="{{cart[3]}}" id="quantity_2" class="qty2" name="quantity_2">
-
-                                </td>
-                                <td>
-                                    <strong>{{cart[4]*getQty(inputQty.value)|currency}}</strong>
-                                    <input id="totPrice" #inputSubTotla type="hidden" value="{{cart[4]*getQty(inputQty.value)}}">
-                                </td>
-                                <td class="options">
-                                    <a (click)="removeItem('product'+cart[5],cart[5])"><i class="ti-trash" ></i></a>
-                                </td>
-                                <!-- <td>
-                                    <div class="col-sm-4 text-end">
-                                        <button type="button" class="btn_1 gray" (click)="updateCart(cart[3],cart[0],cart[1],cart[2],inputQty.value,inputSubTotla.value)">Update Cart</button>
-                                    </div>
-                                </td> -->
-                            </tr>
-                        </tbody>
-                    </table>
+                <td>
+                    <div class="thumb_cart">
+                        <img src="{{cart[2]}}" data-src="img/products/shoes/2.jpg" class="lazy" alt="Image">
+                    </div>
+                    <span class="item_cart">{{cart[1]}}</span>
+                </td>
+                <td>
+                    <strong>{{productStore[currentIndex].color}}</strong>
+                </td>
+                <td>
+                    <strong>{{productStore[currentIndex].size|uppercase}}</strong>
+                </td>
+                <td>
+                    <strong>{{cart[4]|currency}}</strong>
+                </td>
+                <td>
+                  <div class="numbers-row">
+                    <input  type="number" min='1' (change)="getQty(inputQty.value)" (change)="gettotalPrice()"(change)="updateCart(cart[0],cart[1],cart[2],cart[4],inputQty.value,inputSubTotla.value,cart[5])" #inputQty value="{{cart[3]}}" id="quantity_2" class="qty2" name="quantity_2">
+                    </div>
+                </td>
+                <td>
+                    <strong>{{cart[4]*getQty(inputQty.value)|currency}}</strong>
+                    <input id="totPrice" #inputSubTotla type="hidden" value="{{cart[4]*getQty(inputQty.value)}}">
+                </td>
+                <td class="options">
+                    <a (click)="removeItem('product'+cart[5],cart[5])"><i class="ti-trash" ></i></a>
+                </td>
+                <!-- <td>
+                    <div class="col-sm-4 text-end">
+                        <button type="button" class="btn_1 gray" (click)="updateCart(cart[3],cart[0],cart[1],cart[2],inputQty.value,inputSubTotla.value)">Update Cart</button>
+                    </div>
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
+    </div>
 <br>
 
                 <!-- /cart_actions-->
@@ -104,7 +107,7 @@
             <h5 class="card-title ">My Cart <i class="fas fa-shopping-cart"></i></h5>
         </div>
         <div class="center">
-            <img src="../../assets/empty.png" alt="">
+            <img src="assets/empty.png" alt="">
             <h4>Your cart is empty!</h4>
             <h6>Add item to it now</h6>
             <button routerLink="/home" class="btn btn-primary">Shop Now</button>

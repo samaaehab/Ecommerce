@@ -1,22 +1,22 @@
 
 <main>
     <div class="top_banner">
-        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.3)">
+        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.3)" style="background-color: rgba(0, 0, 0, 0.3);">
             <div class="container">
                 <div class="breadcrumbs">
                     <ul>
                         <li><a>Home</a></li>
-                        
+
                         <li><a>Women</a></li>
                     </ul>
                 </div>
                 <h1>Women</h1>
             </div>
         </div>
-        <img src="../../assets/img/Banner1.jpg" class="img-fluid" alt="">
+        <img src="assets/img/Banner2.jpg" class="img-fluid" alt="">
     </div>
     <!-- /top_banner -->
-        <div id="stick_here"></div>		
+        <div id="stick_here"></div>
         <!-- <div class="toolbox elemento_stick">
             <div class="container">
             <ul class="clearfix">
@@ -45,10 +45,10 @@
             </div>
         </div> -->
         <!-- /toolbox -->
-    
-        
+
+
         <div class="container margin_30">
-        
+
         <div class="row">
             <div class="col-lg-9">
                 <div class="row small-gutters">
@@ -61,12 +61,12 @@
 
                             <figure>
                                 <a>
-                                    <img class="img-fluid lazy" id="inputImage" #inputImage src="{{imagepath}}{{product.image}}" style="height: 300px !important; width:300px !important" alt="">
+                                    <img class="img-fluid lazy" id="inputImage" #inputImage src="{{product.image}}" style="height: 300px !important; width:300px !important" alt="">
                                 </a>
                                 <!-- <div data-countdown="2019/05/15" class="countdown"></div> -->
                             </figure>
                             <a>
-                                <h3>{{product.product_name}}</h3>
+                                <h3>{{(product.product_name.length>30)? (product.product_name|slice:0:30)+'...':(product.product_name) }}</h3>
                         <input id="inputProdName" type="hidden" value="{{product.product_name}}" #inputProdName>
 
                             </a>
@@ -89,20 +89,25 @@
                     </div>
                     <!-- /col -->
 
-              		
-                    
+
+
                 </div>
                 <!-- /row -->
                 <pagination-controls (pageChange)="p = $event">
                 </pagination-controls>
                 </div>
                 <!-- /col -->
-               
+
                 <aside class="col-lg-3" id="sidebar_fixed">
                 <div class="filter_col">
                     <div class="inner_bt"><a href="#" class="open_filters"><i class="ti-close"></i></a></div>
                     <div class="filter_type version_2">
                         <h4><a data-bs-toggle="collapse" class="opened" href="#filter_1">Products</a></h4>
+                        <div class="input-group mb-2" style="width: 300px;">
+                          <div class="form-outline">
+                            <input [(ngModel)]='searchText' type="search" id="form1" class="form-control" style="border-radius: 0px;" placeholder="Search"/>
+                          </div>
+                        </div>
                         <div class="collapse show" id="filter_1">
                             <!-- <ul>
                                 <li>
@@ -129,30 +134,26 @@
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
-                               
+
                             </ul> -->
-                            <div class="input-group" style="width: 300px;">
-                                <div class="form-outline">
-                                  <input [(ngModel)]='searchText' type="search" id="form1" class="form-control" style="border-radius: 0px;" placeholder="Search"/>
-                                </div>
-                              </div>
                               <ul>
                                 <label *ngFor="let sucategory of allsubcategories;let currentIndex=index" >
-                                    <li *ngFor="let sub of sucategory"> 
+                                    <li *ngFor="let sub of sucategory">
                                         <a href="" routerLink="/products/{{sub.id}}/{{sub.cat_id}}" *ngIf="sub.category.cat_name==='woman' || sub.category.cat_name==='women' || sub.category.cat_name==='weman'">
-                                            <i  class="fa fa-puzzle-piece me-1"
-                                            style="font-size:16px"></i>
+                                          <i class="fas fa-shopping-bag"></i>
+                                            <!-- <i  class="fa fa-puzzle-piece me-1"
+                                            style="font-size:16px"></i> -->
                                             <!-- <input type="radio">
                                             <span class="checkmark"> -->
                                         <!-- <small class="ml-5">{{countsub}}</small> -->
-                                       
-                                        {{sub.subcat_name}} 
+
+                                        {{sub.subcat_name}}
                                     <!-- </span> -->
                                     </a>
                                     </li>
-                                   
+
                                 </label>
-                               
+
                             </ul>
                         </div>
                         <!-- /filter_type -->
@@ -190,9 +191,9 @@
                         </div>
                     </div> -->
                     <!-- /filter_type -->
-                  
+
                     <!-- /filter_type -->
-                  
+
                     <!-- /filter_type -->
                     <!-- <div class="buttons">
                         <a href="#0" class="btn_1">Filter</a> <a href="#0" class="btn_1 gray">Reset</a>
@@ -202,7 +203,7 @@
             <!-- /col -->
         </div>
         <!-- /row -->
-            
+
     </div>
     <!-- /container -->
 </main>

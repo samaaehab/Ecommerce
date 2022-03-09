@@ -13,11 +13,11 @@ export class UserService {
 
   constructor(private _httpClient: HttpClient,private auth:AuthenService) { }
   private url = `${environment.URLAPI}`;
-  
+
   public get() { return this._httpClient.get(this.url + `users`); }
   public post(user: User) {
     return this._httpClient.post(this.url + `users`, user);
-    
+
   }
 
   delete(id:number){

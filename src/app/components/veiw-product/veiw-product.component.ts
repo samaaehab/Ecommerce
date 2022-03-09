@@ -17,7 +17,8 @@ import { UserService } from './../../services/user.service';
   styleUrls: ['./veiw-product.component.css']
 })
 export class VeiwProductComponent implements OnInit {
-  imagepath: any = 'https://ecommercelaravel22.herokuapp.com/public/image/';
+  imagepath: any = 'https://res.cloudinary.com/ecommerceangular22/image/upload/v1646609059/';
+
   x=0;
   prodid:any;
   users=new User();
@@ -125,7 +126,7 @@ addToCart(id:any,productSizeColor:any,qnt:any){
       if (localStorage.getItem('product' + productSizeColor) === null) {
         // this.header.cartCount();
       let price=product.price-product.discount;
-      localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+this.imagepath+product.image+"#$"+qnt+"#$"+price+"#$"+productSizeColor+"#$"+price*qnt);
+      localStorage.setItem('product'+productSizeColor,product.id+"#$"+product.product_name+"#$"+product.image+"#$"+qnt+"#$"+price+"#$"+productSizeColor+"#$"+price*qnt);
         // this.header.count++;
       this.myapp.successmessage(product.product_name+" Added To Cart Successfuly");
     }

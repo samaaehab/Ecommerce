@@ -1,4 +1,4 @@
-<header>
+<header class="sticky-top">
   <!-- contact content -->
   <div class="header-content-top" *ngIf="getloginUser()">
     <ul>
@@ -16,21 +16,21 @@
   <div class="container">
     <!-- logo -->
 	<div id="logo">
-		<a routerLink="/home"><img src="../../assets/download (1).png" alt="" width="" height="50"></a>
+		<a routerLink="/home"><img src="assets/download (1).png" alt="" width="" height="50"></a>
 	</div>    <!-- open nav mobile -->
 
 	<div class="nav-container text-center">
 		<nav class="all-category-nav">
 		  <label class="open-menu-all" for="open-menu-all">
 			<button class="input-menu-all" id="open-menu-all" name="menu-open" ></button>
-			<li  class="all-navigator sub-menu"><a class="show-submenu">Home</a>
+			<li  class="all-navigator sub-menu"><a class="show-submenu">Home</a><i class="fas fa-chevron-down ml-1 mt-1" style="font-size:small;"></i>
 			</li>
 
 			<ul class="all-category-list dropdown_menu--animated">
 			  <li class="all-category-list-item dropdown_item" *ngFor="let cat of categories">
-				<a *ngIf="cat.cat_name==='men'  || cat.cat_name ==='man'" routerLink="/products/men" class="all-category-list-link">{{cat.cat_name |uppercase}}<i class="fas fa-angle-right"></i></a>
-				<a *ngIf="cat.cat_name==='women'|| cat.cat_name ==='woman' || cat.cat_name==='weman'" routerLink="/products/woman" class="all-category-list-link">{{cat.cat_name |uppercase}}<i class="fas fa-angle-right"></i></a>
-				<a *ngIf="cat.cat_name==='kid'  || cat.cat_name ==='kids'" routerLink="/products/kids" class="all-category-list-link">{{cat.cat_name |uppercase}}<i class="fas fa-angle-right"></i></a>
+				<a *ngIf="cat.cat_name==='men'  || cat.cat_name ==='man'" routerLink="/products/men" class="all-category-list-link">{{cat.cat_name |uppercase}}</a>
+				<a *ngIf="cat.cat_name==='women'|| cat.cat_name ==='woman' || cat.cat_name==='weman'" routerLink="/products/woman" class="all-category-list-link">{{cat.cat_name |uppercase}}</a>
+				<a *ngIf="cat.cat_name==='kid'  || cat.cat_name ==='kids'" routerLink="/products/kids" class="all-category-list-link">{{cat.cat_name |uppercase}}</a>
 
 
 				</li>

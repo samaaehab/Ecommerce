@@ -17,14 +17,14 @@ import  Swal from 'sweetalert2';
 export class AppComponent {
 
   constructor(
-    public translate: TranslateService , private _toastrService:ToastrService,public router:Router
+     private _toastrService:ToastrService,public router:Router
   ) {
-    translate.addLangs(['en', 'ar']);
-    translate.setDefaultLang('en');
+    // translate.addLangs(['en', 'ar']);
+    // translate.setDefaultLang('en');
   }
-  switchLang(lang: string) {
-    this.translate.use(lang);
-  }
+  // switchLang(lang: string) {
+  //   this.translate.use(lang);
+  // }
   ngOnInit(): void {
     new name();
   }
@@ -64,7 +64,7 @@ export class AppComponent {
   showInfo(message: any, title:any){
     this._toastrService.info(message, title)
 }
- 
+
 showWarning(message:any, title:any){
   this._toastrService.warning(message, title)
 }

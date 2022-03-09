@@ -30,7 +30,8 @@ export class AdminproductsComponent implements OnInit {
   stores: Store[] = [];
 
   files: any;
-  imagepath: any = 'https://ecommercelaravel22.herokuapp.com/public/image/';
+
+  imagepath: any = 'https://res.cloudinary.com/ecommerceangular22/image/upload/v1646609059/';
   // Pagination parameters.
   p: any = 1;
   count: any = 5;
@@ -161,7 +162,7 @@ export class AdminproductsComponent implements OnInit {
     }).then((result) => {
 
       if (result.isConfirmed) {
-        this._StoreService.delete(store.id)
+        this._StoreService.delete(index)
           .subscribe(
             (response: any) => {
               this.products.splice(index, 1);
@@ -186,7 +187,7 @@ export class AdminproductsComponent implements OnInit {
     }).then((result) => {
 
       if (result.isConfirmed) {
-        this._productService.delete(product.id)
+        this._productService.delete(index)
           .subscribe(
             (response: any) => {
               this.products.splice(index, 1);

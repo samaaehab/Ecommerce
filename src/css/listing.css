@@ -289,6 +289,21 @@
   color: #777;
   padding-top: 3px;
 }
+.collapse li a{
+  margin: 12px 0;
+color: #444;
+text-transform: capitalize;
+font-size: 15px;
+font-weight: 600;
+transition: .3s ease-in-out;
+}
+.collapse li a:hover{
+color: #004dda;
+}
+.collapse li a i{
+  margin-right: 10px;
+  color: crimson;
+}
 .filter_type ul {
   list-style: none;
   padding: 5px 0 0 0;
