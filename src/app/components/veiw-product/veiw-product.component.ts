@@ -34,6 +34,10 @@ export class VeiwProductComponent implements OnInit {
   comments: any[] = [];
 
   productDet:any;
+
+    // Pagination parameters.
+    p: any = 1;
+    count: any = 3;
   constructor(private _activatedRoute: ActivatedRoute,
     private _productService: ProductService, private storeService: StoreService,
     private _ratingService: RatingService, private _userService: UserService,
@@ -46,7 +50,7 @@ export class VeiwProductComponent implements OnInit {
       this.show(this.prodid);
 
       this.reviews(this.prodid);
-      
+
     });
     this.getcomment(this.prodid);
 
@@ -110,11 +114,11 @@ reviews(id:any){
     (res:any)=>{
       this.reviewsForProduct=res[0].count;
       //console.log();
-      
+
     },
     (error)=>{
       console.log(error);
-      
+
     }
   )
 }
@@ -162,13 +166,14 @@ addToCart(id:any,productSizeColor:any,qnt:any){
               this.ratings.degree=rate;
               this.ratings.user_id=this.users.id;
               this._ratingService.put(res[0].id,this.ratings).subscribe(
-                (res:any)=>{}
+                (res:any)=>{this.reviews(this.prodid);}
               );
               // console.log(res[0].id);
             }
             else{
           this._ratingService.post(this.ratings).subscribe(
             (res:any)=>{
+              this.reviews(this.prodid);
             });
           }
           // this._ratingService.show();
@@ -208,21 +213,21 @@ addToCart(id:any,productSizeColor:any,qnt:any){
     newComment.product_id = productID;
     newComment.comment = comment;
     newComment.user_id = this.users.id;
-    
+
     // newComment.created_at = newComment.created_at.getSeconds();
-    
+
     this._commentService.post(newComment).subscribe(
       (res: any) => {
     // console.log(newComment.created_at);
 
   this.getcomment(this.prodid)
-       
+
       }, (err: any) => {
         console.log(err);
-        
+
       }
     )
-    
+
   }
 
   getcomment(id:any) {
@@ -233,12 +238,12 @@ addToCart(id:any,productSizeColor:any,qnt:any){
         // alert(res)
         this.comments=res
         console.log(this.comments);
-        
-        
+
+
       }, (err: any) => {
 
         console.log(err);
-        
+
       }
     )
   }
