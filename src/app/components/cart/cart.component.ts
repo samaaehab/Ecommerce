@@ -38,9 +38,9 @@ this.getCartDetails();
         let data=res.data;
         console.log(data);
         for(let i=0;i<this.productsInCart.length;i++){
-          let x= res.data.find((cat:any)=>cat.id==this.productsInCart[i][5]);
-          // console.log(x);
-          // console.log(this.productsInCart[i][5]);
+          let x= res.data.find((cat:any)=>cat.id ==this.productsInCart[i][5]);
+  // console.log(x);
+ // console.log(this.productsInCart[i][5]);
           this.productStore.push(x);
         }
         console.log(this.productStore)

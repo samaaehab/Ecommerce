@@ -41,6 +41,7 @@ export class VeiwProductComponent implements OnInit {
 
   ngOnInit(): void {
 
+
     this._activatedRoute.paramMap.subscribe(params => {
       this.prodid = params.get('pId');
       this.show(this.prodid);
