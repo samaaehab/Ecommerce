@@ -80,7 +80,7 @@ export class AdmindashboardComponent implements OnInit {
   getmsg() {
     this._contact.get().subscribe(
       (res:any)=>{
-        console.log(res);
+        // console.log(res);
         this.messages=res;
   
         this.messagesCount=res.length;

@@ -36,9 +36,9 @@ export class CartComponent implements OnInit {
 this.getCartDetails();
     this._storeService.get().subscribe(
       (res: any) => {
-        console.log(res.data);
+        // console.log(res.data);
         let data=res.data;
-        console.log(data);
+        // console.log(data);
         for(let i=0;i<this.productsInCart.length;i++){
           let x= res.data.find((cat:any)=>cat.id==this.productsInCart[i][5]);
           // console.log(x);
@@ -47,7 +47,7 @@ this.getCartDetails();
           this.spinner.hide();
 
         }
-        console.log(this.productStore)
+        // console.log(this.productStore)
 
       }
     );
@@ -61,7 +61,7 @@ this.getCartDetails();
 
     this._userService.get().subscribe(
       (res: any) => {
-        console.log(JSON.stringify(res));
+        // console.log(JSON.stringify(res));
         this.users = res.data.find((user:any)=>user.email==this.user);
         this.loggedUser.push(this.users);
         // console.log(this.loggedUser[0].id)
@@ -145,7 +145,7 @@ price:any;
         this.DBCart.status='waiting';
         this._cartService.post(this.DBCart).subscribe(
           (res:any)=>{
-            console.log(res.message);
+            // console.log(res.message);
           });
           localStorage.removeItem('product'+this.DBCart.store_id);
 
@@ -155,9 +155,9 @@ price:any;
     else{
 
     }
-    console.log(this.productsInCart);
+    // console.log(this.productsInCart);
 
-    console.log(this.loggedUser[0].id);
+    // console.log(this.loggedUser[0].id);
 
     // console.log(this.productsInCart);
 

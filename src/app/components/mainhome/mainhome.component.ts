@@ -255,7 +255,7 @@ addToFav(id:any,ProdName:any,Image:any,newPrice:any){
 
             },
             (err:any)=>{
-              console.log(err);
+              // console.log(err);
 
             }
           )

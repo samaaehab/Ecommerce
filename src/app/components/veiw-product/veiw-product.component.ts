@@ -60,13 +60,9 @@ export class VeiwProductComponent implements OnInit {
 
     this._userService.get().subscribe(
       (res: any) => {
-        console.log(JSON.stringify(res));
         this.users = res.data.find((user: any) => user.email == this.user);
         this._ratingService.check(this.users.id,this.prodid).subscribe(
           (res:any)=>{
-            // console.log(this.users.id);
-            // console.log(this.prodid);
-
             this.mainhomeRate=res[0].degree;
           });
       });
@@ -75,10 +71,7 @@ export class VeiwProductComponent implements OnInit {
           for(let i in res.data){
 
             if(res.data[i].product_id==this.productDet.id)
-              this.store.push(res.data[i]);
-
-              console.log(this.store.length);
-            
+              this.store.push(res.data[i]);            
               this.spinner.hide();
             if (this.store.length === 0) {
               // alert('no')
@@ -107,11 +100,9 @@ this.reviews(1);
           (res: any) => {
             this.productCat=res;
           },(error:any)=>{
-            console.log(error);
           }
         );
       },(error:any)=>{
-        console.log(error);
       }
     );
   }
@@ -119,12 +110,8 @@ reviews(id:any){
   this._ratingService.reviews(id).subscribe(
     (res:any)=>{
       this.reviewsForProduct=res[0].count;
-      //console.log();
-
     },
     (error)=>{
-      console.log(error);
-
     }
   )
 }
@@ -146,7 +133,6 @@ addToCart(id:any,productSizeColor:any,qnt:any){
     }
       else{
         this.myapp.showWarning(product.product_name+" Already Added Before","Oops");
-
 
       }
 
@@ -229,7 +215,7 @@ addToCart(id:any,productSizeColor:any,qnt:any){
   this.getcomment(this.prodid)
 
       }, (err: any) => {
-        console.log(err);
+        // console.log(err);
 
       }
     )
@@ -240,15 +226,15 @@ addToCart(id:any,productSizeColor:any,qnt:any){
     // alert(this.prodid)
     this._commentService.get(id).subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
         // alert(res)
         this.comments=res
-        console.log(this.comments);
+        // console.log(this.comments);
 
 
       }, (err: any) => {
 
-        console.log(err);
+        // console.log(err);
 
       }
     )

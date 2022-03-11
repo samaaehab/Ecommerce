@@ -46,7 +46,7 @@ export class AdmincategoryComponent implements OnInit {
     this.getCategoryData();
     this._contact.get().subscribe(
       (res:any)=>{
-        console.log(res);
+        // console.log(res);
         
         this.messagesCount=res.length;
         for(let i = 0 ; i < this.messagesCount ; i++){
@@ -61,7 +61,7 @@ export class AdmincategoryComponent implements OnInit {
   getCategoryData(){ 
     this._categoryService.get().subscribe(
      (res: any) => {
-       console.log(JSON.stringify(res));
+      //  console.log(JSON.stringify(res));
        this.categories = res.data;
      }
    );
@@ -95,7 +95,7 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
         // console.log(error.error.errors);
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++){
-            console.log(error.error.errors[err][i]);
+            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
           
@@ -156,7 +156,7 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++){
-            console.log(error.error.errors[err][i]);
+            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
           

@@ -73,7 +73,7 @@ export class AdminusersComponent implements OnInit {
     this.getUserData();
     this._contact.get().subscribe(
       (res:any)=>{
-        console.log(res);
+        // console.log(res);
 
         this.messagesCount=res.length;
         for(let i = 0 ; i < this.messagesCount ; i++){
@@ -139,14 +139,14 @@ export class AdminusersComponent implements OnInit {
 
     this._userService.post(user).subscribe(
       (response: any) => {
-        console.log(this.users);
+        // console.log(this.users);
         this.users.push(user);
         this.myapp.successmessage(response.message);
       },
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++) {
-            console.log(error.error.errors[err][i]);
+            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
 

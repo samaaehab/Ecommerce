@@ -27,7 +27,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   handelResponse(res:any){
-    console.log(res);
+    // console.log(res);
     
     this.form.email=res;
   }

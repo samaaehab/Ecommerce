@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
@@ -13,18 +13,22 @@ export class UserService {
 
   constructor(private _httpClient: HttpClient,private auth:AuthenService) { }
   private url = `${environment.URLAPI}`;
-
-  public get() { return this._httpClient.get(this.url + `users`); }
+  public get() {
+     const headers= new HttpHeaders().set('api_password', 'ase1iXcLAxanvXLZcgh6tk')
+     return this._httpClient.get(this.url + `users`,{ 'headers': headers });
+  }
   public post(user: User) {
-    return this._httpClient.post(this.url + `users`, user);
-
+    const headers= new HttpHeaders().set('api_password', 'ase1iXcLAxanvXLZcgh6tk')
+    return this._httpClient.post(this.url + `users`, user,{ 'headers': headers });
   }
 
   delete(id:number){
-    return this._httpClient.delete(this.url+`users/${id}`);
+    const headers= new HttpHeaders().set('api_password', 'ase1iXcLAxanvXLZcgh6tk')
+    return this._httpClient.delete(this.url+`users/${id}`,{ 'headers': headers });
   }
   put(id:number,user:User){
-    return this._httpClient.put(this.url+`users/${id}`,user);
+    const headers= new HttpHeaders().set('api_password', 'ase1iXcLAxanvXLZcgh6tk')
+    return this._httpClient.put(this.url+`users/${id}`,user,{ 'headers': headers });
   }
   loginUser(){
     let user=localStorage.getItem('email');

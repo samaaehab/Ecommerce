@@ -32,16 +32,16 @@ export class ProfileComponent implements OnInit {
     const channel = pusher.subscribe('chat');
     channel.bind('message', (data: any) => {
       this.messages.push(data);
-      console.log(this.messages);
+      // console.log(this.messages);
 
     });
     this._userService.get().subscribe(
       (res: any) => {
-        console.log(JSON.stringify(res));
+        // console.log(JSON.stringify(res));
         this.users = res.data.find((user:any)=>user.email==this.user);
         this.newUser.push(this.users);
         this.ChatUSer=this.newUser[0].name;
-        console.log(this.newUser[0])
+        // console.log(this.newUser[0])
       }
     );
   }

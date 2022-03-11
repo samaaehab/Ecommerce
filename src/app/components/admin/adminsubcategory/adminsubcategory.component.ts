@@ -64,7 +64,7 @@ export class AdminsubcategoryComponent implements OnInit {
   getSubCategoryData(){
     this._SubcategoryService.get().subscribe(
       (res: any) => {
-        console.log(JSON.stringify(res));
+        // console.log(JSON.stringify(res));
         this.subcategories = res.data;
       }
     );
@@ -72,7 +72,7 @@ export class AdminsubcategoryComponent implements OnInit {
   getCategoryData(){
     this._categoryService.get().subscribe(
      (res: any) => {
-       console.log(JSON.stringify(res));
+      //  console.log(JSON.stringify(res));
        this.categories = res.data;
      }
    );
@@ -107,7 +107,7 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++){
-            console.log(error.error.errors[err][i]);
+            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
 
@@ -169,7 +169,7 @@ return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++){
-            console.log(error.error.errors[err][i]);
+            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
 
