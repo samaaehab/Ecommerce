@@ -6,8 +6,9 @@ h6{
   top: -30px;
 }
 @media (max-width:767px) {
-  .footer-mobile{
+  .footer{
     padding-top: 50px;
+    margin-top: 15px;
   }
 
 }

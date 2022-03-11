@@ -1,0 +1,95 @@
+
+/* .comment{
+  position: relative;
+  left: -30px;
+  width: 100%;
+}
+*/
+.comment input[type='text']{
+position: relative;
+left: -20px;
+padding: 21px 14px;
+}
+ .form-group .btn_1{
+   color: #fff;
+   left: -35px;
+   font-size: 15px;
+   text-transform: capitalize;
+position: relative;
+}
+@media (max-width:767px) {
+  .comment input[type='text']{
+    position: relative;
+    padding: 21px 14px;
+    }
+     .form-group .btn_1{
+       position: absolute;
+       color: #fff;
+       padding-left: 10px;
+       padding-right: 10px;
+       left: -25px;
+       text-transform: capitalize;
+    }
+}
+
+.commented-section h5{
+  color: #004dda;
+  font-size: 20px;
+  text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+  text-transform: capitalize;
+  font-weight:600;
+
+}
+.comments {
+  background-color: #f8f8f8;
+  width: 92%;
+  border-radius: 10px;
+  padding: 15px 20px;
+  display: block;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;;
+}
+.comments:hover{
+  background-color: #F3f3f3;
+}
+@media (max-width:767px) {
+  .comments{
+    overflow: hidden;
+    width: 100%;
+  }
+}
+.my-pagination {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  left: -30px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+@media (max-width:767px) {
+  .my-pagination{
+    position:absolute;
+    left: -10px;
+    margin-bottom: 40px;
+  }
+}
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #004dda;
+  border-radius: 20%;
+    -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.my-pagination /deep/ .ngx-pagination .current:hover {
+  background-color: #013699;
+  color: #fff;
+}
+.my-pagination /deep/ .ngx-pagination a:hover, .ngx-pagination button:hover {
+  border-radius: 20%;
+}

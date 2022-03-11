@@ -1,150 +1,301 @@
 <main>
-    <div class="container margin_30">
-        <div class="countdown_inner">-{{(productDet.discount/productDet.price)*100|number: '1.0-0'}}% offer in this Product </div>
-        <input id="id" type="hidden" value="{{productDet.id}}" #inputId>
-        <div class="row">
-            <div class="col-md-6 magnific-gallery">
-              <img src="{{productDet.image}}" #inputImage class="img-fluid">
-            </div>
-            <div class="col-md-6" id="sidebar_fixed">
-                <div class="breadcrumbs">
-                    <ul>
-                        <li><a href="" routerLink="/home">Home</a></li>
-                        <li><a >{{productDet.category.cat_name}}</a></li>
-                        <li>{{productDet.subcategory.subcat_name}}</li>
-                        <input id="inputProdName" type="hidden" value="{{productDet.product_name}}" #inputProdName>
-                    </ul>
-                    <span *ngIf="check" class="text-danger">Unavailable Now</span>
-                </div>
-                <!-- /page_header -->
-                <div class="prod_info">
-                    <h1>{{productDet.product_name}}</h1>
-                    <app-rating [rate]="mainhomeRate" (change)="onmainHomeRateChange($event,productDet.id)"></app-rating>
-                    <span class="ms-3 font-italic">{{reviewsForProduct}} Reviews</span>
-                    <!-- <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span> -->
-                    <p><small>Discription</small><br>{{productDet.description}}</p>
-                    <div class="prod_options">
-                        <div class="row">
-                            <label class="col-xl-5 col-lg-5  col-md-6 col-6 pt-0"><strong>Color</strong></label>
-                            <div class="col-xl-4 col-lg-5 col-md-6 col-6 colors">
-                                <ul>
-                                    <li *ngFor="let c of store">
-                                        <a *ngIf="c.color=== 'green'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color green active"></a>
-                                        <a *ngIf="c.color=== 'red'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color red active"></a>
-                                        <a *ngIf="c.color=== 'dark'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color dark active"></a>
-                                        <a *ngIf="c.color=== 'orange'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color orange active"></a>
-                                        <a *ngIf="c.color=== 'pink'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color pink active"></a>
-                                        <a *ngIf="c.color=== 'gray'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color gray active"></a>
-                                        <a *ngIf="c.color=== 'blue'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color blue active"></a>
-                                        <a *ngIf="c.color=== 'white'" href="#0" data-bs-toggle="modal" data-bs-target="#size-modal" class="color white active"></a>
+  <div class="container margin_30">
+    <div class="countdown_inner" *ngIf="productDet.discount>0">
+      -{{ (productDet.discount / productDet.price) * 100 | number: "1.0-0" }}%
+      offer in this Product
+    </div>
+    <input id="id" type="hidden" value="{{ productDet.id }}" #inputId />
+    <div class="row">
+      <div class="col-md-6 magnific-gallery">
+        <img src="{{ productDet.image }}" #inputImage class="img-fluid" />
+      </div>
+      <div class="col-md-6" id="sidebar_fixed">
+        <div class="breadcrumbs">
+          <ul>
+            <li><a href="" routerLink="/home">Home</a></li>
+            <li>
+              <a>{{ productDet.category.cat_name }}</a>
+            </li>
+            <li>{{ productDet.subcategory.subcat_name }}</li>
+            <input
+              id="inputProdName"
+              type="hidden"
+              value="{{ productDet.product_name }}"
+              #inputProdName
+            />
+          </ul>
+          <span *ngIf="check" class="text-danger">Unavailable Now</span>
+        </div>
+        <!-- /page_header -->
+        <div class="prod_info">
+          <h1>{{ productDet.product_name }}</h1>
+          <app-rating
+            [rate]="mainhomeRate"
+            (change)="onmainHomeRateChange($event, productDet.id)"
+          ></app-rating>
+          <span class="ms-3 font-italic">{{ reviewsForProduct }} Reviews</span>
+          <!-- <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span> -->
+          <p><small>Description</small><br />{{ productDet.description }}</p>
+          <div class="prod_options">
+            <div class="row">
+              <label class="col-xl-5 col-lg-5 col-md-6 col-6 pt-0"
+                ><strong>Color</strong></label
+              >
+              <div class="col-xl-4 col-lg-5 col-md-6 col-6 colors">
+                <ul>
+                  <li *ngFor="let c of store">
+                    <a
+                      *ngIf="c.color === 'green'"
+                      href="#0"
+                      data-bs-toggle="modal"
+                      data-bs-target="#size-modal"
+                      class="color green active"
+                    ></a>
+                    <a
+                      *ngIf="c.color === 'red'"
+                      href="#0"
+                      data-bs-toggle="modal"
+                      data-bs-target="#size-modal"
+                      class="color red active"
+                    ></a>
+                    <a
+                      *ngIf="c.color === 'dark'"
+                      href="#0"
+                      data-bs-toggle="modal"
+                      data-bs-target="#size-modal"
+                      class="color dark active"
+                    ></a>
+                    <a
+                      *ngIf="c.color === 'orange'"
+                      href="#0"
+                      data-bs-toggle="modal"
+                      data-bs-target="#size-modal"
+                      class="color orange active"
+                    ></a>
+                    <a
+                      *ngIf="c.color === 'pink'"
+                      href="#0"
+                      data-bs-toggle="modal"
+                      data-bs-target="#size-modal"
+                      class="color pink active"
+                    ></a>
+                    <a
+                      *ngIf="c.color === 'gray'"
+                      href="#0"
+                      data-bs-toggle="modal"
+                      data-bs-target="#size-modal"
+                      class="color gray active"
+                    ></a>
+                    <a
+                      *ngIf="c.color === 'blue'"
+                      href="#0"
+                      data-bs-toggle="modal"
+                      data-bs-target="#size-modal"
+                      class="color blue active"
+                    ></a>
+                    <a
+                      *ngIf="c.color === 'white'"
+                      href="#0"
+                      data-bs-toggle="modal"
+                      data-bs-target="#size-modal"
+                      class="color white active"
+                    ></a>
+                  </li>
 
-                                    </li>
-
-                                    <!-- <li><a href="#0" class="color color_2"></a></li>
+                  <!-- <li><a href="#0" class="color color_2"></a></li>
                                     <li><a href="#0" class="color color_3"></a></li>
                                     <li><a href="#0" class="color color_4"></a></li> -->
-
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong class="ml-1">Store </strong><a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"></a></label>
-                            <div class="col-xl-4 col-lg-5 col-md-6 col-6">
-                                <div class="custom-select-form" >
-                                    <select #inputSelected class="form-select" aria-label="Default select example" >
-                                        <option *ngFor="let s of store" value="{{s.id}}">
-                                           <div *ngIf="s.product_id === productDet.id">
-                                               {{s.color}}-{{s.size|uppercase}}
-
-                                           </div>
-                                        </option>
-
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Quantity</strong></label>
-                            <div class="col-xl-4 col-lg-5 col-md-6 col-6">
-                                <div class="numbers-row">
-                                    <input type="number" min="1" value="1" id="quantity_1" class="qty2" name="quantity_1" #inputqnt>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-6">
-                            <div class="price_main"><span class="new_price">{{productDet.price-productDet.discount|currency}}</span><span class="percentage">-{{(productDet.discount/productDet.price)*100|number: '1.0-0'}}%</span> <span class="old_price">{{productDet.price|currency}}</span></div>
-                            <input id="inputNewPrice" type="hidden" value="{{productDet.price - productDet.discount}}" #inputNewPrice>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                          <div class="btn_add_to_cart">
-                            <a  class="btn_1" (click)="addToCart(inputId.value,inputSelected.value,inputqnt.value)">Add to Cart</a>
-                          </div>
-                          <div class="btn_add_to_fav">
-                          <a
-                            (click)="addToFav(inputId.value,inputProdName.value,inputImage.src,inputNewPrice.value)">
-                                <i class="ti-heart"></i>
-                                Add to Wishlist
-                            </a>
-                          </div>
-                            <!-- <button class="btn_add_to_cart btn_1 text-white" [disabled]="check" (click)="addToCart(inputId.value,inputSelected.value,inputqnt.value)">Add to Cart</button> -->
-
-                    </div>
-                </div>
-                <!-- /prod_info -->
-                <div class="product_actions">
-                    <ul>
-                        <li >
-
-                        </li>
-                    </ul>
-                </div>
-                <!-- /product_actions -->
+                </ul>
+              </div>
             </div>
+            <div class="row">
+              <label class="col-xl-5 col-lg-5 col-md-6 col-6"
+                ><strong class="ml-1">Store </strong
+                ><a
+                  href="#0"
+                  data-bs-toggle="modal"
+                  data-bs-target="#size-modal"
+                ></a
+              ></label>
+              <div class="col-xl-4 col-lg-5 col-md-6 col-6">
+                <div class="custom-select-form">
+                  <select
+                    #inputSelected
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option *ngFor="let s of store" value="{{ s.id }}">
+                      <div *ngIf="s.product_id === productDet.id">
+                        {{ s.color }}-{{ s.size | uppercase }}
+                      </div>
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-xl-5 col-lg-5 col-md-6 col-6"
+                ><strong>Quantity</strong></label
+              >
+              <div class="col-xl-4 col-lg-5 col-md-6 col-6">
+                <div class="numbers-row">
+                  <input
+                    type="number"
+                    min="1"
+                    value="1"
+                    id="quantity_1"
+                    class="qty2"
+                    name="quantity_1"
+                    #inputqnt
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5 col-md-6">
+              <div class="price_main">
+                <span class="new_price">{{
+                  productDet.price - productDet.discount | currency
+                }}</span
+                ><span class="percentage" *ngIf="productDet.discount > 0"
+                  >-{{
+                    (productDet.discount / productDet.price) * 100
+                      | number: "1.0-0"
+                  }}%</span
+                >
+                <span class="old_price" *ngIf="productDet.discount > 0">{{ productDet.price | currency }}</span>
+              </div>
+              <input
+                id="inputNewPrice"
+                type="hidden"
+                value="{{ productDet.price - productDet.discount }}"
+                #inputNewPrice
+              />
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="btn_add_to_cart">
+                <a
+                  class="btn_1"
+                  (click)="
+                    addToCart(
+                      inputId.value,
+                      inputSelected.value,
+                      inputqnt.value
+                    )
+                  "
+                  >Add to Cart</a
+                >
+              </div>
+              <div class="btn_add_to_fav">
+                <a
+                  (click)="
+                    addToFav(
+                      inputId.value,
+                      inputProdName.value,
+                      inputImage.src,
+                      inputNewPrice.value
+                    )
+                  "
+                >
+                  <i class="ti-heart"></i>
+                  Add to Wishlist
+                </a>
+              </div>
+              <!-- <button class="btn_add_to_cart btn_1 text-white" [disabled]="check" (click)="addToCart(inputId.value,inputSelected.value,inputqnt.value)">Add to Cart</button> -->
+            </div>
+          </div>
         </div>
-        <!-- /row -->
+      </div>
     </div>
-    <!-- /container -->
 
+    <div class="container mt-5 mb-5 comment">
+      <div class="row"  *ngIf="user">
+        <div class="form-group col-10">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Add comment"
+            #inputcomment
+          />
+        </div>
+        <div class="form-group col-2">
+          <a
+            class="btn_1"
+            (click)="addcomment(inputId.value, inputcomment.value)"
+            >Comment</a
+          >
+        </div>
+        <!-- <div class="form-group col-2">
+          <button
+            class="btn btn-primary  btn_add_to_cart"
+            type="button"
+            (click)="addcomment(inputId.value, inputcomment.value)"
+          >
+            Comment
+          </button>
+        </div> -->
+      </div>
+        <div
+          class="commented-section mt-2"
+          *ngFor="
+            let comment of comments
+              | paginate: { itemsPerPage: count, currentPage: p }
+          "
+        >
+          <div class="d-flex flex-row align-items-center commented-user mb-1">
+            <h5 class="mr-2">{{ comment.name }}</h5>
 
-    <!-- /tab_content_wrapper -->
+            <span class="mb-1 ml-2">{{ comment.created_at |date:'shortTime' }}</span>
+          </div>
+          <div class="comment-text-sm mx-2 comments mb-2">
+            <span>{{ comment.comment }} </span>
+          </div>
 
-    <!-- /container -->
+      </div>
+      <div>
+        <pagination-controls *ngIf="comments.length>3"
+          (pageChange)="p = $event"
+          class="my-pagination"
+
+        ></pagination-controls>
+      </div>
+      <!-- <a href="" class="ml-5" style="text-decoration: underline;">view all </a> -->
+    </div>
 
     <div class="feat">
-        <div class="container">
-            <ul>
-                <li>
-                    <div class="box">
-                        <i class="ti-gift"></i>
-                        <div class="justify-content-center">
-                            <h3>Free Shipping</h3>
-                            <p>For all oders over $99</p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="box">
-                        <i class="ti-wallet"></i>
-                        <div class="justify-content-center">
-                            <h3>Secure Payment</h3>
-                            <p>100% secure payment</p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="box">
-                        <i class="ti-headphone-alt"></i>
-                        <div class="justify-content-center">
-                            <h3>24/7 Support</h3>
-                            <p>Online top support</p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+      <div class="container">
+        <ul>
+          <li>
+            <div class="box">
+              <i class="ti-gift"></i>
+              <div class="justify-content-center">
+                <h3>Free Shipping</h3>
+                <p>For all oders over $99</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="box">
+              <i class="ti-wallet"></i>
+              <div class="justify-content-center">
+                <h3>Secure Payment</h3>
+                <p>100% secure payment</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="box">
+              <i class="ti-headphone-alt"></i>
+              <div class="justify-content-center">
+                <h3>24/7 Support</h3>
+                <p>Online top support</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
     <!--/feat-->
-</div>
+  </div>
 </main>

@@ -10,6 +10,8 @@ import { ProductService } from 'src/app/services/product.service';
 import { StoreService } from 'src/app/services/store.service';
 import { RatingService } from './../../services/rating.service';
 import { UserService } from './../../services/user.service';
+import { CommentsService } from 'src/app/services/comments.service';
+import { Comment } from 'src/app/models/comment';
 
 @Component({
   selector: 'app-veiw-product',
@@ -29,23 +31,29 @@ export class VeiwProductComponent implements OnInit {
   mainhomeRate=0;
   R:any;
   check: boolean = false;
+  comments: any[] = [];
 
   productDet:any;
+
+    // Pagination parameters.
+    p: any = 1;
+    count: any = 3;
   constructor(private _activatedRoute: ActivatedRoute,
     private _productService: ProductService, private storeService: StoreService,
     private _ratingService: RatingService, private _userService: UserService,
-    public myapp: AppComponent , public header:HeaderComponent) { }
+    public myapp: AppComponent , public header:HeaderComponent , private _commentService:CommentsService) { }
 
   ngOnInit(): void {
-
 
     this._activatedRoute.paramMap.subscribe(params => {
       this.prodid = params.get('pId');
       this.show(this.prodid);
 
       this.reviews(this.prodid);
-      
+
     });
+    this.getcomment(this.prodid);
+
     this._userService.get().subscribe(
       (res: any) => {
         console.log(JSON.stringify(res));
@@ -64,7 +72,7 @@ export class VeiwProductComponent implements OnInit {
 
             if(res.data[i].product_id==this.productDet.id)
               this.store.push(res.data[i]);
-              console.log(this.store.length);
+              // console.log(this.store.length);
 
             if (this.store.length === 0) {
               // alert('no')
@@ -106,11 +114,11 @@ reviews(id:any){
     (res:any)=>{
       this.reviewsForProduct=res[0].count;
       //console.log();
-      
+
     },
     (error)=>{
       console.log(error);
-      
+
     }
   )
 }
@@ -158,13 +166,14 @@ addToCart(id:any,productSizeColor:any,qnt:any){
               this.ratings.degree=rate;
               this.ratings.user_id=this.users.id;
               this._ratingService.put(res[0].id,this.ratings).subscribe(
-                (res:any)=>{}
+                (res:any)=>{this.reviews(this.prodid);}
               );
               // console.log(res[0].id);
             }
             else{
           this._ratingService.post(this.ratings).subscribe(
             (res:any)=>{
+              this.reviews(this.prodid);
             });
           }
           // this._ratingService.show();
@@ -191,10 +200,6 @@ addToCart(id:any,productSizeColor:any,qnt:any){
 
   // }
   addToFav(id:any,ProdName:any,Image:any,newPrice:any){
-    // let id = $("#id").prop('value');
-    // localStorage.setItem('product_name' + id,ProdName);
-    // localStorage.setItem('image' +id,Image);
-    // localStorage.setItem('quantity' +id,'1');
     if (localStorage.getItem('Fav' + id) === null) {
       localStorage.setItem('Fav' + id, ProdName + '#$' + Image + '#$' + newPrice + '#$' + id + '#$' + 1);
       this.myapp.successmessage(ProdName +" Added To Wish List Successfuly");
@@ -203,4 +208,43 @@ addToCart(id:any,productSizeColor:any,qnt:any){
     }
   }
 
+  addcomment(productID: any, comment: any) {
+    let newComment = new Comment();
+    newComment.product_id = productID;
+    newComment.comment = comment;
+    newComment.user_id = this.users.id;
+
+    // newComment.created_at = newComment.created_at.getSeconds();
+
+    this._commentService.post(newComment).subscribe(
+      (res: any) => {
+    // console.log(newComment.created_at);
+
+  this.getcomment(this.prodid)
+
+      }, (err: any) => {
+        console.log(err);
+
+      }
+    )
+
+  }
+
+  getcomment(id:any) {
+    // alert(this.prodid)
+    this._commentService.get(id).subscribe(
+      (res: any) => {
+        console.log(res);
+        // alert(res)
+        this.comments=res
+        console.log(this.comments);
+
+
+      }, (err: any) => {
+
+        console.log(err);
+
+      }
+    )
+  }
 }
