@@ -8,6 +8,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { User } from 'src/app/models/User';
 import { Massege } from 'src/app/models/Massege';
 import { StoreService } from 'src/app/services/store.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-cart',
@@ -27,10 +28,11 @@ export class CartComponent implements OnInit {
 
 
   constructor(private _userService: UserService, private router: Router, public myapp: AppComponent, private route: ActivatedRoute
-  ,private _cartService:CartService,private _storeService:StoreService)
+  ,private _cartService:CartService,private _storeService:StoreService,private spinner: NgxSpinnerService)
     { this.router.routeReuseStrategy.shouldReuseRoute = () => false;}
 
   ngOnInit(): void {
+    this.spinner.show();
 this.getCartDetails();
     this._storeService.get().subscribe(
       (res: any) => {
@@ -42,6 +44,8 @@ this.getCartDetails();
           // console.log(x);
           // console.log(this.productsInCart[i][5]);
           this.productStore.push(x);
+          this.spinner.hide();
+
         }
         console.log(this.productStore)
 

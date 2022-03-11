@@ -1,4 +1,8 @@
-
+<ngx-spinner
+  bdColor="#ECEFF2"
+  template="<img src='https://media.giphy.com/media/swhRkVYLJDrCE/giphy.gif' />"
+>
+</ngx-spinner>
 <app-header *ngIf="!router.url.includes('admn') && !router.url.includes('weather') && !router.url.includes('response-reset') && !router.url.includes('reset-password')"></app-header>
 
 <router-outlet></router-outlet>

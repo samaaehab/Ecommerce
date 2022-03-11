@@ -43,6 +43,7 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { VeiwProductComponent } from './components/veiw-product/veiw-product.component';
 import { ResponseResetComponent } from './components/response-reset/response-reset.component';
 import { NgxScrollTopModule } from 'ngx-scrolltop';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -79,7 +80,6 @@ import { NgxScrollTopModule } from 'ngx-scrolltop';
     SocialLoginModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule,
     ToastrModule,
     Ng2SearchPipeModule,
     // TranslateModule.forRoot({
@@ -91,8 +91,11 @@ import { NgxScrollTopModule } from 'ngx-scrolltop';
     // }),
     NgxPaginationModule,
     BrowserAnimationsModule,
+
     ToastrModule.forRoot(),
     NgxScrollTopModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
 
   ],
   // exports: [CommonModule, NgxPaginationModule],

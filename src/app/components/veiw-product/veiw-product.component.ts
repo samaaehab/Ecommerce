@@ -12,6 +12,7 @@ import { RatingService } from './../../services/rating.service';
 import { UserService } from './../../services/user.service';
 import { CommentsService } from 'src/app/services/comments.service';
 import { Comment } from 'src/app/models/comment';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-veiw-product',
@@ -41,9 +42,12 @@ export class VeiwProductComponent implements OnInit {
   constructor(private _activatedRoute: ActivatedRoute,
     private _productService: ProductService, private storeService: StoreService,
     private _ratingService: RatingService, private _userService: UserService,
-    public myapp: AppComponent , public header:HeaderComponent , private _commentService:CommentsService) { }
+    public myapp: AppComponent , public header:HeaderComponent ,private spinner: NgxSpinnerService ,private _commentService:CommentsService) { }
+
 
   ngOnInit(): void {
+    this.spinner.show();
+
 
     this._activatedRoute.paramMap.subscribe(params => {
       this.prodid = params.get('pId');
@@ -72,8 +76,10 @@ export class VeiwProductComponent implements OnInit {
 
             if(res.data[i].product_id==this.productDet.id)
               this.store.push(res.data[i]);
-              // console.log(this.store.length);
 
+              console.log(this.store.length);
+            
+              this.spinner.hide();
             if (this.store.length === 0) {
               // alert('no')
               this.check=true;
