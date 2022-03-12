@@ -22,6 +22,8 @@ import { OrderService } from 'src/app/services/order.service';
 })
 export class AdminsubcategoryComponent implements OnInit {
   formSubcat= new FormGroup({});
+  formUpdate= new FormGroup({});
+
   subcategories:SubCategory[]=[];
   categories:Category[]=[];
 
@@ -45,6 +47,9 @@ export class AdminsubcategoryComponent implements OnInit {
       Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],
       CatId:['',[Validators.required]],
       });
+    this.formUpdate=this._formBuilder.group({
+      Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],
+    });
       this.getSubCategoryData();
     this.getCategoryData();
     this._contact.get().subscribe(
@@ -78,7 +83,7 @@ export class AdminsubcategoryComponent implements OnInit {
    );
   }
 
-  isValidControl(name:string):boolean
+isValidControl(name:string):boolean
 {
 return this.formSubcat.controls[name].valid;
 }
@@ -89,6 +94,19 @@ return this.formSubcat.controls[name].invalid && (this.formSubcat.controls[name]
 isControlHasError(name:string,error:string):boolean
 {
 return this.formSubcat.controls[name].invalid && this.formSubcat.controls[name].errors?.[error];
+}
+
+isValidControl2(name:string):boolean
+{
+return this.formUpdate.controls[name].valid;
+}
+isInValidAndTouched2(name:string):boolean
+{
+return this.formUpdate.controls[name].invalid && (this.formUpdate.controls[name].dirty || this.formUpdate.controls[name].touched);
+}
+isControlHasError2(name:string,error:string):boolean
+{
+return this.formUpdate.controls[name].invalid && this.formUpdate.controls[name].errors?.[error];
 }
 
 

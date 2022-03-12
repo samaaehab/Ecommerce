@@ -281,12 +281,22 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" [formGroup]="formUpdate">
         <div class="box_general summary">
-          <input type="hidden" id="upcid" #inputId>
+          <input  type="hidden" id="upcid" #inputId>
           <div class="input-group mb-3">
             <label for="upcategory" class="me-3 mt-2">SubCategory</label>
-            <input type="text" id="upcategory" #inputSubCategory class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+            <input formControlName="Name" type="text" id="upcategory" #inputSubCategory class="form-control"
+            [class.is-invalid]="isInValidAndTouched2('Name')" [class.is-valid]="isValidControl2('Name')"
+            placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+          </div>
+          <div *ngIf="isInValidAndTouched2('Name')" style="margin-left:114px;">
+            <small class="form-text text-danger" *ngIf="isControlHasError2('Name','required')">required
+              Subcategory name</small>
+              <small class="form-text text-danger" *ngIf="isControlHasError2('Name','minlength')">min length is
+                3</small>
+                <small class="form-text text-danger" *ngIf="isControlHasError2('Name','maxlength')">max length is
+                  25</small>
           </div>
         </div>
       </div>

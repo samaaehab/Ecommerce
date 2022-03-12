@@ -3,28 +3,66 @@ import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 
 import { AppComponent } from 'src/app/app.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
-  users:User[]=[];
-  newUser:any[]=[]
+  users= new User();
+  newUser:any[]=[];
+  formEdit = new FormGroup({});
   user=localStorage.getItem('email')
-  constructor(private _userService:UserService,public myapp:AppComponent) { }
+  constructor(private _userService:UserService,public myapp:AppComponent,private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
 
-    this._userService.get().subscribe(
+    // this._userService.get().subscribe(
+    //   (res: any) => {
+    //     // console.log(JSON.stringify(res));
+    //     this.users = res.data.find((user:any)=>user.email==this.user);
+    //     console.log(this.users);
+
+    //     this.newUser.push(this.users);
+    //     // console.log(this.newUser)
+    //   }
+    // );
+    this._userService.show(this.user).subscribe(
       (res: any) => {
-        // console.log(JSON.stringify(res));
-        this.users = res.data.find((user:any)=>user.email==this.user);
-        this.newUser.push(this.users);
-        // console.log(this.newUser)
+        // this.users = res.data.find((user:any)=>user.email==this.user);
+        this.users=res[0];
+        console.log(this.users);
+
+        this.formEdit = this._formBuilder.group({
+          name: [this.users.name,[Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+          email: [this.users.email, [Validators.required, Validators.email]],
+          full_address: [this.users.full_address],
+          house_no: [this.users.house_no],
+          country: [this.users.country],
+          city: [this.users.city],
+          phone: [this.users.phone,[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],
+        });
+        
+      },(error:any)=>{
+        console.log(error);
       }
     );
+    // console.log(this.users[0]);
+
+
   }
+ 
+  isValidControl2(name: string): boolean {
+    return this.formEdit.controls[name].valid;
+  }
+  isInValidAndTouched2(name: string): boolean {
+    return this.formEdit.controls[name].invalid && (this.formEdit.controls[name].dirty || this.formEdit.controls[name].touched);
+  }
+  isControlHasError2(name: string, error: string): boolean {
+    return this.formEdit.controls[name].invalid && this.formEdit.controls[name].errors?.[error];
+  }
+
   edituser = new User();
   update(id: any, name: string, email: string, phone: any, full_address: string, country: string, city: string, house_no: any) {
     this.edituser.id = id

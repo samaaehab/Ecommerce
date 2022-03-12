@@ -229,7 +229,7 @@ export class CheckoutComponent implements OnInit {
   return(id:any,s_id:any,p_id:any,p_name:any,img:any,p_number:any,disc:any,pric:any,tot_price:any){
     this._cartService.delete(id).subscribe(
       (res:any)=>{
-         localStorage.setItem('product'+s_id,p_id+"#$"+p_name+"#$"+this.imagepath+img+"#$"+p_number+"#$"+(pric-disc)+"#$"+s_id+"#$"+tot_price);
+         localStorage.setItem('product'+s_id,p_id+"#$"+p_name+"#$"+img+"#$"+p_number+"#$"+(pric-disc)+"#$"+s_id+"#$"+tot_price);
          this.router.navigateByUrl('/cart');
       }
     );

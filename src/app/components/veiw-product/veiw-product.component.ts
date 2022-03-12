@@ -157,6 +157,7 @@ addToCart(id:any,productSizeColor:any,qnt:any){
               this.ratings.product_id=product_id;
               this.ratings.degree=rate;
               this.ratings.user_id=this.users.id;
+              console.log(this.ratings.user_id);
               this._ratingService.put(res[0].id,this.ratings).subscribe(
                 (res:any)=>{this.reviews(this.prodid);}
               );
@@ -166,7 +167,10 @@ addToCart(id:any,productSizeColor:any,qnt:any){
           this._ratingService.post(this.ratings).subscribe(
             (res:any)=>{
               this.reviews(this.prodid);
-            });
+            },(err:any)=>{
+
+            }
+            );
           }
           // this._ratingService.show();
           }

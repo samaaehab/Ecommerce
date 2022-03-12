@@ -32,8 +32,8 @@ export class CartComponent implements OnInit {
     { this.router.routeReuseStrategy.shouldReuseRoute = () => false;}
 
   ngOnInit(): void {
-    this.spinner.show();
 this.getCartDetails();
+this.spinner.show();
     this._storeService.get().subscribe(
       (res: any) => {
         // console.log(res.data);
