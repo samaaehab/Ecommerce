@@ -19,9 +19,14 @@ export class OrdersComponent implements OnInit {
   constructor(private _userService:UserService,private _orderService:OrderService,private _order_datails:OrderDetailsService,private _cartService:CartService) { }
 
   ngOnInit(): void {
-    this._userService.get().subscribe(
+    this._userService.show(this.user).subscribe(
       (res: any) => {
-        this.users = res.data.find((user:any)=>user.email==this.user);
+        // this.users = res.data.find((user:any)=>user.email==this.user);
+        this.users = res[0];
+        console.log(this.users);
+        
+      },(error:any)=>{
+        console.log(error);
       }
     );
 
@@ -37,7 +42,7 @@ export class OrdersComponent implements OnInit {
       (res:any)=>{
         this.carts=res;
         // console.log(this.carts);
-        
+
       }
     );
   }
