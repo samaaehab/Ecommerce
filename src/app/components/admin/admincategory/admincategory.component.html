@@ -217,7 +217,8 @@
                             </div>
                           </div>
                         </div>
-                        <button type="button" class="btn btn-primary" (click)="add(inputCategoryName.value)">
+                        <button type="button" class="btn btn-primary" [disabled]="formCat.invalid" 
+                        (click)="add(inputCategoryName.value)">
                           <i class="bi bi-plus-circle-fill text-light"></i> Add
                         </button>
                       </div>
@@ -242,21 +243,38 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" [formGroup]="formCat">
             <div class="box_general summary">
               <input type="hidden" id="upcid" #inputId>
               <div class="input-group mb-3">
+               
                 <label for="upcategory" class="me-3 mt-2">Category</label>
-                <input type="text" id="upcategory" #inputCategory class="form-control" placeholder=""
+                <input type="text" id="upcategory" #inputCategory formControlName="Name"
+                class="form-control" placeholder="" [class.is-valid]="isValidControl('Name')"
+                [class.is-invalid]="isInValidAndTouched('Name')"
                   aria-label="Example text with button addon" aria-describedby="button-addon1">
-              </div>
+                 </div>
+                  
+                  <div *ngIf="isInValidAndTouched('Name')" style="margin-left: 80px;">
+                    <small class="form-text text-danger" *ngIf="isControlHasError('Name','required')">required
+                      category name</small>
+                    <small class="form-text text-danger" *ngIf="isControlHasError('Name','minlength')">min
+                      length is
+                      3</small>
+                    <small class="form-text text-danger" *ngIf="isControlHasError('Name','maxlength')">max
+                      length is
+                      25</small>
+                  </div>
+             
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"><i
-                class="fa fa-times" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-primary" (click)="update(inputId.value,inputCategory.value)"><i
-                class="fa fa-check" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
+              <i class="fa fa-times" aria-hidden="true"></i>
+              </button>
+            <button type="button" class="btn btn-primary" (click)="update(inputId.value,inputCategory.value)">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
           </div>
         </div>
       </div>

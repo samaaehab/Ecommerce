@@ -59,6 +59,9 @@ export class AdminproductsComponent implements OnInit {
       SubCategory: ['', [Validators.required]],
       Category: ['', [Validators.required]],
       Picture: ['', [Validators.required]],
+      price: ['', [Validators.required]],
+      discount: ['', [Validators.required]],
+
     });
     this.getProductData();
     this.getCategoryData();
