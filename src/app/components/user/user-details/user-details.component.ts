@@ -18,10 +18,10 @@ export class UserDetailsComponent implements OnInit {
 
     this._userService.get().subscribe(
       (res: any) => {
-        console.log(JSON.stringify(res));
+        // console.log(JSON.stringify(res));
         this.users = res.data.find((user:any)=>user.email==this.user);
         this.newUser.push(this.users);
-        console.log(this.newUser)
+        // console.log(this.newUser)
       }
     );
   }
@@ -46,7 +46,7 @@ export class UserDetailsComponent implements OnInit {
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++){
-            console.log(error.error.errors[err][i]);
+            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
           

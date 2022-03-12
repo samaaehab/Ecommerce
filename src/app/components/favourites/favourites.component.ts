@@ -18,11 +18,11 @@ export class FavouritesComponent implements OnInit {
       let a=localStorage.key(i);
       if(a?.substring(0,3)=='Fav'){
         let products = localStorage.getItem(a);
-        console.log(products);
+        // console.log(products);
         
         let splitProduct=products?.split('#$');
         this.productsInFav.push(splitProduct);
-        console.log(this.productsInFav[0][0]);
+        // console.log(this.productsInFav[0][0]);
         
         
       }

@@ -54,7 +54,7 @@ export class SubcategoryComponent implements OnInit {
       );
 
     })
-
+    window.scrollTo(0 , 0);
     // this.storeService.get().subscribe(
     //   (res: any) => {
     //     for (let i in res.data) {

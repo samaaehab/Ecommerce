@@ -8,7 +8,7 @@ import { AdminModule } from './components/admin/admin.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -43,6 +43,7 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { VeiwProductComponent } from './components/veiw-product/veiw-product.component';
 import { ResponseResetComponent } from './components/response-reset/response-reset.component';
 import { NgxScrollTopModule } from 'ngx-scrolltop';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -79,7 +80,6 @@ import { NgxScrollTopModule } from 'ngx-scrolltop';
     SocialLoginModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule,
     ToastrModule,
     Ng2SearchPipeModule,
     // TranslateModule.forRoot({
@@ -89,9 +89,13 @@ import { NgxScrollTopModule } from 'ngx-scrolltop';
     //     deps: [HttpClient]
     //   }
     // }),
+    NgxPaginationModule,
     BrowserAnimationsModule,
+
     ToastrModule.forRoot(),
     NgxScrollTopModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
 
   ],
   // exports: [CommonModule, NgxPaginationModule],

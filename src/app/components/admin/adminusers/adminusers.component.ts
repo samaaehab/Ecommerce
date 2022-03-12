@@ -73,7 +73,7 @@ export class AdminusersComponent implements OnInit {
     this.getUserData();
     this._contact.get().subscribe(
       (res:any)=>{
-        console.log(res);
+        // console.log(res);
 
         this.messagesCount=res.length;
         for(let i = 0 ; i < this.messagesCount ; i++){
@@ -88,7 +88,7 @@ export class AdminusersComponent implements OnInit {
   getUserData() {
     this._userService.get().subscribe(
       (res: any) => {
-        console.log(JSON.stringify(res));
+        //console.log(JSON.stringify(res));
         this.users = res.data;
       }
     );
@@ -139,14 +139,14 @@ export class AdminusersComponent implements OnInit {
 
     this._userService.post(user).subscribe(
       (response: any) => {
-        console.log(this.users);
+        // console.log(this.users);
         this.users.push(user);
         this.myapp.successmessage(response.message);
       },
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++) {
-            console.log(error.error.errors[err][i]);
+            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
 
@@ -169,7 +169,7 @@ export class AdminusersComponent implements OnInit {
               this._userService.delete(index)
               .subscribe(
                 (response: any) => {
-                  console.log(user);
+            //      console.log(user);
 
               // console.log('Clicked Yes, File deleted!');
               this.users.splice(index, 1);

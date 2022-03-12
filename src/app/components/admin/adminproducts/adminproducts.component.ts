@@ -66,7 +66,7 @@ export class AdminproductsComponent implements OnInit {
     this.getStoreData();
     this._contact.get().subscribe(
       (res:any)=>{
-        console.log(res);
+        // console.log(res);
 
         this.messagesCount=res.length;
         for(let i = 0 ; i < this.messagesCount ; i++){
@@ -82,7 +82,7 @@ export class AdminproductsComponent implements OnInit {
     this._productService.get().subscribe(
       (res: any) => {
         this.products = res.data;
-        console.log(this.products);
+        // console.log(this.products);
 
       }
     );
@@ -90,7 +90,7 @@ export class AdminproductsComponent implements OnInit {
   getSubCategoryData() {
     this._SubcategoryService.get().subscribe(
       (res: any) => {
-        console.log(JSON.stringify(res));
+        // console.log(JSON.stringify(res));
         this.subcategories = res.data;
       }
     );
@@ -107,14 +107,14 @@ export class AdminproductsComponent implements OnInit {
     this._StoreService.get().subscribe(
       (res: any) => {
         this.stores = res.data;
-        console.log(this.stores);
+        // console.log(this.stores);
       }
     );
   }
 
   imageUpload(event: any) {
     this.files = event.target.files[0];
-    console.log(this.files);
+    // console.log(this.files);
 
   }
 
@@ -127,7 +127,7 @@ export class AdminproductsComponent implements OnInit {
     formdata.append('subcat_id', subcat_id);
     formdata.append('image', this.files, this.files.name);
     formdata.append('cat_id', cat_id);
-    console.log(cat_id);
+    // console.log(cat_id);
 
     this._productService.post(formdata).subscribe(
       (response: any) => {
@@ -141,7 +141,7 @@ export class AdminproductsComponent implements OnInit {
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++) {
-            console.log(error.error.errors[err][i]);
+            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
 

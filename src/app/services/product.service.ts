@@ -9,11 +9,13 @@ import { Product } from './../models/Product';
 })
 export class ProductService {
   allProducts = new BehaviorSubject<Product[]>([]);
+  headers= new HttpHeaders().set('Authorization', `${environment.APIKEY}`)
+
   constructor(private _httpClient: HttpClient) { }
 
   private url=`${environment.URLAPI}`;
 
-public get() { return this._httpClient.get(this.url + `products`); }
+public get() { return this._httpClient.get(this.url + `products`,{ 'headers': this.headers }); }
 
 
 public getForEachSubCategory(id:number){
@@ -23,7 +25,7 @@ public getProductsCategory(id:number){
   return this._httpClient.get(this.url + `${id}/products`);
 }
 public show(id:number){
-  return this._httpClient.get(this.url + `products/${id}`);
+  return this._httpClient.get(this.url + `products/${id}`,{ 'headers': this.headers });
 }
 public getProductsForEachSubCategory(subcatId:any,catId:any){
   return this._httpClient.get(this.url + `${subcatId}/${catId}/products`);
@@ -34,12 +36,12 @@ public getProductWithBigDiscount(){
 
 public post(product: any) {
   const headers=new HttpHeaders();
-  return this._httpClient.post(this.url + `products`, product,{headers:headers})
+  return this._httpClient.post(this.url + `products`, product,{ 'headers': this.headers })
 }
 delete(id:number){
-  return this._httpClient.delete(this.url+`products/${id}`);
+  return this._httpClient.delete(this.url+`products/${id}`,{ 'headers': this.headers });
 }
 put(id:number,product:Product){
-  return this._httpClient.put(this.url+`products/${id}`,product);
+  return this._httpClient.put(this.url+`products/${id}`,product,{ 'headers': this.headers });
 }
 }

@@ -37,7 +37,7 @@ export class AdminordersComponent implements OnInit {
 getOrderData(){
   this._orderService.get().subscribe(
     (res: any) => {
-      console.log(JSON.stringify(res));
+      // console.log(JSON.stringify(res));
       this.orders = res.data;
     }
   );
@@ -58,7 +58,7 @@ getOrderData(){
             this._orderService.delete(index)
             .subscribe(
               (response: any) => {
-                console.log(order);
+                // console.log(order);
             this.orders.splice(index, 1);
             if(status=="pending"){
               --this.order_count;
@@ -105,7 +105,7 @@ getOrderData(){
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++){
-            console.log(error.error.errors[err][i]);
+            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
 
@@ -114,7 +114,7 @@ getOrderData(){
     );
     this._contact.get().subscribe(
       (res:any)=>{
-        console.log(res);
+        // console.log(res);
 
         this.messagesCount=res.length;
         for(let i = 0 ; i < this.messagesCount ; i++){

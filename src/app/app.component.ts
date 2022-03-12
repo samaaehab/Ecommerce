@@ -26,6 +26,7 @@ export class AppComponent {
   //   this.translate.use(lang);
   // }
   ngOnInit(): void {
+    window.scrollTo(0 , 0);
     new name();
   }
   title = 'final';

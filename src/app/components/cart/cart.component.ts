@@ -8,6 +8,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { User } from 'src/app/models/User';
 import { Massege } from 'src/app/models/Massege';
 import { StoreService } from 'src/app/services/store.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-cart',
@@ -27,23 +28,26 @@ export class CartComponent implements OnInit {
 
 
   constructor(private _userService: UserService, private router: Router, public myapp: AppComponent, private route: ActivatedRoute
-  ,private _cartService:CartService,private _storeService:StoreService)
+  ,private _cartService:CartService,private _storeService:StoreService,private spinner: NgxSpinnerService)
     { this.router.routeReuseStrategy.shouldReuseRoute = () => false;}
 
   ngOnInit(): void {
+    this.spinner.show();
 this.getCartDetails();
     this._storeService.get().subscribe(
       (res: any) => {
-        console.log(res.data);
+        // console.log(res.data);
         let data=res.data;
-        console.log(data);
+        // console.log(data);
         for(let i=0;i<this.productsInCart.length;i++){
           let x= res.data.find((cat:any)=>cat.id ==this.productsInCart[i][5]);
   // console.log(x);
  // console.log(this.productsInCart[i][5]);
           this.productStore.push(x);
+          this.spinner.hide();
+
         }
-        console.log(this.productStore)
+        // console.log(this.productStore)
 
       }
     );
@@ -57,7 +61,7 @@ this.getCartDetails();
 
     this._userService.get().subscribe(
       (res: any) => {
-        console.log(JSON.stringify(res));
+        // console.log(JSON.stringify(res));
         this.users = res.data.find((user:any)=>user.email==this.user);
         this.loggedUser.push(this.users);
         // console.log(this.loggedUser[0].id)
@@ -141,7 +145,7 @@ price:any;
         this.DBCart.status='waiting';
         this._cartService.post(this.DBCart).subscribe(
           (res:any)=>{
-            console.log(res.message);
+            // console.log(res.message);
           });
           localStorage.removeItem('product'+this.DBCart.store_id);
 
@@ -151,9 +155,9 @@ price:any;
     else{
 
     }
-    console.log(this.productsInCart);
+    // console.log(this.productsInCart);
 
-    console.log(this.loggedUser[0].id);
+    // console.log(this.loggedUser[0].id);
 
     // console.log(this.productsInCart);
 

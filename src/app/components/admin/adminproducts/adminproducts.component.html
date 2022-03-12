@@ -149,7 +149,7 @@
                       | paginate: { itemsPerPage: count, currentPage: p }
                   ">
                       <th scope="row">{{currentIndex + 1}}</th>
-                      <td scope="col">{{product.product_name}}</td>
+                      <td scope="col">{{product.product_name| maxLength}}</td>
                       <td scope="col" class="text-break">{{product.description | maxLength }}</td>
                       <td scope="col">
                         <img src="{{product.image}}" style="height: 40px; width: 60px;"></td>

@@ -37,7 +37,7 @@ mainhomeRate=4;
 
 
   ngOnInit(): void {
-
+    window.scrollTo(0 , 0);
     this.productdiscount();
     this.last2prod();
 
@@ -255,7 +255,7 @@ addToFav(id:any,ProdName:any,Image:any,newPrice:any){
 
             },
             (err:any)=>{
-              console.log(err);
+              // console.log(err);
 
             }
           )

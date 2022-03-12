@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
   constructor(private http:HttpClient,private userService:UserService,private _userService:UserService,public myapp:AppComponent) { }
 
   ngOnInit(): void {
+    window.scrollTo(0 , 0);
     Pusher.logToConsole = true;
 
     const pusher = new Pusher('950c501a49561d478fcc', {
@@ -32,16 +33,16 @@ export class ProfileComponent implements OnInit {
     const channel = pusher.subscribe('chat');
     channel.bind('message', (data: any) => {
       this.messages.push(data);
-      console.log(this.messages);
+      // console.log(this.messages);
 
     });
     this._userService.get().subscribe(
       (res: any) => {
-        console.log(JSON.stringify(res));
+        // console.log(JSON.stringify(res));
         this.users = res.data.find((user:any)=>user.email==this.user);
         this.newUser.push(this.users);
         this.ChatUSer=this.newUser[0].name;
-        console.log(this.newUser[0])
+        // console.log(this.newUser[0])
       }
     );
   }

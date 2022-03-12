@@ -45,7 +45,7 @@ export class CheckoutComponent implements OnInit {
     });
     this._userService.get().subscribe(
       (res: any) => {
-        console.log(JSON.stringify(res));
+        // console.log(JSON.stringify(res));
         this.users = res.data.find((user: any) => user.email == this.user);
         //console.log(this.users.id);
 

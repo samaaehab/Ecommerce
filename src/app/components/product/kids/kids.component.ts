@@ -41,7 +41,7 @@ export class KidsComponent implements OnInit {
   public myapp:AppComponent) { }
 
   ngOnInit(): void {
-
+    window.scrollTo(0 , 0);
     this.showcat();
     // this.getPrice();
 

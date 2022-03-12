@@ -13,7 +13,8 @@ export class ContactsUsComponent implements OnInit {
  
  constructor(private _contact:ContactUsService, public myapp:AppComponent) { }
  
- ngOnInit(): void {
+    ngOnInit(): void {
+        window.scrollTo(0 , 0);
  }
  contact = new ContactUS();
  addfeedback(name: any, email: any, massege: any) {
@@ -29,7 +30,7 @@ export class ContactsUsComponent implements OnInit {
  
  for (const err in error.error.errors) {
  for (let i = 0; i < error.error.errors[err].length; i++) {
- console.log(error.error.errors[err][i]);
+//  console.log(error.error.errors[err][i]);
  this.myapp.errormessage(error.error.errors[err][i]);
 
  }

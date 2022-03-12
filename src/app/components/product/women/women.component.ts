@@ -39,6 +39,7 @@ export class WomenComponent implements OnInit {
   ngOnInit(): void {
 
     this.showcat();
+    window.scrollTo(0 , 0);
     // this.getPrice();
 
   //   this.storeService.get().subscribe(

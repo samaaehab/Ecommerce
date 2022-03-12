@@ -83,7 +83,7 @@
                             <div class="price_box">
                                 <input id="inputNewPrice" type="hidden" value="{{product.price - product.discount}}" #inputNewPrice>
                               <span class="new_price">{{product.price - product.discount | currency}}</span>
-                              <span class="old_price"id="inputPrice">{{product.price | currency}}</span>
+                              <span class="old_price"id="inputPrice" *ngIf="product.discount > 0">{{product.price | currency}}</span>
                             </div>
                             <!-- <div class="price_box" *ngFor="let p of price">
                                 <span class="new_price" *ngIf="p.product_id === product.id" >$ {{p.size}}</span>

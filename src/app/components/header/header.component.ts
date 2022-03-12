@@ -51,7 +51,7 @@ WeatherData:any;
       isDay: true
     };
     this.getWeatherData();
-    console.log(this.WeatherData);
+    // console.log(this.WeatherData);
 
 
     this.auth.status.subscribe(value => this.logged = value);
@@ -76,7 +76,7 @@ WeatherData:any;
           // }
         },
             (err:any)=>{
-              console.log(err);
+              // console.log(err);
 
             }
       );
@@ -125,7 +125,7 @@ WeatherData:any;
       getWeatherData(){
         this._userService.get().subscribe(
           (res: any) => {
-            console.log(JSON.stringify(res));
+            // console.log(JSON.stringify(res));
             this.users = res.data.find((user: any) => user.email == this.user);
             fetch('https://api.openweathermap.org/data/2.5/weather?q='+this.users.city+'&appid=9c57a2635e1987d71a704765bfb30352')
             .then(response=>response.json())

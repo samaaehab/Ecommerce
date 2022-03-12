@@ -48,6 +48,7 @@ allProducts: any[] = [];
   ngOnInit(): void {
 
     this.showcat();
+    window.scrollTo(0 , 0);
     // this._activatedRoute.paramMap.subscribe(params=>{
     //   this.cat=params.get('cat');
 
