@@ -243,7 +243,7 @@
                           255
                         </small>
                         <small class="form-text text-danger"
-                          *ngIf="isControlHasError('ProductDescription','minlength')">max length is
+                          *ngIf="isControlHasError('ProductDescription','minlength')">min length is
                           10
                         </small>
                       </div>
@@ -252,12 +252,27 @@
                       <div class="col">
                         <label for="inputProductPrice">Price</label>
                         <input type="number" step="any" #inputProductPrice class="form-control" id="inputProductPrice"
-                          placeholder="Price" />
+                          placeholder="Price" formControlName="price" 
+                          [class.is-invalid]="isInValidAndTouched('price')"
+                        [class.is-valid]="isValidControl('price')" />
+                        <div *ngIf="isInValidAndTouched('price')">
+                          <small class="form-text text-danger"
+                            *ngIf="isControlHasError('price','required')">required
+                            price </small>
+                         
+                        </div>
                       </div>
                       <div class="col">
                         <label for="inputProductDiscount">Discount</label>
                         <input type="number" step="any" #inputProductDiscount class="form-control"
-                          id="inputProductDiscount" placeholder="Discount" />
+                          id="inputProductDiscount" placeholder="Discount" formControlName="discount"
+                        [class.is-valid]="isValidControl('discount')"/>
+                        <!-- <div *ngIf="isInValidAndTouched('discount')">
+                          <small class="form-text text-danger"
+                            *ngIf="isControlHasError('discount','required')">required
+                            discount </small>
+                         
+                        </div> -->
                       </div>
                     </div>
                     <div class="form-group mb-3">
@@ -289,7 +304,8 @@
 
                     </div>
                     <button type="submit" class="btn btn-primary"
-                      (click)="add(inputProductName.value,inputImage.value,inputDescription.value,inputProductPrice.value,inputProductDiscount.value,inputSubCategoryId.value,inputCategoryId.value)"><i
+                      (click)="add(inputProductName.value,inputImage.value,inputDescription.value,inputProductPrice.value,inputProductDiscount.value,inputSubCategoryId.value,inputCategoryId.value)"
+                      [disabled]="formProduct.invalid"  ><i
                         class="bi bi-plus-circle-fill text-light"></i>Add</button>
                   </div>
 
@@ -312,27 +328,66 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <div class="box_general summary">
+      <div class="modal-body"[formGroup]="formProduct">
+        <div class="box_general summary" >
           <input type="text" id="uppid" hidden #inputId>
           <div class="mb-3">
             <label for="productName" class="form-label">Product Name</label>
             <input type="text" id="productName" #inputPName class="form-control" placeholder=""
-              aria-label="Example text with button addon" aria-describedby="button-addon1" value="Abdo">
+              aria-label="Example text with button addon" aria-describedby="button-addon1"
+              formControlName="ProductName" [class.is-invalid]="isInValidAndTouched('ProductName')"
+                          [class.is-valid]="isValidControl('ProductName')" value="">
           </div>
+          <div *ngIf="isInValidAndTouched('ProductName')">
+            <small class="form-text text-danger"
+              *ngIf="isControlHasError('ProductName','required')">required
+              product name</small>
+            <small class="form-text text-danger" *ngIf="isControlHasError('ProductName','minlength')">min
+              length is
+              3</small>
+            <small class="form-text text-danger" *ngIf="isControlHasError('ProductName','maxlength')">max
+              length is
+              255</small>
+          </div>
+
           <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea #inputDesc class="form-control mb-3" id="description" rows="3"></textarea>
+            <textarea #inputDesc class="form-control mb-3" id="description" rows="3"
+            formControlName="ProductDescription" [class.is-invalid]="isInValidAndTouched('ProductDescription')"
+            [class.is-valid]="isValidControl('ProductDescription')"></textarea>
+          </div>
+          <div *ngIf="isInValidAndTouched('ProductDescription')">
+            <small class="form-text text-danger"
+              *ngIf="isControlHasError('ProductDescription','required')">required
+              product description </small>
+            <small class="form-text text-danger"
+              *ngIf="isControlHasError('ProductDescription','maxlength')">max length is
+              255
+            </small>
+            <small class="form-text text-danger"
+              *ngIf="isControlHasError('ProductDescription','minlength')">min length is
+              10
+            </small>
           </div>
           <div class="row mb-3">
             <div class="form-group col">
               <label for="ProdPrice">Price</label>
-              <input type="number" step=any #inputProdPrice class="form-control" id="ProdPrice" placeholder="Price" />
+              <input type="number" step=any #inputProdPrice class="form-control" id="ProdPrice" 
+              placeholder="Price" formControlName="price" 
+              [class.is-invalid]="isInValidAndTouched('price')"
+            [class.is-valid]="isValidControl('price')" />
+            <div *ngIf="isInValidAndTouched('price')">
+              <small class="form-text text-danger"
+                *ngIf="isControlHasError('price','required')">required
+                price </small>
+             
+            </div>
             </div>
             <div class="form-group col">
               <label for="ProdDiscount">Discount</label>
               <input type="number" step=any #inputProdDiscount class="form-control" id="ProdDiscount"
-                placeholder="Discount" />
+                placeholder="Discount" formControlName="discount"
+                [class.is-valid]="isValidControl('discount')"/>
             </div>
           </div>
         </div>
@@ -341,8 +396,9 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"
             aria-hidden="true"></i></button>
         <button type="button" class="btn btn-primary"
+        
           (click)="update(inputId.value,inputPName.value,inputDesc.value,inputProdPrice.value,inputProdDiscount.value)"><i
-            class="fa fa-check" aria-hidden="true"></i></button>
+             class="fa fa-check" aria-hidden="true"></i></button>
       </div>
     </div>
   </div>
