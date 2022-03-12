@@ -34,6 +34,9 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
 this.getCartDetails();
 this.spinner.show();
+if(this.productsInCart.length==0){
+  this.spinner.hide();
+}
     this._storeService.get().subscribe(
       (res: any) => {
         // console.log(res.data);
