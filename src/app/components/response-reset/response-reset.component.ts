@@ -20,14 +20,21 @@ export class ResponseResetComponent implements OnInit {
       this.form.resetToken = params['token']
     });
   }
-  onSubmit(){
-    this.auth.changePassword(this.form).subscribe(
-      res => {
-        this.myapp.successmessage("Now Login With New Password");
-        this.router.navigateByUrl('/acount');
-      },
-      error => this.myapp.errormessage(error.error.error)
-    )
+  onSubmit() {
+    let pass1 = document.getElementById('pass1');
+    let pass2 = document.getElementById('pass2');
+    if (pass1 == pass2) {
+  
+      this.auth.changePassword(this.form).subscribe(
+        res => {
+          this.myapp.successmessage("Now Login With New Password");
+          this.router.navigateByUrl('/acount');
+        },
+        error => this.myapp.errormessage(error.error.error)
+      )
+    } else {
+      this.myapp.errormessage("password not match")
+}
   }
   ngOnInit(): void {
   }
