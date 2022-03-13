@@ -23,7 +23,7 @@ export class ResponseResetComponent implements OnInit {
   onSubmit() {
     let pass1 = document.getElementById('pass1');
     let pass2 = document.getElementById('pass2');
-    if (pass1 == pass2) {
+    // if (pass1 == pass2) {
   
       this.auth.changePassword(this.form).subscribe(
         res => {
@@ -32,9 +32,9 @@ export class ResponseResetComponent implements OnInit {
         },
         error => this.myapp.errormessage(error.error.error)
       )
-    } else {
-      this.myapp.errormessage("password not match")
-}
+    // } else {
+      // this.myapp.errormessage("password not match")
+// }
   }
   ngOnInit(): void {
   }
