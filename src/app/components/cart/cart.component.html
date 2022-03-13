@@ -6,7 +6,6 @@
             <ul>
                 <li><a routerLink="/home">Home</a></li>
                 <li><a routerLink="/cart">Cart</a></li>
-                <!-- <li>Page active</li> -->
             </ul>
         </div>
         <h1>Cart page</h1>
@@ -40,7 +39,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let cart of productsInCart;let currentIndex=index">
+            <tr *ngFor="let cart of productsInCart; let currentIndex=index">
 
                 <td>
                     <div class="thumb_cart">
@@ -107,7 +106,7 @@
             <h5 class="card-title ">My Cart <i class="fas fa-shopping-cart"></i></h5>
         </div>
         <div class="center">
-            <img src="assets/empty.png" alt="">
+            <img src="assets/empty.png">
             <h4>Your cart is empty!</h4>
             <h6>Add item to it now</h6>
             <button routerLink="/home" class="btn btn-primary">Shop Now</button>
