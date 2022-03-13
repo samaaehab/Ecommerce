@@ -30,19 +30,10 @@ export class ContactsUsComponent implements OnInit {
  
  for (const err in error.error.errors) {
  for (let i = 0; i < error.error.errors[err].length; i++) {
-//  console.log(error.error.errors[err][i]);
  this.myapp.errormessage(error.error.errors[err][i]);
-
- }
- 
- }
- 
- 
- }
- );
- 
- 
- 
- 
+     }
+   }
+    }
+   );
  }
 }

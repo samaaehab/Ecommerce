@@ -37,80 +37,69 @@ this.spinner.show();
 if(this.productsInCart.length==0){
   this.spinner.hide();
 }
-    this._storeService.get().subscribe(
-      (res: any) => {
-        // console.log(res.data);
-        let data=res.data;
-        // console.log(data);
+
+        /* Get Store of Product */
         for(let i=0;i<this.productsInCart.length;i++){
-          let x= res.data.find((cat:any)=>cat.id ==this.productsInCart[i][5]);
-  // console.log(x);
- // console.log(this.productsInCart[i][5]);
+          this._storeService.show(this.productsInCart[i][5]).subscribe(
+            (res: any) => {
+          let x=res.data;          
           this.productStore.push(x);
           this.spinner.hide();
-
         }
-        // console.log(this.productStore)
-
+            );
       }
-    );
 
+      /* get Total Price */
     for (var i = 0; i < this.productsInCart.length; i++) {
-
      this.totalPrice+=Number(this.productsInCart[i][6]);
-
     }
 
-
-    this._userService.get().subscribe(
+ /* Get Login User */
+    this._userService.show(this.user).subscribe(
       (res: any) => {
-        // console.log(JSON.stringify(res));
-        this.users = res.data.find((user:any)=>user.email==this.user);
+        this.users = res[0];
         this.loggedUser.push(this.users);
-        // console.log(this.loggedUser[0].id)
+        
+      },(error:any)=>{
       }
     );
     this.addToDBCart();
   }
+
+  /* View Product In Cart */
   getCartDetails(){
     for (var i = 0; i < localStorage.length; i++) {
       let a = localStorage.key(i);
       if (a?.substring(0, 7) == 'product') {
         let products = localStorage.getItem(a);
-
         let splitProduct = products?.split('#$');
         this.productsInCart.push(splitProduct);
-        // alert(this.productsInCart);
         this.cartCount=this.productsInCart.length;
-
-
       }
     }
   }
+
+  /* get Total Price */
   gettotalPrice(){
     return this._cartService.totalPrice();
   }
-removeItem(key:any,storeId:any){
-//  let x= this.productsInCart.indexOf(storeId);
-  localStorage.removeItem(key);
 
+  /* Remove Items */
+removeItem(key:any,storeId:any){
+  localStorage.removeItem(key);
   for(let i=0;i<this.productsInCart.length;i++){
-    // console.log(this.productsInCart[i].findIndex(storeId));
-    // console.log(this.productsInCart[i]);
     for(let j=0;j<this.productsInCart[i].length;j++){
       if(this.productsInCart[i][5]==storeId){
         this.productsInCart.splice(i,1)
       }
-      // console.log(this.productsInCart[i][j]);
     }
-
   }
-  //  console.log(this.productsInCart[0]);
 }
+
+
 price:any;
   getQty(qty:any){
     return this.price=qty;
-
   }
 
   updateCart(id:any,ProdName:any,Image:any,newPrice:any,qty:any,subTotal:any,storeID:any){
@@ -118,25 +107,19 @@ price:any;
       let a = localStorage.key(i);
       if (a?.substring(0, 7)+storeID == 'product'+storeID) {
        localStorage.removeItem(a?.substring(0, 7)+storeID);
-      //  localStorage.setItem('product' + id,ProdName + '#$' + Image + '#$' +newPrice + '#$' + id + '#$' + qty + '#$' + subTotal);
       localStorage.setItem('product'+storeID,id+"#$"+ProdName+"#$"+Image+"#$"+qty+"#$"+newPrice+"#$"+storeID+"#$"+subTotal);
         this.productsInCart = [];
         this.getCartDetails();
-
       }
 
     }
-    // window.location.reload();
     this.myapp.showInfo("Updated Successfuly","Updated");
   }
 
-
+  /* Add To Cart */
   addToDBCart(){
-    // console.log(this.DBCart.d);
     if(localStorage.getItem('email')){
-
       for (let i = 0; i < this.productsInCart.length; i++){
-        // alert(this.productsInCart[i][3])
         this.DBCart.products_number=this.productsInCart[i][3];
         this.DBCart.total_price=this.productsInCart[i][6];
         this.DBCart.store_id=this.productsInCart[i][5];
@@ -148,12 +131,9 @@ price:any;
         this.DBCart.status='waiting';
         this._cartService.post(this.DBCart).subscribe(
           (res:any)=>{
-            // console.log(res.message);
           });
           localStorage.removeItem('product'+this.DBCart.store_id);
-
       }
-
     }
     else{
 

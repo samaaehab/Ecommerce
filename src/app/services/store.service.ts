@@ -29,4 +29,7 @@ put(id:number,store:Store){
   show(id: any) {
     return this._httpClient.get(this.url+`stores/${id}`);
   }
+  storesForeachProduct(product_Id:any){
+    return this._httpClient.get(this.url+`store/${product_Id}`,{ 'headers': this.headers });
+  }
 }

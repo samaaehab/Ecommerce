@@ -1,4 +1,3 @@
-import { ContactUsService } from 'src/app/services/contact-us.service';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { Component, OnInit } from '@angular/core';
 import { SubCategory } from 'src/app/models/SubCategory';
@@ -35,8 +34,6 @@ export class AdminproductsComponent implements OnInit {
   // Pagination parameters.
   p: any = 1;
   count: any = 5;
-  // p1: any = 1;
-  // count1: any = 3;
   searchText: any;
   id: any;
   product = new Product();
@@ -48,8 +45,7 @@ export class AdminproductsComponent implements OnInit {
   order_count: any = 0;
   constructor(private _productService: ProductService, private _SubcategoryService: SubcategoryService, private _StoreService: StoreService, private _categoryService: CategoryServiceService,
     public myapp: AppComponent, private http: HttpClient, private _formBuilder: FormBuilder ,private orderService: OrderService ,
-    private token: AdminTokenService, private auth: AuthenService, private router: Router,
-  private _contact:ContactUsService) { }
+    private token: AdminTokenService, private auth: AuthenService, private router: Router) { }
 
   ngOnInit(): void {
     this.getOrderCount();
@@ -67,25 +63,11 @@ export class AdminproductsComponent implements OnInit {
     this.getCategoryData();
     this.getSubCategoryData();
     this.getStoreData();
-    this._contact.get().subscribe(
-      (res:any)=>{
-        // console.log(res);
-
-        this.messagesCount=res.length;
-        for(let i = 0 ; i < this.messagesCount ; i++){
-          if(res[i].seen === 0){
-            this.counter++;
-          }
-
-        }
-      }
-    );
   }
   getProductData() {
     this._productService.get().subscribe(
       (res: any) => {
         this.products = res.data;
-        // console.log(this.products);
 
       }
     );
@@ -93,7 +75,6 @@ export class AdminproductsComponent implements OnInit {
   getSubCategoryData() {
     this._SubcategoryService.get().subscribe(
       (res: any) => {
-        // console.log(JSON.stringify(res));
         this.subcategories = res.data;
       }
     );
@@ -110,14 +91,12 @@ export class AdminproductsComponent implements OnInit {
     this._StoreService.get().subscribe(
       (res: any) => {
         this.stores = res.data;
-        // console.log(this.stores);
       }
     );
   }
 
   imageUpload(event: any) {
     this.files = event.target.files[0];
-    // console.log(this.files);
 
   }
 
@@ -130,21 +109,17 @@ export class AdminproductsComponent implements OnInit {
     formdata.append('subcat_id', subcat_id);
     formdata.append('image', this.files, this.files.name);
     formdata.append('cat_id', cat_id);
-    // console.log(cat_id);
 
     this._productService.post(formdata).subscribe(
       (response: any) => {
         this.getCategoryData();
         this.getSubCategoryData();
         this.getProductData();
-        // this.products.push(this.product);
-        // window.location.reload();
         this.myapp.successmessage(response.message);
       },
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++) {
-            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
 
@@ -200,7 +175,6 @@ export class AdminproductsComponent implements OnInit {
               this.myapp.successmessage(response.message);
             })
       } else if (result.isDismissed) {
-        // console.log('Clicked No, File is safe!');
         this.myapp.errormessage("product not Deleted");
 
 
@@ -245,7 +219,6 @@ export class AdminproductsComponent implements OnInit {
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++) {
-            console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
 
@@ -262,7 +235,6 @@ export class AdminproductsComponent implements OnInit {
     this._productService.put(id, this.product)
       .subscribe(
         (response: any) => {
-          console.log(response);
           this.getCategoryData();
           this.getSubCategoryData();
           this.getProductData();
@@ -271,14 +243,12 @@ export class AdminproductsComponent implements OnInit {
         (error: any) => {
           for (const err in error.error.errors) {
             for (let i = 0; i < error.error.errors[err].length; i++) {
-              console.log(error.error.errors[err][i]);
               this.myapp.errormessage(error.error.errors[err][i]);
             }
 
           }
         }
       );
-    //alert("Done");
   }
 
 

@@ -1,5 +1,3 @@
-import { ContactUsService } from 'src/app/services/contact-us.service';
-import { ContactsUsComponent } from './../../contact/contacts-us/contacts-us.component';
 import { OrderService } from './../../../services/order.service';
 import { Component, OnInit } from '@angular/core';
 import { Order } from 'src/app/models/Order';
@@ -28,7 +26,7 @@ export class AdminordersComponent implements OnInit {
   constructor(private _orderService: OrderService, public myapp: AppComponent,
     private orderService: OrderService ,
     private token: AdminTokenService, private auth: AuthenService,
-    private router: Router , private _contact:ContactUsService) { }
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getOrderData();
@@ -37,7 +35,6 @@ export class AdminordersComponent implements OnInit {
 getOrderData(){
   this._orderService.get().subscribe(
     (res: any) => {
-      // console.log(JSON.stringify(res));
       this.orders = res.data;
     }
   );
@@ -58,7 +55,6 @@ getOrderData(){
             this._orderService.delete(index)
             .subscribe(
               (response: any) => {
-                // console.log(order);
             this.orders.splice(index, 1);
             if(status=="pending"){
               --this.order_count;
@@ -67,7 +63,6 @@ getOrderData(){
             this.myapp.successmessage(response.message);
           })
           } else if (result.isDismissed) {
-            // console.log('Clicked No, File is safe!');
             this.myapp.errormessage("Order not Deleted");
           }
       });
@@ -105,21 +100,7 @@ getOrderData(){
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++){
-            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
-          }
-
-        }
-      }
-    );
-    this._contact.get().subscribe(
-      (res:any)=>{
-        // console.log(res);
-
-        this.messagesCount=res.length;
-        for(let i = 0 ; i < this.messagesCount ; i++){
-          if(res[i].seen === 0){
-            this.counter++;
           }
 
         }
