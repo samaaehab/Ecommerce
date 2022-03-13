@@ -252,14 +252,14 @@
                       <div class="col">
                         <label for="inputProductPrice">Price</label>
                         <input type="number" step="any" #inputProductPrice class="form-control" id="inputProductPrice"
-                          placeholder="Price" formControlName="price" 
+                          placeholder="Price" formControlName="price"
                           [class.is-invalid]="isInValidAndTouched('price')"
                         [class.is-valid]="isValidControl('price')" />
                         <div *ngIf="isInValidAndTouched('price')">
                           <small class="form-text text-danger"
                             *ngIf="isControlHasError('price','required')">required
                             price </small>
-                         
+
                         </div>
                       </div>
                       <div class="col">
@@ -271,7 +271,7 @@
                           <small class="form-text text-danger"
                             *ngIf="isControlHasError('discount','required')">required
                             discount </small>
-                         
+
                         </div> -->
                       </div>
                     </div>
@@ -285,7 +285,7 @@
                         let subcategory of subcategories" value="{{subcategory.id}}">
                           <span *ngFor="let cat of categories">
                             <span
-                              *ngIf="subcategory.cat_id == cat.id">{{subcategory.subcat_name}}=>{{cat.cat_name}}</span>
+                              *ngIf="subcategory.cat_id == cat.id">{{subcategory.subcat_name}}  &#xf0da;  {{cat.cat_name}}</span>
                           </span>
                         </option>
                       </select>
@@ -372,15 +372,15 @@
           <div class="row mb-3">
             <div class="form-group col">
               <label for="ProdPrice">Price</label>
-              <input type="number" step=any #inputProdPrice class="form-control" id="ProdPrice" 
-              placeholder="Price" formControlName="price" 
+              <input type="number" step=any #inputProdPrice class="form-control" id="ProdPrice"
+              placeholder="Price" formControlName="price"
               [class.is-invalid]="isInValidAndTouched('price')"
             [class.is-valid]="isValidControl('price')" />
             <div *ngIf="isInValidAndTouched('price')">
               <small class="form-text text-danger"
                 *ngIf="isControlHasError('price','required')">required
                 price </small>
-             
+
             </div>
             </div>
             <div class="form-group col">
@@ -396,7 +396,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"
             aria-hidden="true"></i></button>
         <button type="button" class="btn btn-primary"
-        
+
           (click)="update(inputId.value,inputPName.value,inputDesc.value,inputProdPrice.value,inputProdDiscount.value)"><i
              class="fa fa-check" aria-hidden="true"></i></button>
       </div>
@@ -438,6 +438,15 @@
                   <option value="l">L</option>
                   <option value="m">M</option>
                   <option value="s">S</option>
+                  <option value="30">30</option>
+                  <option value="32">32</option>
+                  <option value="34">34</option>
+                  <option value="36">36</option>
+                  <option value="38">38</option>
+                  <option value="40">40</option>
+                  <option value="42">42</option>
+                  <option value="45">45</option>
+                  <option value="-">-</option>
                 </select>
               </div>
               <div class="form-group mb-3 col-2 pt-4">

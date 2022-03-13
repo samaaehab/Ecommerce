@@ -127,7 +127,7 @@
                   >
                     <option *ngFor="let s of store" value="{{ s.id }}">
                       <div *ngIf="s.product_id === productDet.id">
-                        {{ s.color }}-{{ s.size | uppercase }}
+                        {{ s.color }}  &#xf0da; {{s.size | uppercase }}
                       </div>
                     </option>
                   </select>

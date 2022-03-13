@@ -411,6 +411,7 @@
     text-align: right;
   }
 }
+.btn_add_to_cart button.btn_1,
 .btn_add_to_cart a.btn_1 {
   text-transform: uppercase;
   margin-bottom: 15px;
@@ -425,6 +426,7 @@
   color: #e41616;
 }
 @media (max-width: 767px) {
+  .btn_add_to_cart button.btn_1,
   .btn_add_to_cart a.btn_1 {
     display: inline-block;
     width: auto;

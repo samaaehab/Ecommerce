@@ -277,7 +277,6 @@
 .inlinesvg .svg svg {
   display: inline;
 }
-
 .icon--order-success svg path {
   -webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
   animation: checkmark 0.25s ease-in-out 0.7s backwards;
