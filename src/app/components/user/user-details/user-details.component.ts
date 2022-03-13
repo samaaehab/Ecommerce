@@ -18,22 +18,9 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this._userService.get().subscribe(
-    //   (res: any) => {
-    //     // console.log(JSON.stringify(res));
-    //     this.users = res.data.find((user:any)=>user.email==this.user);
-    //     console.log(this.users);
-
-    //     this.newUser.push(this.users);
-    //     // console.log(this.newUser)
-    //   }
-    // );
     this._userService.show(this.user).subscribe(
       (res: any) => {
-        // this.users = res.data.find((user:any)=>user.email==this.user);
         this.users=res[0];
-        console.log(this.users);
-
         this.formEdit = this._formBuilder.group({
           name: [this.users.name,[Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
           email: [this.users.email, [Validators.required, Validators.email]],
@@ -45,10 +32,8 @@ export class UserDetailsComponent implements OnInit {
         });
         
       },(error:any)=>{
-        console.log(error);
       }
     );
-    // console.log(this.users[0]);
 
 
   }
@@ -73,7 +58,6 @@ export class UserDetailsComponent implements OnInit {
     this.edituser.country = country
     this.edituser.city = city
     this.edituser.house_no = house_no
-    // this.edituser.password = password;
 
     this._userService.put(id, this.edituser)
     .subscribe(
@@ -84,7 +68,6 @@ export class UserDetailsComponent implements OnInit {
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++){
-            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
           

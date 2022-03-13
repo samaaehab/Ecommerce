@@ -45,9 +45,7 @@ export class CheckoutComponent implements OnInit {
     });
     this._userService.get().subscribe(
       (res: any) => {
-        // console.log(JSON.stringify(res));
         this.users = res.data.find((user: any) => user.email == this.user);
-        //console.log(this.users.id);
 
         this._cartService.getCartsForEachUser(this.users.id).subscribe(
           (res:any)=>{
@@ -55,7 +53,6 @@ export class CheckoutComponent implements OnInit {
             for(let i of this.cartInOrder){
               this.totalPrice+=Number(i.total_price);
             }
-            // console.log(this.cartInOrder);
 
 
           }
@@ -63,30 +60,8 @@ export class CheckoutComponent implements OnInit {
 
       }
     );
-
-
-    // this.getstore(4);
-    // this.addOrder();
-
   }
 
-  // get product id from store id
-  // getstore(id:any) {
-  //   this._storeService.get().subscribe(
-  //     (res: any) => {
-  //       console.log(JSON.stringify(res.data));
-  //       for (let i in res.data) {
-  //         console.log(res.data[i]);
-  //         if (id == res.data[i].id) {
-  //           console.log(res.data[i].product);
-
-
-  //         }
-
-  //     }
-  //     }
-  //   );
-  // }
   addOrder(Name:string,Address:string,HouseNum:any,City:string,Country:string,Phone:any,totalPrice:string,email:string){
     this.postOrder.name=Name;
     this.postOrder.full_address=Address;
@@ -202,8 +177,8 @@ export class CheckoutComponent implements OnInit {
     });
 
   }
+  /* Payment Methods ==> Stripe */
   loadStripe() {
-
     if(!window.document.getElementById('stripe-script')) {
       var s = window.document.createElement("script");
       s.id = "stripe-script";
@@ -214,17 +189,14 @@ export class CheckoutComponent implements OnInit {
           key: 'pk_test_51KXiTqCac1rFJKk7X7T633HwpeZOAzTipqVW1faLM1C4gIH0wT9sJY7XcyPiTOEXNx2uy0ewAbrDTieDM22KE4eY00WY7971N6',
           locale: 'auto',
           token: function (token: any) {
-            // You can access the token ID with `token.id`.
-            // Get the token ID to your server-side code for use.
-            console.log(token);
-
           }
         });
       }
-
       window.document.body.appendChild(s);
     }
   }
+
+  
   imagepath: any = 'https://res.cloudinary.com/ecommerceangular22/image/upload/v1646609059/';
   return(id:any,s_id:any,p_id:any,p_name:any,img:any,p_number:any,disc:any,pric:any,tot_price:any){
     this._cartService.delete(id).subscribe(

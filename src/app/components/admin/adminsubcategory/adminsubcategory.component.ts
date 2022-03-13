@@ -11,7 +11,6 @@ import  Swal from 'sweetalert2';
 import { AdminTokenService } from 'src/app/services/admin-token.service';
 import { AuthenService } from 'src/app/services/authen.service';
 import { Router } from '@angular/router';
-import { ContactUsService } from 'src/app/services/contact-us.service';
 import { OrderService } from 'src/app/services/order.service';
 
 
@@ -38,7 +37,7 @@ export class AdminsubcategoryComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, private _SubcategoryService: SubcategoryService, private _categoryService: CategoryServiceService
     , public myapp: AppComponent ,private orderService: OrderService,
     private token: AdminTokenService, private auth: AuthenService,
-    private router: Router , private _contact:ContactUsService) { }
+    private router: Router) { }
 
 
   ngOnInit(): void {
@@ -52,24 +51,10 @@ export class AdminsubcategoryComponent implements OnInit {
     });
       this.getSubCategoryData();
     this.getCategoryData();
-    this._contact.get().subscribe(
-      (res:any)=>{
-        console.log(res);
-
-        this.messagesCount=res.length;
-        for(let i = 0 ; i < this.messagesCount ; i++){
-          if(res[i].seen === 0){
-            this.counter++;
-          }
-
-        }
-      }
-    );
   }
   getSubCategoryData(){
     this._SubcategoryService.get().subscribe(
       (res: any) => {
-        // console.log(JSON.stringify(res));
         this.subcategories = res.data;
       }
     );
@@ -77,7 +62,6 @@ export class AdminsubcategoryComponent implements OnInit {
   getCategoryData(){
     this._categoryService.get().subscribe(
      (res: any) => {
-      //  console.log(JSON.stringify(res));
        this.categories = res.data;
      }
    );
@@ -125,7 +109,6 @@ return this.formUpdate.controls[name].invalid && this.formUpdate.controls[name].
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++){
-            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
 
@@ -187,7 +170,6 @@ return this.formUpdate.controls[name].invalid && this.formUpdate.controls[name].
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++){
-            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
 

@@ -176,7 +176,7 @@
             </div>
             <div class="col-lg-4 col-md-6">
               <div class="btn_add_to_cart">
-                <a
+                <button
                   class="btn_1"
                   (click)="
                     addToCart(
@@ -185,7 +185,8 @@
                       inputqnt.value
                     )
                   "
-                  >Add to Cart</a
+                  [disabled]="check"
+                  >Add to Cart</button
                 >
               </div>
               <div class="btn_add_to_fav">

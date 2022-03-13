@@ -21,8 +21,6 @@ export class RatingComponent implements OnInit {
   onRatingChanged(rate:number):void{
     this.rate=rate;
     this.change.emit(rate);
-    // alert(rate);
-
   }
 
 }

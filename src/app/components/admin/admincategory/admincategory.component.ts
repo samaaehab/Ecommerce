@@ -1,11 +1,9 @@
-import { ContactUsService } from 'src/app/services/contact-us.service';
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/Category';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from 'src/app/app.component';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Massege } from 'src/app/models/Massege';
 declare const $: any;
@@ -36,7 +34,7 @@ export class AdmincategoryComponent implements OnInit {
    order_count: any = 0;
   constructor(private _formBuilder: FormBuilder, private _categoryService: CategoryServiceService,
     public myapp: AppComponent, private token: AdminTokenService,private orderService: OrderService ,
-    private auth: AuthenService, private router: Router , private _contact:ContactUsService) { }
+    private auth: AuthenService, private router: Router) { }
 
   ngOnInit(): void {
     this.getOrderCount();
@@ -44,24 +42,10 @@ export class AdmincategoryComponent implements OnInit {
       Name:['',[Validators.required,Validators.minLength(3),Validators.maxLength(25)]],      
       });
     this.getCategoryData();
-    this._contact.get().subscribe(
-      (res:any)=>{
-        // console.log(res);
-        
-        this.messagesCount=res.length;
-        for(let i = 0 ; i < this.messagesCount ; i++){
-          if(res[i].seen === 0){
-            this.counter++;
-          }
-
-        }
-      }
-    );
   }
   getCategoryData(){ 
     this._categoryService.get().subscribe(
      (res: any) => {
-      //  console.log(JSON.stringify(res));
        this.categories = res.data;
      }
    );
@@ -91,11 +75,8 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
       },
       (error: any) => {
        
-        // console.log(error);
-        // console.log(error.error.errors);
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++){
-            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
           
@@ -156,14 +137,12 @@ return this.formCat.controls[name].invalid && this.formCat.controls[name].errors
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++){
-            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
           
         }
       }
     );
-    //alert("Done");
   }
 
   logout(event:MouseEvent){

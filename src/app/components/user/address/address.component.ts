@@ -19,20 +19,12 @@ export class AddressComponent implements OnInit {
   constructor(private _userService:UserService, private auth:AuthenService,private router:Router,private token:TokenService) { }
 
   ngOnInit(): void {
-    this._userService.get().subscribe(
+    this._userService.show(this.user).subscribe(
       (res: any) => {
-        // console.log(JSON.stringify(res));
-        this.users = res.data.find((user:any)=>user.email==this.user);
-        this.newUser.push(this.users);
-        // console.log(this.newUser[0].city)
+        this.users = res[0];
+        this.newUser.push(this.users);  
+      },(error:any)=>{
       }
     );
-  }
-
-  logout(event:MouseEvent){
-    event.preventDefault();
-    this.token.remove();
-    this.auth.changeAuthStatus(false);
-    this.router.navigateByUrl('/acount');
   }
 }

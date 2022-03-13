@@ -1,14 +1,10 @@
 import { UserService } from './../../services/user.service';
 import { TokenService } from './../../services/token.service';
 import { Router } from '@angular/router';
-import { event } from 'jquery';
-import { SubCategory } from 'src/app/models/SubCategory';
 import { CategoryServiceService } from 'src/app/services/category-service.service';
-import { SubcategoryService } from 'src/app/services/subcategory.service';
 import { AuthenService } from './../../services/authen.service';
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/Category';
-// import { TranslateService } from '@ngx-translate/core';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -27,21 +23,14 @@ allsubcategories:any[]=[];
   totalPrice: number = 0;
   productsInCart: any[] = [];
   user=localStorage.getItem('email');
-constructor(private _SubcategoryService:SubcategoryService,
+constructor(
 private _categoryService:CategoryServiceService,
 private auth:AuthenService,private router:Router,private token:TokenService,private _userService:UserService,private _cartService:CartService) { }
 searchText:any;
 productCount:any;
 WeatherData:any;
-  // constructor(
-  //   public translate: TranslateService
-  // ) {
-  //   translate.addLangs(['en', 'ar']);
-  //   translate.setDefaultLang('en');
-  // }
-  // switchLang(lang: string) {
-  //   this.translate.use(lang);
-  // }
+
+
   ngOnInit(): void {
 
     this.getauthlogin();
@@ -51,37 +40,17 @@ WeatherData:any;
       isDay: true
     };
     this.getWeatherData();
-    // console.log(this.WeatherData);
-
 
     this.auth.status.subscribe(value => this.logged = value);
 
-      this._categoryService.get().subscribe(
+    this._categoryService.get().subscribe(
         (res: any) => {
-
                this.categories = res.data;
-          // for (const i in res.data) {
-
-          //   const id= res.data[i].id;
-          //   this._SubcategoryService.getSubCatForEachCategory(id).subscribe(
-          //     (res: any) => {
-          //       this.subcategories=res.data;
-          //             this.allsubcategories.push(this.subcategories.map(m=>{return m}));
-          //        },
-          //     (err:any)=>{
-          //       console.log(err);
-
-          //     }
-          //   )
-          // }
         },
             (err:any)=>{
-              // console.log(err);
-
             }
       );
       }
-
       getTotalCount() {
         return this._cartService.cartCount();
       }
@@ -111,21 +80,10 @@ WeatherData:any;
     }
   }
 
-      // getCategoryData(){
-      //   this._categoryService.get().subscribe(
-      //    (res: any) => {
-      //      console.log(JSON.stringify(res));
-      //       this.categories = res.data;
-      //       console.log(this.categories);
-
-      //    }
-      //  );
-      // }
       users:any;
       getWeatherData(){
         this._userService.get().subscribe(
           (res: any) => {
-            // console.log(JSON.stringify(res));
             this.users = res.data.find((user: any) => user.email == this.user);
             fetch('https://api.openweathermap.org/data/2.5/weather?q='+this.users.city+'&appid=9c57a2635e1987d71a704765bfb30352')
             .then(response=>response.json())
@@ -134,7 +92,6 @@ WeatherData:any;
         );
 
       }
-
       setWeatherData(data:any){
         this.WeatherData = data;
         let sunsetTime = new Date(this.WeatherData.sys.sunset * 1000);

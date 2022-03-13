@@ -74,22 +74,13 @@ export class AdmindashboardComponent implements OnInit {
  	 	isDay: true
  	 	};
  	 	this.getWeatherData();
- 	 	console.log(this.WeatherData);
   }
 
   getmsg() {
     this._contact.get().subscribe(
       (res:any)=>{
-        // console.log(res);
         this.messages=res;
-  
         this.messagesCount=res.length;
-        // for(let i = 0 ; i < this.messagesCount ; i++){
-        //   if(res[i].seen === 0){
-        //     this.counter++;
-        //   }
-  
-        // }
       }
     );
   }

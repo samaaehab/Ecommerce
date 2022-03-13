@@ -26,5 +26,7 @@ export class OrderService {
   put(id:number,order:Order){
     return this._httpClient.put(this.url+`orders/${id}`, order,{ 'headers': this.headers });
   }
-
+  userOrders(userId:any){
+    return this._httpClient.get(this.url+`order/${userId}`, { 'headers': this.headers });
+  }
 }

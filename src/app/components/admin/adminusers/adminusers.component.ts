@@ -11,7 +11,6 @@ import Pusher from 'pusher-js';
 import { Router } from '@angular/router';
 import { AdminTokenService } from 'src/app/services/admin-token.service';
 import { AuthenService } from 'src/app/services/authen.service';
-import { ContactUsService } from 'src/app/services/contact-us.service';
 import { OrderService } from 'src/app/services/order.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -32,7 +31,7 @@ export class AdminusersComponent implements OnInit {
   users: User[] = [];
   // Pagination parameters.
   p: any = 1;
-  count: any = 6;
+  count: any = 5;
   searchText: any;
   messagesCount:number=0;
   counter:number=0;
@@ -41,7 +40,7 @@ export class AdminusersComponent implements OnInit {
   constructor(public myapp: AppComponent, private http: HttpClient,
     private _formBuilder: FormBuilder, private _userService: UserService ,private orderService: OrderService,
     private token: AdminTokenService, private auth: AuthenService,
-    private router: Router, private _contact:ContactUsService) { }
+    private router: Router) { }
 
 
 
@@ -71,19 +70,6 @@ export class AdminusersComponent implements OnInit {
 
     });
     this.getUserData();
-    this._contact.get().subscribe(
-      (res:any)=>{
-        // console.log(res);
-
-        this.messagesCount=res.length;
-        for(let i = 0 ; i < this.messagesCount ; i++){
-          if(res[i].seen === 0){
-            this.counter++;
-          }
-
-        }
-      }
-    );
   }
   getUserData() {
     this._userService.get().subscribe(
@@ -139,14 +125,13 @@ export class AdminusersComponent implements OnInit {
 
     this._userService.post(user).subscribe(
       (response: any) => {
-        // console.log(this.users);
         this.users.push(user);
+        this.getUserData();
         this.myapp.successmessage(response.message);
       },
       (error: any) => {
         for (const err in error.error.errors) {
           for (let i = 0; i < error.error.errors[err].length; i++) {
-            // console.log(error.error.errors[err][i]);
             this.myapp.errormessage(error.error.errors[err][i]);
           }
 
@@ -169,15 +154,11 @@ export class AdminusersComponent implements OnInit {
               this._userService.delete(index)
               .subscribe(
                 (response: any) => {
-            //      console.log(user);
-
-              // console.log('Clicked Yes, File deleted!');
               this.users.splice(index, 1);
               this.getUserData();
               this.myapp.successmessage(response.message);
             })
             } else if (result.isDismissed) {
-              // console.log('Clicked No, File is safe!');
               this.myapp.errormessage("User not Deleted");
             }
         }

@@ -21,27 +21,20 @@ export class OrdersComponent implements OnInit {
   ngOnInit(): void {
     this._userService.show(this.user).subscribe(
       (res: any) => {
-        // this.users = res.data.find((user:any)=>user.email==this.user);
         this.users = res[0];
-        console.log(this.users);
-        
+        this._orderService.userOrders(this.users.id).subscribe(
+          (res:any)=>{
+            this.orders=res;
+          }
+        );
       },(error:any)=>{
-        console.log(error);
       }
     );
-
-    this._orderService.get().subscribe(
-      (res:any)=>{
-        this.orders=res.data.filter((orders:any)=>orders.user_id === this.users.id);
-        // console.log(this.orders)
-      }
-    )
   }
   view(id:any){
     this._order_datails.view(id).subscribe(
       (res:any)=>{
         this.carts=res;
-        // console.log(this.carts);
 
       }
     );

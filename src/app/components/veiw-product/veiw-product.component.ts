@@ -58,35 +58,33 @@ export class VeiwProductComponent implements OnInit {
     });
     this.getcomment(this.prodid);
 
-    this._userService.get().subscribe(
+    this._userService.show(this.user).subscribe(
       (res: any) => {
-        this.users = res.data.find((user: any) => user.email == this.user);
+        this.users = res[0];
         this._ratingService.check(this.users.id,this.prodid).subscribe(
           (res:any)=>{
             this.mainhomeRate=res[0].degree;
           });
-      });
-      this.storeService.get().subscribe(
-        (res:any)=>{
-          for(let i in res.data){
+      },(error:any)=>{
+      }
+    );
 
-            if(res.data[i].product_id==this.productDet.id)
-              this.store.push(res.data[i]);            
+      this.storeService.storesForeachProduct(this.prodid).subscribe(
+        (res:any)=>{
+
+              this.store=res;            
               this.spinner.hide();
             if (this.store.length === 0) {
-              // alert('no')
               this.check=true;
             } else {
-              // alert('yes')
               this.check=false;
             }
-          }
+          
           },
           (error:any)=>{
 
         }
       );
-    // this.getStore();
 this.reviews(1);
   }
   products:any[]=[];
@@ -133,14 +131,9 @@ addToCart(id:any,productSizeColor:any,qnt:any){
     }
       else{
         this.myapp.showWarning(product.product_name+" Already Added Before","Oops");
-
       }
-
     }
-
   );
-
-
   }
 
   onmainHomeRateChange(rate:number,product_id:number):void{
@@ -152,16 +145,13 @@ addToCart(id:any,productSizeColor:any,qnt:any){
           (res:any)=>{
 
             this.R = res.length;
-        // console.log(this.R);
             if(this.R>0){
               this.ratings.product_id=product_id;
               this.ratings.degree=rate;
               this.ratings.user_id=this.users.id;
-              console.log(this.ratings.user_id);
               this._ratingService.put(res[0].id,this.ratings).subscribe(
                 (res:any)=>{this.reviews(this.prodid);}
               );
-              // console.log(res[0].id);
             }
             else{
           this._ratingService.post(this.ratings).subscribe(
@@ -172,29 +162,10 @@ addToCart(id:any,productSizeColor:any,qnt:any){
             }
             );
           }
-          // this._ratingService.show();
           }
         );
     }
-  // getStore(){
-  //   this.storeService.get().subscribe(
-  //        (res:any)=>{
-  //  for(let i in res.data){
 
-  //    if(res.data[i].product_id==this.productDet.id)
-  //      this.store.push(res.data[i]);
-
-  //  }
-  //  },
-  //      (error:any)=>{
-
-  //      }
-  //   );
-  //     }
-
-
-
-  // }
   addToFav(id:any,ProdName:any,Image:any,newPrice:any){
     if (localStorage.getItem('Fav' + id) === null) {
       localStorage.setItem('Fav' + id, ProdName + '#$' + Image + '#$' + newPrice + '#$' + id + '#$' + 1);
@@ -210,16 +181,13 @@ addToCart(id:any,productSizeColor:any,qnt:any){
     newComment.comment = comment;
     newComment.user_id = this.users.id;
 
-    // newComment.created_at = newComment.created_at.getSeconds();
 
     this._commentService.post(newComment).subscribe(
       (res: any) => {
-    // console.log(newComment.created_at);
 
   this.getcomment(this.prodid)
 
       }, (err: any) => {
-        // console.log(err);
 
       }
     )
@@ -227,19 +195,10 @@ addToCart(id:any,productSizeColor:any,qnt:any){
   }
 
   getcomment(id:any) {
-    // alert(this.prodid)
     this._commentService.get(id).subscribe(
       (res: any) => {
-        // console.log(res);
-        // alert(res)
         this.comments=res
-        // console.log(this.comments);
-
-
       }, (err: any) => {
-
-        // console.log(err);
-
       }
     )
   }
